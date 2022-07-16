@@ -2,17 +2,24 @@
 import "./styles/main.scss"; 
 import {Router, Routes, Route } from "react-router-dom";
 // Importing  modules
-import Navbar from "../src/components/Navbar/Navbar"
+import Navbar from "./components/Navbar/Navbar";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import NavbarLive from "./components/Navbar/NavbarLive";
 
 function App() {
   return (
     <>
-      
+      <Router>
+          {/* The Navbar component  */}
           <Navbar />
-          <h1>Test is not render</h1>
-          <p>This is paragraph</p>
-     
-      
+          <NavbarLive />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+          {/* The Footer component  */}
+      </Router>
     </>
   );
 }

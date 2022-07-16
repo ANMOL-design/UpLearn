@@ -1,1 +1,7 @@
-@import "./base/base.scss"; // Importing the base style
+// Importing the base style
+@import "./base/base.scss";
+// Import thr variable and mixins
+@import "./abstract/variables.scss";
+@import "./abstract/mixin.scss";
+// Importing the Navbar Style
+@import "./Navbar/Navbar.scss";
