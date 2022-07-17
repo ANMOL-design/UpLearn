@@ -1,5 +1,5 @@
 .wrapper {
-    background: $theme_color;
+    background: $theme_dark;
     position: fixed;
     width: 100%;
     font-family: $font_El;
@@ -10,7 +10,7 @@
     display: flex;
     max-width: calc(100% - 200px);
     margin: 0 auto;
-    height: 70px;
+    height: 60px;
     align-items: center;
     justify-content: space-between;
 }
@@ -20,28 +20,57 @@ nav .content {
     align-items: center;
 }
 
+nav .sign {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+nav .sign button {
+    font-family: $font_El;
+    font-size: 20px;
+    font-weight: 500;
+    background: none;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 18px;
+    padding: 3px 18px;
+    cursor: pointer;
+    margin: 6px;
+    transition: all 0.2s ease;
+}
+
+nav .sign button:hover {
+    font-weight: 700;
+    border: 2px solid #fff;
+}
+
 nav .content .links {
     margin-left: 80px;
     display: flex;
 }
 
+.content .img_lg {
+    width: 40px;
+}
+
 .content .logo a {
     color: #fff;
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: 600;
 }
 
 .content .links li {
     list-style: none;
-    line-height: 70px;
+    line-height: 60px;
 }
 
 .content .links li a,
 .content .links li label {
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
-    padding: 9px 17px;
+    padding: 12px 17px;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
@@ -52,16 +81,17 @@ nav .content .links {
 
 .content .links li a:hover,
 .content .links li label:hover {
-    background: #323c4e;
+    font-weight: 700;
+    text-decoration: underline;
 }
 
 .wrapper .search-icon,
 .wrapper .menu-icon {
     color: #fff;
-    font-size: 18px;
+    font-size: 1.5rem;
     cursor: pointer;
-    line-height: 70px;
-    width: 70px;
+    line-height: 20px;
+    width: 60px;
     text-align: center;
 }
 
@@ -69,14 +99,11 @@ nav .content .links {
     display: none;
 }
 
-.wrapper #show-search:checked~.search-icon i::before {
-    content: "\f00d";
-}
-
+// Style for the search-bar
 .wrapper .search-box {
     position: absolute;
     height: 100%;
-    max-width: calc(100% - 50px);
+    max-width: calc(100% - 60px);
     width: 100%;
     opacity: 0;
     pointer-events: none;
@@ -93,9 +120,9 @@ nav .content .links {
     height: 100%;
     border: none;
     outline: none;
-    font-size: 17px;
+    font-size: 1.2rem;
     color: #fff;
-    background: #171c24;
+    background: $light_black;
     padding: 0 100px 0 15px;
 }
 
@@ -108,9 +135,9 @@ nav .content .links {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    line-height: 60px;
+    line-height: 30px;
     width: 70px;
-    background: #171c24;
+    background: $light_black;
     border: none;
     outline: none;
     color: #fff;
@@ -118,7 +145,7 @@ nav .content .links {
     cursor: pointer;
 }
 
-.wrapper input[type="checkbox"] {
+.wrapper input[type='checkbox'] {
     display: none;
 }
 
@@ -127,31 +154,34 @@ nav .content .links {
 
 .content .links ul {
     position: absolute;
-    background: #171c24;
-    top: 80px;
+    background: $theme_dark;
+    top: 60px;
     z-index: -1;
     opacity: 0;
     visibility: hidden;
 }
 
 .content .links li:hover>ul {
-    top: 70px;
+    top: 60px;
     opacity: 1;
     visibility: visible;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    border-top: 1px solid $light_black;
 }
 
 .content .links ul li a {
     display: block;
     width: 100%;
-    line-height: 30px;
-    border-radius: 0px!important;
+    line-height: 20px;
+    border: 1px solid $light_black;
+    border-top: 0px;
+    border-radius: 0px !important;
 }
 
 .content .links ul ul {
     position: absolute;
     top: 0;
-    right: calc(-100% + 8px);
+    right: calc(-100% + 11.5px);
 }
 
 .content .links ul li {
@@ -188,28 +218,27 @@ nav .content .links {
     .wrapper .menu-icon {
         display: block;
     }
-    .wrapper #show-menu:checked~.menu-icon i::before {
-        content: "\f00d";
-    }
     nav .content .links {
         display: block;
         position: fixed;
-        background: #14181f;
+        background: $theme_dark;
         height: 100%;
         width: 100%;
-        top: 70px;
+        top: 60px;
         left: -100%;
         margin-left: 0;
         max-width: 350px;
         overflow-y: auto;
         padding-bottom: 100px;
-        transition: all 0.3s ease;
+        border-top: 1px solid $light_black;
+        border-right: 1px solid $light_black;
+        transition: all 0.4s ease;
     }
     nav #show-menu:checked~.content .links {
         left: 0%;
     }
     .content .links li {
-        margin: 15px 20px;
+        margin: 12px 0px;
     }
     .content .links li a,
     .content .links li label {
@@ -218,6 +247,8 @@ nav .content .links {
         display: block;
         padding: 8px 18px;
         cursor: pointer;
+        border-bottom: 1px solid $light_black;
+        border-radius: 0px;
     }
     .content .links li a.desktop-link {
         display: none;
@@ -236,14 +267,28 @@ nav .content .links {
     .content .links #show-services:checked~ul,
     .content .links #show-items:checked~ul {
         max-height: 100vh;
+        border: none;
     }
     .content .links ul li {
-        margin: 7px 20px;
+        margin: 7px 0px;
     }
     .content .links ul li a {
         font-size: 18px;
-        line-height: 30px;
-        border-radius: 5px!important;
+        line-height: 35px;
+        border: none;
+        border-bottom: 1px solid $light_black;
+        border-radius: 0px !important;
+    }
+}
+
+@media screen and (max-width: 763px) {
+    nav .sign {
+        margin-right: 2px;
+    }
+    nav .sign button {
+        font-size: 18px;
+        border-radius: 16px;
+        padding: 2px 16px;
     }
 }
 
@@ -263,5 +308,8 @@ nav .content .links {
     }
     .wrapper .search-box input {
         padding-right: 30px;
+    }
+    nav .sign button {
+        font-size: 15px;
     }
 }

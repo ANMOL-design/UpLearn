@@ -1,6 +1,6 @@
 // Import a single style file only at index file
 import "./styles/main.scss"; 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {Router, Routes, Route } from "react-router-dom";
 // Importing  modules
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
@@ -11,10 +11,10 @@ function App() {
   return (
     <>
       <Router>
-          {/* The Navbar component  */}
-          <Navbar />
+          {/* The Navbar component  */}         
           <NavbarLive />
           <Routes>
+            <Route path="/nav" element={<Navbar />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>

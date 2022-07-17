@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import signupImg from "../../assets/images/signup.png";
 
+<<<<<<< HEAD
 function Register() {
   let navigate = useNavigate();
 
@@ -120,6 +121,16 @@ function Register() {
       </div>
     </>
   );
+=======
+function Register(){
+    return(
+        <>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis illo accusamus dicta porro quia assumenda nisi, voluptatum tempore blanditiis est cumque ea fugiat tempora in beatae velit quasi alias repudiandae.</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis illo accusamus dicta porro quia assumenda nisi, voluptatum tempore blanditiis est cumque ea fugiat tempora in beatae velit quasi alias repudiandae.</p>
+            <h1>Register User</h1>
+        </>
+    );
+>>>>>>> cd4881efb69b4bc210cbe952a2b4b0d607a02728
 }
 
 export default Register;
