@@ -38,8 +38,8 @@ function Register() {
 
     if (!password) {
       errors.password = "Password is required";
-    } else if (password.length < 4) {
-      errors.password = "Must be greater than 4";
+    } else if (password.length < 8) {
+      errors.password = "Must be greater than 8";
     } else if (password !== confirmPassword) {
       errors.confirmPassword = "Password and confirm password should be same";
     }

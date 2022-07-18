@@ -1,65 +1,94 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FaSistrix, FaArrowRight, FaBars } from "react-icons/fa";
-import Logo from "./../../assets/images/logo.png";
+import Logo from "./../../assets/images/Logo.png";
+import { FaAngleDown, FaBars} from "react-icons/fa";
+import { TbGridDots } from "react-icons/tb";
 
-const Navbar = () => {
-    return( 
-        <div className="wrapper">
+function Navbar(){
+
+    const Toggler = () => {
+        var element = document.getElementById("toggleNav");
+        element.classList.toggle("show-slider");
+    }
+
+    return(
+        <div className="wrapper" id="navbar">
             <nav>
-                <input type="checkbox" id="show-search" />
-                <input type="checkbox" id="show-menu" />
-                <label htmlFor="show-menu" className="menu-icon"><FaBars /></label>
                 <div className="content">
-                    <img src={Logo} alt="Logo" className="img_lg" />
+                    {/* The website Logo and Name  */}
                     <div className="logo">
-                        <NavLink to="/">UpLearn</NavLink>
+                        <NavLink to="/">
+                            <img src={Logo} alt="Logo" className="logo_ig" /> 
+                            <span style={{color: "#2b4eff"}}>Up</span>
+                            <span>Learn</span>
+                        </NavLink>  
                     </div>
-                    <ul className="links">
-                    <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/login">About</NavLink></li>
-                    <li>
-                        <NavLink to="/" className="desktop-link">Features</NavLink>
-                        <input type="checkbox" id="show-features" />
-                        <label htmlFor="show-features">Features</label>
-                        <ul>
-                            <li><NavLink to="/">Drop Menu 1</NavLink></li>
-                            <li><NavLink to="/">Drop Menu 2</NavLink></li>
-                            <li><NavLink to="/">Drop Menu 3</NavLink></li>
-                            <li><NavLink to="/">Drop Menu 4</NavLink></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <NavLink to="/" className="desktop-link">Services</NavLink>
-                        <input type="checkbox" id="show-services" />
-                        <label htmlFor="show-services">Services</label>
-                        <ul>
-                            <li><NavLink to="/">Drop Menu 1</NavLink></li>
-                            <li><NavLink to="/">Drop Menu 2</NavLink></li>
-                            <li><NavLink to="/">Drop Menu 3</NavLink></li>
+                    {/* The category logo  */}
+                    <div className="category">
+                        <NavLink to="/category">
+                            <span><TbGridDots /></span>
+                            Category
+                        </NavLink>
+                    </div>
+
+                    {/* The Website DropDowns  */}
+                    <ul className="links" id="toggleNav">
+                        {/* Link for the Home Page  */}
                         <li>
-                            <NavLink to="/" className="desktop-link">More Items</NavLink>
-                            <input type="checkbox" id="show-items" />
-                            <label htmlFor="show-items">More Items</label>
+                            <NavLink to="/">Home</NavLink>
+                        </li>
+                        {/* Links and dropdown for the courses  */}
+                        <li>
+                            <NavLink to="/courses"  className="desktop-link" style={{paddingRight: "0px"}}>Courses</NavLink>
+                            <input type="checkbox" id="show-courses" />
+                            <label htmlFor="show-courses"><span className="hideNav">Courses</span><FaAngleDown /></label>
                             <ul>
-                                <li><NavLink to="/">Sub Menu 1</NavLink></li>
-                                <li><NavLink to="/">Sub Menu 2</NavLink></li>
-                                <li><NavLink to="/">Sub Menu 3</NavLink></li>
+                                <li><NavLink to="/">Courses</NavLink></li>
+                                <li><NavLink to="/">Courses List</NavLink></li>
+                                <li><NavLink to="/">Courses Details</NavLink></li>
                             </ul>
                         </li>
-                        </ul>
-                    </li>
-                    <li><NavLink to="/">Feedback</NavLink></li>
+                        {/* Links and dropdown for the Blogs  */}
+                        <li>
+                            <NavLink to="/blogs" className="desktop-link" style={{paddingRight: "0px"}}>Blogs</NavLink>
+                            <input type="checkbox" id="show-blogs" />
+                            <label htmlFor="show-blogs"><span className="hideNav">Blogs</span><FaAngleDown /></label>
+                            <ul>
+                                <li><NavLink to="/">Blogs</NavLink></li>
+                                <li><NavLink to="/">Blogs Details</NavLink></li>
+                            </ul>
+                        </li>
+                        {/* Link and Dropdown for pages  */}
+                        <li>
+                            <NavLink to="/pages" className="desktop-link" style={{paddingRight: "0px"}}>Pages</NavLink>
+                            <input type="checkbox" id="show-pages" />
+                            <label htmlFor="show-pages"><span className="hideNav">Pages</span><FaAngleDown /></label>
+                            <ul>
+                                <li><NavLink to="/">About</NavLink></li>
+                                <li><NavLink to="/">Instructor</NavLink></li>
+                                <li><NavLink to="/">Event Details</NavLink></li>
+                                <li><NavLink to="/">My Dashboard</NavLink></li>
+                                <li><NavLink to="/">Sign In</NavLink></li>
+                                <li><NavLink to="/">Sign Up</NavLink></li>
+                                <li><NavLink to="/">Courses</NavLink></li>
+                            </ul>
+                        </li>
+                        {/* Link for the Contact Page  */}
+                        <li><NavLink to="/contact">Contact</NavLink></li>
                     </ul>
-                </div>
-                <label htmlFor="show-search" className="search-icon"><FaSistrix /></label>
-                <form action="#"  className="search-box">
-                    <input type="text" placeholder="Type Something to Search..." required />
-                    <button type="button" className="go-icon"><FaArrowRight /></button>
-                </form>
+                </div> 
+                <div className="sign_toggler">
+                    {/* Button for Login and Sign In Page  */}
+                    <div className="sign">
+                        <NavLink to="/login"><button type="button">Sign up</button></NavLink>
+                    </div>
+
+                    {/* Icon for the Navbar toggle */}
+                    <label htmlFor="show-menu" className="menu-icon" onClick={Toggler}><FaBars /></label>            
+                </div>   
             </nav>
-        </div>    
-    );
+        </div>   
+    )
 }
 
 export default Navbar;
