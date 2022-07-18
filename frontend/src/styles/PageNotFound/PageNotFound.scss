@@ -1,0 +1,56 @@
+.pagenotfound {
+    @include displayflex;
+    flex-direction: column;
+    background: #FAFBFF;
+    padding: 120px 2rem 2rem;
+    img {
+        width: 50%;
+    }
+    p {
+        font-family: $font_El;
+        font-size: 18px;
+        padding: 0.2rem;
+    }
+    a {
+        button {
+            font-family: $font_El;
+            font-size: 18px;
+            font-weight: 500;
+            background: $navbar_color;
+            color: #fff;
+            border-radius: 5px;
+            padding: 6px 20px;
+            margin: 1rem;
+            cursor: pointer;
+            outline: none;
+            border: none;
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .pagenotfound {
+        img {
+            width: 65%;
+        }
+    }
+}
+
+@media screen and (max-width: 773px) {
+    .pagenotfound {
+        justify-content: flex-start;
+        height: 110vh;
+        img {
+            width: 85%;
+        }
+        p {
+            font-size: 15px;
+            padding: 0.5rem;
+        }
+        a {
+            button {
+                margin: 1.2rem;
+            }
+        }
+    }
+}
