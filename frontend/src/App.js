@@ -11,10 +11,10 @@ function App() {
   return (
     <>
       <BrowserRouter>
-          {/* The Navbar component  */}
-         <Navbar/>
-          <NavbarLive/>
+          {/* The Navbar component  */}         
+          <NavbarLive />
           <Routes>
+            <Route path="/nav" element={<Navbar />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>

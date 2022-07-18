@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaSistrix, FaArrowRight, FaBars } from "react-icons/fa";
-
+import Logo from "./../../assets/images/logo.png";
 
 const Navbar = () => {
     return( 
@@ -11,7 +11,10 @@ const Navbar = () => {
                 <input type="checkbox" id="show-menu" />
                 <label htmlFor="show-menu" className="menu-icon"><FaBars /></label>
                 <div className="content">
-                <div className="logo"><NavLink to="/">UpLearn</NavLink></div>
+                    <img src={Logo} alt="Logo" className="img_lg" />
+                    <div className="logo">
+                        <NavLink to="/">UpLearn</NavLink>
+                    </div>
                     <ul className="links">
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/login">About</NavLink></li>
@@ -27,32 +30,32 @@ const Navbar = () => {
                         </ul>
                     </li>
                     <li>
-                        <a href="#" className="desktop-link">Services</a>
+                        <NavLink to="/" className="desktop-link">Services</NavLink>
                         <input type="checkbox" id="show-services" />
-                        <label for="show-services">Services</label>
+                        <label htmlFor="show-services">Services</label>
                         <ul>
-                        <li><a href="#">Drop Menu 1</a></li>
-                        <li><a href="#">Drop Menu 2</a></li>
-                        <li><a href="#">Drop Menu 3</a></li>
+                            <li><NavLink to="/">Drop Menu 1</NavLink></li>
+                            <li><NavLink to="/">Drop Menu 2</NavLink></li>
+                            <li><NavLink to="/">Drop Menu 3</NavLink></li>
                         <li>
-                            <a href="#" className="desktop-link">More Items</a>
+                            <NavLink to="/" className="desktop-link">More Items</NavLink>
                             <input type="checkbox" id="show-items" />
-                            <label for="show-items">More Items</label>
+                            <label htmlFor="show-items">More Items</label>
                             <ul>
-                            <li><a href="#">Sub Menu 1</a></li>
-                            <li><a href="#">Sub Menu 2</a></li>
-                            <li><a href="#">Sub Menu 3</a></li>
+                                <li><NavLink to="/">Sub Menu 1</NavLink></li>
+                                <li><NavLink to="/">Sub Menu 2</NavLink></li>
+                                <li><NavLink to="/">Sub Menu 3</NavLink></li>
                             </ul>
                         </li>
                         </ul>
                     </li>
-                    <li><a href="#">Feedback</a></li>
+                    <li><NavLink to="/">Feedback</NavLink></li>
                     </ul>
                 </div>
-                <label for="show-search" className="search-icon"><FaSistrix /></label>
-                <form action="#" className="search-box">
+                <label htmlFor="show-search" className="search-icon"><FaSistrix /></label>
+                <form action="#"  className="search-box">
                     <input type="text" placeholder="Type Something to Search..." required />
-                    <button type="submit" className="go-icon"><FaArrowRight /></button>
+                    <button type="button" className="go-icon"><FaArrowRight /></button>
                 </form>
             </nav>
         </div>    
