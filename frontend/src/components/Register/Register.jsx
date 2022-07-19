@@ -53,13 +53,13 @@ function Register() {
 
   return (
     <>
-      <div className="register">
-        <div className="registerContainer">
+      <div className="sign">
+        <div className="signContainer">
           <h2>Create Your Account</h2>
-          <div className="registerWrapper">
-            <div className="registerHeader">
+          <div className="signWrapper">
+            <div className="signHeader">
               <div>
-                <a className="registerSocial" href="#/">
+                <a className="signSocial" href="#/">
                   <FcGoogle className="googleIcon" />
                   <span>Sign Up with Google</span>
                 </a>
@@ -71,9 +71,9 @@ function Register() {
               </div>
             </div>
 
-            <div className="registerForm">
+            <div className="signForm">
               <form onSubmit={(event) => handleSubmit(event)}>
-                <div className="registerInput">
+                <div className="signInput">
                   <h5>Full Name</h5>
                   <input
                     type="text"
@@ -84,7 +84,7 @@ function Register() {
                   />
                   <p>{formErrors.name}</p>
                 </div>
-                <div className="registerInput">
+                <div className="signInput">
                   <h5>Email</h5>
                   <input
                     type="email"
@@ -95,7 +95,7 @@ function Register() {
                   />
                   <p>{formErrors.email}</p>
                 </div>
-                <div className="registerInput">
+                <div className="signInput">
                   <h5>Password</h5>
                   <input
                     type="password"
@@ -106,7 +106,7 @@ function Register() {
                   />
                   <p>{formErrors.password}</p>
                 </div>
-                <div className="registerInput">
+                <div className="signInput">
                   <h5>Confirm Password</h5>
                   <input
                     type="password"
