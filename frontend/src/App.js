@@ -5,21 +5,19 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-import NavbarLive from "./components/Navbar/NavbarLive";
 
 function App() {
   return (
     <>
       <Router>
         {/* The Navbar component  */}
-        <NavbarLive />
+        <Navbar />
         <Routes>
-          <Route path="/nav" element={<Navbar />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
         {/* The Footer component  */}
-      </Router>
+      </Router >
     </>
   );
 }

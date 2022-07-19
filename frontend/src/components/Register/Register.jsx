@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import signupImg from "../../assets/images/signup.png";
 
-
 function Register() {
   let navigate = useNavigate();
 
@@ -38,8 +37,8 @@ function Register() {
 
     if (!password) {
       errors.password = "Password is required";
-    } else if (password.length < 4) {
-      errors.password = "Must be greater than 4";
+    } else if (password.length < 8) {
+      errors.password = "Must be greater than 8";
     } else if (password !== confirmPassword) {
       errors.confirmPassword = "Password and confirm password should be same";
     }
@@ -114,14 +113,10 @@ function Register() {
               </span>
             </form>
           </div>
-          <div className="registerImg">
-            <img src={signupImg} />
-          </div>
+          <div className="registerImg"></div>
         </div>
       </div>
     </>
   );
-
-
-  }
+}
 export default Register;
