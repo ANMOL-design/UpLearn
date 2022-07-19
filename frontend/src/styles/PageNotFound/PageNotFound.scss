@@ -13,17 +13,8 @@
     }
     a {
         button {
-            font-family: $font_El;
-            font-size: 18px;
-            font-weight: 500;
-            background: $navbar_color;
-            color: #fff;
-            border-radius: 5px;
-            padding: 6px 20px;
+            @include sitebutton;
             margin: 1rem;
-            cursor: pointer;
-            outline: none;
-            border: none;
         }
     }
 }

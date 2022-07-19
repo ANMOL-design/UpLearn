@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
 
 function Register() {
   let navigate = useNavigate();
@@ -12,115 +11,133 @@ function Register() {
     confirmPassword: "",
   });
 
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [name, setname] = useState('');
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
+  const [copassword, setcopassword] = useState('');
+  const [invalid, setinvalid] = useState('');
 
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setFormErrors(handleValidation(values));
+    const submit = handleValidation();
 
-    setIsSubmit(true);
-    if (isSubmit) {
+    if (submit) {
       navigate("/");
     }
   };
 
   //form validation
-  const handleValidation = (values) => {
-    const errors = {};
+  const handleValidation = () => {
 
-    if (!values.name) {
-      errors.name = "Name is required";
+    if (values.name === '') {
+      setname("Name is required");
+      window.scroll(0,200);
+      return false;
     }
-    if (!values.email) {
-      errors.email = "Email is required";
+    else if (values.email === '') {
+      setemail("Email is required");
+      window.scroll(0,250);
+      return false;
+    }
+    else if (values.password === '') {
+      setpassword("Password is required");
+      return false;
+    } 
+    else if (values.confirmPassword === '') {
+      setcopassword("Please Confirm Your Password");
+      return false;
+    } 
+    else if (values.password.length < 7) {
+      setinvalid("Password must be atleast 8 character");
+      return false;
+    } 
+    else if (values.password !== values.confirmPassword) {
+      setinvalid("Password and Confirm password should be same");
+      return false;
     }
 
-    if (!values.password) {
-      errors.password = "Password is required";
-    } else if (values.password.length < 8) {
-      errors.password = "Must be greater than 8";
-    } else if (values.password !== values.confirmPassword) {
-      errors.confirmPassword = "Password and confirm password should be same";
-    }
-
-    return errors;
+    return true;
   };
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
+    setname(''); setemail(''); setpassword(''); setcopassword('');
+    setinvalid('');
   };
 
   return (
     <>
-      <div className="sign">
+      {/* The Container Of Login An Sign In Page  */}
+      <div className="signin">
         <div className="signContainer">
-          <h2>Create Your Account</h2>
           <div className="signWrapper">
-            <div className="signHeader">
-              <div>
-                <a className="signSocial" href="#/">
-                  <FcGoogle className="googleIcon" />
-                  <span>Sign Up with Google</span>
-                </a>
-                <p>
-                  <span>........ </span>
-                  Or sign up with your Email
-                  <span> ........</span>
-                </p>
-              </div>
-            </div>
+            <h2>Create Your Account</h2>
+            <p className="pl">"A better learning future starts here."</p>
 
+            {/* Starting the Form  */}
             <div className="signForm">
-              <form onSubmit={(event) => handleSubmit(event)}>
+              <form>
+                {/* The Name Input  */}
                 <div className="signInput">
-                  <h5>Full Name</h5>
+                  <label htmlFor="name">Full Name</label>
                   <input
                     type="text"
-                    placeholder="Full Name"
+                    id="name"
+                    placeholder="Your Name"
                     name="name"
                     value={values.name}
                     onChange={(e) => handleChange(e)}
                   />
-                  <p>{formErrors.name}</p>
+                  <p>{name}</p>
                 </div>
+                {/* The Email Input  */}
                 <div className="signInput">
-                  <h5>Email</h5>
+                  <label htmlFor="email">Email</label>
                   <input
                     type="email"
+                    id="email"
                     placeholder="Email"
                     name="email"
                     value={values.email}
                     onChange={(e) => handleChange(e)}
                   />
-                  <p>{formErrors.email}</p>
+                  <p>{email}</p>
                 </div>
+                {/* The Password Input  */}
                 <div className="signInput">
-                  <h5>Password</h5>
+                  <label htmlFor="password">Password</label>
                   <input
                     type="password"
+                    id="password"
                     placeholder="Password"
                     name="password"
                     value={values.password}
                     onChange={(e) => handleChange(e)}
                   />
-                  <p>{formErrors.password}</p>
+                  <p>{password}</p>
                 </div>
+                {/* The Confirm Password Input  */}
                 <div className="signInput">
-                  <h5>Confirm Password</h5>
+                  <label htmlFor="confirmPassword">Confirm Password</label>
                   <input
                     type="password"
+                    id="confirmPassword"
                     placeholder="Confirm Password"
                     name="confirmPassword"
                     value={values.confirmPassword}
                     onChange={(e) => handleChange(e)}
                   />
-                  <p>{formErrors.confirmPassword}</p>
+                  <p>{copassword}</p>
                 </div>
-
-                <button type="submit" className="signupBtn">
-                  Sign Up
-                </button>
+                {/* The Submit Button  */}
+                <div>
+                  <p className="invalid">{invalid}</p>
+                  <button type="button" className="signupBtn" onClick={handleSubmit}>
+                    Sign Up
+                  </button>
+                </div>
+                {/* Go to Login  */}
                 <div className="signupText">
                   <p>
                     Already have an Account?{" "}

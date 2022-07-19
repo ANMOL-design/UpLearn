@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
 
 function Login() {
   let navigate = useNavigate();
@@ -10,91 +9,95 @@ function Login() {
     password: "",
   });
 
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [err, seterr] = useState('');
+  const [pass, setpass] = useState('');
+  const [invalid, setinvalid] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setFormErrors(handleValidation(values));
+    const submit = handleValidate();
 
-    setIsSubmit(true);
-    if (isSubmit) {
+    if(submit){
       navigate("/");
     }
   };
 
-  //form validation
-  const handleValidation = (values) => {
-    const errors = {};
-
-    if (values.password === "") {
-      errors.password = "Email and Password is required";
-    } else if (values.email === "") {
-      errors.email = "Email and Password is required";
+  const handleValidate = () => {
+    // Validate the Email and password
+    if(values.email === ''){
+      seterr("Email is required.");
+      return false;
     }
-    return errors;
-  };
+    else if(values.password === ''){
+      setpass("Password is required.");
+      return false;
+    }
+
+    return true;
+  }
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
+    seterr('');  setpass('');
   };
+
 
   return (
     <>
-      <div className="sign">
+      {/* The Container Of Login An Sign In Page  */}
+      <div className="signin">
         <div className="signContainer">
-          <h2>Sign In To Your Account</h2>
           <div className="signWrapper">
-            <div className="signHeader">
-              <div>
-                <a className="signSocial" href="#/">
-                  <FcGoogle className="googleIcon" />
-                  <span>Sign In with Google</span>
-                </a>
-                <p>
-                  <span>........ </span>
-                  Or sign in with your Email
-                  <span> ........</span>
-                </p>
-              </div>
-            </div>
+            <h2>Sign In To Your Account</h2>
+            <Link to="/register"><p>If you don't have an account you can Register here!</p></Link>
 
+            {/* Starting the Form  */}
             <div className="signForm">
-              <form onSubmit={(event) => handleSubmit(event)}>
+              <form>
+                {/* The Email Input  */}
                 <div className="signInput">
-                  <h5>Email</h5>
+                  <label htmlFor="email">Email</label>
                   <input
                     type="email"
+                    id="email"
                     placeholder="Email"
                     name="email"
                     value={values.email}
                     onChange={(e) => handleChange(e)}
                   />
-                  <p>{formErrors.email}</p>
+                  <p>{err}</p>
                 </div>
+                {/* The Password Input  */}
                 <div className="signInput">
-                  <h5>Password</h5>
+                <label htmlFor="password">Password</label>
                   <input
                     type="password"
+                    id="password"
                     placeholder="Password"
                     name="password"
                     value={values.password}
                     onChange={(e) => handleChange(e)}
                   />
-                  <p>{formErrors.password}</p>
+                  <p>{pass}</p>
+                </div>
+                {/* The Submit Button  */}
+                <div>
+                  <p className="invalid">{invalid}</p>
+                  <button type="button" className="signupBtn" onClick={handleSubmit}>
+                    Sign In
+                  </button>
                 </div>
 
-                <button type="submit" className="signupBtn">
-                  Sign In
-                </button>
+                {/* Go to Register  */}
                 <div className="signupText">
                   <p>
                     Don't have an Account?{" "}
-                    <Link to="/sign" className="link">
+                    <Link to="/register" className="link">
                       Sign Up
                     </Link>
                   </p>
                 </div>
+
               </form>
             </div>
           </div>
