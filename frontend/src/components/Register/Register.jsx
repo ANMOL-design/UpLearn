@@ -25,6 +25,9 @@ function Register() {
     if (submit) {
       navigate("/");
     }
+    else{
+      setinvalid("Invalid Credential | Internal Server Error");
+    }
   };
 
   //form validation

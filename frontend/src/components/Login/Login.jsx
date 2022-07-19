@@ -20,6 +20,9 @@ function Login() {
     if(submit){
       navigate("/");
     }
+    else{
+      setinvalid("Invalid Credential | Internal Server Error");
+    }
   };
 
   const handleValidate = () => {

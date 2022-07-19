@@ -1,0 +1,48 @@
+[{
+        "id": 1,
+        "image": "./assets/images/education-banner.png",
+        "heading": "Add a Mentor",
+        "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
+        "Link": "/home"
+    },
+    {
+
+        "id": 2,
+        "image": "./assets/images/education-banner.png",
+        "heading": "Students Details",
+        "title": "Attitude Is A Little Thing That Makes A Big Difference.",
+        "Link": "/home"
+    },
+    {
+
+        "id": 3,
+        "image": "./assets/images/education-banner.png",
+        "heading": "Check Teacher Details",
+        "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
+        "Link": "/home"
+    },
+    {
+
+        "id": 4,
+        "image": "./assets/images/education-banner.png",
+        "heading": "Add a Course",
+        "title": "Attitude Is A Little Thing That Makes A Big Difference.",
+        "Link": "/home"
+    },
+    {
+
+        "id": 5,
+        "image": "./assets/images/education-banner.png",
+        "heading": "Add a Video",
+        "title": "Attitude Is A Little Thing That Makes A Big Difference.",
+        "Link": "/home"
+    },
+    {
+
+        "id": 6,
+        "image": "./assets/images/education-banner.png",
+        "heading": "Add a Quiz",
+        "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
+        "Link": "/home"
+    }
+]
