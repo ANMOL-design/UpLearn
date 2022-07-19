@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import signupImg from "../../assets/images/signup.png";
+import { FcGoogle } from "react-icons/fc";
 
 function Register() {
   let navigate = useNavigate();
@@ -29,23 +29,21 @@ function Register() {
   const handleValidation = (values) => {
     const errors = {};
 
-    const { name, email, password, confirmPassword } = values;
-
-    if (!name) {
+    if (!values.name) {
       errors.name = "Name is required";
     }
+    if (!values.email) {
+      errors.email = "Email is required";
+    }
 
-    if (!password) {
+    if (!values.password) {
       errors.password = "Password is required";
-    } else if (password.length < 8) {
+    } else if (values.password.length < 8) {
       errors.password = "Must be greater than 8";
-    } else if (password !== confirmPassword) {
+    } else if (values.password !== values.confirmPassword) {
       errors.confirmPassword = "Password and confirm password should be same";
     }
 
-    if (!email) {
-      errors.email = "Email is required";
-    }
     return errors;
   };
 
@@ -57,63 +55,83 @@ function Register() {
     <>
       <div className="register">
         <div className="registerContainer">
-          <div className="registerContent">
-            <form onSubmit={(event) => handleSubmit(event)}>
-              <h1 className="title">Sign up</h1>
+          <h2>Create Your Account</h2>
+          <div className="registerWrapper">
+            <div className="registerHeader">
+              <div>
+                <a className="registerSocial" href="#/">
+                  <FcGoogle className="googleIcon" />
+                  <span>Sign Up with Google</span>
+                </a>
+                <p>
+                  <span>........ </span>
+                  Or sign up with your Email
+                  <span> ........</span>
+                </p>
+              </div>
+            </div>
 
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={values.name}
-                  onChange={(e) => handleChange(e)}
-                />
-                <p>{formErrors.name}</p>
-              </div>
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={values.email}
-                  onChange={(e) => handleChange(e)}
-                />
-                <p>{formErrors.email}</p>
-              </div>
-              <div>
-                <input
-                  type="password"
-                  name="password"
-                  value={values.password}
-                  placeholder="Password"
-                  onChange={(e) => handleChange(e)}
-                />
-                <p>{formErrors.password}</p>
-              </div>
-              <div>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={values.confirmPassword}
-                  placeholder="Confirm Password"
-                  onChange={(e) => handleChange(e)}
-                />
-                <p>{formErrors.confirmPassword}</p>
-              </div>
+            <div className="registerForm">
+              <form onSubmit={(event) => handleSubmit(event)}>
+                <div className="registerInput">
+                  <h5>Full Name</h5>
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    name="name"
+                    value={values.name}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <p>{formErrors.name}</p>
+                </div>
+                <div className="registerInput">
+                  <h5>Email</h5>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    value={values.email}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <p>{formErrors.email}</p>
+                </div>
+                <div className="registerInput">
+                  <h5>Password</h5>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={values.password}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <p>{formErrors.password}</p>
+                </div>
+                <div className="registerInput">
+                  <h5>Confirm Password</h5>
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    name="confirmPassword"
+                    value={values.confirmPassword}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <p>{formErrors.confirmPassword}</p>
+                </div>
 
-              <button type="submit" className="signupBtn">
-                Sign up
-              </button>
-              <span>
-                Already have an Account ?{" "}
-                <Link to="/login" className="link">
-                  Login
-                </Link>
-              </span>
-            </form>
+                <button type="submit" className="signupBtn">
+                  Sign Up
+                </button>
+                <div className="signupText">
+                  <p>
+                    Already have an Account?{" "}
+                    <Link to="/login" className="link">
+                      Sign In
+                    </Link>
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
-          <div className="registerImg"></div>
         </div>
       </div>
     </>

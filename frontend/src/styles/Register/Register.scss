@@ -1,181 +1,135 @@
 .register{
-    margin-top: 5.7vh;
-    height:89vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: $font_El;
-    background-color: rgb(232, 245, 248);
 }
-
 .registerContainer{
-    height: 78vh;
-    width: 65vw;
-    display: flex;    
-    justify-content: space-between;
-    // border: 1px solid black;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap:1rem;
-}
-.registerContent {
-    flex: 1;
-    // padding: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-}
-
-.registerContent p{
-    color: red;
-    font-size: .7rem;
-}
-.registerImg {
-    // border:1px solid black;
-    flex: 1;
+    padding-top: 100px;
+    padding-bottom: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #94e4fb;
+    flex-direction: column;
+}
+.registerContainer h2{
+    padding: 50px 0;
+    width: 15rem;
+    font-size: 2rem;
+    text-align: center;
+}
+.registerWrapper{
+padding: 50px 70px 45px;
+    margin: 0 30px;
+    border-radius: 10px;
+    box-shadow: 0 40px 80px #02021a24;
+    // z-index: 11;
 }
 
-.registerContent input{
-            background-color: transparent;
-            padding: 0.6rem;
-            border: 0.1rem solid #171C24;
-            border-radius: 0.3rem;
-            // color: white;
-            // max-width: 20vw;
-            width: 100%;
-            font-size: .8rem;
-            font-family: $font_El;
-    
-            &:focus {
-                border: 0.1rem solid #171C24;
-                outline: none;
-            }
+.registerHeader{
+    text-align: center;
+    margin-bottom: 35px;
+        padding: 0 35px;
+}
+.registerSocial{
+        height: 50px;
+        background: #eeedf2;
+        border-radius: 6px;
+        line-height: 50px;
+        overflow: hidden;
+        font-size: 16px;
+        color: #adadae;
+        padding:15px 20px;
+}
+.googleIcon{
+    margin-right: 10px;
+    width: 20px;
+    font-size: 16px;
+}
+.registerHeader p{
+    padding-top: 20px;
+    color: #adadae;
 }
 
-
-
-.registerImg img{
-    // padding: 0 3rem;
-object-fit: cover;
-    width: 100%;
-    height: 330px;
-}
-
-.link {
-    color:#51DAF6;
-}
-.link :hover{
-    color: #171C24;
-    text-decoration: underline;
-}
-//button
-.signupBtn{
-    font-family: $font_El;
-    background-color: #171C24;
-    outline: none;
-    border: none;
-    color: white;
-    padding: 0.6rem;
-}
-
-
-//media query
- @media (max-width: 480px) {
-    .register{
-        margin-top: 0;
-        height: 100vh;
-    }
-     .registerContainer{
-        height: 63vh;
-            width: 78vw;
-     }
-        //  .registerContent input{
-        //     padding: .4rem;
-           
-        //  }
-        //  .registerContent{
-        //     height: 74vh;
-        //  }
-     .registerImg{
-        display: none;
-     }
-         form {
-             gap: .5rem;
-         }
- }
-
- /* Media Query for low resolution  Tablets, Ipads */
- @media (min-width: 481px) and (max-width: 767px) {
-    .registerImg {
-            display: none;  
-        }
-        .register{
-            margin: 0;
-            height: 100vh;
-        }
-        .registerContainer{
-           height: 70vh;
-        }
-      
-    form {
-        gap: .5rem;
-     }
- }
-
- /* Media Query for Tablets Ipads portrait mode */
- @media (min-width: 768px) and (max-width: 1024px) {
-    .registerImg img{
-        height: 220px;
-        padding: .5rem 0;
-        width: 250px;
-    }
-    .register{
-        margin: 0;
-        height: 100vh    ;
-    }
-    .registerContainer{
-        height: 65vh;
-            width: 76vw;
-        }
-    
-.registerContent input{
-    padding: .4rem;
-}
-         form {
-             gap: .5rem;
-         }
- }
-
- /* Media Query for Laptops and Desktops */
- @media (min-width: 1025px) and (max-width: 1280px) {
-    .registerImg img {
-            height: 280px;
-            width: 350px;
-        padding: 1rem 0;
-        }
-    
-        form {
-            gap: .5rem;
-        }
- }
-
- /* Media Query for Large screens */
- @media (min-width: 1281px) {
-    .registerImg img {
-        width: 350px;
-            height: 300px;
-            padding: 1rem 0;
-        }
-
+.registerInput h5{
+        font-size: 16px;
+            font-weight: 500;
+            color: #0e1133;
+            margin-bottom: 11px;
         
- }
+}
+.registerInput{
+    margin-bottom: 25px;
+    input{
+    width: 100%;
+        height: 60px;
+        line-height: 50px;
+        padding: 0 15px;
+        font-size: 14px;
+        border: 2px solid transparent;
+        background: #f6f6f7;
+        color: #0e1133;
+        border-radius: 6px;
+        outline: none;
+    font-family: $font_El;
+    }
+}
+.signupBtn{
+        display: inline-block;
+            height: 50px;
+            line-height: 52px;
+            text-align: center;
+            padding: 0 25px;
+            color: #fff;
+            background: rgb(43, 78, 255);
+            border-radius: 4px;
+            font-weight: 500;
+            outline: none;
+            border:none;
+            width: 100%;
+            cursor: pointer;
+    font-family: $font_El;
+}
+.signupBtn:hover{
+        transition: all .3s ease-out 0s;
+        box-shadow: 0 3px 10px rgba(43, 78, 255, 0.4);  
+}
+.signupText{
+    margin-top: 20px;
+    text-align: center;
+}
+.link{
+    color: rgb(43, 78, 255);;
+}
+.registerInput p{
+    color: red;
+    font-size: 14px;
+}
+
+@media (max-width: 480px) {
+.registerSocial {
+        height: 44px;
+        background: #eeedf2;
+        border-radius: 6px;
+        line-height: 38px;
+        overflow: hidden;
+        font-size: 12px;
+        color: #adadae;
+        padding: 12px 14px;
+    }
+    .googleIcon{
+        width: 20px;
+        font-size: 12px;
+        margin-right: 2px;
+    }
+    .registerHeader p{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 426px) {
+    .registerSocial{
+        padding: 5px 7px;
+    }
+}
+
+@media (max-width: 411px) {
+    
+}
