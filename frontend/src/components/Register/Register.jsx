@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
@@ -11,16 +11,31 @@ function Register() {
     confirmPassword: "",
   });
 
+  useEffect(() => {
+     window.scroll(0,0);
+  }, [])
+   
   const [name, setname] = useState('');
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
   const [copassword, setcopassword] = useState('');
   const [invalid, setinvalid] = useState('');
 
-  const postData = async ()=>{
+  // Make Credential to Send OTP
+  const [otp, setotp] = useState('');
+  const [userotp, setuserotp] = useState('');
+  console.log(otp, userotp);
+
+  const generateOTP = () => {
+    var minm = 1000;
+    var maxm = 9999;
+    setotp(Math.floor(Math.random() * (maxm - minm + 1)) + minm);
+  }
+
+  const postData = async () => {
 
    const name = values.name;
-   const email =values.email;
+   const email = values.email;
    const password = values.password;
    const cpassword = values.confirmPassword
 
@@ -34,14 +49,17 @@ function Register() {
         })
     } );
     
-    // console.log(res)
-   console.log(name);
     if(res.status === 200){
-        window.alert("Successful Registration.\nCongratulation now you are a part of Uplearn.");
+        setinvalid("Successful Login! Welcome to the Family of UpLearn.");
+        window.alert("Successful Login! Welcome to the Family of UpLearn.");
+        navigate("/");
+    }
+    else if(res.status === 422){
+        setinvalid("Email already registered, please enter a valid email id");
     }
     else{
         console.log(res)
-        window.alert("Registration Fails , Try again")
+        setinvalid("Invalid Credential | Internal Server Error");
     }
 }
 
@@ -50,13 +68,37 @@ function Register() {
     const submit = handleValidation();
           
     if (submit) {
-      postData();
-      navigate("/");
-    }
-    else{
-      setinvalid("Invalid Credential | Internal Server Error");
+      // Get the modal
+      var modal = document.getElementById("myModal");
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+      // Making the Display of Modal Visible to Fill OTP to it
+      modal.style.display = "block";
+      
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      generateOTP();
     }
   };
+
+  // Function to Check That the user entered OTP is correct 
+  // If Correct Then Submit it else generate error
+  const verifyOTP = () => {
+    if(userotp === ''){
+      setinvalid("Please Enter OTP Send to you.");
+    }
+    else if(Number(userotp) !== otp){
+      setinvalid("Incorrect entered OTP");
+    }
+    else{
+      postData();
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+  }
 
   //form validation
   const handleValidation = () => {
@@ -94,8 +136,7 @@ function Register() {
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
     setname(''); setemail(''); setpassword(''); setcopassword('');
-    setinvalid('');
-    console.log(name)
+    setinvalid(''); setuserotp('');
   };
 
   return (
@@ -183,6 +224,35 @@ function Register() {
           </div>
         </div>
       </div>
+      {/* Created a Modal to Send OTP and Verify User  */}
+      <div>
+        {/*  The Modal  */}
+        <div id="myModal" className="modal">
+
+          {/* Modal content */}
+          <div className="modal-content">
+            <span className="close">&times;</span>
+            <div>
+              <h2>Verification Code</h2>
+              <p>Please enter the verification code send <br /> to <b>{values.email}</b></p>
+              <div className="signInput">
+                  <label htmlFor="verifyotp">Enter OTP</label>
+                  <input
+                    type="password"
+                    id="verifyotp"
+                    placeholder="Verify OTP"
+                    name="verifyotp"
+                    value={userotp}
+                    onChange={(e) => {setuserotp(e.target.value)}}
+                  />
+                </div>
+              <p className="invalid">{invalid}</p>
+              <button onClick={verifyOTP}>Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* End Of Modal  */}
     </>
   );
 }
