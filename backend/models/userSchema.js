@@ -1,22 +1,12 @@
 const mongoose = require("mongoose");
-const bycrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken')
+const bycrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
-    name: {
+   name: {
         type: String,
         required: true,
     },
     email: {
         type: String,
-        required: true,
-        unique: true,
-    },
-    state: {
-        type: String,
-        required: true,
-    },
-    number: {
-        type: Number,
         required: true,
         unique: true,
     },
@@ -28,30 +18,74 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    time: {
+    firstName : {
         type: String,
-        required: true,
     },
-    isAdmin: {
-        type: Boolean,
-        default: false
+    LastName : {
+        type: String,
     },
-    isSubscriber: {
-        type: Boolean,
-        default: false
+    class :{
+        type : Number,
     },
-    NoOfBids: {
-        type: Number,
-        default: 0
+    Board :{
+        type : String,
     },
-    tokens: [{
-        token: {
-            type: String,
-            required: true,
+    PermanentAddress :{
+        type : String,
+    },
+    School :{
+        type : String,
+    },
+    City :{
+        type : String,
+    },
+    State :{
+        type : String,
+    },
+    Pincode :{
+        type : Number,
+    },
+    mobileno :{
+        type :Number,
+    },
+    Image : {
+        type : String,
+    },
+    isInstructor :{
+        type : Boolean,
+    },
+    progress : {
+        type : Number,
+    },
+    certificates :[{
+        nameofcertificate:{
+            type : String,
+        },
+        issuedby : {
+            type : String,
+        },
+        certificateimage :{
+            type : String,
+        }
+    }], 
+    CousesEnrolled :[{
+        nameOfCourse:{
+            type : String,
+        },
+        CourseId : {
+            type : String,
+        }
+    }], 
+    following :[{
+        instructorId : {
+            type : String,
         }
     }]
-});
 
+    
+    
+    
+});
 
 userSchema.pre('save', async function(next) {
     if (this.isModified('password')) {

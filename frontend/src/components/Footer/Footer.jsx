@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "./../../assets/images/Logo.png";
+import Logo from "./../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import { BsTwitter, BsYoutube, BsFacebook } from "react-icons/bs";

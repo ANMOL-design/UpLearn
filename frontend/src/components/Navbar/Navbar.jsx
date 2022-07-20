@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "./../../assets/images/Logo.png";
+import Logo from "./../../assets/images/logo.png";
 import { FaAngleDown, FaBars} from "react-icons/fa";
 import { TbGridDots } from "react-icons/tb";
 
