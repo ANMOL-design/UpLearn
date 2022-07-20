@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import signupImg from "../../assets/images/signup.png";
-
 
 function Register() {
   let navigate = useNavigate();
@@ -13,115 +11,179 @@ function Register() {
     confirmPassword: "",
   });
 
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [name, setname] = useState('');
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
+  const [copassword, setcopassword] = useState('');
+  const [invalid, setinvalid] = useState('');
+
+  const postData = async ()=>{
+
+   const name = values.name;
+   const email =values.email;
+   const password = values.password;
+   const cpassword = values.confirmPassword
+
+    const res =  await fetch("/register" ,{
+        method : "POST",
+        headers : { 
+            "content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+            name,email,password,cpassword
+        })
+    } );
+    
+    // console.log(res)
+   console.log(name);
+    if(res.status === 200){
+        window.alert("Successful Registration.\nCongratulation now you are a part of Uplearn.");
+    }
+    else{
+        console.log(res)
+        window.alert("Registration Fails , Try again")
+    }
+}
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setFormErrors(handleValidation(values));
-
-    setIsSubmit(true);
-    if (isSubmit) {
+    const submit = handleValidation();
+          
+    if (submit) {
+      postData();
       navigate("/");
+    }
+    else{
+      setinvalid("Invalid Credential | Internal Server Error");
     }
   };
 
   //form validation
-  const handleValidation = (values) => {
-    const errors = {};
+  const handleValidation = () => {
 
-    const { name, email, password, confirmPassword } = values;
-
-    if (!name) {
-      errors.name = "Name is required";
+    if (values.name === '') {
+      setname("Name is required");
+      window.scroll(0,200);
+      return false;
+    }
+    else if (values.email === '') {
+      setemail("Email is required");
+      window.scroll(0,250);
+      return false;
+    }
+    else if (values.password === '') {
+      setpassword("Password is required");
+      return false;
+    } 
+    else if (values.confirmPassword === '') {
+      setcopassword("Please Confirm Your Password");
+      return false;
+    } 
+    else if (values.password.length < 7) {
+      setinvalid("Password must be atleast 8 character");
+      return false;
+    } 
+    else if (values.password !== values.confirmPassword) {
+      setinvalid("Password and Confirm password should be same");
+      return false;
     }
 
-    if (!password) {
-      errors.password = "Password is required";
-    } else if (password.length < 8) {
-      errors.password = "Must be greater than 8";
-    } else if (password !== confirmPassword) {
-      errors.confirmPassword = "Password and confirm password should be same";
-    }
-
-    if (!email) {
-      errors.email = "Email is required";
-    }
-    return errors;
+    return true;
   };
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
+    setname(''); setemail(''); setpassword(''); setcopassword('');
+    setinvalid('');
+    console.log(name)
   };
 
   return (
     <>
-      <div className="register">
-        <div className="registerContainer">
-          <div className="registerContent">
-            <form onSubmit={(event) => handleSubmit(event)}>
-              <h1 className="title">Sign up</h1>
+      {/* The Container Of Login An Sign In Page  */}
+      <div className="signin">
+        <div className="signContainer">
+          <div className="signWrapper">
+            <h2>Create Your Account</h2>
+            <p className="pl">"A better learning future starts here."</p>
 
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={values.name}
-                  onChange={(e) => handleChange(e)}
-                />
-                <p>{formErrors.name}</p>
-              </div>
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={values.email}
-                  onChange={(e) => handleChange(e)}
-                />
-                <p>{formErrors.email}</p>
-              </div>
-              <div>
-                <input
-                  type="password"
-                  name="password"
-                  value={values.password}
-                  placeholder="Password"
-                  onChange={(e) => handleChange(e)}
-                />
-                <p>{formErrors.password}</p>
-              </div>
-              <div>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={values.confirmPassword}
-                  placeholder="Confirm Password"
-                  onChange={(e) => handleChange(e)}
-                />
-                <p>{formErrors.confirmPassword}</p>
-              </div>
-
-              <button type="submit" className="signupBtn">
-                Sign up
-              </button>
-              <span>
-                Already have an Account ?{" "}
-                <Link to="/login" className="link">
-                  Login
-                </Link>
-              </span>
-            </form>
-          </div>
-          <div className="registerImg">
-            <img src={signupImg} />
+            {/* Starting the Form  */}
+            <div className="signForm">
+              <form>
+                {/* The Name Input  */}
+                <div className="signInput">
+                  <label htmlFor="name">Full Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="Your Name"
+                    name="name"
+                    value={values.name}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <p>{name}</p>
+                </div>
+                {/* The Email Input  */}
+                <div className="signInput">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    name="email"
+                    value={values.email}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <p>{email}</p>
+                </div>
+                {/* The Password Input  */}
+                <div className="signInput">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    name="password"
+                    value={values.password}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <p>{password}</p>
+                </div>
+                {/* The Confirm Password Input  */}
+                <div className="signInput">
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm Password"
+                    name="confirmPassword"
+                    value={values.confirmPassword}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <p>{copassword}</p>
+                </div>
+                {/* The Submit Button  */}
+                <div>
+                  <p className="invalid">{invalid}</p>
+                  <button type="button" className="signupBtn" onClick={handleSubmit}>
+                    Sign Up
+                  </button>
+                </div>
+                {/* Go to Login  */}
+                <div className="signupText">
+                  <p>
+                    Already have an Account?{" "}
+                    <Link to="/login" className="link">
+                      Sign In
+                    </Link>
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </>
   );
-
-
-  }
+}
 export default Register;
