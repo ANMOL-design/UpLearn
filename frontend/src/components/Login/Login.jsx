@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
@@ -7,7 +7,14 @@ function Login() {
   const [values, setValues] = useState({
     email: "",
     password: "",
+
   });
+
+  const [user, setuser] = useState('');
+
+  useEffect(() => {
+    window.scroll(0,150);
+  }, [])
 
   const [err, seterr] = useState('');
   const [pass, setpass] = useState('');
@@ -20,9 +27,7 @@ function Login() {
     if(submit){
       navigate("/");
     }
-    else{
-      setinvalid("Invalid Credential | Internal Server Error");
-    }
+  
   };
 
   const handleValidate = () => {
@@ -33,6 +38,10 @@ function Login() {
     }
     else if(values.password === ''){
       setpass("Password is required.");
+      return false;
+    }
+    else if(user === ''){
+      setinvalid("Please Select User Role");
       return false;
     }
 
@@ -72,16 +81,25 @@ function Login() {
                 </div>
                 {/* The Password Input  */}
                 <div className="signInput">
-                <label htmlFor="password">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    name="password"
-                    value={values.password}
-                    onChange={(e) => handleChange(e)}
-                  />
-                  <p>{pass}</p>
+                  <label htmlFor="password">Password</label>
+                    <input
+                      type="password"
+                      id="password"
+                      placeholder="Password"
+                      name="password"
+                      value={values.password}
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <p>{pass}</p>
+                </div>
+                {/* Select The Role  */}
+                <div className="signInput">
+                  <label htmlFor="userRole">User Role</label>
+                  <select id="userRole" onChange={(e) => {setuser(e.target.value);}}>
+                    <option value="" defaultValue>Please Select User Role</option>
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                  </select>
                 </div>
                 {/* The Submit Button  */}
                 <div>

@@ -1,17 +1,16 @@
 // Styling the website navbar
 .wrapper {
-    position: fixed;
     width: 100%;
     font-family: $font_El;
+    position: relative;
     box-shadow: 1px 12px 20px #888888;
 }
 
 .wrapper nav {
-    position: relative;
     @include displayflex;
     max-width: calc(100% - 100px);
     margin: 0 auto;
-    height: 85px;
+    height: 80px;
 }
 
 nav .content {
@@ -49,7 +48,7 @@ nav .content .logo a {
         transition: all 0.3s ease;
         span {
             font-size: 20px;
-            padding: 5px;
+            padding: 6px;
             padding-bottom: 0px;
         }
     }
@@ -110,14 +109,14 @@ nav .content .links {
 .content .links ul {
     position: absolute;
     background: #fff;
-    top: 85px;
-    z-index: -1;
+    top: 80px;
+    z-index: 1;
     opacity: 0;
     visibility: hidden;
 }
 
 .content .links li:hover>ul {
-    top: 85px;
+    top: 80px;
     opacity: 1;
     visibility: visible;
     transition: all 0.3s ease;
@@ -174,9 +173,6 @@ nav .content .links {
     nav .content .links {
         margin-left: 50px;
     }
-    .content .links li a {
-        padding: 8px 13px;
-    }
 }
 
 @media screen and (max-width: 991px) {
@@ -185,11 +181,12 @@ nav .content .links {
     }
     nav .content .links {
         display: block;
-        position: fixed;
+        position: absolute;
+        z-index: 100;
         background: #fff;
-        height: 100%;
+        height: calc(100vh - 80px);
         width: 100%;
-        top: 85px;
+        top: 80px;
         right: -100%;
         margin-left: 0;
         max-width: 320px;
