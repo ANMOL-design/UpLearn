@@ -4,22 +4,7 @@ const dotenv = require("dotenv");
 router.use(express.json());
 dotenv.config();
 const Instructors = require("../models/instructorregisterSchema");
-const axios = require("axios");
 
-const options = {
-  method: 'GET',
-  url: 'https://kidsmathgames.p.rapidapi.com/',
-  headers: {
-    'X-RapidAPI-Key': '67e3848492mshadefab282fce05dp1e8edcjsnc1c7672e9db9',
-    'X-RapidAPI-Host': 'kidsmathgames.p.rapidapi.com'
-  }
-};
-
-axios.request(options).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
 router.post("/InstructorRegister", (req, res) => {
   const {
     Teachername,
