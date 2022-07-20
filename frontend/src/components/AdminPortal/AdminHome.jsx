@@ -11,9 +11,10 @@ function AdminHome(){
             {/* Banner Of the Admin Page  */}
             <div className="admin-banner">
                 <h1>Admin Portal</h1>
-                <p>A community of lifelong learners, responsible global citizens, and champions of our own success.
-                    A learning community dedicated to building respectful and responsible citizens and empowering all learners.
-                    Being involved in education dedicatedly is a good meditation for years.
+                <p>
+                    With hundreds of academic resources, quizzes, tests, video lectures and more, pertaining 
+                    to educational boards pan India, UpLearn offers a first-of-its-kind platform that brings together 
+                    a community of learners and instructors in the pursuit of quality education, right at their fingertips!
                 </p>
             </div>
             {/* Cards Of The Admin Page  */}

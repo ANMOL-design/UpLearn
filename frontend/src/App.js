@@ -38,11 +38,15 @@ function App() {
           {/* The Navbar component  */}
           <Navbar />
           <Routes>
+            {/* The Auth Routes  */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            {/* The Dashboard  */}
+            <Route path="/studentdashboard" element={<StudentDashboard />} />
+            {/* The Admin Routes  */}
             <Route path="/admin-portal-login-190310554227" element={<AdminLogin />} />
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
-            <Route path="/studentdashboard" element={<StudentDashboard />} />
+            {/* General  */}
             <Route path="*" element={<PageNotFound />} />
           </Routes>
           {/* The Footer component  */}
