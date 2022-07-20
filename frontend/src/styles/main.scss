@@ -13,3 +13,9 @@
 @import "./PageNotFound/PageNotFound.scss";
 //Importing Style of Admin Portal
 @import "./AdminPortal/AdminHome.scss";
+//Importing Style of Student Dashboard
+@import "./Dashboard/student.scss";
+//Importing Style of Student Dashboard Components
+@import "./Dashboard/DashboardComponents/mainDash.scss";
+//Importing Style of Student Dashboard Component cards
+@import "./Dashboard/DashboardComponents/cards.scss";

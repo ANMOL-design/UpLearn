@@ -14,6 +14,7 @@ import Loader from "./components/Loader";
 // The Admin Portal Links 
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
+import StudentDashboard from "./components/Dashboard/StudentDashboard";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -41,6 +42,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/admin-portal-login-190310554227" element={<AdminLogin />} />
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
+            <Route path="/studentdashboard" element={<StudentDashboard />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
           {/* The Footer component  */}

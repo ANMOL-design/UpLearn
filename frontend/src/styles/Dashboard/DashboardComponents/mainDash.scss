@@ -1,0 +1,34 @@
+.mainDashContainer{
+    font-family: $font_El;
+    margin-top: 2.3rem;
+}
+.studentNameContainer{
+    margin: 1rem 2rem 1rem 0;
+    height: 10rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: #171C24;
+    color: white;
+    border-radius: 1rem;
+
+    .image img{
+        height: 10rem;
+        border-radius: 1rem;
+    }
+}
+.studentName{
+    padding: 2rem;
+    h4{
+        padding: 1rem 0 .5rem 0 ;
+        font-size: 2rem;
+        letter-spacing: .3rem;
+    }
+    p{
+        font-size: 1rem;
+        letter-spacing: .2rem;
+    }
+    
+}
+.mainCard{
+    margin: 1rem 2rem 1rem 0;
+}
