@@ -3,7 +3,8 @@
         "image": "./assets/images/education-banner.png",
         "heading": "Add a Mentor",
         "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
-        "Link": "/home"
+        "Link": "/home",
+        "name": "Start"
     },
     {
 
@@ -11,7 +12,8 @@
         "image": "./assets/images/education-banner.png",
         "heading": "Students Details",
         "title": "Attitude Is A Little Thing That Makes A Big Difference.",
-        "Link": "/home"
+        "Link": "/home",
+        "name": "Start"
     },
     {
 
@@ -19,7 +21,8 @@
         "image": "./assets/images/education-banner.png",
         "heading": "Check Teacher Details",
         "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
-        "Link": "/home"
+        "Link": "/home",
+        "name": "Start"
     },
     {
 
@@ -27,7 +30,8 @@
         "image": "./assets/images/education-banner.png",
         "heading": "Add a Course",
         "title": "Attitude Is A Little Thing That Makes A Big Difference.",
-        "Link": "/home"
+        "Link": "/home",
+        "name": "Start"
     },
     {
 
@@ -35,7 +39,8 @@
         "image": "./assets/images/education-banner.png",
         "heading": "Add a Video",
         "title": "Attitude Is A Little Thing That Makes A Big Difference.",
-        "Link": "/home"
+        "Link": "/home",
+        "name": "Start"
     },
     {
 
@@ -43,6 +48,25 @@
         "image": "./assets/images/education-banner.png",
         "heading": "Add a Quiz",
         "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
-        "Link": "/home"
+        "Link": "/home",
+        "name": "Start"
+    },
+    {
+
+        "id": 7,
+        "image": "./assets/images/education-banner.png",
+        "heading": "Add a Quiz",
+        "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
+        "Link": "/home",
+        "name": "Start"
+    },
+    {
+
+        "id": 8,
+        "image": "./assets/images/education-banner.png",
+        "heading": "Add a Quiz",
+        "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
+        "Link": "/home",
+        "name": "Start"
     }
 ]

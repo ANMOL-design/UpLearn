@@ -12,7 +12,7 @@ function Register() {
   });
 
   useEffect(() => {
-     window.scroll(0,0);
+     window.scroll(0,150);
   }, [])
    
   const [name, setname] = useState('');

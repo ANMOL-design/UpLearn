@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
@@ -8,6 +8,10 @@ function AdminLogin() {
         email: "",
         password: "",
     });
+
+    useEffect(() => {
+        window.scroll(0,130);
+    }, [])
 
     const [err, seterr] = useState('');
     const [pass, setpass] = useState('');

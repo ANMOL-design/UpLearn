@@ -181,9 +181,10 @@ nav .content .links {
     }
     nav .content .links {
         display: block;
-        position: fixed;
+        position: absolute;
+        z-index: 100;
         background: #fff;
-        height: 100%;
+        height: calc(100vh - 80px);
         width: 100%;
         top: 80px;
         right: -100%;
