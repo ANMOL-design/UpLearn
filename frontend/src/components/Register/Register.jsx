@@ -26,12 +26,29 @@ function Register() {
   const [userotp, setuserotp] = useState('');
   console.log(otp, userotp);
 
-  const generateOTP = () => {
+  const generateOTP =  () => {
     var minm = 1000;
     var maxm = 9999;
-    setotp(Math.floor(Math.random() * (maxm - minm + 1)) + minm);
+    const otp = Math.floor(Math.random() * (maxm - minm + 1)) + minm;
+    setotp(otp)
+    console.log(otp);
+   sendotp();
+        
   }
-
+const sendotp = async ()=>{
+  const name = values.name;
+  const email = values.email
+  const res =  await fetch("/sendverifyemail" ,{
+    method : "POST",
+    headers : { 
+        "content-Type" : "application/json"
+    },
+    body : JSON.stringify({
+        name, email, otp
+    })
+} );
+console.log(otp);
+}
   const postData = async () => {
 
    const name = values.name;
@@ -66,7 +83,7 @@ function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleValidation();
-          
+    generateOTP();  
     if (submit) {
       // Get the modal
       var modal = document.getElementById("myModal");
@@ -80,7 +97,7 @@ function Register() {
         modal.style.display = "none";
       }
 
-      generateOTP();
+    
     }
   };
 
