@@ -22,33 +22,31 @@ function Register() {
   const [invalid, setinvalid] = useState('');
 
   // Make Credential to Send OTP
-  const [otp, setotp] = useState('');
+  const [otpgen, setotpgen] = useState('');
   const [userotp, setuserotp] = useState('');
-  console.log(otp, userotp);
 
-  const generateOTP =  () => {
-    var minm = 1000;
-    var maxm = 9999;
-    const otp = Math.floor(Math.random() * (maxm - minm + 1)) + minm;
-    setotp(otp)
-    console.log(otp);
-   sendotp();
-        
+  console.log(otpgen, userotp);
+
+  const sendotp = async () => {
+      const name = values.name;
+      const email = values.email;
+      const otp =  Math.floor(1000 + Math.random() * 9000);
+      console.log(otp);
+
+      const res =  await fetch("/sendverifyemail" ,{
+        method : "POST",
+        headers : { 
+            "content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+            name, email, otp
+        })
+       } );
+       setotpgen(otp);
+
+      console.log(res);
   }
-const sendotp = async ()=>{
-  const name = values.name;
-  const email = values.email
-  const res =  await fetch("/sendverifyemail" ,{
-    method : "POST",
-    headers : { 
-        "content-Type" : "application/json"
-    },
-    body : JSON.stringify({
-        name, email, otp
-    })
-} );
-console.log(otp);
-}
+
   const postData = async () => {
 
    const name = values.name;
@@ -83,8 +81,10 @@ console.log(otp);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleValidation();
-    generateOTP();  
+
     if (submit) {
+      //Generate the OTP and send to uers
+      sendotp();  
       // Get the modal
       var modal = document.getElementById("myModal");
       // Get the <span> element that closes the modal
@@ -96,8 +96,6 @@ console.log(otp);
       span.onclick = function() {
         modal.style.display = "none";
       }
-
-    
     }
   };
 
@@ -107,7 +105,7 @@ console.log(otp);
     if(userotp === ''){
       setinvalid("Please Enter OTP Send to you.");
     }
-    else if(Number(userotp) !== otp){
+    else if(Number(userotp) !== otpgen){
       setinvalid("Incorrect entered OTP");
     }
     else{
@@ -138,7 +136,7 @@ console.log(otp);
       setcopassword("Please Confirm Your Password");
       return false;
     } 
-    else if (values.password.length < 7) {
+    else if (values.password.length < 8) {
       setinvalid("Password must be atleast 8 character");
       return false;
     } 
