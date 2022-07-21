@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { UserContext } from "../../App";
 function Login() {
   let navigate = useNavigate();
-
+  const {dispatch} = useContext(UserContext)
   const [values, setValues] = useState({
     email: "",
     password: "",
 
   });
-
-  const [user, setuser] = useState('');
+  
+  const [userrole, setuser] = useState('');
 
   useEffect(() => {
     window.scroll(0,150);
@@ -19,12 +19,48 @@ function Login() {
   const [err, seterr] = useState('');
   const [pass, setpass] = useState('');
   const [invalid, setinvalid] = useState('');
-
+  const loginUser = async (e) => {
+    // e.preventDefault();
+    const {email,password}= values;
+    const res = await fetch("/login", {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+      },
+      
+      body: JSON.stringify({
+        email,
+        password,
+        userrole
+      }),
+    });
+  
+    if (res.status === 200) {
+      dispatch({type:"USER",payload:true});
+      localStorage.setItem("isLoggedin", Number(true));
+      window.localStorage.setItem("ROLE",userrole)
+      window.alert("Login succesful");
+    }
+    else if (res.status === 400){
+      window.alert("Enter Email and Password.");
+    }
+    else if (res.status === 401){
+      window.alert("Incorrect Password.");
+    }
+    else if (res.status === 402){
+        window.alert("Email don't exist Invalid Credential.");
+    }
+    else{
+        window.alert("Invalid Credential");
+    }
+  };
+ 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleValidate();
 
     if(submit){
+      loginUser();
       navigate("/");
     }
   
@@ -40,7 +76,7 @@ function Login() {
       setpass("Password is required.");
       return false;
     }
-    else if(user === ''){
+    else if(userrole === ''){
       setinvalid("Please Select User Role");
       return false;
     }
@@ -95,7 +131,7 @@ function Login() {
                 {/* Select The Role  */}
                 <div className="signInput">
                   <label htmlFor="userRole">User Role</label>
-                  <select id="userRole" onChange={(e) => {setuser(e.target.value);}}>
+                  <select id="userRole" name="userrole" onChange={(e) => {setuser(e.target.value);}}>
                     <option value="" defaultValue>Please Select User Role</option>
                     <option value="student">Student</option>
                     <option value="teacher">Teacher</option>

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,createContext, useReducer} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { initialState, reducer } from "./redux/reducers/useReducer";
 // Import a single style file only at index file
 import "./styles/main.scss";
 
@@ -15,10 +15,10 @@ import Loader from "./components/Loader";
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
-
+export const UserContext = createContext();
 function App() {
   const [isLoading, setisLoading] = useState(true);
-
+  const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     const timer = setTimeout(() => {
       setisLoading(false);
@@ -34,7 +34,7 @@ function App() {
     return (
       <>
         <Router>
-
+        <UserContext.Provider value={{ state, dispatch }}>
           {/* The Navbar component  */}
           <Navbar />
           <Routes>
@@ -51,6 +51,7 @@ function App() {
           </Routes>
           {/* The Footer component  */}
           <Footer />
+          </UserContext.Provider>
         </Router>
       </>
     );
