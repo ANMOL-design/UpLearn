@@ -1,6 +1,6 @@
 var nodemailer = require('nodemailer');
 
-const sendRegistrationEmail= async(UseremailId, username) => {
+const sendRegistrationEmail = async(UseremailId, username) => {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -10,18 +10,14 @@ const sendRegistrationEmail= async(UseremailId, username) => {
             pass: process.env.PASSWORD
         }
     });
-    
-   
-    
-   
-   
+
     var mailOptions = {
         from: 'uplearnforsih@gmail.com',
         to: UseremailId,
-        subject: 'Hurray! Now you are part of UpLearn,Registration Succesfull',
+        subject: 'Hurray, You have successfully registered with UpLearn!',
         html: `<p>Hello ${username},</p>
-        <p> Welcome to UpLearn!</p>
-        <img style="width:"100px" src="https://img.freepik.com/free-vector/education-horizontal-typography-banner-set-with-learning-knowledge-symbols-flat-illustration_1284-29493.jpg?w=2000"></img>
+        <p>Welcome to UpLearn!</p>
+        <img style="width: 100%; border-radius: 6px; height: 75%" src="https://img.freepik.com/free-vector/education-horizontal-typography-banner-set-with-learning-knowledge-symbols-flat-illustration_1284-29493.jpg?w=2000"></img>
         <p>
         By joining our community of learners, you have gained an easy access to:
         </p>

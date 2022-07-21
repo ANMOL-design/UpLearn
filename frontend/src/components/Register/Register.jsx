@@ -64,8 +64,6 @@ function Register() {
     } );
     
     if(res.status === 200){
-        setinvalid("Successful Login! Welcome to the Family of UpLearn.");
-        // Present a success message
         const e = document.getElementById("reg_success");
         e.style.display = "block";
         navigate("/");
