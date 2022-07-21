@@ -9,6 +9,7 @@ dotenv.config();
 app.use(require("./routes/register"))
 app.use(require("./routes/instructorRegister"))
 app.use(require("./routes/verify"))
+app.use(require("./routes/loginRoute"))
 // mongodbconnection
 mongoose.connect(
     process.env.MONGODB_CONNECTION_STRING,
