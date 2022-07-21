@@ -4,7 +4,8 @@ const dotenv = require('dotenv');
 router.use(express.json());
 dotenv.config();
 const User = require("../models/userSchema");
-const sendRegistrationEmail = require("../utils/emails/sendRegistrationEmail")
+const sendRegistrationEmail = require("../utils/emails/sendRegistrationEmail");
+
 router.post("/register", (req, res) => {
     const { name, email, password, cpassword } = req.body;
     if (!name || !email || !password || !cpassword) {
@@ -19,7 +20,7 @@ router.post("/register", (req, res) => {
             const user = new User({ name, email, password, cpassword });
             user.save().then(() => {
                 res.status(200).json({ msg: "Registration Successful" });
-                sendRegistrationEmail(email,name)
+                sendRegistrationEmail(email, name);
             }).catch((err) => {
                 res.status(501).json({ msg: "Failed to Register" })
             })
