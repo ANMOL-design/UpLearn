@@ -25,13 +25,10 @@ function Register() {
   const [otpgen, setotpgen] = useState('');
   const [userotp, setuserotp] = useState('');
 
-  console.log(otpgen, userotp);
-
   const sendotp = async () => {
       const name = values.name;
       const email = values.email;
       const otp =  Math.floor(1000 + Math.random() * 9000);
-      console.log(otp);
 
       const res =  await fetch("/sendverifyemail" ,{
         method : "POST",
@@ -42,10 +39,12 @@ function Register() {
             name, email, otp
         })
        } );
-       setotpgen(otp);
 
-      console.log(res);
+      //  Set the generated OTP to state to access it later 
+       setotpgen(otp);
   }
+
+  
 
   const postData = async () => {
 
@@ -66,7 +65,9 @@ function Register() {
     
     if(res.status === 200){
         setinvalid("Successful Login! Welcome to the Family of UpLearn.");
-        window.alert("Successful Login! Welcome to the Family of UpLearn.");
+        // Present a success message
+        const e = document.getElementById("reg_success");
+        e.style.display = "block";
         navigate("/");
     }
     else if(res.status === 422){
@@ -221,6 +222,7 @@ function Register() {
                 {/* The Submit Button  */}
                 <div>
                   <p className="invalid">{invalid}</p>
+                  <p id="reg_success">"Successful Registration | Redirect to the Home"</p>
                   <button type="button" className="signupBtn" onClick={handleSubmit}>
                     Sign Up
                   </button>

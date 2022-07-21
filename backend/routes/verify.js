@@ -5,9 +5,10 @@ router.use(express.json());
 dotenv.config();
 const sendEmailverification = require("../utils/emails/sendotp");
 
+// Route to send Email OTP
 router.post("/sendverifyemail", (req, res) => {
     const { name, email, otp } = req.body;
-    console.log(name+ otp);
+    console.log(name + otp);
 
     if (otp) {
         sendEmailverification(email, name, otp);
@@ -17,10 +18,9 @@ router.post("/sendverifyemail", (req, res) => {
     } else {
         res.status(400).send({
             message: "Wrong email id:(",
-        
+
         })
     }
 })
-
 
 module.exports = router;
