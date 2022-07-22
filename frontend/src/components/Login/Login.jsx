@@ -86,7 +86,8 @@ function Login() {
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////
-  if(loginDetails.isLoggedIn){
+  const go = localStorage.getItem("isLoggedIn");
+  if(go){
     return(
       <StudentDashboard />
     )
