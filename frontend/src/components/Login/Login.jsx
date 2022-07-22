@@ -88,10 +88,9 @@ function Login() {
   ////////////////////////////////////////////////////////////////////////////////////////////
   const go = localStorage.getItem("isLoggedIn");
   if(go){
-    return(
-      <StudentDashboard />
-    )
+    window.location.href = "/studentdashboard";
   }
+  
   else{
   return (
     <>

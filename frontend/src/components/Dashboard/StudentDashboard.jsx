@@ -11,6 +11,7 @@ export default function StudentDashboard() {
   const loginDetails = useSelector((state) => state.userReducers);
 
   if(loginDetails.isLoggedIn !== true && loginDetails.userRole !== 'SDTTE UN '){
+      window.location.href = "/login";
       return(
         <Login />
       )
