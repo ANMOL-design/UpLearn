@@ -17,6 +17,7 @@ import StudentDashboard from "./components/Dashboard/StudentDashboard";
 import Logout from "./components/logout/logout";
 import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 export const UserContext = createContext();
+
 function App() {
   const [isLoading, setisLoading] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -33,8 +34,7 @@ function App() {
   }
   else {
     return (
-      <>
-        <Router>
+      <Router>
         <UserContext.Provider value={{ state, dispatch }}>
           {/* The Navbar component  */}
           <Navbar />
@@ -55,9 +55,8 @@ function App() {
           </Routes>
           {/* The Footer component  */}
           <Footer />
-          </UserContext.Provider>
-        </Router>
-      </>
+        </UserContext.Provider>
+      </Router>
     );
   }
 }
