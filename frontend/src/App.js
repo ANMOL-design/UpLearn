@@ -15,6 +15,9 @@ import Loader from "./components/Loader";
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
+// The Store Elements 
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -32,7 +35,7 @@ function App() {
   }
   else {
     return (
-      <>
+      <Provider store={store}>
         <Router>
 
           {/* The Navbar component  */}
@@ -52,7 +55,7 @@ function App() {
           {/* The Footer component  */}
           <Footer />
         </Router>
-      </>
+      </Provider>
     );
   }
 }
