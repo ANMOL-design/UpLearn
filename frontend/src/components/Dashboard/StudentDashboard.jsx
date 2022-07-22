@@ -1,28 +1,20 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../App";
+import React from "react";
 import { useState } from "react";
-// import { Link } from "react-router-dom";
-
 import { SidebarData } from "./Data";
 import MainDash from "./DashboardComponents/MainDash";
+import { useSelector } from "react-redux";
 import Login from "../Login/Login";
+import { Link } from "react-router-dom";
 
 export default function StudentDashboard() {
-  const { state, dispatch } = useContext(UserContext);
   const [selected, setSelected] = useState(0);
-  if(state.loggedIn==0){
+  const loginDetails = useSelector((state) => state.userReducers);
+  console.log(loginDetails);
+
+  if(loginDetails.isLoggedIn !== true && loginDetails.userRole !== 'SDTTE UN '){
     return(
-      <>
-        <Login/>
-        </>
-        );
-  }
-  else if(window.localStorage.getItem("Role")==="INSTRUCTOR"){
-    return(
-      <>
-      <Login/>
-      </>
-      );
+      <Login />
+    )
   }
   else{
   return (
@@ -42,9 +34,10 @@ export default function StudentDashboard() {
                     key={index}
                     onClick={() => setSelected(index)}
                   >
-                    <item.icon />
-                    {/* <Link to={item.path}>{item.heading}</Link> */}
-                    <span>{item.heading}</span>
+                    <Link to={item.path}>
+                        <item.icon />
+                        <span>{item.heading}</span>
+                    </Link>      
                   </div>
                 );
               })}
@@ -57,5 +50,5 @@ export default function StudentDashboard() {
       </div>
     </>
   );
-            }
+  };
 }

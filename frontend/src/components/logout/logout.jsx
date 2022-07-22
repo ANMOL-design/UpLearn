@@ -1,13 +1,13 @@
-import { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../App";
+import { useDispatch } from "react-redux";
+import {LogoutUser} from "./../../redux/actions/userAction/userAction";
 
-function Logout(){
-
-    const {dispatch} = useContext(UserContext)
-    
+function Logout(){ 
     const navigate = useNavigate();
-    useEffect(()=>{
+    const dispatch = useDispatch();
+
+    useEffect( ()=> {
         fetch('/logout',{
             method: "GET",
                 headers: {
@@ -15,23 +15,18 @@ function Logout(){
                 },
                
         }).then((res)=>{
-            dispatch({type:"USER",payload:false});
-            localStorage.setItem("isLoggedin", Number(false));
-            window.localStorage.removeItem("Role")
+            dispatch(LogoutUser());
             navigate("/login", { replace: true });
-            // if(!res.status===200){
-            //     const error = new Error(res.error);
-            //      throw error;
-            // }
         }).catch((err)=>{
             console.log("hi");
         })
     });
-        return(
-        <>
         
+    return(
+        <>
+            Logout User
         </>
-        );
+    );
     
 }
 export default Logout;

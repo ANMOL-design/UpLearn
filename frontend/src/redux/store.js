@@ -11,4 +11,6 @@ const store = createStore(
     composeEnhancers(applyMiddleware(...middlewares))
 );
 
+console.log(store);
+
 export { store };

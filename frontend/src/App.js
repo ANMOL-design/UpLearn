@@ -1,6 +1,5 @@
-import React, { useState, useEffect,createContext, useReducer} from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { initialState, reducer } from "./redux/reducers/useReducer";
 // Import a single style file only at index file
 import "./styles/main.scss";
 // Importing  modules
@@ -16,11 +15,14 @@ import AdminHome from "./components/AdminPortal/AdminHome";
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
 import Logout from "./components/logout/logout";
 import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
-export const UserContext = createContext();
+
+//redux setup
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
-  const [state, dispatch] = useReducer(reducer, initialState);
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setisLoading(false);
@@ -34,8 +36,8 @@ function App() {
   }
   else {
     return (
-      <Router>
-        <UserContext.Provider value={{ state, dispatch }}>
+      <Provider store={store}>
+        <Router>
           {/* The Navbar component  */}
           <Navbar />
           <Routes>
@@ -55,8 +57,8 @@ function App() {
           </Routes>
           {/* The Footer component  */}
           <Footer />
-        </UserContext.Provider>
-      </Router>
+        </Router>
+      </Provider>
     );
   }
 }

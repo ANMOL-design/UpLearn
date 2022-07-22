@@ -3,18 +3,23 @@ import progressbar from "../../assets/images/progressbar.gif"
 function ImageUploader() {
   const [image, setImage] = useState("");
   const [imageData, setImageData] = useState();
-  const [isupload,setupload]= useState(false)
+  const [isupload,setupload]= useState(false);
+
   const UPOLAD = ()=>{
     if(isupload){
-        return(<>
-        <img style={{width:"30px"}} src={progressbar}></img>
-        Uploading.....
-        </>)
+        return(
+          <>
+            <img style={{width:"30px"}} src={progressbar} alt="uploader"></img>
+            Uploading.....
+          </>
+        );
     }
     else{
-        return<>
-        ..
-        </>
+        return(
+          <>
+            ..
+          </>
+        );
     }
   }
   const handleSubmit = (e) => {

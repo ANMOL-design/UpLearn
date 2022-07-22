@@ -8,8 +8,7 @@ import { BsStickiesFill } from "react-icons/bs";
 
 
 //sidebar data
-export const SidebarData = [
-    {
+export const SidebarData = [{
         icon: AiOutlineHome,
         heading: "Dashboard",
         path: "/"
@@ -37,12 +36,11 @@ export const SidebarData = [
     {
         icon: MdLogout,
         heading: "Logout",
-        path: "/"
+        path: "/logout"
     }
 ];
 
-export const CardData = [
-    {
+export const CardData = [{
         icon: BsStickiesFill,
         title: "Course in Progress",
         count: "18"

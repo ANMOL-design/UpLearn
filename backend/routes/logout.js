@@ -8,9 +8,6 @@ router.use(express.json());
 router.get('/logout', (req, res) => {
     res.clearCookie('jwtToken')
     res.status(200).send('user logout');
-   
-    console.log("logout")
-    
-
+    console.log("logout");
 });
 module.exports = router;

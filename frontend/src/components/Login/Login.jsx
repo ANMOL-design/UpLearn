@@ -1,9 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../App";
+import { useDispatch, useSelector } from "react-redux";
+import { LoginUser } from "./../../redux/actions/userAction/userAction";
+
 function Login() {
+
   let navigate = useNavigate();
-  const {dispatch} = useContext(UserContext)
+  const dispatch = useDispatch();
+
+  const loginDetails = useSelector((state) => state.userReducers);
+  console.log(loginDetails);
+
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -19,6 +26,7 @@ function Login() {
   const [err, seterr] = useState('');
   const [pass, setpass] = useState('');
   const [invalid, setinvalid] = useState('');
+
   const loginUser = async (e) => {
     // e.preventDefault();
     const {email,password}= values;
@@ -36,10 +44,9 @@ function Login() {
     });
   
     if (res.status === 200) {
-      dispatch({type:"USER",payload:true});
-      localStorage.setItem("isLoggedin", Number(true));
-      window.localStorage.setItem("Role",userrole)
+      dispatch(LoginUser( true, userrole ));
       window.alert("Login succesful");
+      navigate("/studentdashboard");
     }
     else if (res.status === 400){
       window.alert("Enter Email and Password.");

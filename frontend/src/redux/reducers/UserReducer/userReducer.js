@@ -1,0 +1,24 @@
+const initialState = {
+    isLoggedIn: localStorage.getItem("isLoggedIn") || "",
+    userRole: localStorage.getItem("Work") || "",
+};
+
+export const userReducers = (state = initialState, action) => {
+    switch (action.type) {
+        case "SET_USER_DETAILS":
+            {
+                console.log(action.payload.isLoggedIn, action.payload.userRole);
+                return {
+                    ...state,
+                    isLoggedIn: action.payload.isLoggedIn,
+                    userRole: action.payload.userRole
+                };
+            }
+        case "LOG_OUT_USER":
+            {
+                return {...initialState };
+            }
+        default:
+            return state;
+    }
+};
