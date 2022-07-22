@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginUser } from "./../../redux/actions/userAction/userAction";
+import StudentDashboard from "../Dashboard/StudentDashboard";
 
 function Login() {
 
@@ -9,7 +10,6 @@ function Login() {
   const dispatch = useDispatch();
 
   const loginDetails = useSelector((state) => state.userReducers);
-  console.log(loginDetails);
 
   const [values, setValues] = useState({
     email: "",
@@ -45,20 +45,10 @@ function Login() {
   
     if (res.status === 200) {
       dispatch(LoginUser( true, userrole ));
-      window.alert("Login succesful");
       navigate("/studentdashboard");
     }
-    else if (res.status === 400){
-      window.alert("Enter Email and Password.");
-    }
-    else if (res.status === 401){
-      window.alert("Incorrect Password.");
-    }
-    else if (res.status === 402){
-        window.alert("Email don't exist Invalid Credential.");
-    }
     else{
-        window.alert("Invalid Credential");
+        window.alert("Error Occurred");
     }
   };
  
@@ -68,7 +58,6 @@ function Login() {
 
     if(submit){
       loginUser();
-      navigate("/");
     }
   
   };
@@ -96,7 +85,13 @@ function Login() {
     seterr('');  setpass('');
   };
 
-
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  if(loginDetails.isLoggedIn){
+    return(
+      <StudentDashboard />
+    )
+  }
+  else{
   return (
     <>
       {/* The Container Of Login An Sign In Page  */}
@@ -169,5 +164,6 @@ function Login() {
       </div>
     </>
   );
+  };
 }
 export default Login;

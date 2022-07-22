@@ -1,20 +1,19 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { SidebarData } from "./Data";
 import MainDash from "./DashboardComponents/MainDash";
 import { useSelector } from "react-redux";
 import Login from "../Login/Login";
-import { Link } from "react-router-dom";
 
 export default function StudentDashboard() {
+
   const [selected, setSelected] = useState(0);
   const loginDetails = useSelector((state) => state.userReducers);
-  console.log(loginDetails);
 
   if(loginDetails.isLoggedIn !== true && loginDetails.userRole !== 'SDTTE UN '){
-    return(
-      <Login />
-    )
+      return(
+        <Login />
+      )
   }
   else{
   return (

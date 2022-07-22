@@ -8,7 +8,7 @@ export const LoginUser = (isLoggedIn, Role) => async(dispatch) => {
         isLoggedIn: isLoggedIn,
         userRole: userRole
     }
-    console.log(login)
+
     localStorage.setItem("isLoggedIn", isLoggedIn);
     localStorage.setItem("Work", userRole);
 

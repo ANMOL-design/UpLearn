@@ -7,7 +7,6 @@ export const userReducers = (state = initialState, action) => {
     switch (action.type) {
         case "SET_USER_DETAILS":
             {
-                console.log(action.payload.isLoggedIn, action.payload.userRole);
                 return {
                     ...state,
                     isLoggedIn: action.payload.isLoggedIn,
