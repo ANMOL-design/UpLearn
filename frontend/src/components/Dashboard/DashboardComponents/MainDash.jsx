@@ -1,7 +1,8 @@
 import React from "react";
 import Cards from "./Cards/Cards";
-
 export default function MainDash() {
+ 
+  
   return (
     <div className="mainDashContainer">
       <div>
@@ -26,4 +27,5 @@ export default function MainDash() {
       </div>
     </div>
   );
+  
 }

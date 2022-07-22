@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { initialState, reducer } from "./redux/reducers/useReducer";
 // Import a single style file only at index file
 import "./styles/main.scss";
-
 // Importing  modules
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
@@ -15,6 +14,8 @@ import Loader from "./components/Loader";
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
+import Logout from "./components/logout/logout";
+import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 export const UserContext = createContext();
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -41,8 +42,11 @@ function App() {
             {/* The Auth Routes  */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/logout" element={<Logout />} />
             {/* The Dashboard  */}
             <Route path="/studentdashboard" element={<StudentDashboard />} />
+            {/* IMAGEUPLOADER */}
+            <Route path="/imageuploader" element={<ImageUploader />} />
             {/* The Admin Routes  */}
             <Route path="/admin-portal-login-190310554227" element={<AdminLogin />} />
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />

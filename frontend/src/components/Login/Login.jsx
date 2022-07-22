@@ -38,7 +38,7 @@ function Login() {
     if (res.status === 200) {
       dispatch({type:"USER",payload:true});
       localStorage.setItem("isLoggedin", Number(true));
-      window.localStorage.setItem("ROLE",userrole)
+      window.localStorage.setItem("Role",userrole)
       window.alert("Login succesful");
     }
     else if (res.status === 400){
@@ -133,8 +133,8 @@ function Login() {
                   <label htmlFor="userRole">User Role</label>
                   <select id="userRole" name="userrole" onChange={(e) => {setuser(e.target.value);}}>
                     <option value="" defaultValue>Please Select User Role</option>
-                    <option value="student">Student</option>
-                    <option value="teacher">Teacher</option>
+                    <option value="STUDENT">Student</option>
+                    <option value="INSTRUCTOR">Teacher</option>
                   </select>
                 </div>
                 {/* The Submit Button  */}

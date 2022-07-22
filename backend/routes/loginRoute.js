@@ -27,7 +27,7 @@ router.post('/login', async(req, res) => {
 
         const userLogin = await User.findOne({ email: email });
         const instructorlogin = await Instructor.findOne({ email: email });
-        if (userLogin) {
+        if (userLogin && userrole=="STUDENT") {
             const isMatch = await bycrypt.compare(password, userLogin.password)
             const token = await userLogin.generateAuthToken();
 
@@ -39,11 +39,11 @@ router.post('/login', async(req, res) => {
             if (!isMatch) {
                 return res.status(401).json({ msg: "Invalid Credential" });
             } else {
-                window.localStorage.setItem("Role","STUDENT")
+               
                 res.status(200).json({ msg: "login Succesfully" })
             }
         }
-        else if (instructorlogin) {
+        else if (instructorlogin && userrole=="INSTRUCTOR") {
             const isMatch = await bycrypt.compare(password, userLogin.password)
             const token = await instructorlogin.generateAuthToken();
 
@@ -55,7 +55,6 @@ router.post('/login', async(req, res) => {
             if (!isMatch) {
                 return res.status(401).json({ msg: "Invalid Credential" });
             } else {
-                window.localStorage.setItem("Role","Instructor")
                 res.status(200).json({ msg: "login Succesfully" })
             }
         }
