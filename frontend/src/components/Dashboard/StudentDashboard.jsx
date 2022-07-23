@@ -13,6 +13,7 @@ export default function StudentDashboard() {
     <>
       <div className="studDashContainer">
         <div className="studWrapper">
+          {/* sidebar */}
           <div className="sidebar">
             <div className="sidebarMenu">
               {SidebarData.map((item, index) => {
@@ -34,7 +35,8 @@ export default function StudentDashboard() {
               })}
             </div>
           </div>
-          <div>
+          {/* main dashboard */}
+          <div className="mainDash">
             <MainDash />
           </div>
         </div>
