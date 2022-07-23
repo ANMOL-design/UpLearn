@@ -13,6 +13,7 @@ import Loader from "./components/Loader";
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
+import InstructorRegister from "./components/AdminPortal/InstructorRegister";
 import Logout from "./components/logout/logout";
 import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 
@@ -22,7 +23,7 @@ import { store } from "./redux/store";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
-  
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setisLoading(false);
@@ -52,6 +53,8 @@ function App() {
             {/* The Admin Routes  */}
             <Route path="/admin-portal-login-190310554227" element={<AdminLogin />} />
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
+            <Route path="/instructorregister" element={<InstructorRegister />} />
+            <Route path="/studentdashboard" element={<StudentDashboard />} />
             {/* General  */}
             <Route path="*" element={<PageNotFound />} />
           </Routes>

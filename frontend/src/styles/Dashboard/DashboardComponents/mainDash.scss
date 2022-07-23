@@ -1,25 +1,30 @@
 .mainDashContainer{
     font-family: $font_El;
-    margin-top: 2.3rem;
+    margin: 2.2rem 2rem 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+   
 }
 .studentNameContainer{
-    margin: 1rem 2rem 1rem 0;
     height: 10rem;
     display: flex;
-    justify-content: space-between;
     background-color: #171C24;
     color: white;
     border-radius: 1rem;
-
+    .image{
+        margin-left: auto;
+    }
     .image img{
         height: 10rem;
         border-radius: 1rem;
     }
 }
 .studentName{
+    width: 50%;
     padding: 2rem;
     h4{
-        padding: 1rem 0 .5rem 0 ;
+      
         font-size: 2rem;
         letter-spacing: .3rem;
     }
@@ -29,6 +34,58 @@
     }
     
 }
-.mainCard{
-    margin: 1rem 2rem 1rem 0;
+.studCourses {
+    padding: 1rem;
+    background-color: white;
+    border-radius: 1rem;
 }
+
+.studCoursesContainer {
+    display: flex;
+    gap: 1rem;
+}
+.studWork {
+    display: flex;
+    gap: 2rem;
+    padding-bottom: 1rem;
+}
+
+.studWorkStatus {
+    padding: 1rem;
+    background-color: white;
+    border-radius: 1rem;
+}
+
+.upcomingEvent{
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+//media query
+  @media (max-width: 480px) {
+     
+  }
+
+  /* Media Query for low resolution  Tablets, Ipads */
+  @media (min-width: 481px) and (max-width: 767px) {
+      
+  }
+
+  /* Media Query for Tablets Ipads portrait mode */
+  @media (min-width: 768px) and (max-width: 1024px) {
+      
+  }
+
+  /* Media Query for Laptops and Desktops */
+  @media (min-width: 1025px) and (max-width: 1280px) {
+      
+  }
+
+  /* Media Query for Large screens */
+//   @media (min-width: 1281px) {
+//       .sidebarMenuItem>span{
+//         // display: none;
+//       }
+//   }
+
