@@ -66,7 +66,7 @@ function Register() {
     if(res.status === 200){
         const e = document.getElementById("reg_success");
         e.style.display = "block";
-        navigate("/");
+        navigate("/login");
     }
     else if(res.status === 422){
         setinvalid("Email already registered, please enter a valid email id");

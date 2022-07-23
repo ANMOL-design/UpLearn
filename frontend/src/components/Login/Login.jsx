@@ -47,6 +47,8 @@ function Login() {
   
     if (res.status === 200) {
       dispatch(LoginUser( true, userrole ));
+      const e = document.getElementById("reg_success");
+      e.style.display = "block";
       navigate("/studentdashboard");
     }
     else{
@@ -139,6 +141,7 @@ function Login() {
                 {/* The Submit Button  */}
                 <div>
                   <p className="invalid">{invalid}</p>
+                  <p id="reg_success">"Successful Login | Redirect to the Dashboard"</p>
                   <button type="button" className="signupBtn" onClick={handleSubmit}>
                     Sign In
                   </button>
