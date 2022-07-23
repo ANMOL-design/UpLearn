@@ -6,40 +6,43 @@ import { GrCertificate } from "react-icons/gr";
 import { MdLogout } from "react-icons/md";
 import { BsStickiesFill } from "react-icons/bs";
 import { MdQuiz } from "react-icons/md";
-// import MainDash from "./DashboardComponents/MainDash";
-
+import MainDash from "./DashboardComponents/MainDash";
+import Profile from "./DashboardComponents/Profile";
+import Courses from "./DashboardComponents/Courses";
+import Instructor from "./DashboardComponents/Instructor";
+import Reports from "./DashboardComponents/Reports";
+import Logout from "../logout/logout";
 
 //sidebar data
 export const SidebarData = [{
     icon: AiOutlineHome,
     heading: "Dashboard",
-    // path: MainDash
+    path: MainDash
 },
 {
     icon: CgProfile,
     heading: "Profile",
-    // path: MainDash
+    path: Profile
 },
 {
     icon: BiSpreadsheet,
     heading: "Courses",
-    // path: MainDash
+    path: Courses
 },
 {
     icon: FaChalkboardTeacher,
     heading: "Instructor",
-    // path: MainDash
+    path: Instructor
 },
 {
     icon: GrCertificate,
     heading: "Reports",
-    // path: MainDash
+    path: Reports
 },
 {
     icon: MdLogout,
     heading: "Logout",
-    // path: MainDash
-    path: "/logout"
+    path: Logout
 }
 ];
 
