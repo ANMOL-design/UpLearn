@@ -32,6 +32,11 @@ function Footer(){
                 e_success.style.display = 'block';
                 e_fail.style.display = 'none';
             }
+            else if( student === 'TCREH AE '){
+                e_success.style.display = 'none';
+                e_fail.style.display = 'block';
+                e_fail.innerHTML= 'Subscription Is For Students Only';
+            }
             else{
                 e_success.style.display = 'none';
                 e_fail.style.display = 'block';
