@@ -88,8 +88,13 @@ const instructorSchema = new mongoose.Schema({
         studentId : {
             type : String,
         }
+    }],
+    tokens: [{
+        token: {
+            type: String,
+            required: true,
+        }
     }]
-
     
     
     

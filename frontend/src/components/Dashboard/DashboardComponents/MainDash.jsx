@@ -7,6 +7,8 @@ import CourseCards from "./Cards/CourseCards";
 import EventCards from "./Cards/EventCards";
 
 export default function MainDash() {
+ 
+  
   return (
     <div className="mainDashContainer">
       <div>
@@ -75,4 +77,5 @@ export default function MainDash() {
       </div>
     </div>
   );
+  
 }
