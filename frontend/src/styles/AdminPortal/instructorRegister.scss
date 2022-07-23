@@ -1,0 +1,190 @@
+.instructorin {
+    font-family: $font_El;
+    background: $grey;
+}
+
+.instructorContainer {
+    padding-bottom: 4rem;
+    // background-image: url('./../../assets/images/instructor_bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    @include displayflex;
+    justify-content: center;
+}
+
+.instructorWrapper {
+    padding: 2.8rem 4rem 4rem;
+    margin: 5rem 2rem 1rem;
+    border-radius: 10px;
+    box-shadow: 2px 10px 30px $black;
+    background: #fff;
+    // width: 32rem;
+
+    h2 {
+        margin: 0;
+        font-size: 2.3rem;
+        text-align: center;
+    }
+
+    a {
+        color: $darkgrey;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .pl {
+        color: $darkgrey;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+}
+
+.instructorForm {
+    margin-top: 2rem;
+   form{
+    display: flex;
+        flex-direction: column;
+   }
+}
+
+// Text In Input fields 
+.instructorInput {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction:row;
+    // flex-wrap: wrap;
+    gap: 1rem;
+
+    label {
+        margin: auto 0;
+        // text-align: center;
+        font-size: 1rem;
+        font-weight: 500;
+        color: $black;
+        cursor: pointer;
+        // width: 50%;
+    }
+
+    input {
+        width: 100%;
+        height: 40px;
+        // line-height: 50px'
+        padding: 0 14px;
+        font-size: 15px;
+        background: #E8F0FE;
+        color: $black;
+        border-radius: 8px;
+        outline: none;
+        border: none;
+    }
+
+    input[type=file]{
+        background: none;
+    }
+
+    input[type=checkbox]{
+        background: none;
+        width: 3%;
+    }
+                [type="file"] {
+                    height: 0;
+                    overflow: hidden;
+                    width: 0;
+                }
+        
+                [type="file"]+label {
+                    background: #2B4EFF;
+                    border: none;
+                    border-radius: 5px;
+                    color: #fff;
+                    cursor: pointer;
+                    display: inline-block;
+                    font-family: 'Rubik', sans-serif;
+                    font-size: inherit;
+                    // font-weight: 500;
+                    margin-bottom: 1rem;
+                    outline: none;
+                    padding: .5rem;
+                    position: relative;
+                    transition: all 0.3s;
+                    vertical-align: middle;}
+               
+    select {
+        @include siteinputbox;
+    }
+
+    p {
+        color: red;
+        font-size: 15px;
+    }
+}
+
+.invalid {
+    color: red;
+    font-size: 15px;
+    text-align: center;
+    text-transform: capitalize;
+    margin: auto;
+}
+
+.instructorupBtn {
+    @include sitebutton;
+    display: inline-block;
+    
+    line-height: 40px;
+    width: 50%;
+    margin: 12px 0px;
+}
+
+.instructorupBtn:hover {
+    transition: all .3s ease-out 0s;
+    box-shadow: 0 3px 10px rgba(43, 78, 255, 0.4);
+}
+
+.instructorupText {
+    margin-top: 20px;
+    text-align: center;
+
+    a {
+        color: $navbar_color;
+    }
+}
+
+option {
+    padding: 6px 15px;
+}
+
+@media (max-width: 664px) {
+    .instructorWrapper {
+        padding: 2rem 2rem 3rem;
+        margin: 4rem 1rem 1rem;
+        // width: 27rem;
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        a {
+            font-size: 15px;
+        }
+    }
+
+    .instructorInput {
+        label {
+            font-size: 1rem;
+        }
+
+        input {
+            height: 30px;
+        }
+    }
+}
+
+@media screen and (max-width:476px) {
+    .instructorInput{
+        // flex-wrap: wrap;
+        flex-direction: column;
+        
+    }
+}

@@ -3,18 +3,23 @@
 }
 
 .studDashContainer{
-    padding: 6.5rem 0 1.5rem 0;
+    // padding:1rem 0;
       font-family: $font_El;
+    //   padding-bottom: 1rem;
 }
 .studWrapper{
-    height: 100vh;
-    margin:0 1rem;
-    border-radius: 1.5rem;
+   display: flex;
     background-color: rgb(188 201 241 / 54%);
-    display: grid;
-    gap: 16px;
-    grid-template-columns: 11rem auto ;
-    overflow: hidden;
+    // display: grid;
+    gap: 1rem;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+    // grid-template-columns: 11rem auto ;
+    // overflow: hidden;
+   
+}
+.sidebar{
+    width: 10rem;
 }
 .sidebarMenu{
     margin-top: 2rem;
@@ -27,23 +32,35 @@
     align-items: center;
     gap:1rem;
     height: 2.5rem;
-    margin-left: 2rem;
+    margin-left: .5rem;
     transition: all 300ms ease;
     border-radius: 0.7rem;
-    // font-size: 14px;
 }
 .sidebarMenuItem:hover{
     cursor: pointer;
 }
+
+// side bar element on active
 .act{
     color: white;
     background-color: #2B4EFF;
     margin-left: 0;
+    padding-right: 5px;
 }
 .act::before{
     content: '';
-    width: 8px;
+    width: 6px;
     height: 100%;
     background-color: #171C24;
-    margin-right: calc(1rem - 8px);
+    margin-right: calc(.5rem - 6px);
+}
+
+.mainDash{
+    padding-bottom: 4rem;
+}
+
+
+
+@media screen and (max-width:1350px) {
+
 }
