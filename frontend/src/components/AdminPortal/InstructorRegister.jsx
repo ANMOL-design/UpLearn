@@ -167,8 +167,8 @@ function InstructorRegister() {
                     value={values.name}
                     onChange={(e) => handleChange(e)}
                   />
-                  <p>{name}</p>
-                  <label>Email</label>
+                  {/* <p>{name}</p> */}
+                  <label htmlFor="email">Email</label>
                   <input
                     type="email "
                     id="email"
@@ -179,34 +179,85 @@ function InstructorRegister() {
                   />
                 </div>
                 <div className="instructorInput">
-                  <label>Password</label>
-                  <input type="password" />
-                  <label>Confirm Password</label>
-                  <input type="password" />
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    name="password"
+                    value={values.password}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm Password"
+                    name="confirmPassword"
+                    value={values.confirmPassword}
+                    onChange={(e) => handleChange(e)}
+                  />
                 </div>
                 <div className="instructorInput">
-                  <label>Subject</label>
-                  <input type="text" />
-                  <label>Block</label>
-                  <input type="text" />
+                  <label htmlFor="subject">Subject</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    placeholder="Subject"
+                    value={values.subject}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <label htmlFor="block">Block</label>
+                  <input
+                    type="text"
+                    id="block"
+                    placeholder="Block"
+                    value={values.block}
+                    onChange={(e) => handleChange(e)}
+                  />
                 </div>
                 <div className="instructorInput">
-                  <label>Permanent Address</label>
-                  <input type="text" />
+                  <label htmlFor="permanentAddress">Permanent Address</label>
+                  <input
+                    type="text"
+                    id="permanentAddress"
+                    placeholder="Your Permanent Address"
+                    value={values.permanentAddress}
+                    onChange={(e) => handleChange(e)}
+                  />
                 </div>
                 <div className="instructorInput">
-                  <label>School</label>
-                  <input type="text" />
-                  <label>City</label>
-                  <input type="text" />
-                  <label>State</label>
-                  <input type="text" />
+                  <label htmlFor="school">School</label>
+
+                  <input
+                    type="text"
+                    id="school"
+                    placeholder="School Name"
+                    value={values.school}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <label htmlFor="city">City</label>
+                  <input
+                    type="text"
+                    id="city"
+                    placeholder="City"
+                    value={values.city}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <label htmlFor="state">State</label>
+                  <input
+                    type="text"
+                    id="state"
+                    placeholder="State"
+                    value={values.state}
+                    onChange={(e) => handleChange(e)}
+                  />
                 </div>
                 <div className="instructorInput">
                   <label>Pincode</label>
                   <input type="text" />
                   <label>Mobile No.</label>
-                  <input type="text" />
+                  <input type="tel" />
                 </div>
                 <div className="instructorInput">
                   <label>ID Image</label>
