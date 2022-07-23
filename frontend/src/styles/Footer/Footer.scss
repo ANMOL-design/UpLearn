@@ -97,7 +97,14 @@
         border-radius: 0px 4px 4px 0px;
     }
 }
-
+.login-warning{
+    display: none;
+    color: red;
+}
+.teacher-warning{
+    display: none;
+    color: red;
+}
 .foo-bottom {
     color: #a1a2ab;
     background: $footer_color;

@@ -3,8 +3,11 @@ import Logo from "./../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import { BsTwitter, BsYoutube, BsFacebook } from "react-icons/bs";
-
+import { useSelector } from "react-redux";
 function Footer(){
+    const loginDetails = useSelector((state) => state.userReducers);
+    console.log(loginDetails);
+    if(loginDetails.is)
     return(
         <>
             <div className="foo">
