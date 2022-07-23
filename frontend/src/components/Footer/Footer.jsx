@@ -3,13 +3,11 @@ import Logo from "./../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import { BsTwitter, BsYoutube, BsFacebook } from "react-icons/bs";
-import { useSelector } from "react-redux";
 
 function Footer(){
 
     const [user, setuser] = useState('');
-    const loginDetails = useSelector((state) => state.userReducers);
-    console.log(loginDetails)
+   
     // Function to validate email 
     const validateEmail = (email) => {
         return email.match(
@@ -25,18 +23,26 @@ function Footer(){
 
         // Send Email if email exist
         if(email){
-            if( loginDetails.isLoggedIn === 'true' && loginDetails.userRole === 'SDTTE UN '){
+            const login = localStorage.getItem("isLoggedIn");
+            const student = localStorage.getItem("Work");
+            if( login && student === 'SDTTE UN '){
                 // Make the API CALL Here 
                 console.log('Success')
 
                 e_success.style.display = 'block';
                 e_fail.style.display = 'none';
             }
+            else{
+                e_success.style.display = 'none';
+                e_fail.style.display = 'block';
+                e_fail.innerHTML= 'Please Login First to Subscribe UpLearn';
+            }
         }
         // Dont Send Email if email exist
         else{
             e_success.style.display = 'none';
             e_fail.style.display = 'block';
+            e_fail.innerHTML= 'Please Enter A Valid Email ID';
         }
     }
     return(
@@ -92,7 +98,7 @@ function Footer(){
                             <span onClick={handleSubscribe}><FiArrowRight /></span>
                         </div>
                         <span id="foo-success">"Successful Subscribe To UpLearn"</span>
-                        <span id="foo-fail">"Something went wrong" <br />(Note: Teachers can't Subscribe)</span>
+                        <span id="foo-fail"></span>
                         <span>Get the latest news and updates right at your inbox.</span>
                     </div>
                 </div>
