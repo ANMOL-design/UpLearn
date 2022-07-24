@@ -2,7 +2,7 @@ import React from "react";
 
 export default function EventCard(props) {
   return (
-    <div
+    <div 
       className="eventCard"
       style={{ backgroundColor: props.color.backGround }}
     >
@@ -11,7 +11,7 @@ export default function EventCard(props) {
       </div>
       <div className="content">
         <span>{props.date}</span>
-        <a href="#/">Learn More</a>
+        <a href="#/" target="_blank">Learn More</a>
       </div>
     </div>
   );

@@ -15,62 +15,61 @@ import Logout from "../logout/logout";
 
 //sidebar data
 export const SidebarData = [{
-    icon: AiOutlineHome,
-    heading: "Dashboard",
-    path: MainDash
-},
-{
-    icon: CgProfile,
-    heading: "Profile",
-    path: Profile
-},
-{
-    icon: BiSpreadsheet,
-    heading: "Courses",
-    path: Courses
-},
-{
-    icon: FaChalkboardTeacher,
-    heading: "Instructor",
-    path: Instructor
-},
-{
-    icon: GrCertificate,
-    heading: "Reports",
-    path: Reports
-},
-{
-    icon: MdLogout,
-    heading: "Logout",
-    path: Logout
-}
+        icon: AiOutlineHome,
+        heading: "Dashboard",
+        path: MainDash
+    },
+    {
+        icon: CgProfile,
+        heading: "Profile",
+        path: Profile
+    },
+    {
+        icon: BiSpreadsheet,
+        heading: "Courses",
+        path: Courses
+    },
+    {
+        icon: FaChalkboardTeacher,
+        heading: "Instructor",
+        path: Instructor
+    },
+    {
+        icon: GrCertificate,
+        heading: "Reports",
+        path: Reports
+    },
+    {
+        icon: MdLogout,
+        heading: "Logout",
+        path: Logout
+    }
 ];
 
 export const CardData = [{
-    icon: BsStickiesFill,
-    title: "Course in Progress",
-    count: "18"
-},
-{
-    icon: AiFillCheckSquare,
-    title: "Course Completed",
-    count: "10"
-},
-{
-    icon: AiFillSafetyCertificate,
-    title: "Certification Earned",
-    count: "12"
-},
-{
-    icon: MdQuiz,
-    title: "Quiz Attempt",
-    count: "21"
-}
+        icon: BsStickiesFill,
+        title: "Course in Progress",
+        count: "18"
+    },
+    {
+        icon: AiFillCheckSquare,
+        title: "Course Completed",
+        count: "10"
+    },
+    {
+        icon: AiFillSafetyCertificate,
+        title: "Certification Earned",
+        count: "12"
+    },
+    {
+        icon: MdQuiz,
+        title: "Quiz Attempted",
+        count: "21"
+    }
 
 ];
 
-export const CourseCardData = [
-    {
+export const CourseCardData = [{
         title: "Networking",
         instructor: "Maical",
         barValue: 60,
@@ -102,8 +101,7 @@ export const CourseCardData = [
     }
 ];
 
-export const EventData = [
-    {
+export const EventData = [{
         title: "Basic Computer",
         date: "29 May",
         color: {

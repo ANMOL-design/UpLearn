@@ -1,37 +1,39 @@
 import React from "react";
 import Cards from "./Cards/Cards";
 
-//chart library
+// chart library
 import Chart from "react-apexcharts";
 import CourseCards from "./Cards/CourseCards";
 import EventCards from "./Cards/EventCards";
 
 export default function MainDash() {
- 
-  
   return (
     <div className="mainDashContainer">
-      <div>
-        <h2>Dashboard</h2>
-        <div className="studentNameContainer">
+      {/* My dashboard Content  */}
+      <h2>&nbsp;&nbsp;My Dashboard</h2>
+      {/* Dashboard Banner  */}
+      <div className="studentNameContainer">
+        {/* Banner Inner Content  */}
           <div className="studentName">
             <h4>Welcome Alice!</h4>
             <p>
               Education is the passport to the future, So learn more &amp; more
             </p>
           </div>
+          {/* Banner Image  */}
           <div className="image">
             <img
               src="https://eduadmin-template.multipurposethemes.com/bs4/images/svg-icon/color-svg/custom-15.svg"
-              alt=""
+              alt="DashBanner"
             />
           </div>
         </div>
-      </div>
-      <div className="mainCard">
+      
+      {/* Cards Of Dashboard  */}
         <Cards />
-      </div>
+
       <div className="studWork">
+        {/* Div for the progress working status  */}
         <div className="studWorkStatus">
           <h4>Working Status</h4>
           <Chart
@@ -61,7 +63,7 @@ export default function MainDash() {
             }}
           />
         </div>
-
+        {/* courses Progess  */}
         <div className="studCourses">
           <h4>Current Running Courses</h4>
           <div className="studCoursesContainer">
@@ -69,11 +71,11 @@ export default function MainDash() {
           </div>
         </div>
       </div>
+
+      {/* Upcomming Events  */}
       <div className="upcomingEvent">
         <h4>Upcoming Events</h4>
-        <div>
-          <EventCards />
-        </div>
+        <EventCards />
       </div>
     </div>
   );

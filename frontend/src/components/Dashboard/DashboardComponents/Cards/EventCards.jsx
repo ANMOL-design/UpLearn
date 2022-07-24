@@ -5,15 +5,13 @@ import EventCard from "./EventCard";
 export default function eventCards() {
   return (
     <div className="eventCards">
-      {EventData.map((eventCard, id) => {
+      {EventData.map((eventCard) => {
         return (
-          <div className="parentContainer">
             <EventCard
               title={eventCard.title}
               date={eventCard.date}
               color={eventCard.color}
             />
-          </div>
         );
       })}
     </div>

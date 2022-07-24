@@ -3,7 +3,7 @@ import Logo from "./../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import { BsTwitter, BsYoutube, BsFacebook } from "react-icons/bs";
-import { useSelector } from "react-redux";
+
 function Footer(){
 
     const [user, setuser] = useState("");
@@ -14,7 +14,9 @@ function Footer(){
             /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           );
     };
-    const postData = async ( e_success,e_fail) => {
+
+    // Adding Data to Backend
+    const postData = async ( e_success, e_fail) => {
         
         const email = user;
          const res =  await fetch("/SubscriberRegister" ,{
@@ -32,15 +34,14 @@ function Footer(){
             e_fail.style.display = 'none';
          }
          else if(res.status === 422){
-               e_success.style.display = 'none';
-                e_fail.style.display = 'block';
-                e_fail.innerHTML= 'already Subscribe';
-         }
-         else{
-             console.log(res)
                 e_success.style.display = 'none';
                 e_fail.style.display = 'block';
-                e_fail.innerHTML= 'Internal server error, Try agan!';
+                e_fail.innerHTML= 'Already Subscribed';
+         }
+         else{
+                e_success.style.display = 'none';
+                e_fail.style.display = 'block';
+                e_fail.innerHTML= 'Internal Server Error, Try Again!';
          }
      }
      
@@ -56,10 +57,7 @@ function Footer(){
             const student = localStorage.getItem("Work");
             if( login && student === 'SDTTE UN '){
                 // Make the API CALL Here 
-                postData(e_success,e_fail);
-                console.log(user);
-                console.log('Success')
-              
+                postData(e_success,e_fail);           
             }
             else if( login && student === 'TCREH AE '){
                 e_success.style.display = 'none';
