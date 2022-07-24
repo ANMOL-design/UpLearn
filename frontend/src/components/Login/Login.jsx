@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { LoginUser } from "./../../redux/actions/userAction/userAction";
-import StudentDashboard from "../Dashboard/StudentDashboard";
 
 function Login() {
 
   let navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const loginDetails = useSelector((state) => state.userReducers);
 
   const [values, setValues] = useState({
     email: "",
@@ -21,6 +18,11 @@ function Login() {
 
   useEffect(() => {
     window.scroll(0,150);
+    const go = localStorage.getItem("isLoggedIn");
+
+    if(go){
+      navigate("/studentdashboard");
+    }
   }, [])
 
   const [err, seterr] = useState('');
@@ -45,6 +47,8 @@ function Login() {
   
     if (res.status === 200) {
       dispatch(LoginUser( true, userrole ));
+      const e = document.getElementById("reg_success");
+      e.style.display = "block";
       navigate("/studentdashboard");
     }
     else{
@@ -86,12 +90,7 @@ function Login() {
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////
-  const go = localStorage.getItem("isLoggedIn");
-  if(go){
-    window.location.href = "/studentdashboard";
-  }
-  
-  else{
+
   return (
     <>
       {/* The Container Of Login An Sign In Page  */}
@@ -142,6 +141,7 @@ function Login() {
                 {/* The Submit Button  */}
                 <div>
                   <p className="invalid">{invalid}</p>
+                  <p id="reg_success">"Successful Login | Redirect to the Dashboard"</p>
                   <button type="button" className="signupBtn" onClick={handleSubmit}>
                     Sign In
                   </button>
@@ -164,6 +164,5 @@ function Login() {
       </div>
     </>
   );
-  };
 }
 export default Login;

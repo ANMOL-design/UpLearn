@@ -7,6 +7,14 @@ function Logout(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const logoutcss = {
+        width: "100%",
+        height: "85vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: 'center',
+        fontSize: "5rem"
+    }
     useEffect( ()=> {
         fetch('/logout',{
             method: "GET",
@@ -23,9 +31,9 @@ function Logout(){
     });
         
     return(
-        <>
+        <div style={logoutcss}>
             Logout User
-        </>
+        </div>
     );
     
 }
