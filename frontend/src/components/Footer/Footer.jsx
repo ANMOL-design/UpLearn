@@ -32,7 +32,7 @@ function Footer(){
                 e_success.style.display = 'block';
                 e_fail.style.display = 'none';
             }
-            else if( student === 'TCREH AE '){
+            else if( login && student === 'TCREH AE '){
                 e_success.style.display = 'none';
                 e_fail.style.display = 'block';
                 e_fail.innerHTML= 'Subscription Is For Students Only';
@@ -94,7 +94,7 @@ function Footer(){
                     <div  className="foo-Subscribe">
                         <h2>Subscribe</h2>
                         <div>
-                            <input type="text" 
+                            <input type="email" 
                                 name="subscribe" 
                                 id="subscribe" 
                                 placeholder="Your email address" 
