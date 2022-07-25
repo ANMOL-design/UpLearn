@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bycrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const userSchema = new mongoose.Schema({
-   name: {
+    name: {
         type: String,
         required: true,
     },
@@ -19,67 +19,76 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    firstName : {
+    firstName: {
         type: String,
     },
-    LastName : {
+    LastName: {
         type: String,
     },
-    class :{
-        type : Number,
+    class: {
+        type: Number,
     },
-    Board :{
-        type : String,
+    Board: {
+        type: String,
     },
-    PermanentAddress :{
-        type : String,
+    PermanentAddress: {
+        type: String,
     },
-    School :{
-        type : String,
+    School: {
+        type: String,
     },
-    City :{
-        type : String,
+    City: {
+        type: String,
     },
-    State :{
-        type : String,
+    State: {
+        type: String,
     },
-    Pincode :{
-        type : Number,
+    Pincode: {
+        type: Number,
     },
-    mobileno :{
-        type :Number,
+    mobileno: {
+        type: Number,
     },
-    Image : {
-        type : String,
+    Image: {
+        type: String,
     },
-    isInstructor :{
-        type : Boolean,
+    isInstructor: {
+        type: Boolean,
     },
-    progress : {
-        type : Number,
+    progress: {
+        type: Number,
     },
-    certificates :[{
-        nameofcertificate:{
-            type : String,
+    Gender: {
+        type: String,
+    },
+    DOB: {
+        type: String,
+    },
+    AboutMe: {
+        type: String,
+    },
+    certificates: [{
+        nameofcertificate: {
+            type: String,
         },
-        issuedby : {
-            type : String,
+        issuedby: {
+            type: String,
         },
-        certificateimage :{
-            type : String,
+        certificateimage: {
+            type: String,
         }
-    }], 
-    CousesEnrolled :[{
-        nameOfCourse:{
-            type : String,
+    }],
+    CousesEnrolled: [{
+        nameOfCourse: {
+            type: String,
         },
-        CourseId : {
-            type : String,
+        CourseId: {
+            type: String,
         }
-    }], 
-    following :[{
-        instructorId : {
-            type : String,
+    }],
+    following: [{
+        instructorId: {
+            type: String,
         }
     }],
     tokens: [{
@@ -88,7 +97,7 @@ const userSchema = new mongoose.Schema({
             required: true,
         }
     }]
- 
+
 });
 
 userSchema.pre('save', async function(next) {

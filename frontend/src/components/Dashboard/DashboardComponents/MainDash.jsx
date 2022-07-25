@@ -1,6 +1,6 @@
 import React from "react";
 import Cards from "./Cards/Cards";
-
+import Banner from "./../../../assets/images/custom.svg"
 // chart library
 import Chart from "react-apexcharts";
 import CourseCards from "./Cards/CourseCards";
@@ -23,7 +23,7 @@ export default function MainDash() {
           {/* Banner Image  */}
           <div className="image">
             <img
-              src="https://eduadmin-template.multipurposethemes.com/bs4/images/svg-icon/color-svg/custom-15.svg"
+              src={Banner}
               alt="DashBanner"
             />
           </div>

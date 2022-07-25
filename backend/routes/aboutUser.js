@@ -9,4 +9,3 @@ router.get('/aboutStudents', Authentication, (req, res) => {
 
 
 module.exports = router;
-

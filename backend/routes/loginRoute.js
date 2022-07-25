@@ -11,12 +11,6 @@ const Authentication = require('../middleware/Authentication');
 const User = require("../models/userSchema");
 const Instructor = require("../models/instructorregisterSchema");
 
-// router.get('/aboutuser', (req, res) => {
-//    const email = "amandeep1219603@jmit.ac.in"
-//     const userId = User.findOne({ email: JSON.stringify(email) });
-//         console.log(userId);
-//         res.send(userId);
-// });
 
 router.post('/login', async(req, res) => {
     try {

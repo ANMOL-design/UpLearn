@@ -3,9 +3,10 @@
     margin: 0.2rem 1rem;
     padding: 2rem 0px 3rem;
     min-height: 90vh;
-    p {
-        margin-left: 0.8rem;
-    }
+}
+
+.biopara {
+    padding-left: 0.7rem;
 }
 
 .studentNameContainer {
@@ -79,9 +80,9 @@
         h2 {
             margin-left: 2rem;
         }
-        p {
-            padding-left: 2.8rem;
-        }
+    }
+    .biopara {
+        padding-left: 2.7rem;
     }
     // Progress bar
     .studWorkStatus {
