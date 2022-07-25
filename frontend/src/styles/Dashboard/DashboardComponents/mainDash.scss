@@ -2,6 +2,10 @@
     width: calc(100vw - 175px);
     margin: 0.2rem 1rem;
     padding: 2rem 0px 3rem;
+    min-height: 90vh;
+    p {
+        margin-left: 0.8rem;
+    }
 }
 
 .studentNameContainer {
@@ -45,17 +49,13 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.5rem;
     padding-bottom: 1rem;
-}
-
-.studWorkStatus {
-    width: 30%;
 }
 
 .studWorkStatus,
 .studCourses {
-    padding: 1.2rem;
+    padding: 1rem;
     background-color: white;
     border-radius: 1rem;
 }
@@ -79,10 +79,10 @@
         h2 {
             margin-left: 2rem;
         }
+        p {
+            padding-left: 2.8rem;
+        }
     }
-}
-
-@media screen and (max-width:1235px) {
     // Progress bar
     .studWorkStatus {
         width: 100%;
@@ -93,6 +93,9 @@
     .studCourses {
         width: 100%;
     }
+}
+
+@media screen and (max-width:1235px) {
     .studentNameContainer {
         .image img {
             width: 100%;
