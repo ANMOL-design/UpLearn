@@ -3,23 +3,27 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 export default function Contact() {
 
   const loginDetails = useSelector((state) => state.userReducers);
   let navigate = useNavigate();
 
-  const [User,SetUser] = useState({})
+  const [User,SetUser] = useState({});
+
   const [contact,setContact] = useState({
     phoneNo:"",message:""
   })
+
   let name , value;
-  console.log(loginDetails);
+
   const  handleInput = async (e)=>{
-        name = e.target.name;
-        value = e.target.value;
-        setContact({...contact , [name]:value})
-    }
-    const postData =async (e)=>{
+      name = e.target.name;
+      value = e.target.value;
+      setContact({...contact , [name]:value})
+  }
+    
+  const postData =async (e)=>{
       e.preventDefault();
       const {phoneNo,message} = contact;
       const name = User.name;
@@ -32,15 +36,14 @@ export default function Contact() {
           body : JSON.stringify({
               name,email,phoneNo,message
           })
-      });
+  });
 
-    // const data = await res.json();
-    // console.log(contact)
+ 
 
   if(res.status === 201){
-        window.alert("Your query is succesfully registered our expert team will reply you soon.");
-        navigate('/', { replace: true });
-    }
+      window.alert("Your query is succesfully registered our expert team will reply you soon.");
+      navigate('/', { replace: true });
+  }
   else {
       window.alert("Error occured , try again")
   }
@@ -49,25 +52,24 @@ export default function Contact() {
   useEffect(() => {
     if (loginDetails.isLoggedIn !== true ) 
       {
-      navigate("/login");
-       } 
+        navigate("/login");
+      } 
     const fetchdata = async () =>{
         const {data} = await axios.get("aboutStudents");
-        SetUser(data)
-        
+        SetUser(data);
     }
     fetchdata();
   }, [])
-  console.log(User);
+
   return (
-   <div>
-    <div className="contact">
+    <>
+      <div className="contact">
         <div className="contactContainer">
           <div className="contactWrapper">
-    <div className="contactForm">
+            <div className="contactForm">
               <table cellSpacing={"30px"}>
                 <tr>
-                    <td width={"350px"}>
+                  <td width={"350px"}>
                     <form>
                 <h1 className='contacthead'>Quick Contact</h1><br/>
                 <h3 className='contact-subhead'>We're here to Help You</h3><br/>
@@ -166,10 +168,8 @@ export default function Contact() {
               </table>
             </div>
           </div>
+        </div>
       </div>
-      </div>
-      </div>
-  
-
+    </>
   )
 }

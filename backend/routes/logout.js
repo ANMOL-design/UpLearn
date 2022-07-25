@@ -10,4 +10,11 @@ router.get('/logout', (req, res) => {
     res.status(200).send('user logout');
     console.log("logout");
 });
+
+router.get('/logoutAdmin', (req, res) => {
+    res.clearCookie('jwtTokenAdmin')
+    res.status(200).send('user logout');
+    console.log("Logout-Admin");
+});
+
 module.exports = router;

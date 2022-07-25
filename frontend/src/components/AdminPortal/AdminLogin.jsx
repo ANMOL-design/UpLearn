@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LoginAdmin } from "./../../redux/actions/userAction/adminAction";
 
 function AdminLogin() {
+
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [values, setValues] = useState({
         email: "",
@@ -11,30 +15,6 @@ function AdminLogin() {
 
     useEffect(() => {
         window.scroll(0,130);
-        // const postData = async () => {
-
-        //     const name = 'Anmol Garg';
-        //     const email = 'uplearnforsih@gmail.com';
-        //     const password = 'clashWithCode123';
-         
-        //      const res =  await fetch("/adminregister" ,{
-        //          method : "POST",
-        //          headers : { 
-        //              "content-Type" : "application/json"
-        //          },
-        //          body : JSON.stringify({
-        //              name,email,password
-        //          })
-        //      } );
-             
-        //      if(res.status === 200){
-        //         console.log('Success')
-        //      }
-        //      else{
-        //          console.log(res)
-        //      }
-        //  }
-        //  postData();
     }, [])
 
     const [err, seterr] = useState('');
@@ -58,12 +38,11 @@ function AdminLogin() {
         });
       
         if (res.status === 200) {
-            console.log("Login Successful");
-            console.log(res)
+            dispatch(LoginAdmin());
             navigate("/admin-portal-home-190310554227");
         }
         else{
-            setinvalid('Invalid Credentails')
+            setinvalid('Un-Authenticate Admin Login')
             console.log(res)
         }
     }
@@ -93,7 +72,7 @@ function AdminLogin() {
 
     const handleChange = (event) => {
         setValues({ ...values, [event.target.name]: event.target.value });
-        seterr('');  setpass('');
+        seterr('');  setpass(''); setinvalid('');
     };
 
     return(

@@ -66,21 +66,18 @@ router.post('/login', async(req, res) => {
 router.post('/adminlogin', async(req, res) => {
     try {
         const { email, password } = req.body;
-        console.log(email, password)
         if (!email || !password) {
             return res.sendStatus(400);
         }
 
         const adminLogin = await Admin.findOne({ email: email });
-        console.log(adminLogin)
 
         if (adminLogin) {
             const isMatch = await bycrypt.compare(password, adminLogin.password)
             const token = await adminLogin.generateAuthToken();
-            console.log(isMatch, token)
 
             res.cookie("jwtTokenAdmin", token, {
-                expires: new Date(2147483647 * 1000),
+                expires: 0,
                 httpOnly: true
             })
 

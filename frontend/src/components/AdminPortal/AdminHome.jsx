@@ -1,11 +1,39 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import data from "./AdminCards.json";
+import axios from 'axios';
+import { useSelector } from "react-redux";
 
 function AdminHome(){
+
+    let navigate = useNavigate();
+    const [adminInfo, setadminInfo] = useState('');
+    const adminstatus = useSelector((state) => state.AdminReducers);
+
     useEffect(() => {
         window.scroll(0,0);
-    }, [])
+        // Check is Admin Login Or Not 
+        if(Number(adminstatus.isAdminLoggedIn)){
+            // call the fetch admin detail function 
+            const fetchdata = async () =>{
+                await axios.get("/aboutAdminActive").then(response => {
+                    setadminInfo(response.data);
+                  })
+                  .catch(error => {
+                    console.log(error);
+                    navigate("/admin-portal-login-190310554227");
+                  });
+            }
+            fetchdata();
+        }
+        // If User is not login redirect to login 
+        else{
+            navigate("/admin-portal-login-190310554227");
+        }
+    }, [adminstatus.isAdminLoggedIn])
+
+    console.log(adminInfo)
+
     return(
         <>
             {/* Banner Of the Admin Page  */}
