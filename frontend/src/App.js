@@ -13,9 +13,6 @@ import Loader from "./components/Loader";
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
-<<<<<<< HEAD
-import Contact from "./components/Contact/Contact";
-=======
 import InstructorRegister from "./components/AdminPortal/InstructorRegister";
 import Logout from "./components/logout/logout";
 import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
@@ -23,7 +20,7 @@ import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 //redux setup
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
->>>>>>> 697617b7751afec9cea6456543997ebaafaa1cc5
+import Contact from "./components/Contact/Contact";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);

@@ -1,6 +1,17 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 
 export default function Contact() {
+  const [User,SetUser] = useState({})
+  useEffect(() => {
+    const fetchdata = async () =>{
+        const {data} = await axios.get("aboutStudents");
+        SetUser(data)
+    }
+    fetchdata();
+  }, [])
+  console.log(User);
   return (
    <div>
     <div className="contact">
@@ -20,6 +31,7 @@ export default function Contact() {
                     id="fname"
                     placeholder="Full Name"
                     name="email"
+                    value={User.name}
                   />
                 </div>
 
@@ -31,6 +43,7 @@ export default function Contact() {
                     id="email"
                     placeholder="Email"
                     name="email"
+                   value={User.email}
                   />
                 </div>
                 {/* Phone Number */}
