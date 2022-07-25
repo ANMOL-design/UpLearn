@@ -1,44 +1,56 @@
-import React from "react";
-
-import { useState } from "react";
-// import { Link } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { SidebarData } from "./Data";
-import MainDash from "./DashboardComponents/MainDash";
+import { useSelector } from "react-redux";
+import { FaBars } from "react-icons/fa";
 
 export default function StudentDashboard() {
+  var x = 0;
   const [selected, setSelected] = useState(0);
+  const loginDetails = useSelector((state) => state.userReducers);
+  let navigate = useNavigate();
 
-  return (
-    <>
-      <div className="studDashContainer">
+  useEffect(() => {
+    window.scroll(0,0);
+    if (loginDetails.isLoggedIn !== true && loginDetails.userRole !== "SDTTE UN ") 
+    {
+      navigate("/login");
+    } 
+  }, [])
+
+    const SideToggler = () => {
+      var e = document.getElementById('dashSlider');
+      e.classList.toggle('hiderslider');
+    }
+  
+    return (
+      <>
         <div className="studWrapper">
-          <div className="sidebar">
-            <div className="sidebarMenu">
-              {SidebarData.map((item, index) => {
-                return (
-                  <div
-                    className={
-                      selected === index
-                        ? "sidebarMenuItem act"
-                        : "sidebarMenuItem"
-                    }
-                    key={index}
-                    onClick={() => setSelected(index)}
-                  >
-                    <item.icon />
-                    {/* <Link to={item.path}>{item.heading}</Link> */}
-                    <span>{item.heading}</span>
-                  </div>
-                );
-              })}
+            {/* sidebar */}
+            <span className="sidebartoggler" onClick={SideToggler}><FaBars /></span>
+            <div className="sidebarMenu" id='dashSlider'>
+                {SidebarData.map((item, index) => {
+                  return (
+                    <div
+                      className={
+                        selected === index
+                          ? "sidebarMenuItem act"
+                          : "sidebarMenuItem"
+                      }
+                      key={x++}
+                      onClick={() => setSelected(index)}
+                    >
+                      <item.icon />
+                      <span className="sidebarHeading" onClick={SideToggler}>{item.heading}</span>
+                    </div>
+                  );
+                })}
             </div>
-          </div>
-          <div>
-            <MainDash />
-          </div>
+            {/* main dashboard */}
+            {SidebarData.map((item, index) => {
+              return <div key={x++}>{selected === index && <item.path />}</div>;
+            })}
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
 }

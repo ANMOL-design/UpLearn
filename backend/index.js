@@ -9,6 +9,11 @@ dotenv.config();
 app.use(require("./routes/register"))
 app.use(require("./routes/instructorRegister"))
 app.use(require("./routes/verify"))
+app.use(require("./routes/loginRoute"))
+app.use(require("./routes/logout"))
+app.use(require("./routes/imageuploader"));
+app.use(require("./routes/Subscribers"));
+app.use(require("./routes/aboutUser"));
 // mongodbconnection
 mongoose.connect(
     process.env.MONGODB_CONNECTION_STRING,

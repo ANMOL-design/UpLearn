@@ -2,14 +2,15 @@ import React from "react";
 import { CardData } from "../../Data";
 import Card from "./Card";
 
-export default function Cards(props) {
+export default function Cards() {
+  var x = 0;
   return (
     <div className="cards">
-      {CardData.map((card, id) => {
+      {CardData.map((card) => {
         return (
-          <div className="parentContainer">
-            <Card icon={card.icon} title={card.title} count={card.count} />
-          </div>
+          <>
+            <Card icon={card.icon} title={card.title} count={card.count}/>
+          </>
         );
       })}
     </div>

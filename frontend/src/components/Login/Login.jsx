@@ -1,31 +1,67 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LoginUser } from "./../../redux/actions/userAction/userAction";
 
 function Login() {
+
   let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [values, setValues] = useState({
     email: "",
     password: "",
 
   });
-
-  const [user, setuser] = useState('');
+  
+  const [userrole, setuser] = useState('');
 
   useEffect(() => {
     window.scroll(0,150);
+    const go = localStorage.getItem("isLoggedIn");
+
+    if(go){
+      navigate("/studentdashboard");
+    }
   }, [])
 
   const [err, seterr] = useState('');
   const [pass, setpass] = useState('');
   const [invalid, setinvalid] = useState('');
 
+  const loginUser = async (e) => {
+    // e.preventDefault();
+    const {email,password}= values;
+    const res = await fetch("/login", {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+      },
+      
+      body: JSON.stringify({
+        email,
+        password,
+        userrole
+      }),
+    });
+  
+    if (res.status === 200) {
+      dispatch(LoginUser( true, userrole ));
+      const e = document.getElementById("reg_success");
+      e.style.display = "block";
+      navigate("/studentdashboard");
+    }
+    else{
+        window.alert("Error Occurred");
+    }
+  };
+ 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleValidate();
 
     if(submit){
-      navigate("/");
+      loginUser();
     }
   
   };
@@ -40,7 +76,7 @@ function Login() {
       setpass("Password is required.");
       return false;
     }
-    else if(user === ''){
+    else if(userrole === ''){
       setinvalid("Please Select User Role");
       return false;
     }
@@ -53,6 +89,7 @@ function Login() {
     seterr('');  setpass('');
   };
 
+  ////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <>
@@ -95,15 +132,16 @@ function Login() {
                 {/* Select The Role  */}
                 <div className="signInput">
                   <label htmlFor="userRole">User Role</label>
-                  <select id="userRole" onChange={(e) => {setuser(e.target.value);}}>
+                  <select id="userRole" name="userrole" onChange={(e) => {setuser(e.target.value);}}>
                     <option value="" defaultValue>Please Select User Role</option>
-                    <option value="student">Student</option>
-                    <option value="teacher">Teacher</option>
+                    <option value="STUDENT">Student</option>
+                    <option value="INSTRUCTOR">Teacher</option>
                   </select>
                 </div>
                 {/* The Submit Button  */}
                 <div>
                   <p className="invalid">{invalid}</p>
+                  <p id="reg_success">"Successful Login | Redirect to the Dashboard"</p>
                   <button type="button" className="signupBtn" onClick={handleSubmit}>
                     Sign In
                   </button>

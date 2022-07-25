@@ -76,7 +76,7 @@
 
 .foo .foo-container .foo-Subscribe div {
     @include displayflex;
-    margin: 2rem 0px;
+    margin: 2rem 0px 1.5rem;
     background: #fff;
     border-radius: 4px;
     input {
@@ -97,7 +97,14 @@
         border-radius: 0px 4px 4px 0px;
     }
 }
-
+.login-warning{
+    display: none;
+    color: red;
+}
+.teacher-warning{
+    display: none;
+    color: red;
+}
 .foo-bottom {
     color: #a1a2ab;
     background: $footer_color;
@@ -105,4 +112,16 @@
     text-align: center;
     padding: 1rem;
     border-top: 1px solid #a1a2ab;
+}
+
+#foo-success,
+#foo-fail {
+    font-size: 15px;
+    font-family: $font_El !important;
+    color: #4BB543 !important;
+    display: none;
+}
+
+#foo-fail {
+    color: red !important;
 }
