@@ -64,9 +64,6 @@ const userSchema = new mongoose.Schema({
     DOB: {
         type: String,
     },
-    AboutMe: {
-        type: String,
-    },
     certificates: [{
         nameofcertificate: {
             type: String,

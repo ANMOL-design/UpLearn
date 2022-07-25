@@ -27,8 +27,8 @@ export default function StudentDashboard() {
       <>
         <div className="studWrapper">
             {/* sidebar */}
-            <span className="sidebartoggler" onClick={SideToggler}><FaBars /></span>
-            <div className="sidebarMenu" id='dashSlider'>
+            <span className="sidebartoggler " onClick={SideToggler}><FaBars /></span>
+            <div className="sidebarMenu hiderslider" id='dashSlider'>
                 {SidebarData.map((item, index) => {
                   return (
                     <div

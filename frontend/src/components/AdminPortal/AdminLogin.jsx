@@ -11,21 +11,69 @@ function AdminLogin() {
 
     useEffect(() => {
         window.scroll(0,130);
+        // const postData = async () => {
+
+        //     const name = 'Anmol Garg';
+        //     const email = 'uplearnforsih@gmail.com';
+        //     const password = 'clashWithCode123';
+         
+        //      const res =  await fetch("/adminregister" ,{
+        //          method : "POST",
+        //          headers : { 
+        //              "content-Type" : "application/json"
+        //          },
+        //          body : JSON.stringify({
+        //              name,email,password
+        //          })
+        //      } );
+             
+        //      if(res.status === 200){
+        //         console.log('Success')
+        //      }
+        //      else{
+        //          console.log(res)
+        //      }
+        //  }
+        //  postData();
     }, [])
 
     const [err, seterr] = useState('');
     const [pass, setpass] = useState('');
     const [invalid, setinvalid] = useState('');
 
+
+    const loginAdmin = async () => {
+        const { email, password }= values;
+
+        const res = await fetch("/adminlogin", {
+          method: "POST",
+          headers: {
+            "content-Type": "application/json",
+          },
+          
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+      
+        if (res.status === 200) {
+            console.log("Login Successful");
+            console.log(res)
+            navigate("/admin-portal-home-190310554227");
+        }
+        else{
+            setinvalid('Invalid Credentails')
+            console.log(res)
+        }
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const submit = handleValidate();
 
         if(submit){
-            navigate("/admin-portal-home-190310554227");
-        }
-        else{
-            setinvalid("Invalid Credential | Internal Server Error");
+            loginAdmin();
         }
     };
 

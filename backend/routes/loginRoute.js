@@ -9,6 +9,7 @@ router.use(cookieParser());
 dotenv.config();
 const Authentication = require('../middleware/Authentication');
 const User = require("../models/userSchema");
+const Admin = require("../models/adminSchema");
 const Instructor = require("../models/instructorregisterSchema");
 
 
@@ -51,6 +52,43 @@ router.post('/login', async(req, res) => {
                 return res.status(401).json({ msg: "Invalid Credential" });
             } else {
                 res.status(200).json({ msg: "login Succesfully" })
+            }
+        } else {
+            return res.status(402).json({ msg: "Invalid Credential" });
+        }
+    } catch (err) {
+        res.json({ msg: "error occured" + err })
+    }
+})
+
+/////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////------Admin Route--------//////////////////////////////
+router.post('/adminlogin', async(req, res) => {
+    try {
+        const { email, password } = req.body;
+        console.log(email, password)
+        if (!email || !password) {
+            return res.sendStatus(400);
+        }
+
+        const adminLogin = await Admin.findOne({ email: email });
+        console.log(adminLogin)
+
+        if (adminLogin) {
+            const isMatch = await bycrypt.compare(password, adminLogin.password)
+            const token = await adminLogin.generateAuthToken();
+            console.log(isMatch, token)
+
+            res.cookie("jwtTokenAdmin", token, {
+                expires: new Date(2147483647 * 1000),
+                httpOnly: true
+            })
+
+            if (!isMatch) {
+                return res.status(401).json({ msg: "Invalid Credential" });
+            } else {
+
+                res.status(200).json({ msg: "Login Succesfully" })
             }
         } else {
             return res.status(402).json({ msg: "Invalid Credential" });
