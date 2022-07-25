@@ -15,6 +15,7 @@ import Loader from "./components/Loader";
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
+import Contact from "./components/Contact/Contact";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -48,6 +49,7 @@ function App() {
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
             {/* General  */}
             <Route path="*" element={<PageNotFound />} />
+            <Route path="/contact" element={<Contact/>}/>
           </Routes>
           {/* The Footer component  */}
           <Footer />
