@@ -1,6 +1,6 @@
 var nodemailer = require('nodemailer');
 
-const contactmail = async(UseremailId, username,QueryId) => {
+const contactmail = async(UseremailId, username, QueryId) => {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -15,13 +15,19 @@ const contactmail = async(UseremailId, username,QueryId) => {
     var mailOptions = {
         from: 'uplearnforsih@gmail.com',
         to: UseremailId,
-        subject: 'Your Request have been Created || AgroAcers Support',
-        html: `<p>Hi ${username},</p>
-              <p>Thank you for writing to UpLearn. Your request is important to us. Therefore, we are raising a ticket on your request and sharing it with our Support Agent.Your Query ID is <strong>${QueryId}</strong> . You will be reached out shortly.</p>
-              <p>Please stay connected. <br>
-                Regards, <br>
+        subject: 'Your Request have been Created || UpLearn Support',
+        html: `
+            <p>Hi ${username},</p>
+
+            <p>Thank you for writing to UpLearn. Your request is important to us. 
+            Therefore, we are raising a ticket on your request and sharing it with our Support Agent. 
+            Your Query ID is <strong>${QueryId}</strong>. You will be reached out shortly.</p>
+
+            <p>Please stay connected.</p>
+            
+            <p>Regards, <br>
                UpLearn Support Team </p>`
-              
+
     };
 
     transporter.sendMail(mailOptions, function(error, info) {
