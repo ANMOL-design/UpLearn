@@ -1,7 +1,7 @@
 .cards {
     display: flex;
     align-items: stretch;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
@@ -127,6 +127,15 @@
             padding: .5rem;
             border-radius: .5rem;
         }
+    }
+}
+
+@media screen and (max-width: 1360px) {
+    .cardContainer {
+        width: 250px;
+        background-color: white;
+        margin: 0px 0px 1rem;
+        padding: 1rem;
     }
 }
 

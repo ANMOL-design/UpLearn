@@ -17,12 +17,18 @@ export default function StudentDashboard() {
       navigate("/login");
     } 
   }, [])
+
+    const SideToggler = () => {
+      var e = document.getElementById('dashSlider');
+      e.classList.toggle('hiderslider');
+    }
   
     return (
       <>
         <div className="studWrapper">
             {/* sidebar */}
-            <div className="sidebarMenu">
+            <span className="sidebartoggler" onClick={SideToggler}><FaBars /></span>
+            <div className="sidebarMenu" id='dashSlider'>
                 {SidebarData.map((item, index) => {
                   return (
                     <div
@@ -35,7 +41,7 @@ export default function StudentDashboard() {
                       onClick={() => setSelected(index)}
                     >
                       <item.icon />
-                      <span className="sidebarHeading" >{item.heading}</span>
+                      <span className="sidebarHeading" onClick={SideToggler}>{item.heading}</span>
                     </div>
                   );
                 })}

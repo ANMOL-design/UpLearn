@@ -73,9 +73,12 @@
 
 @media screen and (max-width:1360px) {
     .mainDashContainer {
-        width: calc(100vw - 60px);
-        margin: 0.2rem;
-        padding: 2rem 0.5rem 3rem;
+        width: 100%;
+        margin: 0px;
+        padding: 2.2rem 1rem 3rem;
+        h2 {
+            margin-left: 2rem;
+        }
     }
 }
 
@@ -83,15 +86,13 @@
     // Progress bar
     .studWorkStatus {
         width: 100%;
+        padding: 1rem;
         @include displayflex;
         justify-content: center;
     }
     .studCourses {
         width: 100%;
     }
-}
-
-@media screen and (max-width:1235px) {
     .studentNameContainer {
         .image img {
             width: 100%;
@@ -113,11 +114,6 @@
 }
 
 @media screen and (max-width: 650px) {
-    .mainDashContainer {
-        width: calc(100vw - 50px);
-        margin: 0px;
-        padding: 2.2rem 1rem 4rem 0.5rem;
-    }
     .studentNameContainer {
         height: 100%;
         .image img {
