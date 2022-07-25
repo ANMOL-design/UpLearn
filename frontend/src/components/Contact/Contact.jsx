@@ -1,13 +1,60 @@
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 export default function Contact() {
+
+  const loginDetails = useSelector((state) => state.userReducers);
+  let navigate = useNavigate();
+
   const [User,SetUser] = useState({})
+  const [contact,setContact] = useState({
+    phoneNo:"",message:""
+  })
+  let name , value;
+  console.log(loginDetails);
+  const  handleInput = async (e)=>{
+        name = e.target.name;
+        value = e.target.value;
+        setContact({...contact , [name]:value})
+    }
+    const postData =async (e)=>{
+      e.preventDefault();
+      const {phoneNo,message} = contact;
+      const name = User.name;
+      const email = User.email
+      const res =  await fetch("/contactus" ,{
+          method : "POST",
+          headers : { 
+              "content-Type" : "application/json"
+          },
+          body : JSON.stringify({
+              name,email,phoneNo,message
+          })
+      });
+
+    // const data = await res.json();
+    // console.log(contact)
+
+  if(res.status === 201){
+        window.alert("Your query is succesfully registered our expert team will reply you soon.");
+        navigate('/', { replace: true });
+    }
+  else {
+      window.alert("Error occured , try again")
+  }
+}
+
   useEffect(() => {
+    if (loginDetails.isLoggedIn !== true ) 
+      {
+      navigate("/login");
+       } 
     const fetchdata = async () =>{
         const {data} = await axios.get("aboutStudents");
         SetUser(data)
+        
     }
     fetchdata();
   }, [])
@@ -30,7 +77,7 @@ export default function Contact() {
                     type="text"
                     id="fname"
                     placeholder="Full Name"
-                    name="email"
+                    name="name"
                     value={User.name}
                   />
                 </div>
@@ -53,7 +100,9 @@ export default function Contact() {
                     type="tel"
                     id="phone"
                     placeholder="Phone number"
-                    name="tel"
+                    name="phoneNo"
+                    value={contact.phoneNo} 
+                    onChange={handleInput}
                   />
                 </div>
                 {/*Message*/}
@@ -74,13 +123,15 @@ export default function Contact() {
                   outline= "none"
                   border-radius= "8px"
                   border= "none"
+                  value={contact.subject}
+                   onChange={handleInput}
                   />
                 </div>
                 
                              
                 {/* The Submit Button  */}
                 <div>
-                  <button type="button" className="submitBtn" >
+                  <button type="button" onClick={postData} className="submitBtn" >
                     Submit
                   </button>
                 </div>
