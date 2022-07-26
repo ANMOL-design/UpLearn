@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Cards from "./Cards/Cards";
 import Banner from "./../../../assets/images/custom.svg"
 // chart library
@@ -7,6 +7,11 @@ import CourseCards from "./Cards/CourseCards";
 import EventCards from "./Cards/EventCards";
 
 export default function MainDash() {
+
+  useEffect(() => {
+    window.scroll(0, 82);
+  }, [])
+  
   return (
     <div className="mainDashContainer">
       {/* My dashboard Content  */}

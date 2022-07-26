@@ -1,20 +1,93 @@
 .DashProfileContainer {
-    width: 100%;
+    font-family: $font_El;
     padding: 1rem;
+    background-color: #fff;
+    color: $dash;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 1px 2px 8px #888888;
+    p {
+        border-bottom: 1px solid $dash;
+        margin-bottom: 3px;
+    }
 }
 
-.DashprofileName {
+.DashProfileImage {
+    padding: 1.4rem 1rem;
     @include displayflex;
-    &__container {
-        width: 12rem;
-        height: 12rem;
-        border-radius: 5px;
-        border: 1px solid black;
-        background: url("./../../../assets/images/avtar_bg.jpg");
-        @include displayflex;
-        justify-content: center;
-        img {
-            width: 8rem;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .ImageUploaderContainer {
+        position: relative;
+        .Profileimage {
+            border-radius: 0.6rem;
+            width: 150px;
+            display: block;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .3s ease;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 0.6rem;
+            @include displayflex;
+            justify-content: center;
+            flex-direction: column;
+            svg {
+                font-size: 2.5rem;
+                color: rgba(0, 0, 0, 0.6)
+            }
+            svg:hover {
+                color: rgba(0, 0, 0, 0.9);
+            }
+            label:hover {
+                cursor: pointer;
+            }
         }
     }
+    input[type=file] {
+        visibility: hidden;
+    }
+}
+
+.ImageUploaderContainer:hover .overlay {
+    opacity: 1;
+}
+
+.PredefinedDetailsContainer {
+    h1,
+    h2 {
+        color: $navbar_color;
+        text-transform: capitalize;
+    }
+    p {
+        border: none;
+        color: $darkgrey;
+        text-transform: capitalize;
+        text-align: justify;
+    }
+}
+
+.health {
+    width: 15rem;
+}
+
+.DashProfileButton {
+    width: 100%;
+    text-align: center;
+    button {
+        @include sitebutton;
+    }
+}
+
+#addProfileImagename {
+    font-size: 15px;
+    font-weight: 600;
 }
