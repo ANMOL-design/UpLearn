@@ -12,21 +12,21 @@ router.post("/InstructorRegister", (req, res) => {
     password,
     cpassword,
     subject,
-    Block,
-    PermanentAddress,
-    School,
-    City,
-    State,
-    Pincode,
+    block,
+    permanentAddress,
+    school,
+    city,
+    state,
+    pincode,
     mobileno,
-    Id_Image,
-    Image,
+    idImage,
+    image,
     isInstructor,
     teacher_id,
-    Aadharcard,
+    aadharCard,
     AadharcardImage,
   } = req.body;
-
+  console.log(req.body);
   if (!Teachername || !email ||!password ||!cpassword) {
     return res.sendStatus(201);
   }
@@ -42,18 +42,18 @@ router.post("/InstructorRegister", (req, res) => {
         password,
         cpassword,
         subject,
-        Block,
-        PermanentAddress,
-        School,
-        City,
-        State,
-        Pincode,
+        block,
+        permanentAddress,
+        school,
+        city,
+        state,
+        pincode,
         mobileno,
-        Id_Image,
-        Image,
+        idImage,
+        image,
         isInstructor,
         teacher_id,
-        Aadharcard,
+        aadharCard,
         AadharcardImage,
       });
       instructors
@@ -64,6 +64,7 @@ router.post("/InstructorRegister", (req, res) => {
             .json({ msg: "Instructor Registration Registration Successful" });
         })
         .catch((err) => {
+          console.log(err);
           res.status(501).json({ msg: "Failed to Register" });
         });
     })

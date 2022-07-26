@@ -22,27 +22,27 @@ const instructorSchema = new mongoose.Schema({
         type : String,
         required: true,
     },
-    Block:{
+    block:{
         type : String,
         required: true,
     },
-    PermanentAddress :{
+    permanentAddress :{
         type : String,
         required: true,
     },
-    School :{
+    school :{
         type : String,
         required: true,
     },
-    City :{
+    city :{
         type : String,
         required: true,
     },
-    State :{
+    state :{
         type : String,
         required: true,
     },
-    Pincode :{
+    pincode :{
         type : Number,
         required: true,
     },
@@ -50,11 +50,11 @@ const instructorSchema = new mongoose.Schema({
         type :Number,
         required: true,
     },
-    Id_Image : {
+    idImage : {
         type : String,
         required: true,
     },
-    Image : {
+    image : {
         type : String,
         required: true,
     },
@@ -67,7 +67,7 @@ const instructorSchema = new mongoose.Schema({
         type : Number,
         required: true,
     },
-    Aadharcard : {
+    aadharCard : {
         type : Number,
         required: true,
     },

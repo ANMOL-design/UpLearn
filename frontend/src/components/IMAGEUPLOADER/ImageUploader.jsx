@@ -43,7 +43,7 @@ function ImageUploader() {
             console.log(data.error);
           } else {
             setupload(false)
-            console.log(data);
+            console.log(data.image.image);
             alert("image uploaded");
           }
         });

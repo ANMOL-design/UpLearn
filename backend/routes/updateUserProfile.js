@@ -35,7 +35,7 @@ router.post("/updateUserProfile", (req, res) => {
             name: firstName + ' ' + LastName,
             firstName: firstName,
             LastName: LastName,
-            class: classes,
+            classes: classes,
             Board: Board,
             PermanentAddress: PermanentAddress,
             School: School,
