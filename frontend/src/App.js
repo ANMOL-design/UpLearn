@@ -55,7 +55,6 @@ function App() {
             <Route path="/admin-portal-login-190310554227" element={<AdminLogin />} />
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
             <Route path="/admin-portal-instructorRegis-190310554227" element={<InstructorRegister />} />
-            <Route path="/studentdashboard" element={<StudentDashboard />} />
             <Route path="/instructorregister" element={<InstructorRegister />} />
             {/* General  */}
             <Route path="*" element={<PageNotFound />} />
