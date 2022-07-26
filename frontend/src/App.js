@@ -53,7 +53,7 @@ function App() {
             {/* The Admin Routes  */}
             <Route path="/admin-portal-login-190310554227" element={<AdminLogin />} />
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
-            <Route path="/instructorregister" element={<InstructorRegister />} />
+            <Route path="/admin-portal-instructorRegis-190310554227" element={<InstructorRegister />} />
             <Route path="/studentdashboard" element={<StudentDashboard />} />
             {/* General  */}
             <Route path="*" element={<PageNotFound />} />

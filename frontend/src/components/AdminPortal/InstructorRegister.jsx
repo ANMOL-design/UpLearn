@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FiUpload } from "react-icons/fi";
+import { HiOutlineLogout } from "react-icons/hi";
 
 function InstructorRegister() {
   let navigate = useNavigate();
@@ -10,14 +10,16 @@ function InstructorRegister() {
     email: "",
     password: "",
     cpassword: "",
+    mobileno: "",
+
     subject: "",
     block: "",
     permanentAddress: "",
+    temporaryAdd: "",
     school: "",
     city: "",
     state: "",
     pincode: "",
-    mobileno: "",
     idImage: "",
     image: "",
     isInstructor: "",
@@ -30,29 +32,8 @@ function InstructorRegister() {
     window.scroll(0, 150);
   }, []);
 
-  const [name, setname] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-  const [copassword, setcopassword] = useState("");
-
-  const [subject, setsubject] = useState("");
-  const [block, setblock] = useState("");
-  const [permanentAddress, setpermanentAddress] = useState("");
-  const [school, setschool] = useState("");
-
-  const [city, setcity] = useState("");
-  const [state, setstate] = useState("");
-  const [pincode, setpincode] = useState("");
-  const [mobileno, setmobileno] = useState("");
-
-  const [idImage, setidImage] = useState("");
-  const [image, setimage] = useState("");
-  const [isInstructor, setisInstructor] = useState("");
-  const [teacher_id, setteacher_id] = useState("");
-
-  const [aadharCard, setaadharCard] = useState("");
-  const [aadharCardImage, setaadharCardImage] = useState("");
   const [invalid, setinvalid] = useState("");
+  const [formErr, setFormErr] = useState("");
 
   //   const postData = async () => {
   //     const name = values.name;
@@ -77,21 +58,6 @@ function InstructorRegister() {
     event.preventDefault();
     const submit = handleValidation();
 
-    // if (submit) {
-    //   //Generate the OTP and send to uers
-    //   sendotp();
-    //   // Get the modal
-    //   var modal = document.getElementById("myModal");
-    //   // Get the <span> element that closes the modal
-    //   var span = document.getElementsByClassName("close")[0];
-    //   // Making the Display of Modal Visible to Fill OTP to it
-    //   modal.style.display = "block";
-
-    //   // When the user clicks on <span> (x), close the modal
-    //   span.onclick = function () {
-    //     modal.style.display = "none";
-    //   };
-    // }
     if (submit) {
       console.log("======");
     }
@@ -100,24 +66,24 @@ function InstructorRegister() {
   //form validation
   const handleValidation = () => {
     if (values.name === "") {
-      setname("Name is required");
+      setFormErr("Name is required");
       window.scroll(0, 200);
       return false;
     } else if (values.email === "") {
-      setemail("Email is required");
+      setFormErr("Email is required");
       window.scroll(0, 250);
       return false;
     } else if (values.password === "") {
-      setpassword("Password is required");
+      setFormErr("Password is required");
       return false;
     } else if (values.cpassword === "") {
-      setcopassword("Please Confirm Your Password");
+      setFormErr("Please Confirm Your Password");
       return false;
     } else if (values.password.length < 8) {
-      setinvalid("Password must be atleast 8 character");
+      setFormErr("Password must be atleast 8 character");
       return false;
     } else if (values.password !== values.cpassword) {
-      setinvalid("Password and Confirm password should be same");
+      setFormErr("Password and Confirm password should be same");
       return false;
     }
     return true;
@@ -125,175 +91,259 @@ function InstructorRegister() {
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-    setname("");
-    setemail("");
-    setpassword("");
-    setcopassword("");
-    setsubject("");
-    setblock("");
-    setpermanentAddress("");
-    setschool("");
-    setcity("");
-    setstate("");
-    setpincode("");
-    setmobileno("");
-    setidImage("");
-    setimage("");
-    setisInstructor("");
-    setteacher_id("");
-    setaadharCard("");
-    setaadharCardImage("");
-    setinvalid("");
   };
 
   return (
     <>
       {/* The Container Of Login An instructor In Page  */}
-      <div className="instructorin">
-        <div className="instructorContainer">
-          <div className="instructorWrapper">
-            <h2>Register Yourself</h2>
+      <div className="instructor">
+        <div className="instructorHeader">
+          <a href="/logout">
+            <HiOutlineLogout className="logoutBtn" style={{ color: "white" }} />
+          </a>
+        </div>
+        <div className="instructorWrapper">
+          <div className="instructorForm">
+            <form>
+              <h3>UpLearn Instructor Registration</h3>
+              <div className="basicDetail">
+                <span className="title">
+                  Basic Details
+                  <hr />
+                </span>
+                <div className="fields">
+                  <div className="inputField">
+                    <label htmlFor="name">
+                      Name<span className="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="Your Name"
+                      value={values.name}
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <p>{formErr.name}</p>
+                  </div>
+                  <div className="inputField">
+                    <label htmlFor="email">
+                      Email<span className="star">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="Your Email"
+                      value={values.email}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField">
+                    <label htmlFor="mobile">
+                      Mobile<span className="star">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="mobile"
+                      name="mobileno"
+                      placeholder="Your Mobile Number"
+                      value={values.mobileno}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField">
+                    <label htmlFor="password">
+                      Password<span className="star">*</span>
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      placeholder="Your Password"
+                      value={values.password}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField">
+                    <label htmlFor="confirmPassword">
+                      Confirm Password<span className="star">*</span>
+                    </label>
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      name="cpassword"
+                      placeholder="Confirm Password"
+                      value={values.cpassword}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="addressDetail">
+                <span className="title">
+                  Address
+                  <hr />
+                </span>
+                <div className="fields">
+                  <div className="inputField">
+                    <label htmlFor="permanentAddress">
+                      Permanent Address<span className="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="permanentAddress"
+                      name="permanentAddress"
+                      placeholder="Your Address"
+                      value={values.permanentAddress}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField">
+                    <label htmlFor="temporaryAdd">Temporary Address</label>
+                    <input
+                      type="text"
+                      id="temporaryAdd"
+                      name="temporaryAdd"
+                      value={values.temporaryAdd}
+                      placeholder="Your Address"
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField">
+                    <label htmlFor="block">Block</label>
+                    <input
+                      type="text"
+                      id="block"
+                      name="block"
+                      placeholder="Your Block"
+                      value={values.block}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField">
+                    <label htmlFor="city">
+                      City<span className="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      placeholder="Your City"
+                      value={values.city}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField">
+                    <label htmlFor="state">
+                      State<span className="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="state"
+                      name="state"
+                      placeholder="Your State"
+                      value={values.state}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField">
+                    <label htmlFor="pincode">
+                      Pincode<span className="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="pincode"
+                      name="pincode"
+                      placeholder="Pincode"
+                      value={values.pincode}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="otherDetail">
+                <span className="title">
+                  Other <hr />
+                </span>
+                <div className="fields">
+                  <div className="inputField">
+                    <label htmlFor="subject">Subject</label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      placeholder="Your Subject"
+                      value={values.subject}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField">
+                    <label htmlFor="teacherId">
+                      Teacher ID<span className="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="teacherId"
+                      name="teacher_id"
+                      placeholder="Your Teacher ID"
+                      value={values.teacher_id}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField btn">
+                    <label htmlFor="idImage">
+                      Teacher ID<span className="star">*</span>
+                    </label>
+                    <input
+                      type="file"
+                      id="idImage"
+                      value={values.idImage}
+                      onChange={(e) => handleChange(e)}
+                      className="uploadBtn"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="aadhaarDetail">
+                <span className="title">
+                  Aadhaar Details <hr />
+                </span>
+                <div className="fields">
+                  <div className="inputField">
+                    <label htmlFor="aadharCard">
+                      Aadhaar Number<span className="star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="aadharCard"
+                      name="aadharCard"
+                      placeholder="Your Aadhar Number"
+                      value={values.aadharCard}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField btn">
+                    <label htmlFor="aadharCardImage">
+                      Aadhaar Card<span className="star">*</span>
+                    </label>
+                    <input
+                      type="file"
+                      id="aadharCardImage"
+                      className="uploadBtn"
+                      value={values.aadharCardImage}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                </div>
+              </div>
 
-            {/* Starting the Form  */}
-            <div className="instructorForm">
-              <form>
-                <div className="instructorInput">
-                  <label htmlFor="name">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    placeholder="Name"
-                    name="name"
-                    value={values.name}
-                    onChange={(e) => handleChange(e)}
-                  />
-                  {/* <p>{name}</p> */}
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email "
-                    id="email"
-                    placeholder="Email"
-                    name="email"
-                    value={values.email}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-                <div className="instructorInput">
-                  <label htmlFor="password">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    name="password"
-                    value={values.password}
-                    onChange={(e) => handleChange(e)}
-                  />
-                  <label htmlFor="confirmPassword">Confirm Password</label>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    placeholder="Confirm Password"
-                    name="confirmPassword"
-                    value={values.confirmPassword}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-                <div className="instructorInput">
-                  <label htmlFor="subject">Subject</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    placeholder="Subject"
-                    value={values.subject}
-                    onChange={(e) => handleChange(e)}
-                  />
-                  <label htmlFor="block">Block</label>
-                  <input
-                    type="text"
-                    id="block"
-                    placeholder="Block"
-                    value={values.block}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-                <div className="instructorInput">
-                  <label htmlFor="permanentAddress">Permanent Address</label>
-                  <input
-                    type="text"
-                    id="permanentAddress"
-                    placeholder="Your Permanent Address"
-                    value={values.permanentAddress}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-                <div className="instructorInput">
-                  <label htmlFor="school">School</label>
-
-                  <input
-                    type="text"
-                    id="school"
-                    placeholder="School Name"
-                    value={values.school}
-                    onChange={(e) => handleChange(e)}
-                  />
-                  <label htmlFor="city">City</label>
-                  <input
-                    type="text"
-                    id="city"
-                    placeholder="City"
-                    value={values.city}
-                    onChange={(e) => handleChange(e)}
-                  />
-                  <label htmlFor="state">State</label>
-                  <input
-                    type="text"
-                    id="state"
-                    placeholder="State"
-                    value={values.state}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
-                <div className="instructorInput">
-                  <label>Pincode</label>
-                  <input type="text" />
-                  <label>Mobile No.</label>
-                  <input type="tel" />
-                </div>
-                <div className="instructorInput">
-                  <label>ID Image</label>
-                  <input type="text" />
-                  {/* <label>Upload ID</label>
-                  <input type="file" className="inputfile " /> */}
-                  <input type="file" id="file" />
-                  <label for="file" style={{ textAlign: "center" }}>
-                    <FiUpload />
-                    UploadID
-                  </label>
-                </div>
-                <div className="instructorInput">
-                  <label>Teacher ID</label>
-                  <input type="text" />
-                </div>
-
-                <div className="instructorInput">
-                  <label>Aadhar No.</label>
-                  <input type="text" />
-
-                  <input type="file" />
-                  <label for="file" style={{ textAlign: "center" }}>
-                    <FiUpload />
-                    Upload Aadhar
-                  </label>
-                </div>
-                <div>
-                  <input type="checkbox" />
-                  <label for="vehicle1"> Are you a Instructor?</label>
-                </div>
-                <div style={{ textAlign: "center" }}>
-                  <button className="instructorupBtn">Register</button>
-                </div>
-              </form>
-            </div>
+              <div className="instructorRegisterBtn">
+                <button type="submit" className="registerBtn">
+                  Register
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
