@@ -3,26 +3,49 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import contactPage from "../../assets/images/contactPage.jpg"
 export default function Contact() {
 
   const loginDetails = useSelector((state) => state.userReducers);
   let navigate = useNavigate();
-
+  
   const [User,SetUser] = useState({});
 
-  const [contact,setContact] = useState({
-    phoneNo:"",message:""
-  })
+  
+  useEffect(() => {
+    window.scroll(0,0);
+    // Check is  Login Or Not 
+    if(loginDetails.isLoggedIn=true){
+        // call the fetch admin detail function 
+        const fetchdata = async () =>{
+            await axios.get("/aboutStudents").then(response => {
+              SetUser(response.data);
+              })
+              .catch(error => {
+                console.log(error);
+                navigate("/login");
+              });
+        }
+        fetchdata();
+    }
+    // If User is not login redirect to login 
+    else{
+        navigate("/login");
+    }
+}, [loginDetails.isLoggedIn])
 
-  let name , value;
+// set State for fields
+const [contact,setContact] = useState({
+  phoneNo:"",message:""
+})
 
-  const  handleInput = async (e)=>{
-      name = e.target.name;
-      value = e.target.value;
-      setContact({...contact , [name]:value})
-  }
-    
+let name , value; 
+// Handle input Value
+const  handleInput = async (e)=>{
+    name = e.target.name;
+    value = e.target.value;
+    setContact({...contact , [name]:value})
+}
   const postData =async (e)=>{
       e.preventDefault();
       const {phoneNo,message} = contact;
@@ -49,17 +72,6 @@ export default function Contact() {
   }
 }
 
-  useEffect(() => {
-    if (loginDetails.isLoggedIn !== true ) 
-      {
-        navigate("/login");
-      } 
-    const fetchdata = async () =>{
-        const {data} = await axios.get("aboutStudents");
-        SetUser(data);
-    }
-    fetchdata();
-  }, [])
 
   return (
     <>
@@ -67,9 +79,9 @@ export default function Contact() {
         <div className="contactContainer">
           <div className="contactWrapper">
             <div className="contactForm">
-              <table cellSpacing={"30px"}>
-                <tr>
-                  <td width={"350px"}>
+              <table >
+                <tr className='row-container'>
+                  <td className='contactct-form' width={"500px"}>
                     <form>
                 <h1 className='contacthead'>Quick Contact</h1><br/>
                 <h3 className='contact-subhead'>We're here to Help You</h3><br/>
@@ -111,20 +123,12 @@ export default function Contact() {
 
                 <div className="contactInput">
                   <label htmlFor="Message">Message</label>
-                  <textarea  className="contactInput"
+                  <textarea  className="contactInput-ta"
                   placeholder="Message"
                   name="message" 
                   id="message" 
-                  cols="60" 
+                  cols="45" 
                   rows="6"
-                  line-height= "50px"
-                  padding="0 15px"
-                  font-size= "15px"
-                  background= "#E8F0FE"
-                  color= "$black"
-                  outline= "none"
-                  border-radius= "8px"
-                  border= "none"
                   value={contact.subject}
                    onChange={handleInput}
                   />
@@ -140,6 +144,7 @@ export default function Contact() {
               </form>
                     </td>
                     <td className='left-td' >
+                      <img className="contact-img" src={contactPage}/>
                     <link
                     rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
@@ -159,7 +164,7 @@ export default function Contact() {
                         <div className="email details">
                         <i className="fas fa-envelope" />
                         <div className="topic">Email</div>
-                        <div className="text-one">uplearn@gmail.com</div>
+                        <div className="text-one">uplearnforsih@gmail.com</div>
                         <div className="text-two">info.uplearn@gmail.com</div>
                         </div>
                         </div>
