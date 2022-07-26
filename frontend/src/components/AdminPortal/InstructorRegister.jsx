@@ -4,14 +4,21 @@ import { BiArrowBack } from "react-icons/bi";
 
 function InstructorRegister() {
   let navigate = useNavigate();
-
+  const [userimage, setUserImage] = useState("");
+  const [IMAGE, setImage] = useState("");
+  const [userimageData, setUserImageData] = useState();
+  const [Idimage, setIdImage] = useState("");
+  const [idimage, setidImage] = useState("");
+  const [idimageData, setIdImageData] = useState();
+  const [adharimage, setaharImage] = useState("");
+  const [adharimageData, setadharImageData] = useState();
+  const [aadharimage, setaadharImage] = useState();
   const [values, setValues] = useState({
-    name: "",
+    Teachername: "",
     email: "",
     password: "",
     cpassword: "",
     mobileno: "",
-
     subject: "",
     block: "",
     permanentAddress: "",
@@ -20,12 +27,8 @@ function InstructorRegister() {
     city: "",
     state: "",
     pincode: "",
-    idImage: "",
-    image: "",
-    isInstructor: "",
     teacher_id: "",
     aadharCard: "",
-    aadharCardImage: "",
   });
 
   useEffect(() => {
@@ -35,31 +38,103 @@ function InstructorRegister() {
   const [invalid, setinvalid] = useState("");
   const [formErr, setFormErr] = useState("");
 
-  //   const postData = async () => {
-  //     const name = values.name;
-  //     const email = values.email;
-  //     const password = values.password;
-  //     const cpassword = values.confirmPassword;
+  const submitImage = (image1, imageData, imagevalue) => {
+    if (image1 === "") {
+      console.log("no image");
+    } else {
+      const formData = new FormData();
+      formData.append("image", imageData);
+      fetch(`/upload_image`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            console.log(data.error);
+          } else {
+            console.log(data);
+            console.log(imagevalue);
+            if (imagevalue == "idimage") {
+              setidImage(data.image.image);
+            } else if (imagevalue == "AadharcardImage") {
+              setImage(data.image.image);
+            } else if (imagevalue == "image") {
+              setaadharImage(data.image.image);
+            }
+          }
+        });
+    }
+  };
+  useEffect(() => {
+    console.log(values);
+  });
+  const postData = async () => {
+    const AadharcardImage = aadharimage;
+    const idImage = Idimage;
+    const image = IMAGE;
+    const {
+      Teachername,
+      email,
+      password,
+      cpassword,
+      mobileno,
+      subject,
+      block,
+      permanentAddress,
+      temporaryAdd,
+      school,
+      city,
+      state,
+      pincode,
+      teacher_id,
+      aadharCard,
+    } = values;
+    console.log(AadharcardImage + " " + IMAGE + " " + idImage);
+    const res = await fetch("/InstructorRegister", {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Teachername,
+        email,
+        password,
+        cpassword,
+        mobileno,
+        subject,
+        block,
+        permanentAddress,
+        temporaryAdd,
+        school,
+        city,
+        state,
+        pincode,
+        idImage,
+        image,
+        teacher_id,
+        aadharCard,
+        AadharcardImage,
+      }),
+    });
 
-  //     const res = await fetch("/register", {
-  //       method: "POST",
-  //       headers: {
-  //         "content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         name,
-  //         email,
-  //         password,
-  //         cpassword,
-  //       }),
-  //     });
+    if (res.status === 200) {
+      navigate("/");
+    } else {
+      console.log(res);
+      window.alert("error occured");
+    }
+  };
 
   const handleSubmit = async (event) => {
+    submitImage(idimage, idimageData, "idimage");
+    submitImage(adharimage, adharimageData, "AadharcardImage");
+    submitImage(userimage, userimageData, "image");
+
     event.preventDefault();
     const submit = handleValidation();
-
     if (submit) {
-      console.log("======");
+      postData();
     }
   };
 
@@ -118,10 +193,10 @@ function InstructorRegister() {
                     </label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
+                      id="Teachername"
+                      name="Teachername"
                       placeholder="Your Name"
-                      value={values.name}
+                      value={values.Teachername}
                       onChange={(e) => handleChange(e)}
                     />
                     <p>{formErr.name}</p>
@@ -279,6 +354,17 @@ function InstructorRegister() {
                     />
                   </div>
                   <div className="inputField">
+                    <label htmlFor="school">School</label>
+                    <input
+                      type="text"
+                      id="school"
+                      name="school"
+                      placeholder="Your School"
+                      value={values.school}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="inputField">
                     <label htmlFor="teacherId">
                       Teacher ID<span className="star">*</span>
                     </label>
@@ -298,8 +384,26 @@ function InstructorRegister() {
                     <input
                       type="file"
                       id="idImage"
-                      value={values.idImage}
-                      onChange={(e) => handleChange(e)}
+                      value={idimage}
+                      onChange={(e) => {
+                        setIdImage(e.target.value);
+                        setIdImageData(e.target.files[0]);
+                      }}
+                      className="uploadBtn"
+                    />
+                  </div>
+                  <div className="inputField btn">
+                    <label htmlFor="image">
+                      Teacher Image<span className="star">*</span>
+                    </label>
+                    <input
+                      type="file"
+                      id="image"
+                      value={userimage}
+                      onChange={(e) => {
+                        setUserImage(e.target.value);
+                        setUserImageData(e.target.files[0]);
+                      }}
                       className="uploadBtn"
                     />
                   </div>
@@ -331,15 +435,22 @@ function InstructorRegister() {
                       type="file"
                       id="aadharCardImage"
                       className="uploadBtn"
-                      value={values.aadharCardImage}
-                      onChange={(e) => handleChange(e)}
+                      value={adharimage}
+                      onChange={(e) => {
+                        setaharImage(e.target.value);
+                        setadharImageData(e.target.files[0]);
+                      }}
                     />
                   </div>
                 </div>
               </div>
 
               <div className="instructorRegisterBtn">
-                <button type="submit" className="registerBtn">
+                <button
+                  type="submit"
+                  onClick={handleSubmit}
+                  className="registerBtn"
+                >
                   Register
                 </button>
               </div>
