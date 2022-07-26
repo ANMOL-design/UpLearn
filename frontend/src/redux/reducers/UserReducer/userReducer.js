@@ -1,5 +1,5 @@
 const initialState = {
-    isLoggedIn: localStorage.getItem("isLoggedIn") || "",
+    isLoggedIn: localStorage.getItem("isLoggedIn") || 0,
     userRole: localStorage.getItem("Work") || "",
 };
 
