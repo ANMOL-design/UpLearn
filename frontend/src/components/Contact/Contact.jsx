@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import contactPage from "../../assets/images/contactPage.jpg";
+import { MdLocationPin,   MdLocalPhone, MdLocalPostOffice } from "react-icons/md";
 
 export default function Contact() {
 
@@ -10,12 +11,12 @@ export default function Contact() {
   let navigate = useNavigate();
   
   const [User,SetUser] = useState({});
-
+  const [invalid, setinvalid] = useState('');
   
   useEffect(() => {
-    window.scroll(0,0);
+    window.scroll(0, 120);
     // Check is  Login Or Not 
-    if(loginDetails.isLoggedIn === true){
+    if(Number(loginDetails.isLoggedIn)){
         // call the fetch admin detail function 
         const fetchdata = async () =>{
             await axios.get("/aboutStudents").then(response => {
@@ -40,17 +41,21 @@ export default function Contact() {
   })
 
   let name , value; 
+
   // Handle input Value
   const  handleInput = async (e)=>{
       name = e.target.name;
       value = e.target.value;
-      setContact({...contact , [name]:value})
+      setContact({...contact , [name]:value});
+      setinvalid('');
   }
-    const postData =async (e)=>{
-        e.preventDefault();
+    
+  const postData = async (e)=>{
+        // e.preventDefault();
         const {phoneNo,message} = contact;
         const name = User.name;
-        const email = User.email
+        const email = User.email;
+
         const res =  await fetch("/contactus" ,{
             method : "POST",
             headers : { 
@@ -61,30 +66,39 @@ export default function Contact() {
             })
     });
 
-  
+      if(res.status === 201){
+          window.alert("Your query is succesfully registered our expert team will reply you soon.");
+          navigate('/', { replace: true });
+      }
+      else {
+          window.alert("Error occured , try again")
+      }
+    }
 
-    if(res.status === 201){
-        window.alert("Your query is succesfully registered our expert team will reply you soon.");
-        navigate('/', { replace: true });
+    const handlecontactvalidation = () => {
+      if(contact.phoneNo === ''){
+        setinvalid('Please Enter Contact Number');
+      }
+      else if(contact.message === ''){
+        setinvalid('Please Enter a Message');
+      }
+      else{
+        postData();
+      }
     }
-    else {
-        window.alert("Error occured , try again")
-    }
-  }
 
 
   return (
     <>
-      <div className="contact">
         <div className="contactContainer">
           <div className="contactWrapper">
-            <div className="contactForm">
-              <table >
+              <h1>Quick Contact</h1>
+              <p>We're here to Help You</p>
+              <table>
                 <tr className='row-container'>
-                  <td className='contactct-form' width={"500px"}>
+                  {/* Contact Information  */}
+                  <td className='right-td'>
                     <form>
-                      <h1 className='contacthead'>Quick Contact</h1><br/>
-                      <h3 className='contact-subhead'>We're here to Help You</h3><br/>
                       <div className="contactInput">
                         <label htmlFor="name">Full name</label>
                         <input
@@ -124,57 +138,59 @@ export default function Contact() {
                       <div className="contactInput">
                         <label htmlFor="Message">Message</label>
                         <textarea  className="contactInput-ta"
-                        placeholder="Message"
-                        name="message" 
-                        id="message" 
-                        cols="45" 
-                        rows="6"
-                        value={contact.subject}
-                        onChange={handleInput}
+                          placeholder="Message"
+                          name="message" 
+                          id="message" 
+                          cols="45" 
+                          rows="6"
+                          value={contact.message}
+                          onChange={handleInput}
                         />
                       </div>
                       
                                   
                       {/* The Submit Button  */}
                       <div>
-                        <button type="button" onClick={postData} className="submitBtn" >
+                        <div className='invalid'>{invalid}</div>
+                        <button type="button" onClick={handlecontactvalidation} className="submitBtn" >
                           Submit
                         </button>
                       </div>
                     </form>
+                  </td>
+                  {/* Right Side Form  */}
+                  <td className='left-td' >
+                      <img src={contactPage} alt="contact-us"/>
+
+                      <div className="left-side">
+
+                        <div className="details">
+                          <MdLocationPin />
+                          <div className="topic">Address</div>
+                          <div className="text-msg">JMIT, Radaur</div>
+                          <div className="text-msg">Yamunanagar, Haryana</div>
+                        </div>
+
+                        <div className="details">
+                          <MdLocalPhone />
+                          <div className="topic">Phone</div>
+                          <div className="text-msg">+91 9876512345</div>
+                          <div className="text-msg">+91 9876543210</div>
+                        </div>
+
+                        <div className="details">
+                          <MdLocalPostOffice />
+                          <div className="topic">Email</div>
+                          <div className="text-msg">uplearnforsih@gmail.com</div>
+                          <div className="text-msg">info.uplearn@gmail.com</div>
+                        </div>
+
+                      </div>
                     </td>
-                    <td className='left-td' >
-                      <img className="contact-img" src={contactPage}/>
-                    <link
-                    rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-                    <div className="left-side">
-                        <div className="address details">
-                        <i className="fas fa-map-marker-alt" />
-                        <div className="topic">Address</div>
-                        <div className="text-one">JMIT, Radaur</div>
-                        <div className="text-two">Yamunanagar, Haryana</div>
-                        </div>
-                        <div className="phone details">
-                        <i className="fas fa-phone-alt" />
-                        <div className="topic">Phone</div>
-                        <div className="text-one">+91 9876512345</div>
-                        <div className="text-two">+91 9876543210</div>
-                        </div>
-                        <div className="email details">
-                        <i className="fas fa-envelope" />
-                        <div className="topic">Email</div>
-                        <div className="text-one">uplearnforsih@gmail.com</div>
-                        <div className="text-two">info.uplearn@gmail.com</div>
-                        </div>
-                        </div>
-                    </td>
-                    </tr>
+                  </tr>
               </table>
-            </div>
           </div>
         </div>
-      </div>
     </>
   )
 }

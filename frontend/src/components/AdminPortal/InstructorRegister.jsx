@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { HiOutlineLogout } from "react-icons/hi";
+import { BiArrowBack } from "react-icons/bi";
 
 function InstructorRegister() {
   let navigate = useNavigate();
@@ -32,7 +32,7 @@ function InstructorRegister() {
   });
 
   useEffect(() => {
-    window.scroll(0, 150);
+    window.scroll(0, 80);
   }, []);
 
   const [invalid, setinvalid] = useState("");
@@ -173,9 +173,9 @@ function InstructorRegister() {
       {/* The Container Of Login An instructor In Page  */}
       <div className="instructor">
         <div className="instructorHeader">
-          <a href="/logout">
-            <HiOutlineLogout className="logoutBtn" style={{ color: "white" }} />
-          </a>
+          <Link to="/admin-portal-home-190310554227">
+            <BiArrowBack className="logoutBtn" style={{ color: "white" }} />
+          </Link>
         </div>
         <div className="instructorWrapper">
           <div className="instructorForm">

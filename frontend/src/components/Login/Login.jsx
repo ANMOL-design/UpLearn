@@ -20,7 +20,7 @@ function Login() {
     window.scroll(0,150);
     const go = localStorage.getItem("isLoggedIn");
 
-    if(go){
+    if(Number(go)){
       navigate("/studentdashboard");
     }
   }, [])
@@ -46,13 +46,13 @@ function Login() {
     });
   
     if (res.status === 200) {
-      dispatch(LoginUser( true, userrole ));
+      dispatch(LoginUser( 1, userrole ));
       const e = document.getElementById("reg_success");
       e.style.display = "block";
       navigate("/studentdashboard");
     }
     else{
-        window.alert("Error Occurred");
+      setinvalid("Invalid Credentails");
     }
   };
  

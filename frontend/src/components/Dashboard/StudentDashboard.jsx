@@ -12,7 +12,7 @@ export default function StudentDashboard() {
 
   useEffect(() => {
     window.scroll(0,0);
-    if (loginDetails.isLoggedIn !== true && loginDetails.userRole !== "SDTTE UN ") 
+    if (Number(loginDetails.isLoggedIn) !== 1 && loginDetails.userRole !== "SDTTE UN ") 
     {
       navigate("/login");
     } 

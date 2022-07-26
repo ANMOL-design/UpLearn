@@ -13,6 +13,11 @@ function Register() {
 
   useEffect(() => {
      window.scroll(0,150);
+     const go = localStorage.getItem("isLoggedIn");
+
+      if(Number(go)){
+        navigate("/studentdashboard");
+      }
   }, [])
    
   const [name, setname] = useState('');
