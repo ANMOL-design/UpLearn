@@ -28,7 +28,7 @@ router.post("/updateUserProfile", (req, res) => {
         Gender,
         DOB,
         BIO
-    } = req.body;
+    } = JSON.stringify(req.body);
 
     console.log(_id);
 
