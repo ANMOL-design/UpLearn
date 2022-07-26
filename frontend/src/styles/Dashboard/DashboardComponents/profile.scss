@@ -1,0 +1,20 @@
+.DashProfileContainer {
+    width: 100%;
+    padding: 1rem;
+}
+
+.DashprofileName {
+    @include displayflex;
+    &__container {
+        width: 12rem;
+        height: 12rem;
+        border-radius: 5px;
+        border: 1px solid black;
+        background: url("./../../../assets/images/avtar_bg.jpg");
+        @include displayflex;
+        justify-content: center;
+        img {
+            width: 8rem;
+        }
+    }
+}

@@ -15,19 +15,19 @@ app.use(require("./routes/imageuploader"));
 app.use(require("./routes/Subscribers"));
 app.use(require("./routes/contactQuery"));
 app.use(require("./routes/aboutUser"));
+app.use(require("./routes/updateUserProfile"));
 // mongodbconnection
 mongoose.connect(
-    process.env.MONGODB_CONNECTION_STRING,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+    process.env.MONGODB_CONNECTION_STRING, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
     },
     (err) => {
-      if (err) throw err;
-      console.log("MongoDB connection established");
+        if (err) throw err;
+        console.log("MongoDB connection established");
     }
-  );
- 
+);
+
 app.listen(PORT, () => {
     console.log("Server is running port no " + PORT);
 });
