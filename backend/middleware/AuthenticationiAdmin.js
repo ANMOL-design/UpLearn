@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userSchema')
+const Admin = require('../models/adminSchema');
 
-const Authentication = async(req, res, next) => {
+const AuthenticationAdmin = async(req, res, next) => {
     try {
-        const token = req.cookies.jwtToken;
+        const token = req.cookies.jwtTokenAdmin;
         const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
-        const rootUser = await User.findOne({ _id: verifyToken._id, "tokens.token ": token });
+        const rootUser = await Admin.findOne({ _id: verifyToken._id, "tokens.token ": token });
 
         if (!rootUser) { throw new Error('error occured') }
 
@@ -21,4 +21,4 @@ const Authentication = async(req, res, next) => {
     }
 
 }
-module.exports = Authentication;
+module.exports = AuthenticationAdmin;

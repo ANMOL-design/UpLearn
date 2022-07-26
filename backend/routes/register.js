@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 router.use(express.json());
 dotenv.config();
 const User = require("../models/userSchema");
+const Admin = require("../models/adminSchema");
 const sendRegistrationEmail = require("../utils/emails/sendRegistrationEmail");
 
 router.post("/register", (req, res) => {
@@ -21,6 +22,30 @@ router.post("/register", (req, res) => {
             user.save().then(() => {
                 res.status(200).json({ msg: "Registration Successful" });
                 sendRegistrationEmail(email, name);
+            }).catch((err) => {
+                res.status(501).json({ msg: "Failed to Register" })
+            })
+        }).catch((err) => {
+            console.log(err)
+        })
+})
+
+router.post("/adminregister", (req, res) => {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+        return res.sendStatus(201);
+    }
+
+    Admin.findOne({ email: email })
+        .then((existingUser) => {
+            if (existingUser) {
+                return res.sendStatus(422);
+            }
+            const user = new Admin({ name, email, password });
+
+            user.save().then(() => {
+                res.status(200).json({ msg: "Registration Successful" });
             }).catch((err) => {
                 res.status(501).json({ msg: "Failed to Register" })
             })

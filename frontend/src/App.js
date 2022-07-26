@@ -20,6 +20,7 @@ import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 //redux setup
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import Contact from "./components/Contact/Contact";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -55,8 +56,10 @@ function App() {
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
             <Route path="/admin-portal-instructorRegis-190310554227" element={<InstructorRegister />} />
             <Route path="/studentdashboard" element={<StudentDashboard />} />
+            <Route path="/instructorregister" element={<InstructorRegister />} />
             {/* General  */}
             <Route path="*" element={<PageNotFound />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
           {/* The Footer component  */}
           <Footer />

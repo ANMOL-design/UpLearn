@@ -7,27 +7,24 @@ router.use(express.json());
 var cookieParser = require('cookie-parser');
 router.use(cookieParser());
 dotenv.config();
-const Authentication = require('../middleware/Authentication')
-const User = require("../models/userSchema")
-const Instructor = require("../models/instructorregisterSchema")
-// router.get('/aboutuser', (req, res) => {
-//    const email = "amandeep1219603@jmit.ac.in"
-//     const userId = User.findOne({ email: JSON.stringify(email) });
-//         console.log(userId);
-//         res.send(userId);
-// });
+const Authentication = require('../middleware/Authentication');
+const User = require("../models/userSchema");
+const Admin = require("../models/adminSchema");
+const Instructor = require("../models/instructorregisterSchema");
+
 
 router.post('/login', async(req, res) => {
     try {
-        const { email, password ,userrole } = req.body;
+        const { email, password, userrole } = req.body;
 
-        if (!email || !password ||!userrole) {
+        if (!email || !password || !userrole) {
             return res.sendStatus(400);
         }
 
         const userLogin = await User.findOne({ email: email });
         const instructorlogin = await Instructor.findOne({ email: email });
-        if (userLogin && userrole=="STUDENT") {
+
+        if (userLogin && userrole == "STUDENT") {
             const isMatch = await bycrypt.compare(password, userLogin.password)
             const token = await userLogin.generateAuthToken();
 
@@ -39,11 +36,10 @@ router.post('/login', async(req, res) => {
             if (!isMatch) {
                 return res.status(401).json({ msg: "Invalid Credential" });
             } else {
-               
+
                 res.status(200).json({ msg: "login Succesfully" })
             }
-        }
-        else if (instructorlogin && userrole=="INSTRUCTOR") {
+        } else if (instructorlogin && userrole == "INSTRUCTOR") {
             const isMatch = await bycrypt.compare(password, userLogin.password)
             const token = await instructorlogin.generateAuthToken();
 
@@ -57,12 +53,45 @@ router.post('/login', async(req, res) => {
             } else {
                 res.status(200).json({ msg: "login Succesfully" })
             }
-        }
-         else {
+        } else {
             return res.status(402).json({ msg: "Invalid Credential" });
         }
     } catch (err) {
-        res.json({ msg: "error occured" +err })
+        res.json({ msg: "error occured" + err })
+    }
+})
+
+/////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////------Admin Route--------//////////////////////////////
+router.post('/adminlogin', async(req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            return res.sendStatus(400);
+        }
+
+        const adminLogin = await Admin.findOne({ email: email });
+
+        if (adminLogin) {
+            const isMatch = await bycrypt.compare(password, adminLogin.password)
+            const token = await adminLogin.generateAuthToken();
+
+            res.cookie("jwtTokenAdmin", token, {
+                expires: 0,
+                httpOnly: true
+            })
+
+            if (!isMatch) {
+                return res.status(401).json({ msg: "Invalid Credential" });
+            } else {
+
+                res.status(200).json({ msg: "Login Succesfully" })
+            }
+        } else {
+            return res.status(402).json({ msg: "Invalid Credential" });
+        }
+    } catch (err) {
+        res.json({ msg: "error occured" + err })
     }
 })
 

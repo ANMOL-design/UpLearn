@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LoginAdmin } from "./../../redux/actions/userAction/adminAction";
 
 function AdminLogin() {
+
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [values, setValues] = useState({
         email: "",
@@ -17,15 +21,38 @@ function AdminLogin() {
     const [pass, setpass] = useState('');
     const [invalid, setinvalid] = useState('');
 
+
+    const loginAdmin = async () => {
+        const { email, password }= values;
+
+        const res = await fetch("/adminlogin", {
+          method: "POST",
+          headers: {
+            "content-Type": "application/json",
+          },
+          
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+      
+        if (res.status === 200) {
+            dispatch(LoginAdmin());
+            navigate("/admin-portal-home-190310554227");
+        }
+        else{
+            setinvalid('Un-Authenticate Admin Login')
+            console.log(res)
+        }
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const submit = handleValidate();
 
         if(submit){
-            navigate("/admin-portal-home-190310554227");
-        }
-        else{
-            setinvalid("Invalid Credential | Internal Server Error");
+            loginAdmin();
         }
     };
 
@@ -45,7 +72,7 @@ function AdminLogin() {
 
     const handleChange = (event) => {
         setValues({ ...values, [event.target.name]: event.target.value });
-        seterr('');  setpass('');
+        seterr('');  setpass(''); setinvalid('');
     };
 
     return(

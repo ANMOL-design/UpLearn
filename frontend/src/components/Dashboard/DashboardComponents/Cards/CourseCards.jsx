@@ -7,14 +7,12 @@ export default function CourseCards() {
     <div className="courseCards">
       {CourseCardData.map((courseCard, id) => {
         return (
-          <div className="parentContainer">
             <CourseCard
               title={courseCard.title}
               instructor={courseCard.instructor}
               barValue={courseCard.barValue}
               color={courseCard.color}
             />
-          </div>
         );
       })}
     </div>
