@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
     LastName: {
         type: String,
     },
-    class: {
+    classes: {
         type: Number,
     },
     Board: {
