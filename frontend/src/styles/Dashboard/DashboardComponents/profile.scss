@@ -114,3 +114,48 @@
     width: 150px;
     overflow: hidden;
 }
+
+// Modal if the Update Profile Page
+.modal-profile {
+    position: relative;
+    background-color: #fefefe;
+    margin: 1vh auto auto;
+    padding: 1rem;
+    border: 1px solid #888;
+    width: 98vw;
+    height: 120vh;
+    border-radius: 6px;
+    div {
+        padding: 2px;
+        font-family: $font_El;
+        h1 {
+            margin-bottom: 1rem;
+            color: $darkgrey;
+            text-align: center;
+        }
+        h2 {
+            color: $navbar_color;
+            border-bottom: 1px solid $navbar_color;
+        }
+        button {
+            @include sitebutton;
+        }
+    }
+}
+
+.modal-input-container {
+    @include displayflex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 1rem 0px;
+    input,
+    select {
+        height: 50px;
+        width: 290px;
+    }
+}
+
+.close_profile {
+    right: 1rem;
+    font-size: 2.3rem;
+}

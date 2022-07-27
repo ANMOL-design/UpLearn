@@ -42,6 +42,21 @@ export default function Profile() {
       setprofileimg(e.target.files[0].name);
     }
   }
+
+  const EditUserProfile = () => {
+    console.log('open modal')
+    // Get the modal
+    var modal = document.getElementById("myProfileEditModal");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    // Making the Display of Modal Visible to Fill OTP to it
+    modal.style.display = "block";
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+  }
   
   return(
     <>
@@ -107,7 +122,7 @@ export default function Profile() {
             </div>
                 
             <div className="DashProfileButton">
-              <button>Edit Profile</button>
+              <button onClick={EditUserProfile}>Edit Profile</button>
               <button>Change Password</button>
             </div>
         </div>
@@ -115,27 +130,73 @@ export default function Profile() {
       {/* Created a Modal to Wdit User Profile */}
       <div>
         {/*  The Modal  */}
-        <div id="myModal" className="modal">
+        <div id="myProfileEditModal" className="modal">
 
           {/* Modal content */}
-          <div className="modal-content">
-            <span className="close">&times;</span>
+          <div className="modal-profile">
+            <span className="close close_profile">&times;</span>
             <div>
-              <h2>Verification Code</h2>
-              <p>Please enter the verification code send <br /> to <b></b></p>
-              <div className="signInput">
-                  <label htmlFor="verifyotp">Enter OTP</label>
-                  <input
-                    type="password"
-                    id="verifyotp"
-                    placeholder="Verify OTP"
-                    name="verifyotp"
-                    
-                   
-                  />
+              <h1>My Profile</h1>
+              <h2>Personal Details</h2>
+              <div className="modal-input-container">
+                  {/* First name of User  */}
+                  <div className="signInput">
+                    <label htmlFor="firstname">First Name</label><br />
+                    <input
+                      type="text"
+                      id="firstname"
+                      placeholder="John"
+                      name="firstname"
+                      required
+                    />
+                  </div>
+                  {/* Last name of User  */}
+                  <div className="signInput">
+                    <label htmlFor="lastname">Last Name</label><br />
+                    <input
+                      type="text"
+                      id="lastname"
+                      placeholder="Doe"
+                      name="lastname"
+                    />
+                  </div>
+                  {/* Mobile No of User  */}
+                  <div className="signInput">
+                    <label htmlFor="mobileno">Phone No.</label><br />
+                    <input
+                      type="number"
+                      id="mobileno"
+                      placeholder="8046151300"
+                      name="mobileno"
+                      min={0}
+                      max={999999999}
+                      maxLength={10}
+                      required
+                    />
+                  </div>
+                  {/* Date of birth of User  */}
+                  <div className="signInput">
+                    <label htmlFor="dob">Date Of Birth</label><br />
+                    <input
+                      type="date"
+                      id="dob"
+                      name="dob"
+                      required
+                    />
+                  </div>
+                  {/* Gender of User  */}
+                  <div className="signInput">
+                    <label htmlFor="gender">Gender</label><br />
+                    <select id="gender" name="gender">
+                      <option value="" defaultValue>Select Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
                 </div>
+              </div>
               <p className="invalid"></p>
-              <button >Submit</button>
+              <button >Update Profile</button>
             </div>
           </div>
         </div>
