@@ -24,12 +24,11 @@ router.post("/updateUserProfile", (req, res) => {
         State,
         Pincode,
         mobileno,
-        Image,
         Gender,
         DOB,
         BIO
     } = req.body;
-   
+
 
     User.findByIdAndUpdate(_id, {
             name: firstName + ' ' + LastName,
@@ -43,7 +42,6 @@ router.post("/updateUserProfile", (req, res) => {
             State: State,
             Pincode: Pincode,
             mobileno: mobileno,
-            Image: Image,
             Gender: Gender,
             DOB: DOB,
             BIO: BIO

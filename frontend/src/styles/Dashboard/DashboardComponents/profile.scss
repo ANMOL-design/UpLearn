@@ -123,10 +123,10 @@
     padding: 1rem;
     border: 1px solid #888;
     width: 98vw;
-    height: 120vh;
+    height: 190vh;
     border-radius: 6px;
     div {
-        padding: 2px;
+        padding: 2px 1rem;
         font-family: $font_El;
         h1 {
             margin-bottom: 1rem;
@@ -140,14 +140,19 @@
         button {
             @include sitebutton;
         }
+        textarea {
+            @include siteinputbox;
+            height: 100px;
+        }
     }
 }
 
 .modal-input-container {
     @include displayflex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
-    margin: 1rem 0px;
+    margin: 0.8rem 0px;
+    padding: 0px !important;
     input,
     select {
         height: 50px;
@@ -158,4 +163,19 @@
 .close_profile {
     right: 1rem;
     font-size: 2.3rem;
+}
+
+@media screen and (max-width: 1060px) {
+    .modal-profile {
+        height: 240vh;
+    }
+}
+
+@media screen and (max-width: 763px) {
+    .modal-profile {
+        height: 320vh;
+    }
+    .modal-input-container {
+        justify-content: space-evenly;
+    }
 }
