@@ -1,10 +1,10 @@
 [{
         "id": 1,
-        "image": "./assets/images/education-banner.png",
-        "heading": "Add a Mentor",
+        "image": "./assets/images/registration.jpg",
+        "heading": "Instructor Registration",
         "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
-        "Link": "/home",
-        "name": "Start"
+        "Link": "/admin-portal-instructorRegis-190310554227",
+        "name": "Register"
     },
     {
 

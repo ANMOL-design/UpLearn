@@ -1,9 +1,11 @@
-import { encryption } from "./userEncryption";
+var CryptoJS = require("crypto-js");
 // Making Login And Logout action For User
 export const LoginUser = (isLoggedIn, Role) => async(dispatch) => {
 
-    const userRole = encryption(Role);
 
+    var userRole = CryptoJS.AES.encrypt(JSON.stringify(Role), 'my-secret-key@123').toString();
+    // var bytes = CryptoJS.AES.decrypt(ciphertext, 'my-secret-key@123');
+    // var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     const login = {
         isLoggedIn: isLoggedIn,
         userRole: userRole

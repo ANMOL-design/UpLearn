@@ -36,7 +36,7 @@ export default function Profile() {
     else{
         navigate("/login");
     }
-  }, [loginDetails.isLoggedIn])
+  }, [loginDetails.isLoggedIn, navigate])
 
   const updatateImage = async () => {
     if (profileimg === "") {
@@ -86,7 +86,6 @@ export default function Profile() {
      
   };
   
-  console.log(profileimg, userimageData, values)
 
   function validateProfileImgSize(e) {
     const fileSize = e.target.files[0].size / 1024 / 1024; // in MiB

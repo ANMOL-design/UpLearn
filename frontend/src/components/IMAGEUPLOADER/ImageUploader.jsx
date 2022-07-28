@@ -1,5 +1,6 @@
 import { useState } from "react";
-import progressbar from "../../assets/images/progressbar.gif"
+import progressbar from "../../assets/images/progressbar.gif";
+
 function ImageUploader() {
   const [image, setImage] = useState("");
   const [imageData, setImageData] = useState();
@@ -22,12 +23,14 @@ function ImageUploader() {
         );
     }
   }
+
   const handleSubmit = (e) => {
     setupload(true)
     e.preventDefault();
     if (image === "") {
       console.log("no image");
-    } else {
+    } 
+    else {
       const formData = new FormData();
       formData.append("image", imageData);
       fetch(`/upload_image`, {
@@ -49,6 +52,7 @@ function ImageUploader() {
         });
     }
   };
+
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
@@ -62,6 +66,7 @@ function ImageUploader() {
             }}
           />
         </p>
+        
         <button type="submit">Submit</button>
         <UPOLAD/>
       </form>

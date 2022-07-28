@@ -21,9 +21,9 @@ function Login() {
     const go = localStorage.getItem("isLoggedIn");
 
     if(Number(go)){
-      navigate("/studentdashboard");
+      navigate("/");
     }
-  }, [])
+  }, [navigate])
 
   const [err, seterr] = useState('');
   const [pass, setpass] = useState('');
@@ -49,7 +49,12 @@ function Login() {
       dispatch(LoginUser( 1, userrole ));
       const e = document.getElementById("reg_success");
       e.style.display = "block";
-      navigate("/studentdashboard");
+      if(userrole === 'STUDENT'){
+        navigate("/studentdashboard");
+      }
+      else{
+        navigate("/instructordashboard");
+      }
     }
     else{
       setinvalid("Invalid Credentails");

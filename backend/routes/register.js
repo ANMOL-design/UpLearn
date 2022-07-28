@@ -55,4 +55,23 @@ router.post("/adminregister", (req, res) => {
 })
 
 
+//Change The Password
+router.post("/setnewstudentpassword", (req, res) => {
+    const { _id, npassword, cpassword } = req.body;
+
+    User.findOne({ _id: _id })
+        .then(user => {
+            if (!user) {
+                return res.status(422).json({ error: "User don't exists" })
+            }
+            user.password = npassword
+            user.cpassword = cpassword
+            user.save().then(() => {
+                res.json({ message: "password updated success" })
+            })
+        }).catch(err => {
+            console.log(err)
+        })
+})
+
 module.exports = router;

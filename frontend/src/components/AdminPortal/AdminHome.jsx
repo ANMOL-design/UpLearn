@@ -30,7 +30,7 @@ function AdminHome(){
         else{
             navigate("/admin-portal-login-190310554227");
         }
-    }, [adminstatus.isAdminLoggedIn])
+    }, [adminstatus.isAdminLoggedIn, navigate])
 
     console.log(adminInfo)
 

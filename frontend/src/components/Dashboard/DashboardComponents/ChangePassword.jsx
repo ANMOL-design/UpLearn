@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function ChangePassword(){
-    const loginDetails = useSelector((state) => state.userReducers);
+
     let navigate = useNavigate();
 
     const [profile, setprofile] = useState({});
@@ -12,7 +11,6 @@ function ChangePassword(){
         new: '',
         confirm: ''
     });
-    const [confirmpassword, setconfirmpassword] = useState('');
 
     const [err, seterr] = useState('');
     const [pass, setpass] = useState('');
@@ -21,7 +19,7 @@ function ChangePassword(){
     useEffect(() => {
         window.scroll(0,120);
         const fetchdata = async () =>{
-            await axios.get("aboutStudents").then(response => {
+            await axios.get("/aboutStudents").then(response => {
               setprofile(response.data);
             })
             .catch(error => {
@@ -30,7 +28,34 @@ function ChangePassword(){
             });
         }
         fetchdata();
-    }, [])
+    }, [navigate])
+
+
+    const UpdateMyPassword = async () => {
+
+        const _id = profile._id;
+        var npassword = password.new;
+        var cpassword = password.confirm;
+       
+        const res =  await fetch("/setnewstudentpassword" ,{
+             method : "POST",
+             headers : { 
+                 "content-Type" : "application/json"
+             },
+             body : JSON.stringify({
+                _id, npassword, cpassword
+             })
+         } );
+         
+         if(res.status === 200){
+            console.log(res)
+            navigate("/logout");
+         }
+         else{
+             console.log(res)
+             window.alert("Invalid Request | Internal Server Error");
+         }
+    }
 
     function validatePassword(){
         if(password.new === ''){
@@ -58,12 +83,12 @@ function ChangePassword(){
         const status = validatePassword();
 
         if(status){
-            console.log("Change User Password");
+            UpdateMyPassword();
             const e = document.getElementById("reg_success");
             e.style.display = "block";
-            navigate("/studentdashboard");
         }
     }
+
 
     const handleChange = (event) => {
         setpassword({ ...password, [event.target.name]: event.target.value });

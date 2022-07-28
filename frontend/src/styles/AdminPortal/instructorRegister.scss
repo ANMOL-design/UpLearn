@@ -1,114 +1,152 @@
-.instructor{
+.instructor {
     font-family: $font_El;
 }
-.instructorHeader{
+
+.instructorHeader {
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     background-color: #0C0F33;
-   .logoutBtn{
-    margin-right: 6rem;
-    font-size: 1.6rem;
-    cursor: pointer;
-    margin-top: .5rem;
+    .backBtn {
+        margin-right: 6rem;
+        font-size: 1.6rem;
+        cursor: pointer;
+        margin-top: .5rem;
+    }
 }
-}
-.instructorWrapper{
-   
+
+.instructorWrapper {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color:#DBE2F7;
+    background-color: #DBE2F7;
 }
-.instructorForm{
+
+.instructorForm {
     width: 100%;
-    max-width: 900px;
+    max-width: 950px;
     margin: 3rem 0;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: .5rem;
     background-color: white;
-    h3{
-        font-size: 1.5rem;
+    h3 {
+        font-size: 1.8rem;
         text-align: center;
         padding-bottom: 1rem;
     }
 }
-.instructorForm .fields{
+
+.instructorForm .fields {
     display: flex;
     align-items: center;
-    // justify-content: space-evenly;
-    gap:.8rem;
+    // justify-content: space-between;
+    gap: .8rem;
     margin: 8px 0 2rem 0;
     flex-wrap: wrap;
 }
-.instructorForm .fields .inputField{
+
+.instructorForm .fields .inputField {
     display: flex;
     flex-direction: column;
-    width: calc(100% /3 - 10px);
+    // width: calc(100% /3 - 10px);
+    width: 290px;
 }
+
 .inputField label {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
 }
-.inputField input{
+
+.inputField input {
     height: 40px;
     border-radius: 5px;
     border: 1px solid #aaa;
     outline: none;
-    // background-color: #E3E3E3;
-    padding:0 10px;
+    padding: 0 10px;
     font-size: 14px;
     margin: 8px 0;
 }
-// .inputField input:is(:focus, :valid){
-//     box-shadow: 0 3px 6px rgba(0,0,0,.3);
-// }
 
 //upload button
-.uploadBtn{
+.uploadBtn {
     // margin-top: 1rem;
     position: relative;
     all: none;
     cursor: pointer;
-    width: 40%;
     padding: .5rem 0;
     background-color: transparent;
 }
-.btn input{
-    width: 40%;
+
+.btn input {
+    width: 100px;
     border: none;
 }
 
-.uploadBtn::before{
+.uploadBtn::before {
     width: 100%;
     font-family: $font_El;
     height: 100%;
     color: white;
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     content: 'Upload File';
-    background-color: #0C0F33   ;
+    background-color: #0C0F33;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.instructorForm .title{
+
+.instructorForm .title {
+    font-size: 1.15rem;
     font-weight: 500;
     color: rgb(134, 133, 133);
 }
-.instructorRegisterBtn{
-    text-align: center;
+
+.instructorRegisterBtn {
+    @include displayflex;
+    flex-direction: column;
+    justify-content: center;
 }
-.registerBtn{   
+
+.registerBtn {
     @include sitebutton;
-            display: inline-block;
-            line-height: 40px;
-            width: 20%;
-            margin: 12px 0px;
+    display: inline-block;
+    line-height: 2rem;
+    width: 65vw;
+    margin: 12px 0px;
 }
-.star{
+
+.star {
     color: red;
+}
+
+.uploadphoto {
+    font-size: 14px;
+    color: red;
+    display: inline-block;
+}
+
+#loader-reg {
+    width: 2.8rem;
+    align-items: center;
+    margin-bottom: -1rem;
+    margin-right: 2rem;
+    display: none;
+}
+
+@media (max-width: 943px) {
+    .instructorForm .fields {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 660px) {
+    .instructorForm .fields {
+        justify-content: center;
+    }
+    .instructorForm .fields .inputField {
+        width: 100%;
+    }
 }
