@@ -73,6 +73,7 @@ export default function Profile() {
             }).then((res)=>{
               if (res.status === 200) {
                 window.alert("Image Updated Succesfully")
+                navigate("/")
               } 
               else {
                  console.log(res);
