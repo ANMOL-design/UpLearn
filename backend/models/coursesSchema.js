@@ -20,7 +20,7 @@ const coursesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  courseThumbnail: {
+  thumbnail: {
     type: String,
     required: true,
   },
@@ -47,16 +47,16 @@ const coursesSchema = new mongoose.Schema({
   specialization: {
     type: String,
   },
-  courseRating: [
-    {
-      Positive: {
-        type: Numbers,
-      },
-      Negative: {
-        type: Numbers,
-      },
-    },
-  ],
+  // courseRating: [
+  //   {
+  //     Positive: {
+  //       type: Numbers,
+  //     },
+  //     Negative: {
+  //       type: Numbers,
+  //     },
+  //   },
+  // ],
 });
 
 const Courses = mongoose.model("COURSES", coursesSchema);

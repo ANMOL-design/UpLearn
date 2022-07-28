@@ -32,7 +32,7 @@ router.post('/login', async(req, res) => {
                 expires: new Date(2147483647 * 1000),
                 httpOnly: true
             })
-
+            
             if (!isMatch) {
                 return res.status(401).json({ msg: "Invalid Credential" });
             } else {
@@ -40,14 +40,14 @@ router.post('/login', async(req, res) => {
                 res.status(200).json({ msg: "login Succesfully" })
             }
         } else if (instructorlogin && userrole == "INSTRUCTOR") {
-            const isMatch = await bycrypt.compare(password, userLogin.password)
+            const isMatch = await bycrypt.compare(password, instructorlogin.password)
             const token = await instructorlogin.generateAuthToken();
-
+      
             res.cookie("jwtToken", token, {
                 expires: new Date(2147483647 * 1000),
                 httpOnly: true
             })
-
+             
             if (!isMatch) {
                 return res.status(401).json({ msg: "Invalid Credential" });
             } else {

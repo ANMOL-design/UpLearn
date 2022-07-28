@@ -16,6 +16,7 @@ app.use(require("./routes/Subscribers"));
 app.use(require("./routes/contactQuery"));
 app.use(require("./routes/aboutUser"));
 app.use(require("./routes/updateUserProfile"));
+app.use(require("./routes/addCourse"));
 // mongodbconnection
 mongoose.connect(
     process.env.MONGODB_CONNECTION_STRING, {
