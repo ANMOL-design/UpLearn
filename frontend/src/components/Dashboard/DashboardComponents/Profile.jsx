@@ -38,7 +38,7 @@ export default function Profile() {
         .get("aboutStudents")
         .then((response) => {
           setprofile(response.data);
-          setprofileImg(profile.Image)
+          setprofileImg(response.data.Image)
           setId(response.data._id);
         })
         .catch((error) => {
@@ -48,9 +48,50 @@ export default function Profile() {
       };
     fetchdata();
   }, [])
-
+  const updatateImage = async () => {
+    if (userimage === "") {
+      console.log("no image");
+    } else {
+      const formData = new FormData();
+      formData.append("image", userimageData);
+      fetch(`/upload_image`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            console.log(data.error);
+          } else {
+            console.log(data.image.image);
+            setImage(data.image.image);
+            fetch("/updateImg", {
+              method: "POST",
+              headers: {
+                "content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                image1,
+                Id
+              }),
+            }).then((res)=>{
+              if (res.status === 200) {
+                window.alert("image updated succesfully")
+               } else {
+                 console.log(res);
+                 window.alert("error occured");
+               }
+            })
+        
+            
+          }
+        });
+    }
+     
+  };
+  
   console.log(profile);
-
+  console.log(profileImg)
   console.log(values);
 
   
@@ -150,7 +191,7 @@ export default function Profile() {
           <div className="DashProfileImage">
             {/* The Image with Upload Icon  */}
             <div className="ImageUploaderContainer">
-              <img src={profileImg} alt="Avtar" className="Profileimage" />
+              <img src={profileImg||Avtar} alt="Avtar" className="Profileimage" />
               {/* Making the overlay uploader  */}
               <div className="overlay">
                 <label htmlFor="myprofileimg">
@@ -530,6 +571,7 @@ export default function Profile() {
             </div>
           </div>
         </div>
+      </div>
       </div>
       {/* End Of Modal  */}
     </>
