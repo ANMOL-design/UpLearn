@@ -51,6 +51,7 @@ const userSchema = new mongoose.Schema({
     },
     Image: {
         type: String,
+        default : "https://res.cloudinary.com/uplearn/image/upload/v1658991315/h8k4dbiyonx5j8jv7m0h.png"
     },
     isInstructor: {
         type: Boolean,

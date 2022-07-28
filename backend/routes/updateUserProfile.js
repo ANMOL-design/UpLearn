@@ -57,5 +57,25 @@ router.post("/updateUserProfile", (req, res) => {
             }
         })
 })
+router.post("/updateImg", (req, res) => {
+    const {
+       image1,
+       Id
+    } = req.body;
+    
+    console.log(image1);
+    console.log(Id);
+    User.findByIdAndUpdate(Id, {
+        Image:image1
+        },
+        function(err, docs) {
+            if (err) {
+                console.log("error occured" + err)
+            } else {
+                res.status(200).json({ msg: "Updated" })
+                console.log("Updated Profile : " + docs);
+            }
+        })
+})
 
 module.exports = router;

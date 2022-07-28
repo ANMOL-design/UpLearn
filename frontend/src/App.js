@@ -17,10 +17,13 @@ import InstructorRegister from "./components/AdminPortal/InstructorRegister";
 import Logout from "./components/logout/logout";
 import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 
+//instructorDashboard routes
+import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
 //redux setup
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Contact from "./components/Contact/Contact";
+
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -55,6 +58,9 @@ function App() {
             <Route path="/admin-portal-login-190310554227" element={<AdminLogin />} />
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
             <Route path="/admin-portal-instructorRegis-190310554227" element={<InstructorRegister />} />
+            {/* instructorDashboard routes */}
+            <Route path="/instructor-addCourses" element={ <AddCourses/>} />
+
             {/* General  */}
             <Route path="*" element={<PageNotFound />} />
             <Route path="/contact" element={<Contact />} />
