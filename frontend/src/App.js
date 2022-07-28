@@ -21,8 +21,10 @@ import InstructorRegister from "./components/AdminPortal/InstructorRegister";
 import Logout from "./components/logout/logout";
 import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 
-//instructorDashboard routes
+// Instructor Dashboard 
 import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
+import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
+
 //redux setup
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
@@ -53,7 +55,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
-            {/* The Dashboard  */}
+            {/* The Student Dashboard  */}
             <Route path="/studentdashboard" element={<StudentDashboard />} />
             <Route path="/updateStudentProfile" element={<UpdateMyStudentProfile />} />
             <Route path="/change-password" element={<ChangePassword />}/>
@@ -63,13 +65,13 @@ function App() {
             <Route path="/admin-portal-login-190310554227" element={<AdminLogin />} />
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
             <Route path="/admin-portal-instructorRegis-190310554227" element={<InstructorRegister />} />
-            {/* instructorDashboard routes */}
+            {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={ <AddCourses/>} />
-
+            <Route path="/instructordashboard" element={<InstructorDashboard />} />
             {/* General  */}
-            <Route path="*" element={<PageNotFound />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
           {/* The Footer component  */}
           <Footer />
