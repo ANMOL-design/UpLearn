@@ -9,7 +9,10 @@ import Register from "./components/Register/Register";
 import Footer from "./components/Footer/Footer";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import Loader from "./components/Loader";
-// The Admin Portal Links 
+import Courses from "./components/Courses/Courses";
+import ChangePassword from "./components/Dashboard/DashboardComponents/ChangePassword";
+
+// The Admin Portal Links
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
@@ -38,8 +41,7 @@ function App() {
 
   if (isLoading) {
     return <Loader />;
-  }
-  else {
+  } else {
     return (
       <Provider store={store}>
         <Router>
@@ -52,6 +54,7 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             {/* The Dashboard  */}
             <Route path="/studentdashboard" element={<StudentDashboard />} />
+            <Route path="/change-password" element={<ChangePassword />}/>
             {/* IMAGEUPLOADER */}
             <Route path="/imageuploader" element={<ImageUploader />} />
             {/* The Admin Routes  */}
@@ -64,6 +67,7 @@ function App() {
             {/* General  */}
             <Route path="*" element={<PageNotFound />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/Courses" element={<Courses />} />
           </Routes>
           {/* The Footer component  */}
           <Footer />

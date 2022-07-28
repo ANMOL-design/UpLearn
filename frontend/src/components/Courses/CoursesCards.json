@@ -1,0 +1,99 @@
+[{
+    "id": 1,
+    "image": "./assets/images/course1.webp",
+    "heading": "Illustrator Masterclass 2021",
+    "instructor": "Peter Virde",
+    "duration":"15",
+    "rating":"4",
+    "Link": "/home",
+    "name": "Enroll"
+},
+{
+
+    "id": 2,
+    "image": "./assets/images/marketing.webp",
+    "heading": "Digital Marketing Masterclass",
+    "instructor": "Filippo Fontel",
+    "duration":"20",
+    "rating":"4",
+    "Link": "/home",
+    "name": "Enroll"
+},
+{
+
+    "id": 3,
+    "image": "./assets/images/fullstack.webp",
+    "heading": "Fullstack Web Development",
+    "instructor": "Niles Tortoishell",
+    "duration":"40",
+    "rating":"4",
+    "Link": "/home",
+    "name": "Enroll"
+},
+{
+
+    "id": 4,
+    "image": "./assets/images/sales.jpg",
+    "heading": "Sales Training: Practical Sales Techniques",
+    "instructor": "Nanny Vinton",
+    "duration":"5",
+    "rating":"4",
+    "Link": "/home",
+    "name": "Enroll"
+},
+{
+
+    "id": 5,
+    "image": "./assets/images/uiexp.jpeg",
+    "heading": "User Experience Design Essentials",
+    "instructor": " Bruno Trembey",
+    "duration":"10",
+    "rating":"4",
+    "Link": "/home",
+    "name": "Enroll"
+},
+{
+
+    "id": 6,
+    "image": "./assets/images/3d.jpg",
+    "heading": "Learn 3D Modeling",
+    "instructor": "Farlay Tommasetti",
+    "duration":"30",
+    "rating":"4",
+    "Link": "/home",
+    "name": "Enroll"
+},
+{
+
+    "id": 7,
+    "image": "./assets/images/english.jpg",
+    "heading": "Advance English Course",
+    "instructor": "Piper Sampey",
+    "duration":"12",
+    "rating":"4",
+    "Link": "/home",
+    "name": "Enroll"
+},
+{
+
+    "id": 8,
+    "image": "./assets/images/ai.jpg",
+    "heading": "AI Fundamental",
+    "instructor": "Eleen Millwater",
+    "duration":"30",
+    "rating":"4",
+    "Link": "/home",
+    "name": "Enroll"
+},
+{
+
+    "id": 9,
+    "image": "./assets/images/ps.jpg",
+    "heading": "Photoshop Training",
+    "instructor": "Cirilo Mayston",
+    "duration":"25",
+    "rating":"4",
+    "Link": "/home",
+    "name": "Enroll"
+}
+]
