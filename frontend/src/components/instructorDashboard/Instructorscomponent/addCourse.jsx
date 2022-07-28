@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "suneditor/dist/css/suneditor.min.css";
 import SunEditor from "suneditor-react";
-import katex from "katex";
+
 export default function AddCourses() {
   const [COURSE, SETCOURSE] = useState({
     title: "",

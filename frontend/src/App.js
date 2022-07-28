@@ -16,6 +16,7 @@ import ChangePassword from "./components/Dashboard/DashboardComponents/ChangePas
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
+import UpdateMyStudentProfile from "./components/Dashboard/DashboardComponents/UpdateProfile";
 import InstructorRegister from "./components/AdminPortal/InstructorRegister";
 import Logout from "./components/logout/logout";
 import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
@@ -54,6 +55,7 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             {/* The Dashboard  */}
             <Route path="/studentdashboard" element={<StudentDashboard />} />
+            <Route path="/updateStudentProfile" element={<UpdateMyStudentProfile />} />
             <Route path="/change-password" element={<ChangePassword />}/>
             {/* IMAGEUPLOADER */}
             <Route path="/imageuploader" element={<ImageUploader />} />
