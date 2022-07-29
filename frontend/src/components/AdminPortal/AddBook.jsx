@@ -132,20 +132,23 @@ export default function AddBook() {
       return (
         <>
           <div>
-            <select name="bookclass" onChange={(e) => handleChange(e)}>
-              <option value="">Select class:</option>
-              <option value="1">Class 1</option>
-              <option value="2">Class 2</option>
-              <option value="3">Class 3</option>
-              <option value="4">Class 4</option>
-              <option value="5">Class 5</option>
-              <option value="6">Class 6</option>
-              <option value="7">Class 7</option>
-              <option value="8">Class 8</option>
-              <option value="9">Class 9</option>
-              <option value="10">Class 10</option>
-              <option value="11">Class 11</option>
-              <option value="12">Class 12</option>
+          <label htmlFor="bookclass">
+                    Select Class<span className="star">*</span>
+                  </label>
+            <select id="bookclass" name="bookclass" value={BOOKS.bookclass} onChange={(e) => handleChange(e)}>
+              <option  disabled   value="">Select class:</option>
+              <option  onChange={(e) => handleChange(e)} value="1">Class 1</option>
+              <option  onChange={(e) => handleChange(e)} value="2">Class 2</option>
+              <option  onChange={(e) => handleChange(e)} value="3">Class 3</option>
+              <option  onChange={(e) => handleChange(e)} value="4">Class 4</option>
+              <option  onChange={(e) => handleChange(e)} value="5">Class 5</option>
+              <option  onChange={(e) => handleChange(e)} value="6">Class 6</option>
+              <option  onChange={(e) => handleChange(e)} value="7">Class 7</option>
+              <option  onChange={(e) => handleChange(e)} value="8">Class 8</option>
+              <option  onChange={(e) => handleChange(e)} value="9">Class 9</option>
+              <option  onChange={(e) => handleChange(e)} value="10">Class 10</option>
+              <option  onChange={(e) => handleChange(e)} value="11">Class 11</option>
+              <option  onChange={(e) => handleChange(e)} value="12">Class 12</option>
             </select>
           </div>
         </>
@@ -154,14 +157,17 @@ export default function AddBook() {
       return (
         <>
           <div>
-            <select name="bookclass" onChange={(e) => handleChange(e)}>
-              <option>Select Exam:</option>
-              <option value="Jee">Jee</option>
-              <option value="Neet">Neet</option>
-              <option value="Cat">Cat</option>
-              <option value="Gate">Gate</option>
-              <option value="Upsc">Upsc</option>
-              <option value="Other">Other</option>
+          <label htmlFor="bookclass1">
+                    Select Exam<span className="star">*</span>
+                  </label>
+            <select id="bookclass1" name="bookclass" value={BOOKS.bookclass} onChange={(e) => handleChange(e)}>
+              <option value="" disabled>Select Exam:</option>
+              <option  onChange={(e) => handleChange(e)} value="Jee">Jee</option>
+              <option  onChange={(e) => handleChange(e)} value="Neet">Neet</option>
+              <option  onChange={(e) => handleChange(e)} value="Cat">Cat</option>
+              <option  onChange={(e) => handleChange(e)} value="Gate">Gate</option>
+              <option  onChange={(e) => handleChange(e)} value="Upsc">Upsc</option>
+              <option  onChange={(e) => handleChange(e)} value="Other">Other</option>
             </select>
           </div>
         </>
@@ -182,7 +188,19 @@ export default function AddBook() {
     setbookPdf(e.target.files[0].name);
     setbookPdfData(e.target.files[0]);
   }
-
+  const time = 20000;
+  function sendData () {
+    setTimeout(function () {
+      console.log(Book_Pdf +" "+Book_Image);
+    if(Book_Pdf=="" || Book_Image==""){
+       time = time+10000
+       sendData();
+    }
+    else{
+    postData();
+    }
+  }, time);
+}
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleValidation();
@@ -197,9 +215,8 @@ export default function AddBook() {
       await submitImage(bookPdf, bookPdfData, "bookPdf");
 
       // Send Data to Backend after 10 sec
-      setTimeout(function () {
-        postData();
-      }, 20000);
+      
+        sendData();
     }
   };
   return (
@@ -282,8 +299,8 @@ export default function AddBook() {
                   </div>
                 </div>
 
-                <div className="form-field">
-                  <BOOKCHOICE />
+                <div className="addBookInputField">
+               <BOOKCHOICE/>
                 </div>
                 <div className="addBookInputField btn">
                   <label htmlFor="bookImage">

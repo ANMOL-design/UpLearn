@@ -8,7 +8,7 @@ const LIBRARY = require("../models/librarySchema");
 router.post("/addBookToLibrary", (req, res) => {
   const { bookName, AuthorName, bookCategory, bookclass, BookImage, BookPdf,bookSubject } =
     req.body;
-
+    console.log(req.body);
   if (!bookName||!AuthorName||!bookCategory||!bookclass||!BookImage||!BookPdf||!bookSubject) {
     return res.sendStatus(201);
   }
