@@ -72,6 +72,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
             <Route path="*" element={<PageNotFound />} />
+            
           </Routes>
           {/* The Footer component  */}
           <Footer />
