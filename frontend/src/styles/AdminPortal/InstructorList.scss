@@ -1,0 +1,57 @@
+.instructor-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+
+  }
+  /* Zebra striping */
+  .instructor-table tr:nth-of-type(odd) { 
+    background: #3a4dad34; 
+  }
+  .instructor-table th { 
+    background: #2b4eff; 
+    color: white; 
+    font-weight: bold; 
+  }
+  .instructor-table td, .instructor-table th { 
+    padding: 6px; 
+    border: 1px solid #ccc; 
+    text-align: left; 
+  }
+
+  @media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	.instructor-table table,.instructor-table thead,.instructor-table tbody,.instructor-table th,.instructor-table td,.instructor-table tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.instructor-table thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	.instructor-table tr { border: 1px solid #ccc; }
+	
+	.instructor-table td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	.instructor-table .instructor-table td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+}

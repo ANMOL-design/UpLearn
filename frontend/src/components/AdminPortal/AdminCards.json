@@ -18,11 +18,11 @@
     {
 
         "id": 3,
-        "image": "./assets/images/education-banner.png",
-        "heading": "Check Teacher Details",
+        "image": "./assets/images/instructor-banner.jpg",
+        "heading": "Check Instructor Details",
         "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
-        "Link": "/home",
-        "name": "Start"
+        "Link": "/admin-portal-InstructorList-190310554227",
+        "name": "Check Details"
     },
     {
 

@@ -33,4 +33,10 @@ router.post("/addBookToLibrary", (req, res) => {
     });
 });
 
+router.get('/librarybooks', (req, res) => {
+    LIBRARY.find({}).then((result) => {
+        res.send(result)
+    });
+})
+
 module.exports = router;

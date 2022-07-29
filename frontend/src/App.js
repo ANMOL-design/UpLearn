@@ -30,6 +30,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Contact from "./components/Contact/Contact";
 import AddBook from "./components/AdminPortal/AddBook";
+import InstructorList from "./components/AdminPortal/InstructorList";
 
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
             <Route path="/admin-portal-instructorRegis-190310554227" element={<InstructorRegister />} />
             <Route path="/admin-portal-Addbook-190310554227" element={<AddBook />} />
+            <Route path="/admin-portal-InstructorList-190310554227" element={<InstructorList />} />
             {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={ <AddCourses/>} />
             <Route path="/instructordashboard" element={<InstructorDashboard />} />
