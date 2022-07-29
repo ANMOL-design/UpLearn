@@ -9,11 +9,11 @@
     {
 
         "id": 2,
-        "image": "./assets/images/education-banner.png",
-        "heading": "Students Details",
-        "title": "Attitude Is A Little Thing That Makes A Big Difference.",
-        "Link": "/home",
-        "name": "Start"
+        "image": "./assets/images/library_banner.png",
+        "heading": "Add New Book into Library",
+        "title": "Good friends, good books, and a sleepy conscience: this is the ideal life..",
+        "Link": "/admin-portal-Addbook-190310554227",
+        "name": "Add Books"
     },
     {
 

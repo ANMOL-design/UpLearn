@@ -25,13 +25,14 @@ export default function AddCourses() {
         .get("/aboutInstructor")
         .then((response) => {
           setInstructor(response.data);
-          console.log(Instructor);
+     
         })
         .catch((error) => {
           console.log(error);
-          navigate("/login");
+          // navigate("/login");
         });
       };
+      console.log(Instructor);
     fetchdata();
   }, [])
   const handleEditorChange = (content) => {
