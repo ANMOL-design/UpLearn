@@ -13,7 +13,7 @@ export default function AddBook() {
     AuthorName: "",
     bookCategory: "",
     bookclass: "",
-    bookSubject:""
+    bookSubject: "",
   });
   const [bookImage, setbookImage] = useState("");
   const [BookImageData, setBookImageData] = useState();
@@ -34,7 +34,7 @@ export default function AddBook() {
       !BOOKS.bookCategory ||
       !BOOKS.bookclass ||
       !bookImage ||
-      !bookPdf||
+      !bookPdf ||
       !BOOKS.bookSubject
     ) {
       seterr("Please Enter all required Fields.");
@@ -76,12 +76,8 @@ export default function AddBook() {
   const postData = async () => {
     const BookImage = Book_Image;
     const BookPdf = Book_Pdf;
-    const { bookName,
-        AuthorName,
-        bookCategory,
-        bookclass,
-        bookSubject
-       } = BOOKS;
+    const { bookName, AuthorName, bookCategory, bookclass, bookSubject } =
+      BOOKS;
 
     const res = await fetch("/addBookToLibrary", {
       method: "POST",
@@ -95,7 +91,7 @@ export default function AddBook() {
         bookclass,
         BookImage,
         BookPdf,
-        bookSubject
+        bookSubject,
       }),
     });
 
@@ -192,124 +188,155 @@ export default function AddBook() {
     const submit = handleValidation();
 
     if (submit) {
-      seterr('Please wait we are uploading your Data')
+      seterr("Please wait we are uploading your Data");
       document.getElementById("addBookBtn").disabled = true;
-      document.getElementById("loader-reg").style.display = 'inline';
-          
+      document.getElementById("loader-reg").style.display = "inline";
+
       // Send Images to cloud
       await submitImage(bookImage, BookImageData, "bookImage");
       await submitImage(bookPdf, bookPdfData, "bookPdf");
-    
 
-      
       // Send Data to Backend after 10 sec
       setTimeout(function () {
-          postData();
+        postData();
       }, 20000);
-    }    
+    }
   };
   return (
     <>
       <div className="maincontainer">
         <div className="addbook-header">
-          <h1>Add Books Into Library</h1>
+          {/* <h1>Add Books Into Library</h1> */}
         </div>
-        <form action="">
-          <div className="addbook-body">
-            <div className="form-field">
-              <label htmlFor="bookName">Enter Book Name :</label> <br />
-              <input
-                type="text"
-                id="bookName"
-                name="bookName"
-                placeholder="NCERT Science"
-                value={BOOKS.bookName}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div className="form-field">
-              <label htmlFor="AuthorName">Enter Book Author Name :</label>{" "}
-              <br />
-              <input
-                type="text"
-                id="AuthorName"
-                name="AuthorName"
-                placeholder="Rs Aggarwal"
-                value={BOOKS.AuthorName}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div className="form-field">
-              <label htmlFor="bookSubject">Enter Book Author Name :</label>{" "}
-              <br />
-              <input
-                type="text"
-                id="bookSubject"
-                name="bookSubject"
-                placeholder="English"
-                value={BOOKS.bookSubject}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div className="form-field">
-              <label htmlFor="bookCategory">Enter Book Name :</label> <br />
-              <input
-                type="radio"
-                id="School"
-                name="bookCategory"
-                value="School"
-                onChange={(e) => handleChange(e)}
-              />
-              <label htmlFor="School">For School</label> <br />
-              <input
-                type="radio"
-                id="Exam"
-                name="bookCategory"
-                value="Exam"
-                onChange={(e) => handleChange(e)}
-              />
-              <label htmlFor="Exam">For Competetive Exam</label> <br />
-            </div>
-            <div className="form-field">
-              <BOOKCHOICE />
-            </div>
-            <div className="form-field">
-              <label htmlFor="bookImage">Book Image</label>
-              <input
-                type="file"
-                id="bookImage"
-                className="bookImage"
-                accept=".png, .jpg, .jpeg"
-                onChange={(e) => {
-                  validateBookImage(e);
-                }}
-              />
-              <p>{bookImage}</p>
-            </div>
-            <div className="form-field">
-              <label htmlFor="bookPdf">Book Pdf</label>
-              <input
-                type="file"
-                id="bookPdf"
-                className="bookPdf"
-                accept="application/pdf"
-                onChange={(e) => {
-                  validateBookPdf(e);
-                }}
-              />
-              <p>{bookPdf}</p>
-            </div>
-            <div className="addbook-footer">
-              <div>
-                <img src={Loader} alt="Loader" id="loader-reg" />
-                <p className="uploadphoto">{err}</p>
+        <div className="addBookWrapper">
+          <div className="addBookForm">
+            <form action="">
+              <h3>Add Books Into Library</h3>
+
+              <div className="fields">
+                <div className="addBookInputField">
+                  <label htmlFor="bookName">
+                    Enter Book Name <span className="star">*</span>
+                  </label>{" "}
+                  <input
+                    type="text"
+                    id="bookName"
+                    name="bookName"
+                    placeholder="NCERT Science"
+                    value={BOOKS.bookName}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className="addBookInputField">
+                  <label htmlFor="AuthorName">
+                    Enter Book Author Name <span className="star">*</span>
+                  </label>{" "}
+                  <input
+                    type="text"
+                    id="AuthorName"
+                    name="AuthorName"
+                    placeholder="Rs Aggarwal"
+                    value={BOOKS.AuthorName}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className="addBookInputField">
+                  <label htmlFor="bookSubject">
+                    Enter Book Subject <span className="star">*</span>
+                  </label>{" "}
+                  <input
+                    type="text"
+                    id="bookSubject"
+                    name="bookSubject"
+                    placeholder="English"
+                    value={BOOKS.bookSubject}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
               </div>
-              <div className="submit-btn">
-                <input type="submit" id="addBookBtn" onClick={handleSubmit} value="Add Book" />
+
+              <div className="fields">
+                <div className="field">
+                  <label htmlFor="bookCategory">
+                    Choose <span className="star">*</span>
+                  </label>{" "}
+                  <div>
+                    <input
+                      type="radio"
+                      id="School"
+                      name="bookCategory"
+                      value="School"
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <label htmlFor="School"> For School</label> <br />
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      id="Exam"
+                      name="bookCategory"
+                      value="Exam"
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <label htmlFor="Exam"> For Competetive Exam</label> <br />
+                  </div>
+                </div>
+
+                <div className="form-field">
+                  <BOOKCHOICE />
+                </div>
+                <div className="addBookInputField btn">
+                  <label htmlFor="bookImage">
+                    Book Image <span className="star">*</span>
+                  </label>
+                  <input
+                    type="file"
+                    id="bookImage"
+                    className="uploadBtn"
+                    // className="bookImage"
+                    accept=".png, .jpg, .jpeg"
+                    onChange={(e) => {
+                      validateBookImage(e);
+                    }}
+                  />
+                  <p>{bookImage}</p>
+                </div>
+                <div className="addBookInputField btn">
+                  <label htmlFor="bookPdf">
+                    Book Pdf <span className="star">*</span>
+                  </label>
+                  <input
+                    type="file"
+                    id="bookPdf"
+                    className="uploadBtn"
+                    // className="bookPdf"
+                    accept="application/pdf"
+                    onChange={(e) => {
+                      validateBookPdf(e);
+                    }}
+                  />
+                  <p>{bookPdf}</p>
+                </div>
               </div>
-            </div>
+
+              <div className="addbook-footer addBookBtn">
+                <div>
+                  <img src={Loader} alt="Loader" id="loader-reg" />
+                  <p className="uploadphoto">{err}</p>
+                </div>
+                <div className="submit-btn">
+                  <input
+                    type="submit"
+                    id="addBookBtn"
+                    className="addBtn"
+                    onClick={handleSubmit}
+                    value="Add Book"
+                  />
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </>
   );
