@@ -5,12 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function AddCourses() {
+
   const [COURSE, SETCOURSE] = useState({
     title: "",
     courseojective: "",
     level: "",
     language: "",
   });
+
   let navigate = useNavigate();
   const [Instructor, setInstructor] = useState({});
   const [thumbnailImage, setthumbnailImage] = useState("");
@@ -25,21 +27,25 @@ export default function AddCourses() {
         .get("/aboutInstructor")
         .then((response) => {
           setInstructor(response.data);
-          console.log(Instructor);
+     
         })
         .catch((error) => {
           console.log(error);
-          navigate("/login");
+          // navigate("/login");
         });
       };
+      console.log(Instructor);
     fetchdata();
   }, [])
+
   const handleEditorChange = (content) => {
     setDescription(content);
   };
+
   const handlechange = (e) => {
     SETCOURSE({ ...COURSE, [e.target.name]: e.target.value });
   };
+
   const submitImage = (image1, imageData) => {
     if (image1 === "") {
       console.log("no image");
@@ -60,11 +66,12 @@ export default function AddCourses() {
         });
     }
   };
+
   const postData = async () => {
     const { title, courseojective, level, language } = COURSE;
     const thumbnail = thumbnail1;
     const Description = Description1;
-   const courseInstructor=Instructor._id
+    const courseInstructor=Instructor._id
     const res = await fetch("/Instructoraddcourse", {
       method: "POST",
       headers: {
@@ -82,6 +89,7 @@ export default function AddCourses() {
       window.alert("error occured");
     }
   };
+
   const submitCourse = async (event) => {
     submitImage(thumbnailImage, thumbnailImageData);
 
@@ -91,6 +99,7 @@ export default function AddCourses() {
     console.log(thumbnail1);
     postData();
   };
+
   return (
     <>
       <div className="add-course-container">
@@ -180,7 +189,7 @@ export default function AddCourses() {
                     value="Beginers"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span for="Beginers">Beginers</span>
+                  <span htmlFor="Beginers">Beginers</span>
                   <br />
                   <input
                     type="radio"
@@ -189,7 +198,7 @@ export default function AddCourses() {
                     value="Intermidiate"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span for="Intermidiate">Intermidiate</span>
+                  <span htmlFor="Intermidiate">Intermidiate</span>
                   <br />
                   <input
                     type="radio"
@@ -198,7 +207,7 @@ export default function AddCourses() {
                     value="Advanced"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span for="Advanced">Advanced</span>
+                  <span htmlFor="Advanced">Advanced</span>
                 </label>
               </div>
               <div className="add-course-radio">
@@ -212,7 +221,7 @@ export default function AddCourses() {
                     value="English"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span for="English">English</span>
+                  <span htmlFor="English">English</span>
                   <br />
                   <input
                     type="radio"
@@ -222,7 +231,7 @@ export default function AddCourses() {
                     value="Hindi"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span for="Hindi">Hindi</span>
+                  <span htmlFor="Hindi">Hindi</span>
                   <br />
                   <input
                     type="radio"
@@ -232,7 +241,7 @@ export default function AddCourses() {
                     value="Hinglish"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span for="Hinglish">Hinglish</span>
+                  <span htmlFor="Hinglish">Hinglish</span>
                   <br />
                   <input
                     type="radio"
@@ -242,7 +251,7 @@ export default function AddCourses() {
                     value="other"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span for="other">other</span>
+                  <span htmlFor="other">other</span>
                 </label>
               </div>
               <div className="inputField btn">
