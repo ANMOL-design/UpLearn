@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 router.use(express.json());
 dotenv.config();
 const LIBRARY = require("../models/librarySchema");
+const User = require("../models/userSchema");
 
 router.post("/addBookToLibrary", (req, res) => {
   const { bookName, AuthorName, bookCategory, bookclass, BookImage, BookPdf,bookSubject } =
@@ -37,6 +38,26 @@ router.get('/librarybooks', (req, res) => {
     LIBRARY.find({}).then((result) => {
         res.send(result)
     });
+})
+
+router.post("/addtolibrary", (req, res) => {
+  const {
+    BookId,
+    UserId
+  } = req.body;
+
+const bookId = BookId
+  User.findByIdAndUpdate(UserId, {
+          $push:{MyLibrary:{BookId:bookId}}
+      },
+      function(err, docs) {
+          if (err) {
+              console.log("error occured" + err)
+          } else {
+              res.status(200).json({ msg: "Updated" })
+              console.log("Book Added to Library");
+          }
+      })
 })
 
 module.exports = router;

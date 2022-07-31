@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { MdSearch,MdLibraryAdd } from "react-icons/md";
 import LibraryHome from "./LibraryBooks";
+var CryptoJS = require("crypto-js");
 export default function LibraryPage() {
   const loginDetails = useSelector((state) => state.userReducers);
   let navigate = useNavigate();
 
   const [Library, SetLibrary] = useState([]);
+  const [User, SetUser] = useState({});
   const [BOOKS, setBOOks] = useState({
     bookCategory: "",
   });
@@ -70,27 +72,55 @@ export default function LibraryPage() {
 
   useEffect(() => {
     window.scroll(0, 120);
-    // Check is  Login Or Not
-    if (Number(loginDetails.isLoggedIn)) {
-      // call the fetch admin detail function
-      const fetchdata = async () => {
-        await axios
-          .get("/librarybooks")
-          .then((response) => {
-            SetLibrary(response.data);
+    // Decrypting the User Role
+    if(loginDetails.userRole !== ''){
+      var bytes = CryptoJS.AES.decrypt(loginDetails.userRole, 'my-secret-key@123');
+      var role = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    }
+    console.log(role)
+    // Check is  Login Or Not 
+    if (Number(loginDetails.isLoggedIn) && role === "INSTRUCTOR") 
+    {
+      // call the fetch admin detail function 
+      const fetchdata = async () =>{
+        await axios.get("/aboutInstructor").then(response => {
+          SetUser(response.data);
           })
-          .catch((error) => {
+          .catch(error => {
             console.log(error);
             navigate("/login");
           });
-      };
+      }
       fetchdata();
     }
-    // If User is not login redirect to login
-    else {
+    else if((Number(loginDetails.isLoggedIn) && role === "STUDENT")){
+        // call the fetch admin detail function 
+        const fetchdata = async () =>{
+            await axios.get("/aboutStudents").then(response => {
+              SetUser(response.data);
+              })
+              .catch(error => {
+                console.log(error);
+                navigate("/login");
+              });
+        }
+        fetchdata();
+    }
+    // If User is not login redirect to login 
+    else{
       navigate("/login");
     }
-  }, [loginDetails.isLoggedIn]);
+    const fetchBooks = async () =>{
+      await axios.get("/librarybooks").then(response => {
+        SetLibrary(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+          navigate("/login");
+        });
+  }
+  fetchBooks();
+  }, [loginDetails.isLoggedIn])
   return (
     <>
     <div className="lib-main-container">
@@ -139,7 +169,7 @@ export default function LibraryPage() {
         </div>
 
         <div className="library-card-containerr">
-            <LibraryHome/>
+            <LibraryHome id={User._id} user={User}/>
         </div>
       </div>
       </div>
