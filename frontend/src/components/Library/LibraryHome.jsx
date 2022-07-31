@@ -5,6 +5,7 @@ import { MdSearch } from "react-icons/md";
 import LibraryHome from "./LibraryBooks";
 import LibraryBanner from "./../../assets/images/Librarybanner.jpeg";
 import axios from "axios";
+import Loader from "../Loader";
 var CryptoJS = require("crypto-js");
 
 export default function LibraryPage() {
@@ -13,10 +14,14 @@ export default function LibraryPage() {
   let navigate = useNavigate();
 
   const [User,SetUser] = useState({});
+  const [isLoading, setisLoading] = useState(true);
 
-  const [Library, SetLibrary] = useState({});
+  const [Library, SetLibrary] = useState([]);
+  const [inputbook, setinputbook] = useState('');
+
   const [books, setbooks] = useState({
     bookCategory: "",
+    bookclass: ""
   });
 
   const handleChange = (event) => {
@@ -29,7 +34,7 @@ export default function LibraryPage() {
       return (
         <>
           <label htmlFor="bookclass">
-            Select Class<span className="star">*</span>
+            <b>Select Class</b><span className="star">*</span>
           </label>
           <select id="bookclass" name="bookclass"  
             value={books.bookclass}
@@ -56,18 +61,18 @@ export default function LibraryPage() {
       return (
         <>
           <label htmlFor="bookclass1">
-            Select Exam<span className="star">*</span>
+            <b>Select Exam</b><span className="star">*</span>
           </label>
           <select id="bookclass1" name="bookclass"
             value={books.bookclass}
             onChange={(e) => handleChange(e)}
           >
             <option value="">Select Exam</option>
-            <option value="JEE">Jee</option>
-            <option value="NEET">Neet</option>
-            <option value="CAT">Cat</option>
-            <option value="GATE">Gate</option>
-            <option value="UPSC">Upsc</option>
+            <option value="JEE">JEE</option>
+            <option value="NEET">NEET</option>
+            <option value="CAT">CAT</option>
+            <option value="GATE">GATE</option>
+            <option value="UPSC">UPSC</option>
             <option value="OTHER">Other</option>
           </select>
         </>
@@ -119,9 +124,8 @@ export default function LibraryPage() {
     // For Suggestions in Inputbox 
     const fetchBooks = async () =>{
       await axios.get("/librarybooks").then(response => {
-        console.log(response.data)
         SetLibrary(response.data);
-        console.log(books, Library, User)
+        setisLoading(false);
         })
         .catch(error => {
           console.log(error);
@@ -131,79 +135,101 @@ export default function LibraryPage() {
     fetchBooks();
   }, [loginDetails.isLoggedIn]);
 
-  console.log(books, Library, User)
 
+  const SearchTheBooks = () => { 
+    console.log('Search by choice')
+  }
 
-  return (
-    <>
-    <div className="lib-main-container">
-      {/* Banner Image of Library  */}
-      <div className="Library-banner">
-        <img src={LibraryBanner} alt="Banner" />
-      </div>
-      {/* Main Content of Library  */}
-      <div className="library-container">
-        {/* Heading Library  */}
-        <div className="library-heading">
-          <h1>Uplearn Online Library</h1>
-          <p>
-            Here you get all NCERT books also Books for preparing Exams Like
-            JEE,NEET,CAT,UPSC etc.
-          </p>
+  const SearchByChoice = () => {
+    console.log('Search by choice')
+  }
+
+  if(isLoading){
+    return(
+      <Loader />
+    )
+  }
+
+  else{
+    return (
+      <>
+      <div className="lib-main-container">
+        {/* Banner Image of Library  */}
+        <div className="Library-banner">
+          <img src={LibraryBanner} alt="Banner" />
         </div>
-        {/* filter Out Function  */}
-        <div className="library-filter-container">
-          <div className="library-search-bar">
-            {/* Input Bar  */}
-            <input list="library-search" name="librarySearch" />
-            {
-              // (Library) ? 
-              //   <datalist id="library-search">
-              //     {/* {Library.map((item) => (
-              //       <option value={item.bookName} />
-              //     ))} */}
-              //   </datalist>
-              // : null
-            }
-            
-            <button type="submit">
-              <MdSearch />
-            </button>
+        {/* Main Content of Library  */}
+        <div className="library-container">
+          {/* Heading Library  */}
+          <div className="library-heading">
+            <h1>Uplearn Online Library</h1>
+            <p>
+              Here you get all NCERT books also Books for preparing Exams Like
+              JEE,NEET,CAT,UPSC etc.
+            </p>
+          </div>
+          {/* filter Out Function  */}
+          <div className="library-filter-container">
+              {/* Input Bar  */}
+              <div className="librarySearch">
+                <input list="library-search" 
+                  name="librarySearch" 
+                  placeholder="What are you looking for ?"
+                  onChange={(e) => {setinputbook(e.target.value)}}
+                />
+                {
+                  (Library.length > 0) ? 
+                    <datalist id="library-search">
+                      {Library.map((item) => (
+                        <option value={item.bookName} />
+                      ))}
+                    </datalist>
+                  : null
+                }
+                
+                <button type="submit" onClick={SearchTheBooks}>
+                    <i><MdSearch /></i> Search
+                </button>
+              </div>
 
-            {/* Choices  */}
-            <label htmlFor="bookCategory">
-              Choose <span className="star">*</span>
-            </label>
+              <div className="libraryChoice">
+                {/* Choices  */}
+                <label htmlFor="bookCategory">
+                  <b>Select Book</b> <span className="star">*</span>
+                </label>
 
-            <input
-              type="radio"
-              id="School"
-              name="bookCategory"
-              value="School"
-              onChange={(e) => handleChange(e)}
-            />
-            <label htmlFor="School"> For School</label>
+                <input
+                  type="radio"
+                  id="School"
+                  name="bookCategory"
+                  value="School"
+                  onChange={(e) => handleChange(e)}
+                />
+                <label htmlFor="School"> For School</label>
 
-            <input
-              type="radio"
-              id="Exam"
-              name="bookCategory"
-              value="Exam"
-              onChange={(e) => handleChange(e)}
-            />
-            <label htmlFor="Exam"> For Competetive Exam</label>
+                <input
+                  type="radio"
+                  id="Exam"
+                  name="bookCategory"
+                  value="Exam"
+                  onChange={(e) => handleChange(e)}
+                />
+                <label htmlFor="Exam"> For Competetive Exam</label>
 
-            <BOOKCHOICE />
-            {/* Button to Filter  */}
-            <button>Filter</button>
+                <div className="libraryChoice">
+                  <BOOKCHOICE />
+                  {/* Button to Filter  */}
+                  {books.bookCategory ? <button onClick={SearchByChoice}>Filter</button> : null}                  
+                </div>
+              </div>
+          </div>
+          {/* Section Show all AvailableBooks  */}
+          <div className="library-card-containerr">
+              <LibraryHome id={User._id} user={User} input={inputbook} book={books}/>
           </div>
         </div>
-        {/* Section Show all AvailableBooks  */}
-        <div className="library-card-containerr">
-            <LibraryHome/>
-        </div>
       </div>
-    </div>
-    </>
-  );
+      </>
+    );
+  }
 }
