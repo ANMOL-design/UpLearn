@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { MdSearch } from "react-icons/md";
 import LibraryHome from "./LibraryBooks";
-import LibraryBanner from "./../../assets/images/Librarybanner.jpeg"
+import LibraryBanner from "./../../assets/images/Librarybanner.jpeg";
 import axios from "axios";
 var CryptoJS = require("crypto-js");
 
@@ -18,6 +18,7 @@ export default function LibraryPage() {
   const [Library, SetLibrary] = useState([]);
   const [books, setbooks] = useState({
     bookCategory: "",
+    bookclass: ""
   });
 
   const handleChange = (event) => {
@@ -116,6 +117,9 @@ export default function LibraryPage() {
       navigate("/login");
     }
   }, [loginDetails.isLoggedIn]);
+
+
+  console.log(books)
 
   // Starting Main Component 
   return (
