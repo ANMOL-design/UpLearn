@@ -4,8 +4,8 @@ import axios from "axios";
 import { MdLibraryAdd, MdRemoveRedEye, MdSimCardDownload } from "react-icons/md";
 
 
-function LibraryHome(){
-
+function LibraryHome(props){
+   
     const [product, setproduct] = useState([]);
 
     const [currentPage, setcurrentPage] = useState(0);
@@ -17,6 +17,7 @@ function LibraryHome(){
             setproduct(data);
         }
         fetchdata();
+        
     }, [])
 
     const ProductItemShowDisplay1 = () => {
@@ -52,14 +53,16 @@ function LibraryHome(){
 
     const AddtoLibrary = async(e)=>{
       const BookId = e.target.value;
-      await fetch("/addtoLibrary", {
+      const UserId = props.id
+      await fetch("/addtolibrary", {
         method: "POST",
         headers: {
           "content-Type": "application/json",
         },
         
         body: JSON.stringify({
-          BookId
+          BookId,
+          UserId
         }),
       }).then((Response)=>{
         if(Response.status==200){
@@ -105,6 +108,7 @@ function LibraryHome(){
                                     <p className="card-text">{item.bookName}</p>
                                     <h5 className="card-title fade-title-header"> by {item.AuthorName}</h5>   
                             </div>
+                            {(props.user.MyLibrary === item._id)}
                             <button className="lib-card-button" value={item._id} onClick={AddtoLibrary}>
                                 <MdLibraryAdd/> Add To Library
                             </button>

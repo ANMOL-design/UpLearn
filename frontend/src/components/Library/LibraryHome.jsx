@@ -7,7 +7,6 @@ import LibraryBanner from "./../../assets/images/Librarybanner.jpeg";
 import axios from "axios";
 var CryptoJS = require("crypto-js");
 
-
 export default function LibraryPage() {
 
   const loginDetails = useSelector((state) => state.userReducers);
@@ -15,10 +14,9 @@ export default function LibraryPage() {
 
   const [User,SetUser] = useState({});
 
-  const [Library, SetLibrary] = useState([]);
+  const [Library, SetLibrary] = useState({});
   const [books, setbooks] = useState({
     bookCategory: "",
-    bookclass: ""
   });
 
   const handleChange = (event) => {
@@ -77,6 +75,7 @@ export default function LibraryPage() {
     }
   };
 
+
   useEffect(() => {
     window.scroll(0, 120);
     // Decrypting the User Role
@@ -116,12 +115,25 @@ export default function LibraryPage() {
     else{
       navigate("/login");
     }
+
+    // For Suggestions in Inputbox 
+    const fetchBooks = async () =>{
+      await axios.get("/librarybooks").then(response => {
+        console.log(response.data)
+        SetLibrary(response.data);
+        console.log(books, Library, User)
+        })
+        .catch(error => {
+          console.log(error);
+          navigate("/login");
+        });
+    }
+    fetchBooks();
   }, [loginDetails.isLoggedIn]);
 
+  console.log(books, Library, User)
 
-  console.log(books)
 
-  // Starting Main Component 
   return (
     <>
     <div className="lib-main-container">
@@ -144,11 +156,16 @@ export default function LibraryPage() {
           <div className="library-search-bar">
             {/* Input Bar  */}
             <input list="library-search" name="librarySearch" />
-            <datalist id="library-search">
-              {Library.map((item) => (
-                <option value={item.bookName} />
-              ))}
-            </datalist>
+            {
+              // (Library) ? 
+              //   <datalist id="library-search">
+              //     {/* {Library.map((item) => (
+              //       <option value={item.bookName} />
+              //     ))} */}
+              //   </datalist>
+              // : null
+            }
+            
             <button type="submit">
               <MdSearch />
             </button>
