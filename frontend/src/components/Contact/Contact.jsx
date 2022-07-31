@@ -21,7 +21,6 @@ export default function Contact() {
       var bytes = CryptoJS.AES.decrypt(loginDetails.userRole, 'my-secret-key@123');
       var role = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     }
-    console.log(role)
     // Check is  Login Or Not 
     if (Number(loginDetails.isLoggedIn) && role === "INSTRUCTOR") 
     {
