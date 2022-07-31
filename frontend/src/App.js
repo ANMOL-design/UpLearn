@@ -71,7 +71,7 @@ function App() {
             <Route path="/admin-portal-InstructorList-190310554227" element={<InstructorList />} />
             {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={ <AddCourses/>} />
-            <Route path="/instructordashboard" element={<InstructorDashboard />} />
+            <Route path="/instructordashboard/*" element={<InstructorDashboard />} />
             {/* General  */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
