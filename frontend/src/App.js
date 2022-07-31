@@ -31,6 +31,7 @@ import { store } from "./redux/store";
 import Contact from "./components/Contact/Contact";
 import AddBook from "./components/AdminPortal/AddBook";
 import InstructorList from "./components/AdminPortal/InstructorList";
+import LibraryPage from "./components/Library/LibraryHome";
 
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
             {/* General  */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
+            <Route path="/onlinelibrary" element={<LibraryPage />} />
             <Route path="*" element={<PageNotFound />} />
             
           </Routes>
