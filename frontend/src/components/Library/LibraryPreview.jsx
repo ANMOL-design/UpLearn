@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { Document, Page } from 'react-pdf';
 var CryptoJS = require("crypto-js");
 export default function LibraryPreview() {
   const loginDetails = useSelector((state) => state.userReducers);
@@ -11,12 +10,7 @@ export default function LibraryPreview() {
   const navigate = useNavigate();
   const [User, SetUser] = useState({});
   const [myBook,setmyBook] = useState({})
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
 
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
   useEffect(() => {
     window.scroll(0, 120);
       
@@ -78,19 +72,9 @@ export default function LibraryPreview() {
   console.log(myBook);
   return(
     <>
-    <Document file={myBook.BookPdf} onLoadSuccess={onDocumentLoadSuccess}>
-        
-      </Document>
+   
    <iframe src={myBook.BookPdf} width="100%" height="800px" style={{border:"none"}} allowFullScreen>
 </iframe>
-    
-{/* <div style="position:absolute;right:50px;top:0px;width:27%">
-  <h1>Supercharge your PDFs!</h1>
-  <b>FlowPaper lite</b> is a compact version of the widely used and popular FlowPaper PDF flipbook viewer. Its free to use and an iframe is all you need! Just change its src attribute and point the last part to a PDF you want to display, like so: <pre>&lt;iframe src="http://flipbook.flowpaper.com/[URL to PDF file]"&gt;</pre>
-  <br/><br/>
-  For more information FlowPaper please see <a href="https://flowpaper.com" target="_new">https://flowpaper.com</a>
-</div> */}
-
     </>
   )
 }

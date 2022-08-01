@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 router.use(express.json());
 dotenv.config();
 const Instructors = require("../models/instructorregisterSchema");
+const sendInstructorRegistrationEmail = require("../utils/emails/sendInstructorRegisterEmail");
 
 router.post("/InstructorRegister", (req, res) => {
     const {
@@ -61,6 +62,7 @@ router.post("/InstructorRegister", (req, res) => {
             instructors
                 .save()
                 .then(() => {
+                    sendInstructorRegistrationEmail(email,Teachername)
                     res
                         .status(200)
                         .json({ msg: "Instructor Registration Registration Successful" });
