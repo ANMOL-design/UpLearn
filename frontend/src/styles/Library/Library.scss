@@ -1,28 +1,29 @@
-.lib-main-container {
+.lib-main-container{
     font-family: $font_El;
 }
-
 .Library-banner {
     @include displayflex;
+    // Set a background Image 
+    background: url("./../../assets/images/Librarybanner.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70vh;
     justify-content: flex-start;
     flex-direction: column;
+    // color: #fff;
+   
     box-shadow: inset 1px 1px 8px #888888;
-    img {
-        width: 100%
-    }
+    // h1 {
+    //     font-size: 3rem;
+    //     padding: 4rem 2.5rem 0.5rem;
+    // }
+    // p {
+    //     font-size: 18px;
+    //     text-align: center;
+    //     width: 70vw;
+    // }
 }
-
-.library-heading {
-    h1 {
-        text-align: center;
-    }
-    p {
-        text-align: center;
-        letter-spacing: 1px;
-        color: $darkgrey;
-    }
-}
-
 .lib-card-button {
     @include sitebutton;
     display: inline-block;
@@ -30,38 +31,32 @@
     width: 80%;
     margin: 12px 10px;
 }
-
-.library-card-container {
+.library-card-container{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
-
-.library-card {
+.library-card{
     width: 350px;
-    background-color: #f1f3f6;
+    background-color:#f1f3f6;
     margin: 20px;
     padding: 10px;
 }
-
-.lib-card-img img {
+.lib-card-img img{
     width: 250px;
     margin: 5px 50px;
     height: 300px;
-}
 
-.lib-card-header h2 {
+}
+.lib-card-header h2{
     font-size: 18px;
     margin: 5px 50px;
     color: #2b4eff;
     text-transform: uppercase;
 }
-
 .lib-card-author span {
     margin: 2px 50px;
 }
-
-
 /* Header of The Shopping Page */
 
 .ShopPageBannerHome {
@@ -207,12 +202,12 @@
     background-color: #f0f0f0;
 }
 
+
 .home_products_sell_heading {
     margin-bottom: 0px;
     color: #2b4eff;
 }
-
-.home_products_sell .mb-3 {
+.home_products_sell .mb-3{
     color: #2b4eff;
 }
 
@@ -361,11 +356,9 @@
 
 
 /* Product details Shown on Home  */
-
-.home-products-details .card {
+.home-products-details .card{
     height: 400px;
 }
-
 .home-products-details {
     display: flex;
     justify-content: space-around;
@@ -740,12 +733,10 @@
     border-radius: 5px;
     margin: 1.5%;
 }
-
-.card-text {
+.card-text{
     font-size: 22px;
     color: #1e2b70;
 }
-
 .product-load-more-container-brand span {
     border: 1px solid #13247a;
     padding: 0.5% 1.5%;

@@ -47,6 +47,8 @@ router.post("/addtolibrary", (req, res) => {
   } = req.body;
 
 const bookId = BookId
+
+
   User.findByIdAndUpdate(UserId, {
           $push:{MyLibrary:{BookId:bookId}}
       },
@@ -59,5 +61,17 @@ const bookId = BookId
           }
       })
 })
+router.get('/previewLibary/:id', (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+ LIBRARY.findOne({ _id: id }).then((product) => {
+      if (product) {
+          return res.send(product)
+      }
+  }).catch((err) => {
+      console.log(err)
+      res.sendStatus(404)
+  })
 
+})
 module.exports = router;

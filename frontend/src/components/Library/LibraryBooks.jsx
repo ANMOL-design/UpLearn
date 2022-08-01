@@ -7,7 +7,8 @@ import { MdLibraryAdd, MdRemoveRedEye, MdSimCardDownload } from "react-icons/md"
 function LibraryHome(props){
    
     const [product, setproduct] = useState([]);
-
+  const [UserInfo,setUserInfo]= useState([])
+ 
     const [currentPage, setcurrentPage] = useState(0);
     const [productPerPage, setproductPerPage] = useState(8);
   
@@ -17,7 +18,7 @@ function LibraryHome(props){
             setproduct(data);
         }
         fetchdata();
-        
+        setUserInfo(props.user.MyLibrary)
     }, [])
 
     const ProductItemShowDisplay1 = () => {
@@ -52,8 +53,9 @@ function LibraryHome(props){
     }
 
     const AddtoLibrary = async(e)=>{
-      const BookId = e.target.value;
-      const UserId = props.id
+        const BookId = e.target.value;
+        const UserId = props.id
+       
       await fetch("/addtolibrary", {
         method: "POST",
         headers: {
@@ -74,6 +76,7 @@ function LibraryHome(props){
       }).catch((Error)=>{
         window.alert("Error Ocured! Try again later.")
       })
+       
     }
 
     return(
@@ -97,8 +100,8 @@ function LibraryHome(props){
                         
                                         <div className="overlay">
                                             <div className="overlay-img">
-                                                <Link to={ "/products/" + item._id }> <span className="overlay-img-space"><MdRemoveRedEye/> Preview</span> </Link><br />
-                                                <Link to={"/cart/" + item._id + "?qty=1"}><span className="overlay-img-space"><MdSimCardDownload/> Download</span></Link>
+                                                 <Link to={"/uplearnLibrary-preview/"+item._id}  className="overlay-img-space"><MdRemoveRedEye/> Preview</Link><br />
+                                              <a href={item.BookPdf}  target='_blank' rel="noreferrer noopener" className="overlay-img-space" ><MdSimCardDownload/> Download</a>
                                             </div>
                                         </div> 
                              </div>
@@ -108,10 +111,10 @@ function LibraryHome(props){
                                     <p className="card-text">{item.bookName}</p>
                                     <h5 className="card-title fade-title-header"> by {item.AuthorName}</h5>   
                             </div>
-                            {(props.user.MyLibrary === item._id)}
                             <button className="lib-card-button" value={item._id} onClick={AddtoLibrary}>
                                 <MdLibraryAdd/> Add To Library
                             </button>
+                         
                         </div>
                     )
                 })}

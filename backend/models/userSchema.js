@@ -82,6 +82,7 @@ const userSchema = new mongoose.Schema({
     MyLibrary: [{
         BookId: {
             type: String,
+            unique:true,
         }
     }],
     CousesEnrolled: [{
