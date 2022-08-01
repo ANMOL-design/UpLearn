@@ -129,6 +129,7 @@
         position: absolute;
         top: 175px;
         left: 1px;
+        text-transform: capitalize;
     }
 }
 
@@ -182,7 +183,8 @@
 .card-text {
     font-size: 20px;
     color: #1e2b70;
-    text-align: center
+    text-align: center;
+    text-transform: capitalize;
 }
 
 .fade-title-header {

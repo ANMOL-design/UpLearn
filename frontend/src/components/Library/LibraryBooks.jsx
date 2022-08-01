@@ -21,15 +21,25 @@ function LibraryHome(props){
         }
         fetchdata();   
 
+        const HandleTheSearch = (value) => {
+            var ans = backup.map((a) => {
+                if(a.Name.search(value) > -1){
+                    return a
+                }
+            });
+    
+            ans = ans.filter((e) => e !== undefined)
+            
+            console.log( ans)
+            setproduct(ans);
+        }
 
         // Filter Out cards on component Mount 
-        if(props.inputbook === ''){
-            console.log('Empty')
+        if(props.inputbook !== ''){
+            setproduct(backup)
+            HandleTheSearch(props.inputbook)  
         }
-        else{
-            console.log('Filter')
-
-        }
+        
     }, [])
 
     const LoadLessBooks = () => {

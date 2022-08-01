@@ -133,7 +133,7 @@ export default function LibraryPage() {
         });
     }
     fetchBooks();
-  }, [loginDetails.isLoggedIn]);
+  }, [loginDetails.isLoggedIn, loginDetails.userRole, navigate]);
 
 
   const SearchTheBooks = () => { 
