@@ -74,5 +74,9 @@ router.post("/InstructorRegister", (req, res) => {
             console.log(err);
         });
 });
-
+router.get('/allInstructor', (req, res) => {
+    Instructors.find({}).then((result) => {
+        res.send(result)
+    });
+})
 module.exports = router;

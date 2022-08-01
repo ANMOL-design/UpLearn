@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "suneditor/dist/css/suneditor.min.css";
 import SunEditor from "suneditor-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function AddCourses() {
+
   const [COURSE, SETCOURSE] = useState({
     title: "",
     courseojective: "",
     level: "",
     language: "",
   });
+
   let navigate = useNavigate();
   const [Instructor, setInstructor] = useState({});
   const [thumbnailImage, setthumbnailImage] = useState("");
@@ -35,12 +37,15 @@ export default function AddCourses() {
       console.log(Instructor);
     fetchdata();
   }, [])
+
   const handleEditorChange = (content) => {
     setDescription(content);
   };
+
   const handlechange = (e) => {
     SETCOURSE({ ...COURSE, [e.target.name]: e.target.value });
   };
+
   const submitImage = (image1, imageData) => {
     if (image1 === "") {
       console.log("no image");
@@ -61,11 +66,12 @@ export default function AddCourses() {
         });
     }
   };
+
   const postData = async () => {
     const { title, courseojective, level, language } = COURSE;
     const thumbnail = thumbnail1;
     const Description = Description1;
-   const courseInstructor=Instructor._id
+    const courseInstructor=Instructor._id
     const res = await fetch("/Instructoraddcourse", {
       method: "POST",
       headers: {
@@ -83,6 +89,7 @@ export default function AddCourses() {
       window.alert("error occured");
     }
   };
+
   const submitCourse = async (event) => {
     submitImage(thumbnailImage, thumbnailImageData);
 
@@ -92,16 +99,20 @@ export default function AddCourses() {
     console.log(thumbnail1);
     postData();
   };
+
   return (
     <>
       <div className="add-course-container">
         <div className="add-course-header">
-          <h2 className="add-course-heading">Add Course</h2>
+        <Link to="/admin-portal-home-190310554227">
+            <button className="backBtn" style={{ color: "white" }} >Back</button>
+          </Link>
         </div>
         <form action="">
           <div className="add-course-body">
             <div className="add-course-form-container">
-              <div className="course-field">
+            <h2 className="add-course-heading">Add Course</h2>
+              <div className="add-course-Input">
                 <label htmlFor="courseTitle">Title :</label>
                 <input
                   type="text"
@@ -111,7 +122,7 @@ export default function AddCourses() {
                   onChange={(e) => handlechange(e)}
                 />
               </div>
-              <div className="course-field">
+              <div className="add-course-Input">
                 <label htmlFor="Description">Description :</label>
                 <SunEditor
                   // setContents="My contents"
@@ -156,7 +167,7 @@ export default function AddCourses() {
                   }}
                 />
               </div>
-              <div className="course-field">
+              <div className="add-course-Input">
                 <label htmlFor="courseojective">
                   What will students learn in your course?{" "}
                 </label>
@@ -168,7 +179,7 @@ export default function AddCourses() {
                   onChange={(e) => handlechange(e)}
                 ></textarea>
               </div>
-              <div className="course-field">
+              <div className="add-course-radio">
                 <label htmlFor="">
                   Level of Course : <br />
                   <input
@@ -178,7 +189,7 @@ export default function AddCourses() {
                     value="Beginers"
                     onChange={(e) => handlechange(e)}
                   />
-                  <label for="Beginers">Beginers</label>
+                  <span htmlFor="Beginers">Beginers</span>
                   <br />
                   <input
                     type="radio"
@@ -187,7 +198,7 @@ export default function AddCourses() {
                     value="Intermidiate"
                     onChange={(e) => handlechange(e)}
                   />
-                  <label for="Intermidiate">Intermidiate</label>
+                  <span htmlFor="Intermidiate">Intermidiate</span>
                   <br />
                   <input
                     type="radio"
@@ -196,10 +207,10 @@ export default function AddCourses() {
                     value="Advanced"
                     onChange={(e) => handlechange(e)}
                   />
-                  <label for="Advanced">Advanced</label>
+                  <span htmlFor="Advanced">Advanced</span>
                 </label>
               </div>
-              <div className="course-field">
+              <div className="add-course-radio">
                 <label htmlFor="">
                   Language of Course : <br />
                   <input
@@ -210,7 +221,7 @@ export default function AddCourses() {
                     value="English"
                     onChange={(e) => handlechange(e)}
                   />
-                  <label for="English">English</label>
+                  <span htmlFor="English">English</span>
                   <br />
                   <input
                     type="radio"
@@ -220,7 +231,7 @@ export default function AddCourses() {
                     value="Hindi"
                     onChange={(e) => handlechange(e)}
                   />
-                  <label for="Hindi">Hindi</label>
+                  <span htmlFor="Hindi">Hindi</span>
                   <br />
                   <input
                     type="radio"
@@ -230,7 +241,7 @@ export default function AddCourses() {
                     value="Hinglish"
                     onChange={(e) => handlechange(e)}
                   />
-                  <label for="Hinglish">Hinglish</label>
+                  <span htmlFor="Hinglish">Hinglish</span>
                   <br />
                   <input
                     type="radio"
@@ -240,27 +251,29 @@ export default function AddCourses() {
                     value="other"
                     onChange={(e) => handlechange(e)}
                   />
-                  <label for="other">other</label>
+                  <span htmlFor="other">other</span>
                 </label>
               </div>
-              <div className="course-field">
-                <label htmlFor="thumbnailofcourse">Thumbnail Image :</label>
+              <div className="inputField btn">
+                <p htmlFor="thumbnailofcourse">Thumbnail Image :</p>
                 <input
                   type="file"
                   required
                   id="idImage"
+                  className="add-course-uploadBtn"
                   value={thumbnailImage}
                   onChange={(e) => {
                     setthumbnailImage(e.target.value);
                     setthumbnailImageData(e.target.files[0]);
                   }}
                 />
+                <div className="course-field">
+                <button className="course-submit-btn" onClick={submitCourse}>Create Course</button>
+              </div>
               </div>
             </div>
             <div className="add-course-footer">
-              <div className="course-submit-btn">
-                <button onClick={submitCourse}>Create Course</button>
-              </div>
+              
             </div>
           </div>
         </form>

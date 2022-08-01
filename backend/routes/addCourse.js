@@ -45,5 +45,10 @@ router.post("/Instructoraddcourse", (req, res) => {
       
     })
 
-
+    router.get('/CoursesUplearn', (req, res) => {
+      Courses.find({}).then((result) => {
+          res.send(result)
+      });
+  })
+  
 module.exports = router;

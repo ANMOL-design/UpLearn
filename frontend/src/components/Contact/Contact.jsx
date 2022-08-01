@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import contactPage from "../../assets/images/contactPage.jpg";
 import { MdLocationPin,   MdLocalPhone, MdLocalPostOffice } from "react-icons/md";
+var CryptoJS = require("crypto-js");
 
 export default function Contact() {
 
@@ -15,8 +16,27 @@ export default function Contact() {
   
   useEffect(() => {
     window.scroll(0, 120);
+    // Decrypting the User Role
+    if(loginDetails.userRole !== ''){
+      var bytes = CryptoJS.AES.decrypt(loginDetails.userRole, 'my-secret-key@123');
+      var role = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    }
     // Check is  Login Or Not 
-    if(Number(loginDetails.isLoggedIn)){
+    if (Number(loginDetails.isLoggedIn) && role === "INSTRUCTOR") 
+    {
+      // call the fetch admin detail function 
+      const fetchdata = async () =>{
+        await axios.get("/aboutInstructor").then(response => {
+          SetUser(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+            navigate("/login");
+          });
+      }
+      fetchdata();
+    }
+    else if((Number(loginDetails.isLoggedIn) && role === "STUDENT")){
         // call the fetch admin detail function 
         const fetchdata = async () =>{
             await axios.get("/aboutStudents").then(response => {
@@ -31,7 +51,7 @@ export default function Contact() {
     }
     // If User is not login redirect to login 
     else{
-        navigate("/login");
+      navigate("/login");
     }
   }, [loginDetails.isLoggedIn])
 
@@ -117,7 +137,7 @@ export default function Contact() {
                           id="email"
                           placeholder="Email"
                           name="email"
-                        value={User.email}
+                          value={User.email}
                         />
                       </div>
                       {/* Phone Number */}

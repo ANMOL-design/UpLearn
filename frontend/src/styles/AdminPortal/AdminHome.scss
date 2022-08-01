@@ -32,7 +32,7 @@
 }
 
 .admin-card-inner {
-    width: 22rem;
+    width: 18.5rem;
     background: linear-gradient(45deg, rgb(60, 159, 240), rgb(52, 58, 65));
     color: #fff;
     border-radius: 8px;
@@ -43,19 +43,21 @@
     justify-content: flex-start;
     transition: transform 0.3s ease-out;
     img {
-        width: 22rem;
-        height: 15rem;
+        width: 18.5rem;
+        height: 12.5rem;
         border-radius: 8px 8px 0px 0px;
         padding: 2px;
     }
     h3 {
         text-align: center;
         text-transform: capitalize;
-        font-size: 1.5rem;
-        margin-top: 0.6rem;
+        font-size: 1.4rem;
+        margin-top: 0.8rem;
     }
     p {
-        width: 21rem;
+        padding: 0px 6px;
+        font-size: 15px;
+        min-height: 70px;
         text-align: center;
         text-transform: capitalize;
     }

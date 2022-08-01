@@ -39,6 +39,11 @@ import Contact from "./components/Contact/Contact";
 import AddBook from "./components/AdminPortal/AddBook";
 import ContentPage from "./components/Dashboard/ContentPage";
 
+import InstructorList from "./components/AdminPortal/InstructorList";
+import LibraryPage from "./components/Library/LibraryHome";
+
+// Home Route
+import Home from "./components/Home/Home";
 
 
 function App() {
@@ -86,12 +91,16 @@ function App() {
             <Route path="/admin-portal-home-190310554227" element={<AdminHome />} />
             <Route path="/admin-portal-instructorRegis-190310554227" element={<InstructorRegister />} />
             <Route path="/admin-portal-Addbook-190310554227" element={<AddBook />} />
+            <Route path="/admin-portal-InstructorList-190310554227" element={<InstructorList />} />
             {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={<AddCourses />} />
-            <Route path="/instructordashboard" element={<InstructorDashboard />} />
+            <Route path="/instructordashboard/*" element={<InstructorDashboard />} />
             {/* General  */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
+            <Route path="/uplearn-virtual-library" element={<LibraryPage />} />
+            {/* Home Route  */}
+            <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
 
           </Routes>
