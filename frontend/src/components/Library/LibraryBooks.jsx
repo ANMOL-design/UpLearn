@@ -7,6 +7,10 @@ import { MdLibraryAdd, MdRemoveRedEye, MdSimCardDownload } from "react-icons/md"
 function LibraryHome(props){
    
     const [product, setproduct] = useState([]);
+  const [UserInfo,setUserInfo]= useState([])
+ 
+    const [currentPage, setcurrentPage] = useState(0);
+    const [productPerPage, setproductPerPage] = useState(8);
     const [backup, setbackup] = useState([]);
 
     console.log(props)
@@ -92,6 +96,7 @@ function LibraryHome(props){
       .catch((err)=>{
         window.alert("Error Ocured! Try again later.")
       })
+       
     }
 
     return(
@@ -112,13 +117,16 @@ function LibraryHome(props){
                                         {item.bookSubject}
                                     </div>
                                     {/* OverLay Property of card  */}
-                                    <div className="overlay">
-                                        <div className="overlay-img">
-                                            <Link to={ "/products/" + item._id }> <span className="overlay-img-space"><MdRemoveRedEye/> Preview</span> </Link><br />
-                                            <Link to={"/cart/" + item._id + "?qty=1"}><span className="overlay-img-space"><MdSimCardDownload/> Download</span></Link>
-                                        </div>
-                                    </div> 
-                            </div>
+                        
+                                        <div className="overlay">
+                                            <div className="overlay-img">
+                                                 <Link to={"/uplearnLibrary-preview/"+item._id}  className="overlay-img-space"><MdRemoveRedEye/> Preview</Link><br />
+                                              <a href={item.BookPdf}  target='_blank' rel="noreferrer noopener" className="overlay-img-space" ><MdSimCardDownload/> Download</a>
+                                            </div>
+                                        </div> 
+                             </div>
+                             {/* Lower Body Portion of card  */}
+                                   
                             {/* Lower Body Portion of card  */}
                             <div className="card-body">
                                 {/* Product Price in Body  */}
