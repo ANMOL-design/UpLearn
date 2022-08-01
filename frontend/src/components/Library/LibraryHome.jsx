@@ -17,6 +17,7 @@ export default function LibraryPage() {
   const [isLoading, setisLoading] = useState(true);
 
   const [Library, SetLibrary] = useState([]);
+  const [BackupLibrary, SetBackupLibrary] = useState([]);
   const [inputbook, setinputbook] = useState('');
 
   const [books, setbooks] = useState({
@@ -68,12 +69,12 @@ export default function LibraryPage() {
             onChange={(e) => handleChange(e)}
           >
             <option value="">Select Exam</option>
-            <option value="JEE">JEE</option>
-            <option value="NEET">NEET</option>
-            <option value="CAT">CAT</option>
-            <option value="GATE">GATE</option>
-            <option value="UPSC">UPSC</option>
-            <option value="OTHER">Other</option>
+            <option value="Jee">JEE</option>
+            <option value="Neet">NEET</option>
+            <option value="Cat">CAT</option>
+            <option value="Gate">GATE</option>
+            <option value="Upsc">UPSC</option>
+            <option value="Other">Other</option>
           </select>
         </>
       );
@@ -125,6 +126,7 @@ export default function LibraryPage() {
     const fetchBooks = async () =>{
       await axios.get("/librarybooks").then(response => {
         SetLibrary(response.data);
+        SetBackupLibrary(response.data);
         setisLoading(false);
         })
         .catch(error => {
@@ -137,11 +139,44 @@ export default function LibraryPage() {
 
 
   const SearchTheBooks = () => { 
-    console.log('Search by choice')
+    if(inputbook === ''){
+      SetLibrary(BackupLibrary);
+    }
+    else{
+      var ans = BackupLibrary.map((a) => {
+        if(a.bookName.search(inputbook) > -1){
+            return a
+        }
+      });
+
+      ans = ans.filter((e) => e !== undefined)
+      SetLibrary(ans);
+    }
   }
 
   const SearchByChoice = () => {
-    console.log('Search by choice')
+    // Search for category and class both availabe 
+    if(books.bookCategory && books.bookclass !== ''){
+        var ans = BackupLibrary.map((a) => {
+          if(a.bookclass.search(books.bookclass) > -1){
+              return a
+          }
+        });
+
+        ans = ans.filter((e) => e !== undefined)
+        SetLibrary(ans);
+    }  
+    else
+    {
+      var ans = BackupLibrary.map((a) => {
+        if(a.bookCategory.search(books.bookCategory) > -1){
+            return a
+        }
+      });
+
+      ans = ans.filter((e) => e !== undefined)
+      SetLibrary(ans);
+    }
   }
 
   if(isLoading){
@@ -178,9 +213,9 @@ export default function LibraryPage() {
                   onChange={(e) => {setinputbook(e.target.value)}}
                 />
                 {
-                  (Library.length > 0) ? 
+                  (BackupLibrary.length > 0) ? 
                     <datalist id="library-search">
-                      {Library.map((item) => (
+                      {BackupLibrary.map((item) => (
                         <option value={item.bookName} />
                       ))}
                     </datalist>
@@ -225,7 +260,7 @@ export default function LibraryPage() {
           </div>
           {/* Section Show all AvailableBooks  */}
           <div className="library-card-containerr">
-              <LibraryHome id={User._id} user={User} input={inputbook} book={books}/>
+              <LibraryHome data={Library}/>
           </div>
         </div>
       </div>
