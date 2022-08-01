@@ -11,51 +11,57 @@ function LibraryHome(props){
  
     const [currentPage, setcurrentPage] = useState(0);
     const [productPerPage, setproductPerPage] = useState(8);
+    const [backup, setbackup] = useState([]);
+
+    console.log(props)
+    const [start, setstart] = useState(0);
+    const [end, setend] = useState(16);
   
     useEffect(() => {
         const fetchdata = async () =>{
             const {data} = await axios.get("/librarybooks");
             setproduct(data);
+            setbackup(data);
         }
-        fetchdata();
-        setUserInfo(props.user.MyLibrary)
+        fetchdata();   
+
+
+        // Filter Out cards on component Mount 
+        if(props.inputbook === ''){
+            console.log('Empty')
+        }
+        else{
+            console.log('Filter')
+
+        }
     }, [])
 
-    const ProductItemShowDisplay1 = () => {
-        setcurrentPage(0)
-        setproductPerPage(8);
-        window.scroll(0, 200)
+    const LoadLessBooks = () => {
+        if(start > 0){
+            setstart(start - 16);
+            setend(end - 16);
+            window.scroll(0, 830);
+        }
+        else{
+            document.getElementById('replyprob').innerHTML = 'Invalid Move.'
+        }
     }
-    const ProductItemShowDisplay2 = () => {
-        setcurrentPage(8)
-        setproductPerPage(16);
-        window.scroll(0, 200)
+    const LoadMoreBooks = () => {
+        if(end < product.length){
+            setstart(start + 16);
+            setend(end + 16);
+            window.scroll(0, 830);
+        }
+        else{
+            document.getElementById('replyprob').innerHTML = 'No more Books Available.'
+        }
     }
-    const ProductItemShowDisplay3 = () => {
-        setcurrentPage(16)
-        setproductPerPage(24);
-        window.scroll(0, 200)
-    }
-    const ProductItemShowDisplay4 = () => {
-        setcurrentPage(24)
-        setproductPerPage(32);
-        window.scroll(0, 200)
-    }
-    const ProductItemShowDisplay5 = () => {
-        setcurrentPage(32)
-        setproductPerPage(40);
-        window.scroll(0, 200)
-    }
-    const ProductItemShowDisplay6 = () => {
-        setcurrentPage(40)
-        setproductPerPage(48);
-        window.scroll(0, 200)
-    }
+   
+    const AddtoLibrary = async (e)=>{
 
-    const AddtoLibrary = async(e)=>{
-        const BookId = e.target.value;
-        const UserId = props.id
-       
+      const BookId = e.target.value;
+      const UserId = props.id
+
       await fetch("/addtolibrary", {
         method: "POST",
         headers: {
@@ -66,14 +72,18 @@ function LibraryHome(props){
           BookId,
           UserId
         }),
-      }).then((Response)=>{
-        if(Response.status==200){
-            window.alert("Book Added Succesfully to Library")
+
+      })
+      .then((Response)=>{
+
+        if(Response.status === 200){
+            window.alert("Book Added Succesfully to Dashboard.")
         }
         else{
             window.alert("Error Ocured! Try again later.")
         }
-      }).catch((Error)=>{
+      })
+      .catch((err)=>{
         window.alert("Error Ocured! Try again later.")
       })
        
@@ -81,20 +91,20 @@ function LibraryHome(props){
 
     return(
         <>
-          <div className="home_products_sell">
-                <h1 className="mb-3">BEST Books</h1>
-          </div>
-          {/* Details of Product  */}
-          <div className="home-products-details container-fluid">
-                {product.slice(currentPage,productPerPage).map( (item) => {
+            <div className="library_products_heading ">
+                <h1>BEST BOOKS</h1>
+            </div>
+            {/* Details of Product  */}
+            <div className="home-products-details">
+                {product.slice(start,end).map( (item) => {
                     return(
-                        <div key={item._id} className={"card "} id="pc" style={{width: "17.5rem"}}>
+                        <div key={item._id} className={"card"} style={{width: "17.5rem"}}>
                             {/* Upper Image Portion of card  */}
                             <div className="Product-image-container">
-                                <img src={item.BookImage} className="card-img-top home-product-image" alt="Products" />
+                                    <img src={item.BookImage} className="home-product-image" alt="Products" />
                                     {/* Hot Icon On Card  */}
                                     <div className="Hotproducts">
-                                      {item.bookSubject}
+                                        {item.bookSubject}
                                     </div>
                                     {/* OverLay Property of card  */}
                         
@@ -106,29 +116,35 @@ function LibraryHome(props){
                                         </div> 
                              </div>
                              {/* Lower Body Portion of card  */}
+                                   
+                            {/* Lower Body Portion of card  */}
                             <div className="card-body">
-                                    {/* Product Price in Body  */}
-                                    <p className="card-text">{item.bookName}</p>
-                                    <h5 className="card-title fade-title-header"> by {item.AuthorName}</h5>   
+                                {/* Product Price in Body  */}
+                                <p className="card-text">{item.bookName}</p>
+                                <h5 className="fade-title-header"> by {item.AuthorName}</h5>  
+
+                                {(props.user.MyLibrary === item._id)}
+                                <button className="lib-card-button" value={item._id} onClick={AddtoLibrary}>
+                                    <MdLibraryAdd/> Add To Library
+                                </button>
                             </div>
-                            <button className="lib-card-button" value={item._id} onClick={AddtoLibrary}>
-                                <MdLibraryAdd/> Add To Library
-                            </button>
-                         
                         </div>
                     )
                 })}
-          </div>
+            </div>
 
      
             {product.length > 0 ? 
-                <div className="product-load-more-container-brand" id="load"> 
-                    <span className="dis-btn-brand" onClick={ProductItemShowDisplay1}>1</span> 
-                    <span className="dis-btn-brand" onClick={ProductItemShowDisplay2}>2</span> 
-                    <span className="dis-btn-brand" onClick={ProductItemShowDisplay3}>3</span> 
-                    <span className="dis-btn-brand" onClick={ProductItemShowDisplay4}>4</span> 
-                    <span className="dis-btn-brand" onClick={ProductItemShowDisplay5}>5</span> 
-                    <span className="dis-btn-brand" onClick={ProductItemShowDisplay6}>6</span> 
+                <div className="pagination" id="load"> 
+                    <div>
+                        <p>
+                            Load more books by click next.
+                        </p>
+                        <p className="invalid" id='replyprob'></p>
+                    </div>
+
+                    <span onClick={LoadLessBooks}>&lt; Previous</span> 
+                    <span onClick={LoadMoreBooks}>Next &gt;</span> 
                 </div>
                 : 
                 null
