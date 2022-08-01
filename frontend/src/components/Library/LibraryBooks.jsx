@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import { MdSimCardDownload } from "react-icons/md";
+import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
+
 
 function LibraryHome(props){
    
     const product =  props.data;
 
-    console.log(props, product)
     const [start, setstart] = useState(0);
     const [end, setend] = useState(8);
   
@@ -13,17 +14,17 @@ function LibraryHome(props){
         if(start > 0){
             setstart(start - 8);
             setend(end - 8);
-            window.scroll(0, 800);
+            window.scroll(0, 300);
         }
         else{
-            document.getElementById('replyprob').innerHTML = 'Invalid Move.'
+            document.getElementById('replyprob').innerHTML = 'You are at start.'
         }
     }
     const LoadMoreBooks = () => {
         if(end < product.length){
             setstart(start + 8);
             setend(end + 8);
-            window.scroll(0, 800);
+            window.scroll(0, 300);
         }
         else{
             document.getElementById('replyprob').innerHTML = 'No more Books Available.'
@@ -79,11 +80,11 @@ function LibraryHome(props){
             {product.length > 0 ? 
                 <div className="pagination" id="load"> 
                     <div>
-                        <span onClick={LoadLessBooks}> Previous</span> 
-                        <span onClick={LoadMoreBooks}>Next </span> 
+                        <span onClick={LoadLessBooks}><GrLinkPrevious /></span>
+                        <p>Load more books by click icons.</p>
+                        <span onClick={LoadMoreBooks}><GrLinkNext /></span> 
                     </div>
  
-                    <p>Load more books by click next.</p>
                     <p className="invalid" id='replyprob'></p>
                 </div>
                 : 

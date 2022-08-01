@@ -20,26 +20,22 @@ export default function LibraryPage() {
   const [BackupLibrary, SetBackupLibrary] = useState([]);
   const [inputbook, setinputbook] = useState('');
 
-  const [books, setbooks] = useState({
-    bookCategory: "",
-    bookclass: ""
-  });
+  const [bookCategory, setbookCategory] = useState('');
+  const [bookClass, setbookClass] = useState('');
+  const [bookExam, setbookExam] = useState('');
 
-  const handleChange = (event) => {
-    setbooks({ ...books, [event.target.name]: event.target.value });
-  };
 
   // Function to Present the Extra Slect option to filter out Data 
   const BOOKCHOICE = () => {
-    if (books.bookCategory === "School") {
+    if (bookCategory === "School") {
       return (
         <>
           <label htmlFor="bookclass">
             <b>Select Class</b><span className="star">*</span>
           </label>
           <select id="bookclass" name="bookclass"  
-            value={books.bookclass}
-            onChange={(e) => handleChange(e)}
+            value={bookClass}
+            onChange={(e) => {setbookClass(e.target.value)}}
           >
             <option value="">Select class</option>
             <option value="1">Class 1</option>
@@ -58,15 +54,15 @@ export default function LibraryPage() {
         </>
       );
     } 
-    else if (books.bookCategory === "Exam") {
+    else if (bookCategory === "Exam") {
       return (
         <>
           <label htmlFor="bookclass1">
             <b>Select Exam</b><span className="star">*</span>
           </label>
           <select id="bookclass1" name="bookclass"
-            value={books.bookclass}
-            onChange={(e) => handleChange(e)}
+             value={bookExam}
+             onChange={(e) => {setbookExam(e.target.value)}}
           >
             <option value="">Select Exam</option>
             <option value="Jee">JEE</option>
@@ -144,7 +140,7 @@ export default function LibraryPage() {
     }
     else{
       var ans = BackupLibrary.map((a) => {
-        if(a.bookName.search(inputbook) > -1){
+        if(a.bookName.toUpperCase().search(inputbook.toUpperCase()) > -1){
             return a
         }
       });
@@ -155,21 +151,29 @@ export default function LibraryPage() {
   }
 
   const SearchByChoice = () => {
-    // Search for category and class both availabe 
-    if(books.bookCategory && books.bookclass !== ''){
+    
+    if(bookCategory === 'Exam' && bookExam !== ''){
         var ans = BackupLibrary.map((a) => {
-          if(a.bookclass.search(books.bookclass) > -1){
+          if(a.bookclass.search(bookExam) > -1){
               return a
           }
         });
-
+  
         ans = ans.filter((e) => e !== undefined)
         SetLibrary(ans);
+    }
+    else if(bookCategory === 'School' && bookClass !== ''){
+      var ans = BackupLibrary.map((a) => {
+            return a
+      });
+
+      ans = ans.filter((e) => e.bookclass === bookClass)
+      SetLibrary(ans);
     }  
     else
     {
       var ans = BackupLibrary.map((a) => {
-        if(a.bookCategory.search(books.bookCategory) > -1){
+        if(a.bookCategory.search(bookCategory) > -1){
             return a
         }
       });
@@ -238,7 +242,7 @@ export default function LibraryPage() {
                   id="School"
                   name="bookCategory"
                   value="School"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => {setbookCategory(e.target.value)}}
                 />
                 <label htmlFor="School"> For School</label>
 
@@ -247,14 +251,14 @@ export default function LibraryPage() {
                   id="Exam"
                   name="bookCategory"
                   value="Exam"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => {setbookCategory(e.target.value)}}
                 />
                 <label htmlFor="Exam"> For Competetive Exam</label>
 
                 <div className="libraryChoice">
                   <BOOKCHOICE />
                   {/* Button to Filter  */}
-                  {books.bookCategory ? <button onClick={SearchByChoice}>Filter</button> : null}                  
+                  {bookCategory ? <button onClick={SearchByChoice}>Filter</button> : null}                  
                 </div>
               </div>
           </div>

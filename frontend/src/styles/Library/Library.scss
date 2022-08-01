@@ -188,11 +188,16 @@
 
 .pagination div {
     width: 100%;
-    text-align: center;
-    margin: 1.2rem 0px;
+    @include displayflex;
+    justify-content: center;
     span {
-        @include sitebutton;
-        margin: 5%;
+        font-size: 1.5rem;
+        color: $navbar_color;
+        cursor: pointer;
+        margin: 0px 4%;
+    }
+    p {
+        text-align: center;
     }
 }
 
@@ -226,10 +231,5 @@
         h1 {
             font-size: 2.3rem;
         }
-    }
-    .pagination div {
-        display: block;
-        width: 100%;
-        text-align: center;
     }
 }
