@@ -233,3 +233,15 @@
         }
     }
 }
+
+///////////////////////////
+// Styling for the Extra axios library call 
+.libraryaxios {
+    @include displayflex;
+    justify-content: center;
+    flex-direction: column;
+    h1,
+    p {
+        text-align: center;
+    }
+}
