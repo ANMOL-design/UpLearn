@@ -74,4 +74,22 @@ router.post("/setnewstudentpassword", (req, res) => {
         })
 })
 
+router.get('/allStudents', (req, res) => {
+    User.find({}).then((result) => {
+        res.send(result)
+    });
+})
+
+router.post("/StudentRemoved", (req, res) => {
+    const { id } = req.body;
+    User.findByIdAndDelete(id, function(err, docs) {
+        if (err) {
+            console.log("Error occured" + err)
+        } else {
+            res.status(200).json({ msg: "deleted" })
+            console.log("Deleted : " + docs);
+        }
+    })
+})
+
 module.exports = router;
