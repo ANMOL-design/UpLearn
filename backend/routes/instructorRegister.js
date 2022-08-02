@@ -62,10 +62,14 @@ router.post("/InstructorRegister", (req, res) => {
             instructors
                 .save()
                 .then(() => {
-                    sendInstructorRegistrationEmail(email,Teachername)
-                    res
+                    sendInstructorRegistrationEmail(email,Teachername,teacher_id,image,password).then(()=>{
+                        res
                         .status(200)
                         .json({ msg: "Instructor Registration Registration Successful" });
+                    }).catch((err)=>{
+                        console.log(err);
+                    })
+                   
                 })
                 .catch((err) => {
                     console.log(err);

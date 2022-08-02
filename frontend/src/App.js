@@ -15,7 +15,6 @@ import ChangePassword from "./components/Dashboard/DashboardComponents/ChangePas
 // The Admin Portal Links
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
-import StudentDashboard from "./components/Dashboard/StudentDashboard";
 import UpdateMyStudentProfile from "./components/Dashboard/DashboardComponents/UpdateProfile";
 import InstructorRegister from "./components/AdminPortal/InstructorRegister";
 import Logout from "./components/logout/logout";
@@ -25,11 +24,21 @@ import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
 
+//Student Dashboard
+import StudentDashboard from "./components/Dashboard/StudentDashboard";
+import Profile from "./components/Dashboard/DashboardComponents/pages/Profile";
+import StudCourses from "./components/Dashboard/DashboardComponents/pages/Courses";
+//courses
+import Class from "./components/Dashboard/DashboardComponents/Courses/ClassSelect";
+import Subject from "./components/Dashboard/DashboardComponents/Courses/Subject";
+
 //redux setup
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Contact from "./components/Contact/Contact";
 import AddBook from "./components/AdminPortal/AddBook";
+import ContentPage from "./components/Dashboard/ContentPage";
+
 import InstructorList from "./components/AdminPortal/InstructorList";
 import LibraryPage from "./components/Library/LibraryHome";
 
@@ -61,10 +70,20 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
+
             {/* The Student Dashboard  */}
+
+
             <Route path="/studentdashboard" element={<StudentDashboard />} />
             <Route path="/updateStudentProfile" element={<UpdateMyStudentProfile />} />
-            <Route path="/change-password" element={<ChangePassword />}/>
+            <Route path="/change-password" element={<ChangePassword />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/stud-courses" element={<StudCourses />} />
+            <Route path="/stud-courses/:board" element={<Class />} />
+            <Route path="/stud-courses/:board/:class" element={<Subject />} />
+            <Route path="/stud-courses/:board/:class/:subject" element={<ContentPage />} />
+
+
             {/* IMAGEUPLOADER */}
             <Route path="/imageuploader" element={<ImageUploader />} />
             {/* The Admin Routes  */}
@@ -74,16 +93,16 @@ function App() {
             <Route path="/admin-portal-Addbook-190310554227" element={<AddBook />} />
             <Route path="/admin-portal-InstructorList-190310554227" element={<InstructorList />} />
             {/* Instructor Dashboard */}
-            <Route path="/instructor-addCourses" element={ <AddCourses/>} />
+            <Route path="/instructor-addCourses" element={<AddCourses />} />
             <Route path="/instructordashboard/*" element={<InstructorDashboard />} />
             {/* General  */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
             <Route path="/uplearn-virtual-library" element={<LibraryPage />} />
             {/* Home Route  */}
-            <Route path="/" element={<Home />} exact/>
+            <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
-            
+
           </Routes>
           {/* The Footer component  */}
           <Footer />

@@ -164,7 +164,17 @@ function InstructorRegister() {
       window.alert("Something Went Wrong, Try Later\nError Occured");
     }
   };
-
+  const time = 10000;
+  function sendData () {
+    setTimeout(function () {
+    if(idresImage==''|| aadharImage=='' || Image==''){
+       sendData();
+    }
+    else{
+    postData();
+    }
+  }, time);
+}
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleValidation();
@@ -181,9 +191,7 @@ function InstructorRegister() {
 
       
       // Send Data to Backend after 10 sec
-      setTimeout(function () {
-          postData();
-      }, 10000);
+     sendData();
     }    
   };
 
