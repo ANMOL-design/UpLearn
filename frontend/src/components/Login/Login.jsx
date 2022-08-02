@@ -156,7 +156,7 @@ function Login() {
                 <div className="signupText">
                   <p>
                     Don't have an Account?{" "}
-                    <Link to="/register" className="link">
+                    <Link to="/register" className="linked">
                       Sign Up
                     </Link>
                   </p>

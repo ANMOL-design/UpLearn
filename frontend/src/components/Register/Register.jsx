@@ -234,7 +234,7 @@ function Register() {
                 <div className="signupText">
                   <p>
                     Already have an Account?{" "}
-                    <Link to="/login" className="link">
+                    <Link to="/login" className="linked">
                       Sign In
                     </Link>
                   </p>

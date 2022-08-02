@@ -19,6 +19,7 @@ import UpdateMyStudentProfile from "./components/Dashboard/DashboardComponents/U
 import InstructorRegister from "./components/AdminPortal/InstructorRegister";
 import Logout from "./components/logout/logout";
 import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
+import StudentList from "./components/AdminPortal/StudentList";
 
 // Instructor Dashboard 
 import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
@@ -92,6 +93,7 @@ function App() {
             <Route path="/admin-portal-instructorRegis-190310554227" element={<InstructorRegister />} />
             <Route path="/admin-portal-Addbook-190310554227" element={<AddBook />} />
             <Route path="/admin-portal-InstructorList-190310554227" element={<InstructorList />} />
+            <Route path="/admin-portal-StudentList-190310554227" element={<StudentList />} />
             {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={<AddCourses />} />
             <Route path="/instructordashboard/*" element={<InstructorDashboard />} />

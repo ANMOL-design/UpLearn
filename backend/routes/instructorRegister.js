@@ -80,9 +80,23 @@ router.post("/InstructorRegister", (req, res) => {
             console.log(err);
         });
 });
+
 router.get('/allInstructor', (req, res) => {
     Instructors.find({}).then((result) => {
         res.send(result)
     });
 })
+
+router.post("/InstructorRemoved", (req, res) => {
+    const { id } = req.body;
+    Instructors.findByIdAndDelete(id, function(err, docs) {
+        if (err) {
+            console.log("Error occured" + err)
+        } else {
+            res.status(200).json({ msg: "deleted" })
+            console.log("Deleted : " + docs);
+        }
+    })
+})
+
 module.exports = router;

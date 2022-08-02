@@ -79,7 +79,7 @@ export default function LibraryPage() {
 
 
   useEffect(() => {
-    window.scroll(0, 120);
+    window.scroll(0, 0);
     // Decrypting the User Role
     if(loginDetails.userRole !== ''){
       var bytes = CryptoJS.AES.decrypt(loginDetails.userRole, 'my-secret-key@123');
@@ -153,7 +153,7 @@ export default function LibraryPage() {
   const SearchByChoice = () => {
     
     if(bookCategory === 'Exam' && bookExam !== ''){
-        var ans = BackupLibrary.map((a) => {
+        let ans = BackupLibrary.map((a) => {
           if(a.bookclass.search(bookExam) > -1){
               return a
           }
@@ -163,7 +163,7 @@ export default function LibraryPage() {
         SetLibrary(ans);
     }
     else if(bookCategory === 'School' && bookClass !== ''){
-      var ans = BackupLibrary.map((a) => {
+      let ans = BackupLibrary.map((a) => {
             return a
       });
 
@@ -172,7 +172,7 @@ export default function LibraryPage() {
     }  
     else
     {
-      var ans = BackupLibrary.map((a) => {
+      let ans = BackupLibrary.map((a) => {
         if(a.bookCategory.search(bookCategory) > -1){
             return a
         }
@@ -264,7 +264,7 @@ export default function LibraryPage() {
           </div>
           {/* Section Show all AvailableBooks  */}
           <div className="library-card-containerr">
-              <LibraryHome data={Library}/>
+              <LibraryHome data={Library} bookfind={inputbook}/>
           </div>
         </div>
       </div>
