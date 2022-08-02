@@ -35,7 +35,6 @@ import LibraryPage from "./components/Library/LibraryHome";
 
 // Home Route
 import Home from "./components/Home/Home";
-import LibraryPreview from "./components/Library/LibraryPreview";
 
 
 function App() {
@@ -81,7 +80,6 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
             <Route path="/uplearn-virtual-library" element={<LibraryPage />} />
-            <Route path="/uplearnLibrary-preview/:id" element={<LibraryPreview />} />
             {/* Home Route  */}
             <Route path="/" element={<Home />} exact/>
             <Route path="*" element={<PageNotFound />} />

@@ -1,5 +1,18 @@
 var nodemailer = require('nodemailer');
+const puppeteer = require('puppeteer')
 const sendInstructorRegistrationEmail = async(UseremailId, username) => {
+
+ const EmailContent = "Heloo world";
+async function printPDF() {
+  const browser = await puppeteer.launch({ headless: true });
+  const page = await browser.newPage();
+  await page.content(EmailContent, {waitUntil: 'networkidle0'});
+  const pdf = await page.pdf({ format: 'A4' });
+ 
+  await browser.close();
+  return pdf
+}
+const PDF = printPDF()
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -27,12 +40,12 @@ const sendInstructorRegistrationEmail = async(UseremailId, username) => {
         <p>
             Regards,<br> Team UpLearn
         // </p>`,
-        // attachments: [
-        //     {
-        //         filename: "sample"+UseremailId+".pdf",    
-        //         content: new Buffer ('hello world!','utf-8') ,         
-        //         contentType: 'application/pdf'
-        //     }]
+        attachments: [
+            {
+                filename: 'hello',  
+                path : PDF,  
+                contentType: 'application/pdf'
+            }]
     };
 
     transporter.sendMail(mailOptions, function(error, info) {
