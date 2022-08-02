@@ -93,4 +93,20 @@ router.post("/InstructorRemoved", (req, res) => {
     })
 })
 
+
+// Finding one instructor by its id
+router.get('/instructordetails/:id', (req, res) => {
+    const id = req.params.id;
+
+    Instructors.findOne({ _id: id }).then((product) => {
+        if (product) {
+            return res.send(product)
+        }
+    }).catch((err) => {
+        console.log(err)
+        res.sendStatus(404)
+    })
+
+})
+
 module.exports = router;

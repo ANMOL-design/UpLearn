@@ -20,6 +20,8 @@ import InstructorRegister from "./components/AdminPortal/InstructorRegister";
 import Logout from "./components/logout/logout";
 import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 import StudentList from "./components/AdminPortal/StudentList";
+import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
+import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 
 // Instructor Dashboard 
 import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
@@ -45,6 +47,7 @@ import LibraryPage from "./components/Library/LibraryHome";
 
 // Home Route
 import Home from "./components/Home/Home";
+
 
 
 function App() {
@@ -94,6 +97,8 @@ function App() {
             <Route path="/admin-portal-Addbook-190310554227" element={<AddBook />} />
             <Route path="/admin-portal-InstructorList-190310554227" element={<InstructorList />} />
             <Route path="/admin-portal-StudentList-190310554227" element={<StudentList />} />
+            <Route path="/admin-portal-assign-task-190310554227" element={<AssignTaskToInstructor />} />
+            <Route path="/admin-portal-assign-task-190310554227/:id" element={<AssignSyllbusTask />} />
             {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={<AddCourses />} />
             <Route path="/instructordashboard/*" element={<InstructorDashboard />} />

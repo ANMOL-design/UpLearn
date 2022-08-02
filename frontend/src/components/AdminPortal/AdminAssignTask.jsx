@@ -6,17 +6,17 @@ import { MdSearch } from "react-icons/md";
 import axios from "axios";
 import Loader from "../Loader";
 
-export default function InstructorList() {
+export default function AssignTaskToInstructor() {
   
   let navigate = useNavigate();
   const adminstatus = useSelector((state) => state.AdminReducers);
 
   const [InstructorsInfo,setInstructorInfo] = useState([]);
   const [InfoBackup,setInfoBackup] = useState([]);
-  const [Loading, setLoading] = useState(true);
+  const [Loading, setLoading] = useState(true);  
 
-  const [refresh, setrefresh] = useState('');
   const [input, setinput] = useState('');
+  const [subject, setsubject] = useState('');
 
   var x = 0;
 
@@ -42,7 +42,7 @@ export default function InstructorList() {
       else{
           navigate("/admin-portal-login-190310554227");
       }
-  }, [adminstatus.isAdminLoggedIn, navigate, refresh]);
+  }, [adminstatus.isAdminLoggedIn, navigate]);
 
 
   const FindTheInstructor = () => { 
@@ -61,6 +61,19 @@ export default function InstructorList() {
     }
   }
 
+  const SearchByChoice = () => {
+    var ans = InfoBackup.map((a) => {
+        if(a.subject.toUpperCase().search(subject.toUpperCase()) > -1){
+            return a
+        }
+      });
+
+    ans = ans.filter((e) => e !== undefined)
+    setInstructorInfo(ans);
+  }
+
+//   console.log(InstructorsInfo)
+
   if(Loading){
     return( <Loader /> );
   }
@@ -76,7 +89,7 @@ export default function InstructorList() {
         </div>
         {/* Search Bar  */}
         <div  className="library-filter-container" style={{margin: '0px'}}>
-          <h1>Instructor's Details</h1>
+          <h1>Assign Task to Instructor</h1>
 
           <div className="librarySearch">
             {/* input box to search User  */}
@@ -90,6 +103,41 @@ export default function InstructorList() {
               <i><MdSearch /></i> Search
             </button>
           </div>
+
+          <div className="libraryChoice">
+                {/* Choices  */}
+                <label htmlFor="bookclass1">
+                    <b>Select Subject</b><span className="star">*</span>
+                </label>
+                <select id="bookclass1" name="bookclass"
+                    value={subject}
+                    onChange={(e) => {setsubject(e.target.value)}}
+                >
+                    <option value="">Select Exam</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Science">Science</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="English">English</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Computer">Computer</option>
+                    <option value="History">History</option>
+                    <option value="Civics">Civics</option>
+                    <option value="Economics">Economics</option>
+                    <option value="Accounts">Accounts</option>
+                    <option value="Commerce">Commerce</option>
+                    <option value="Art">Art</option>
+                    <option value="Music">Music</option>
+                    <option value="Social Studies">Social Studies</option>
+                    <option value="Environmental Science">Environmental Science</option>
+                    <option value="Physical Education">Physical Education</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                {/* Button to Filter  */}
+                {subject ? <button onClick={SearchByChoice}>Search</button> : null}   
+            </div>
         </div>
         
         {/* Table Show the Details of Teacher  */}
@@ -102,7 +150,7 @@ export default function InstructorList() {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Mobile No.</th>
-                <th>AadharCard</th>
+                <th>Subject</th>
                 <th>Remove</th>
               </tr>
             </thead>
@@ -122,29 +170,14 @@ export default function InstructorList() {
                           {item.mobileno}
                         </td>
                         <td>
-                          {item.aadharCard}
+                          {item.subject}
                         </td>
                         <td>
-                          <button className='rmvbtn' onClick={ async ()=>{
-                              const id = item._id;
-                              // console.log(id)
-                              const res =  await fetch("/InstructorRemoved" ,{
-                                method : "POST",
-                                headers : { 
-                                    "content-Type" : "application/json"
-                                },
-                                body : JSON.stringify({
-                                    id
-                                })
-                              });
-                              if (res.status === 200) {
-                                  setrefresh(res);
-                              }
-                            } 
-                          }
-                          >
-                            Delete
-                          </button>
+                            <Link to={'/admin-portal-assign-task-190310554227/' + item._id}>
+                                <button className='rmvbtn'>
+                                    Assign Task
+                                </button>
+                            </Link>
                         </td>
                       </tr>
                   ))}
