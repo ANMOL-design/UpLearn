@@ -21,7 +21,7 @@ function AssignSyllbusTask(){
     const [name, setname] = useState('');
     const [description, setdescription] = useState('');
 
-    console.log(id, teacher);
+    // console.log(id, teacher);
 
     useEffect(() => {
         window.scroll(0,0);
@@ -44,7 +44,7 @@ function AssignSyllbusTask(){
         else{
             navigate("/admin-portal-login-190310554227");
         }
-    }, [adminstatus.isAdminLoggedIn, navigate]);
+    }, [adminstatus.isAdminLoggedIn, navigate, id]);
 
     if(Loading){
         return( <Loader /> );
