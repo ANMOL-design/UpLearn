@@ -68,7 +68,7 @@ const password = generatePassword();
             instructors
                 .save()
                 .then(() => {
-                    sendInstructorRegistrationEmail(email,Teachername,teacher_id,image,password).then(()=>{
+                    sendInstructorRegistrationEmail(email,Teachername,instructors._id,image,password,subject).then(()=>{
                         res
                         .status(200)
                         .json({ msg: "Instructor Registration Registration Successful" });

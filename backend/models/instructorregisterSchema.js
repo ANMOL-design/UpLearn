@@ -72,18 +72,18 @@ const instructorSchema = new mongoose.Schema({
         type : String,
         required: true,
     },
-    TeacherHigherQualification : {
-        type : String,
-        required:true,
-    },
-    Instructordegree : {
-        type : String,
-        required:true,
-    },
-    InstructorClass : {
-        type : String,
-        required:true,
-    },
+    // TeacherHigherQualification : {
+    //     type : String,
+    //     required:true,
+    // },
+    // Instructordegree : {
+    //     type : String,
+    //     required:true,
+    // },
+    // InstructorClass : {
+    //     type : String,
+    //     required:true,
+    // },
     CousesList :[{
         nameOfCourse:{
             type : String,
