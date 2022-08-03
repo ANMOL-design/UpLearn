@@ -10,8 +10,6 @@ router.post("/InstructorRegister", (req, res) => {
     const {
         Teachername,
         email,
-        password,
-        cpassword,
         subject,
         block,
         permanentAddress,
@@ -29,8 +27,17 @@ router.post("/InstructorRegister", (req, res) => {
     } = req.body;
 
     console.log(req.body);
-
-    if (!Teachername || !email || !password || !cpassword) {
+ function generatePassword() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+}
+const password = generatePassword();
+    if (!Teachername || !email) {
         return res.sendStatus(201);
     }
 
@@ -43,7 +50,6 @@ router.post("/InstructorRegister", (req, res) => {
                 Teachername,
                 email,
                 password,
-                cpassword,
                 subject,
                 block,
                 permanentAddress,

@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { BiArrowBack } from "react-icons/bi";
-import Loader  from "./../../assets/images/progressbar.gif";
-import axios from 'axios';
+import Loader from "./../../assets/images/progressbar.gif";
+import axios from "axios";
 
 function InstructorRegister() {
-
   let navigate = useNavigate();
-  const [adminInfo, setadminInfo] = useState('');
+  const [adminInfo, setadminInfo] = useState("");
   const adminstatus = useSelector((state) => state.AdminReducers);
 
-  // States to store Images 
+  // States to store Images
   const [UserImage, setUserImage] = useState("");
   const [UserImageData, setUserImageData] = useState();
 
@@ -22,18 +21,18 @@ function InstructorRegister() {
   const [AdharImageData, setAdharImageData] = useState();
 
   // Store response of return Image
-  var Image = '', idresImage = '', aadharImage = ''
+  var Image = "",
+    idresImage = "",
+    aadharImage = "";
   // const [Image, setImage] = useState("");
   // const [idresImage, setidresImage] = useState("");
   // const [, setaadharImage] = useState("");
 
-  const [err, seterr] = useState('');
-  // State to Store Elements of input field 
+  const [err, seterr] = useState("");
+  // State to Store Elements of input field
   const [values, setValues] = useState({
     Teachername: "",
     email: "",
-    password: "",
-    cpassword: "",
     mobileno: "",
     subject: "",
     block: "",
@@ -48,35 +47,35 @@ function InstructorRegister() {
   });
 
   useEffect(() => {
-    window.scroll(0,0);
-    // Check is Admin Login Or Not 
-    if(Number(adminstatus.isAdminLoggedIn)){
-        // call the fetch admin detail function 
-        const fetchdata = async () =>{
-            await axios.get("/aboutAdminActive").then(response => {
-                setadminInfo(response.data);
-              })
-              .catch(error => {
-                console.log(error);
-                navigate("/admin-portal-login-190310554227");
-              });
-        }
-        fetchdata();
+    window.scroll(0, 0);
+    // Check is Admin Login Or Not
+    if (Number(adminstatus.isAdminLoggedIn)) {
+      // call the fetch admin detail function
+      const fetchdata = async () => {
+        await axios
+          .get("/aboutAdminActive")
+          .then((response) => {
+            setadminInfo(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+            navigate("/admin-portal-login-190310554227");
+          });
+      };
+      fetchdata();
     }
-    // If User is not login redirect to login 
-    else{
-        navigate("/admin-portal-login-190310554227");
+    // If User is not login redirect to login
+    else {
+      navigate("/admin-portal-login-190310554227");
     }
-  }, [adminstatus.isAdminLoggedIn, navigate])
+  }, [adminstatus.isAdminLoggedIn, navigate]);
 
-
-  console.log("Cloud Response", Image, idresImage, aadharImage)
+  console.log("Cloud Response", Image, idresImage, aadharImage);
 
   const submitImage = async (image, imageData, imagevalue) => {
     if (image === "") {
-      window.alert("Please Upload an Image.")
-    } 
-    else {
+      window.alert("Please Upload an Image.");
+    } else {
       const formData = new FormData();
       formData.append("image", imageData);
 
@@ -87,16 +86,13 @@ function InstructorRegister() {
         .then((response) => response.json())
         .then((data) => {
           if (data.error) {
-              console.log(data.error);
-          } 
-          else {
+            console.log(data.error);
+          } else {
             if (imagevalue === "idimage") {
               idresImage = data.image.image;
-            } 
-            else if (imagevalue === "AadharcardImage") {
+            } else if (imagevalue === "AadharcardImage") {
               aadharImage = data.image.image;
-             } 
-            else if (imagevalue === "image") {
+            } else if (imagevalue === "image") {
               Image = data.image.image;
             }
           }
@@ -105,7 +101,6 @@ function InstructorRegister() {
   };
 
   const postData = async () => {
-
     const AadharcardImage = aadharImage;
     const idImage = idresImage;
     const image = Image;
@@ -113,8 +108,6 @@ function InstructorRegister() {
     const {
       Teachername,
       email,
-      password,
-      cpassword,
       mobileno,
       subject,
       block,
@@ -127,7 +120,7 @@ function InstructorRegister() {
       teacher_id,
       aadharCard,
     } = values;
-  
+
     const res = await fetch("/InstructorRegister", {
       method: "POST",
       headers: {
@@ -136,8 +129,6 @@ function InstructorRegister() {
       body: JSON.stringify({
         Teachername,
         email,
-        password,
-        cpassword,
         mobileno,
         subject,
         block,
@@ -156,96 +147,89 @@ function InstructorRegister() {
     });
 
     if (res.status === 200) {
-      window.alert("Successful Registration.\nWelcome to  family of UpLearn.")
+      window.alert("Successful Registration.\nWelcome to  family of UpLearn.");
       navigate("/admin-portal-home-190310554227");
-    } 
-    else {
+    } else {
       console.log(res);
       window.alert("Something Went Wrong, Try Later\nError Occured");
     }
   };
   const time = 10000;
-  function sendData () {
+  function sendData() {
     setTimeout(function () {
-    if(idresImage==''|| aadharImage=='' || Image==''){
-       sendData();
-    }
-    else{
-    postData();
-    }
-  }, time);
-}
+      if (idresImage == "" || aadharImage == "" || Image == "") {
+        sendData();
+      } else {
+        postData();
+      }
+    }, time);
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleValidation();
 
     if (submit) {
-      seterr('Please wait we are uploading your Data')
+      seterr("Please wait we are uploading your Data");
       document.getElementById("myinstBtn").disabled = true;
-      document.getElementById("loader-reg").style.display = 'inline';
-          
+      document.getElementById("loader-reg").style.display = "inline";
+
       // Send Images to cloud
       await submitImage(IdImage, IdImageData, "idimage");
       await submitImage(AharImage, AdharImageData, "AadharcardImage");
       await submitImage(UserImage, UserImageData, "image");
 
-      
       // Send Data to Backend after 10 sec
-     sendData();
-    }    
+      sendData();
+    }
   };
 
   //form validation
   const handleValidation = () => {
-    if (!values.Teachername || !values.email || !values.password || !values.cpassword ||
-        !values.mobileno || !values.subject || !values.block || !values.permanentAddress || 
-        !values.temporaryAdd || !values.school || !values.city || !values.state || !values.pincode ||
-        !values.teacher_id || !values.aadharCard
-      
+    if (
+      !values.Teachername ||
+      !values.email ||
+      !values.mobileno ||
+      !values.subject ||
+      !values.block ||
+      !values.permanentAddress ||
+      !values.temporaryAdd ||
+      !values.school ||
+      !values.city ||
+      !values.state ||
+      !values.pincode ||
+      !values.teacher_id ||
+      !values.aadharCard
     ) {
-      seterr('Please Enter all required Fields.');
+      seterr("Please Enter all required Fields.");
       return false;
-    }
-    else if(values.mobileno.length !== 10){
-      seterr('Mobile Number must be of 10 number or without +91');
+    } else if (values.mobileno.length !== 10) {
+      seterr("Mobile Number must be of 10 number or without +91");
       return false;
-    }
-    else if (values.password.length < 8) {
-      seterr("Password must be atleast 8 character");
+    }  else if (IdImage === "") {
+      seterr("Please Upload your ID Card Image.");
       return false;
-    } 
-    else if (values.password !== values.cpassword) {
-      seterr("Password and Confirm password should be same");
+    } else if (UserImage === "") {
+      seterr("Please Upload your Profile Image.");
       return false;
-    }
-    else if(IdImage === ''){
-      seterr('Please Upload your ID Card Image.');
-      return false;
-    }
-    else if(UserImage === ''){
-      seterr('Please Upload your Profile Image.');
-      return false;
-    }
-    else if(AharImage === '' ){
-      seterr('Please Upload your Aadhar Card Image.');
+    } else if (AharImage === "") {
+      seterr("Please Upload your Aadhar Card Image.");
       return false;
     }
     return true;
   };
 
-  // Function to Set values enter in input field 
+  // Function to Set values enter in input field
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-    seterr('');
+    seterr("");
   };
 
-  // Function to Set Image 
+  // Function to Set Image
   function validateTeacherIdImg(e) {
     const fileSize = e.target.files[0].size / 1024 / 1024; // in MiB
     if (fileSize > 2) {
       alert("File size exceeds 2 MB");
-    }     
-    else{
+    } else {
       setIdImage(e.target.files[0].name);
       setIdImageData(e.target.files[0]);
     }
@@ -255,10 +239,9 @@ function InstructorRegister() {
     const fileSize = e.target.files[0].size / 1024 / 1024; // in MiB
     if (fileSize > 2) {
       alert("File size exceeds 2 MB");
-    } 
-    else {
+    } else {
       setUserImage(e.target.files[0].name);
-      setUserImageData(e.target.files[0]);    
+      setUserImageData(e.target.files[0]);
     }
   }
 
@@ -266,13 +249,11 @@ function InstructorRegister() {
     const fileSize = e.target.files[0].size / 1024 / 1024; // in MiB
     if (fileSize > 2) {
       alert("File size exceeds 2 MB");
-    } 
-    else {
-      setAharImage(e.target.files[0].name)
+    } else {
+      setAharImage(e.target.files[0].name);
       setAdharImageData(e.target.files[0]);
     }
   }
-
 
   return (
     <>
@@ -332,32 +313,7 @@ function InstructorRegister() {
                       onChange={(e) => handleChange(e)}
                     />
                   </div>
-                  <div className="inputField">
-                    <label htmlFor="password">
-                      Password<span className="star">*</span>
-                    </label>
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      placeholder="Your Password"
-                      value={values.password}
-                      onChange={(e) => handleChange(e)}
-                    />
-                  </div>
-                  <div className="inputField">
-                    <label htmlFor="confirmPassword">
-                      Confirm Password<span className="star">*</span>
-                    </label>
-                    <input
-                      type="password"
-                      id="confirmPassword"
-                      name="cpassword"
-                      placeholder="Confirm Password"
-                      value={values.cpassword}
-                      onChange={(e) => handleChange(e)}
-                    />
-                  </div>
+                  
                 </div>
               </div>
               <div className="addressDetail">
@@ -391,7 +347,9 @@ function InstructorRegister() {
                     />
                   </div>
                   <div className="inputField">
-                    <label htmlFor="block">Block<span className="star">*</span></label>
+                    <label htmlFor="block">
+                      Block<span className="star">*</span>
+                    </label>
                     <input
                       type="text"
                       id="block"
@@ -448,18 +406,39 @@ function InstructorRegister() {
                 </span>
                 <div className="fields">
                   <div className="inputField">
-                    <label htmlFor="subject">Subject<span className="star">*</span></label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      placeholder="Your Subject"
-                      value={values.subject}
-                      onChange={(e) => handleChange(e)}
-                    />
+                  <label htmlFor="bookclass1">
+                    <b>Select Subject</b><span className="star">*</span>
+                </label>
+                <select id="bookclass1" name="subject"
+                    value={values.subject}
+                    onChange={(e) => handleChange(e)}
+                >
+                    <option value="">Select Exam</option>
+                    <option  onChange={(e) => handleChange(e)} value="Mathematics">Mathematics</option>
+                    <option  onChange={(e) => handleChange(e)} value="Science">Science</option>
+                    <option  onChange={(e) => handleChange(e)} value="Hindi">Hindi</option>
+                    <option  onChange={(e) => handleChange(e)} value="English">English</option>
+                    <option  onChange={(e) => handleChange(e)} value="Physics">Physics</option>
+                    <option  onChange={(e) => handleChange(e)} value="Chemistry">Chemistry</option>
+                    <option  onChange={(e) => handleChange(e)} value="Biology">Biology</option>
+                    <option  onChange={(e) => handleChange(e)} value="Computer">Computer</option>
+                    <option  onChange={(e) => handleChange(e)} value="History">History</option>
+                    <option  onChange={(e) => handleChange(e)} value="Civics">Civics</option>
+                    <option  onChange={(e) => handleChange(e)} value="Economics">Economics</option>
+                    <option  onChange={(e) => handleChange(e)} value="Accounts">Accounts</option>
+                    <option  onChange={(e) => handleChange(e)} value="Commerce">Commerce</option>
+                    <option  onChange={(e) => handleChange(e)} value="Art">Art</option>
+                    <option  onChange={(e) => handleChange(e)} value="Music">Music</option>
+                    <option  onChange={(e) => handleChange(e)} value="Social Studies">Social Studies</option>
+                    <option  onChange={(e) => handleChange(e)} value="Environmental Science">Environmental Science</option>
+                    <option  onChange={(e) => handleChange(e)} value="Physical Education">Physical Education</option>
+                    <option  onChange={(e) => handleChange(e)} value="Other">Other</option>
+                </select>
                   </div>
                   <div className="inputField">
-                    <label htmlFor="school">School<span className="star">*</span></label>
+                    <label htmlFor="school">
+                      School<span className="star">*</span>
+                    </label>
                     <input
                       type="text"
                       id="school"
@@ -490,7 +469,9 @@ function InstructorRegister() {
                       type="file"
                       id="idImage"
                       accept="image/*"
-                      onChange={(e) => {validateTeacherIdImg(e)}}
+                      onChange={(e) => {
+                        validateTeacherIdImg(e);
+                      }}
                       className="uploadBtn"
                     />
                     <p className="uploadphoto">{IdImage}</p>
@@ -503,7 +484,9 @@ function InstructorRegister() {
                       type="file"
                       id="image"
                       accept="image/*"
-                      onChange={(e) => {validateTeacherProImg(e)}}
+                      onChange={(e) => {
+                        validateTeacherProImg(e);
+                      }}
                       className="uploadBtn"
                     />
                     <p className="uploadphoto">{UserImage}</p>
@@ -537,7 +520,9 @@ function InstructorRegister() {
                       id="aadharCardImage"
                       className="uploadBtn"
                       accept="image/*"
-                      onChange={(e) =>{validateTeacherAadharImg(e);}}
+                      onChange={(e) => {
+                        validateTeacherAadharImg(e);
+                      }}
                     />
                     <p className="uploadphoto">{AharImage}</p>
                   </div>
@@ -546,7 +531,7 @@ function InstructorRegister() {
 
               <div className="instructorRegisterBtn">
                 <div>
-                  <img src={Loader} alt="Loader" id="loader-reg"/>
+                  <img src={Loader} alt="Loader" id="loader-reg" />
                   <p className="uploadphoto">{err}</p>
                 </div>
                 <button

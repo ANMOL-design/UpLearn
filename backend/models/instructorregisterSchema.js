@@ -15,10 +15,6 @@ const instructorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    cpassword: {
-        type: String,
-        required: true,
-    },
     subject:{
         type : String,
         required: true,
@@ -76,7 +72,18 @@ const instructorSchema = new mongoose.Schema({
         type : String,
         required: true,
     },
-
+    TeacherHigherQualification : {
+        type : String,
+        required:true,
+    },
+    Instructordegree : {
+        type : String,
+        required:true,
+    },
+    InstructorClass : {
+        type : String,
+        required:true,
+    },
     CousesList :[{
         nameOfCourse:{
             type : String,
@@ -110,7 +117,6 @@ const instructorSchema = new mongoose.Schema({
 instructorSchema.pre('save', async function(next) {
     if (this.isModified('password')) {
         this.password = await bycrypt.hash(this.password, 12);
-        this.cpassword = await bycrypt.hash(this.cpassword, 12);
     }
     next();
 })
