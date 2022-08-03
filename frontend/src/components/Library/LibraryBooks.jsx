@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { MdSimCardDownload, MdSearch } from "react-icons/md";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import Books from "./../../assets/images/booklibrary.jpg"
@@ -9,6 +9,9 @@ function LibraryHome(props){
     /////////////////////////////
     const [search, setsearch] = useState(props.bookfind);
     const [bookData , setbookData] = useState([]);
+
+    const [start, setstart] = useState(0);
+    const [end, setend] = useState(8);
 
     const searchBook=()=>{
         axios.get(
@@ -26,8 +29,12 @@ function LibraryHome(props){
    
     const product =  props.data;
 
-    const [start, setstart] = useState(0);
-    const [end, setend] = useState(8);
+    useEffect(() => {
+        document.getElementById('replyprob').innerHTML = '';
+        setstart(0);
+        setend(8);
+    }, [product])
+
   
     const LoadLessBooks = () => {
         if(start > 0){
