@@ -1,6 +1,6 @@
 [{
         "id": 1,
-        "image": "./assets/images/registration.jpg",
+        "image": "./assets/images/register.jpeg",
         "heading": "Instructor Registration",
         "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
         "Link": "/admin-portal-instructorRegis-190310554227",
@@ -36,11 +36,11 @@
     {
 
         "id": 5,
-        "image": "./assets/images/education-banner.png",
-        "heading": "Add a Video",
-        "title": "Attitude Is A Little Thing That Makes A Big Difference.",
-        "Link": "/home",
-        "name": "Start"
+        "image": "./assets/images/uiexp.jpeg",
+        "heading": "Assign Tasks",
+        "title": "Stop being afraid of what could go wrong, and start being excited of what could go right.",
+        "Link": "/admin-portal-assign-task-190310554227",
+        "name": "Assign Tasks"
     },
     {
 
