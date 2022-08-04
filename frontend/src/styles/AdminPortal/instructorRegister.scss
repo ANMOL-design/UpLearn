@@ -58,7 +58,8 @@
     font-weight: 500;
 }
 
-.inputField input {
+.inputField input,
+.inputField select {
     height: 40px;
     border-radius: 5px;
     border: 1px solid #aaa;

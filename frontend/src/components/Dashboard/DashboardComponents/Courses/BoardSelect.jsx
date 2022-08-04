@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Sidebar from "../Sidebar";
+import { useNavigate } from "react-router-dom";
+
 
 export default function BoardSelect() {
+
   const [isActive, setIsActive] = useState(0);
   const [board, setBoard] = useState("");
   const navigate = useNavigate();
@@ -22,15 +23,15 @@ export default function BoardSelect() {
     },
     {
       id: 4,
-      board: "jksdf",
+      board: "UP-Board",
     },
     {
       id: 5,
-      board: "kdfdf",
+      board: "Punjab-Board",
     },
     {
       id: 6,
-      board: "dfs",
+      board: "Himachal-Board",
     },
   ];
 
@@ -41,8 +42,6 @@ export default function BoardSelect() {
   };
 
   return (
-    <div className="studWrapper">
-      <Sidebar />
       <div className="academicCourWrapper">
         <h1>Select Your Board</h1>
 
@@ -50,17 +49,14 @@ export default function BoardSelect() {
           {boardItem.map((item, index) => {
             return (
               <div
-                // className={isActive === item.id ? "random" : "classItem"}
                 className="classItem"
                 onClick={handleClick(item.id)}
               >
-                {/* <a>{item.board}</a> */}
                 <span>{item.board}</span>
               </div>
             );
           })}
         </div>
       </div>
-    </div>
   );
 }

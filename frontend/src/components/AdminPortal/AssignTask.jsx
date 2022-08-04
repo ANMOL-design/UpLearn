@@ -18,10 +18,13 @@ function AssignSyllbusTask(){
     const [classes, setclasses] = useState('');
     const [subject, setsubject] = useState('');
     const [dob, setdob] = useState('');
+    const [board, setboard] = useState('');
+
     const [name, setname] = useState('');
+    const [chapter, setchapter] = useState(0);
     const [description, setdescription] = useState('');
 
-    // console.log(id, teacher);
+    const [err, seterr] = useState('');
 
     useEffect(() => {
         window.scroll(0,0);
@@ -45,6 +48,70 @@ function AssignSyllbusTask(){
             navigate("/admin-portal-login-190310554227");
         }
     }, [adminstatus.isAdminLoggedIn, navigate, id]);
+
+    const AssignTaskToInstructor = async () => {
+        const TeacherId = id;
+        const Subject = subject;
+        const Class = classes;
+        const DueDate = dob;
+        const Board = board;
+        const ChapterName = name;
+        const ChapterNo = chapter;
+        const ChapterDescription = description;
+
+        const res = await fetch("/AssignTaskToInstructor", {
+            method: "POST",
+            headers: {
+              "content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                TeacherId,
+                Subject,
+                Class,
+                DueDate,
+                Board,
+                ChapterName,
+                ChapterNo,
+                ChapterDescription
+            }),
+          });
+      
+          if (res.status === 200) {
+            window.alert("Task Assign Successful.");
+            navigate("/admin-portal-home-190310554227");
+          } 
+          else {
+            console.log(res);
+            window.alert("Something Went Wrong, Try Later\nError Occured");
+          }
+    }
+
+    const handleSubmit = () => {
+        if (subject === '') {
+          seterr("Please select a Subject Name.");
+        } 
+        else if (classes === '') {
+            seterr("Please select a Class.");
+        } 
+         else if (dob === '') {
+          seterr("Please assign Due Date of Task.");
+        } 
+        else if (board === '') {
+          seterr("Please select a Board.");
+        } 
+        else if (name === '') {
+          seterr("Please Enter the Chapter Name.");
+        }
+        else if (chapter <= 0) {
+            seterr("Please provide a valid chapter number.");
+        }
+        else if (description === '') {
+            seterr("Please add description of assigning task.");
+        }
+        else{
+            AssignTaskToInstructor();
+        }
+      };
 
     if(Loading){
         return( <Loader /> );
@@ -94,6 +161,25 @@ function AssignSyllbusTask(){
                         <option value="11">Class 11</option>
                         <option value="12">Class 12</option>
                     </select>
+                    
+                    {/* Select Board of Leacture  */}
+                    <label htmlFor="bookboard">
+                        <b>Select Board</b><span className="star">*</span>
+                    </label>
+                    <select id="bookboard" name="bookboard"  
+                        value={board}
+                        onChange={(e) => {setboard(e.target.value)}}
+                    >
+                        <option value="">Select Board</option>
+                        <option value="CBSE">CBSE</option>
+                        <option value="ICSE">ICSE</option>
+                        <option value="HaryanaBoard">Haryana Board</option>
+                        <option value="UPBoard">UP Board</option>
+                        <option value="RajasthanBoard">Rajasthan Board</option>
+                        <option value="PunjabBoard">Punjab Board</option>
+                        <option value="Other">Other</option>
+                    </select>
+
                     {/* Select Subject of course  */}
                     <label htmlFor="bookclass1">
                         <b>Select Subject</b><span className="star">*</span>
@@ -143,6 +229,16 @@ function AssignSyllbusTask(){
                         onChange={(e) => {setname(e.target.value)}}
                         required
                     />
+                    {/* Enter Chapter No */}
+                    <label htmlFor="name">Chapter Number<span className="star">*</span></label>
+                    <input
+                        type="number"
+                        id="chapter"
+                        name="chapter"
+                        value={chapter}
+                        onChange={(e) => {setchapter(e.target.value)}}
+                        required
+                    />
                     {/* Enter Description of Chapter  */}
                     <label htmlFor="message">Breif Description of Chapter<span className="star">*</span></label>
                     <textarea  className="contactInput-ta"
@@ -154,6 +250,8 @@ function AssignSyllbusTask(){
                         value={description}
                         onChange={(e) => {setdescription(e.target.value)}}                    
                     />
+                    <p>{err}</p>
+                    <button onClick={handleSubmit}>Assign Task</button>
                 </div>
             </>
         )

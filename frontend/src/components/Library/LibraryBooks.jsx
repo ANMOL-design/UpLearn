@@ -15,8 +15,7 @@ function LibraryHome(props){
 
     const searchBook=()=>{
         axios.get(
-            'https://www.googleapis.com/books/v1/volumes?q='+ search + 
-            '&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU'+'&maxResults=20'
+            'https://www.googleapis.com/books/v1/volumes?q='+ search + '&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU'+'&maxResults=20'
             )
             .then(res => {
                 setbookData(res.data.items)
@@ -24,13 +23,16 @@ function LibraryHome(props){
             .catch(err => console.log(err))
     }
 
-    console.log(bookData)
+    // console.log(bookData)
     ////////////////////////////////
    
     const product =  props.data;
 
     useEffect(() => {
-        document.getElementById('replyprob').innerHTML = '';
+        var e = document.getElementById('replyprob');
+        if(e){
+            e.innerHTML = '';
+        }
         setstart(0);
         setend(8);
     }, [product])

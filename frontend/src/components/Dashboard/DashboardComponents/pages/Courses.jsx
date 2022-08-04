@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 import BoardSelect from "../Courses/BoardSelect";
-import ClassSelect from "../Courses/ClassSelect";
-import Sidebar from "../Sidebar";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function Courses() {
+
   let navigate = useNavigate();
   const loginDetails = useSelector((state) => state.userReducers);
-
-  const [userimageData, setuserimageData] = useState({});
-
-  // State to Get Profile Image
-  const [profileimg, setprofileimg] = useState("");
   const [values, setvalues] = useState({});
 
   useEffect(() => {
@@ -42,10 +36,6 @@ export default function Courses() {
 
   return (
     <div>
-      {/* <div className="studWrapper">
-        <Sidebar />
-        <BoardSelect />
-      </div> */}
       <BoardSelect />
     </div>
   );

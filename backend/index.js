@@ -5,7 +5,6 @@ const PORT = 5000;
 const dotenv = require("dotenv");
 dotenv.config();
 
-
 app.use(require("./routes/register"))
 app.use(require("./routes/instructorRegister"))
 app.use(require("./routes/verify"))
@@ -18,6 +17,8 @@ app.use(require("./routes/aboutUser"));
 app.use(require("./routes/updateUserProfile"));
 app.use(require("./routes/addCourse"));
 app.use(require("./routes/libraryRoute"));
+app.use(require("./routes/AssignTask"));
+
 // mongodbconnection
 mongoose.connect(
     process.env.MONGODB_CONNECTION_STRING, {

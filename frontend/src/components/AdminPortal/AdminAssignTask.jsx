@@ -17,7 +17,7 @@ export default function AssignTaskToInstructor() {
 
   const [input, setinput] = useState('');
   const [subject, setsubject] = useState('');
-
+  
   var x = 0;
 
   useEffect(() => {
@@ -69,10 +69,8 @@ export default function AssignTaskToInstructor() {
       });
 
     ans = ans.filter((e) => e !== undefined)
-    setInstructorInfo(ans);
+    setInstructorInfo(ans)
   }
-
-//   console.log(InstructorsInfo)
 
   if(Loading){
     return( <Loader /> );
@@ -90,6 +88,7 @@ export default function AssignTaskToInstructor() {
         {/* Search Bar  */}
         <div  className="library-filter-container" style={{margin: '0px'}}>
           <h1>Assign Task to Instructor</h1>
+          <br />
 
           <div className="librarySearch">
             {/* input box to search User  */}
@@ -104,10 +103,10 @@ export default function AssignTaskToInstructor() {
             </button>
           </div>
 
-          <div className="libraryChoice">
+            <div className="libraryChoice">
                 {/* Choices  */}
                 <label htmlFor="bookclass1">
-                    <b>Select Subject</b><span className="star">*</span>
+                  Select Subject : 
                 </label>
                 <select id="bookclass1" name="bookclass"
                     value={subject}
@@ -136,8 +135,9 @@ export default function AssignTaskToInstructor() {
                 </select>
 
                 {/* Button to Filter  */}
-                {subject ? <button onClick={SearchByChoice}>Search</button> : null}   
-            </div>
+                {!subject ? null : <button onClick={SearchByChoice}>Search</button>}
+              
+              </div>
         </div>
         
         {/* Table Show the Details of Teacher  */}
@@ -151,7 +151,9 @@ export default function AssignTaskToInstructor() {
                 <th>Email</th>
                 <th>Mobile No.</th>
                 <th>Subject</th>
-                <th>Remove</th>
+                <th>Class Teacher</th>
+                <th>Higher Education</th>
+                <th>Work</th>
               </tr>
             </thead>
             <tbody>
@@ -171,6 +173,12 @@ export default function AssignTaskToInstructor() {
                         </td>
                         <td>
                           {item.subject}
+                        </td>
+                        <td>
+                          {item.classteacher}
+                        </td>
+                        <td>
+                          {item.degree}
                         </td>
                         <td>
                             <Link to={'/admin-portal-assign-task-190310554227/' + item._id}>
