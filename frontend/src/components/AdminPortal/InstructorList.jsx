@@ -28,7 +28,7 @@ export default function InstructorList() {
           const fetchdata = async () =>{
               await axios.get("/allInstructor").then(response => {
                   setInstructorInfo(response.data);
-                  setInfoBackup(response.data)
+                  setInfoBackup(response.data);
                   setLoading(false);
               })
               .catch(error => {
@@ -60,6 +60,7 @@ export default function InstructorList() {
       setInstructorInfo(ans);
     }
   }
+
 
   if(Loading){
     return( <Loader /> );

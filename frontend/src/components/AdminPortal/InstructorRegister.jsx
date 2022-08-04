@@ -43,6 +43,8 @@ function InstructorRegister() {
     state: "",
     pincode: "",
     teacher_id: "",
+    degree: "",
+    classteacher: "",
     aadharCard: "",
   });
 
@@ -70,7 +72,7 @@ function InstructorRegister() {
     }
   }, [adminstatus.isAdminLoggedIn, navigate]);
 
-  console.log("Cloud Response", Image, idresImage, aadharImage);
+  // console.log("Cloud Response", Image, idresImage, aadharImage);
 
   const submitImage = async (image, imageData, imagevalue) => {
     if (image === "") {
@@ -119,6 +121,8 @@ function InstructorRegister() {
       pincode,
       teacher_id,
       aadharCard,
+      degree,
+      classteacher,
     } = values;
 
     const res = await fetch("/InstructorRegister", {
@@ -143,6 +147,8 @@ function InstructorRegister() {
         teacher_id,
         aadharCard,
         AadharcardImage,
+        degree,
+        classteacher,
       }),
     });
 
@@ -154,16 +160,19 @@ function InstructorRegister() {
       window.alert("Something Went Wrong, Try Later\nError Occured");
     }
   };
+
   const time = 10000;
+
   function sendData() {
     setTimeout(function () {
-      if (idresImage == "" || aadharImage == "" || Image == "") {
+      if (idresImage === "" || aadharImage === "" || Image === "") {
         sendData();
       } else {
         postData();
       }
     }, time);
   }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleValidation();
@@ -198,6 +207,8 @@ function InstructorRegister() {
       !values.state ||
       !values.pincode ||
       !values.teacher_id ||
+      !values.degree ||
+      !values.classteacher ||
       !values.aadharCard
     ) {
       seterr("Please Enter all required Fields.");
@@ -255,6 +266,7 @@ function InstructorRegister() {
     }
   }
 
+  // console.log(values);
   return (
     <>
       {/* The Container Of Login An instructor In Page  */}
@@ -406,35 +418,19 @@ function InstructorRegister() {
                 </span>
                 <div className="fields">
                   <div className="inputField">
-                  <label htmlFor="bookclass1">
-                    <b>Select Subject</b><span className="star">*</span>
-                </label>
-                <select id="bookclass1" name="subject"
-                    value={values.subject}
-                    onChange={(e) => handleChange(e)}
-                >
-                    <option value="">Select Exam</option>
-                    <option  onChange={(e) => handleChange(e)} value="Mathematics">Mathematics</option>
-                    <option  onChange={(e) => handleChange(e)} value="Science">Science</option>
-                    <option  onChange={(e) => handleChange(e)} value="Hindi">Hindi</option>
-                    <option  onChange={(e) => handleChange(e)} value="English">English</option>
-                    <option  onChange={(e) => handleChange(e)} value="Physics">Physics</option>
-                    <option  onChange={(e) => handleChange(e)} value="Chemistry">Chemistry</option>
-                    <option  onChange={(e) => handleChange(e)} value="Biology">Biology</option>
-                    <option  onChange={(e) => handleChange(e)} value="Computer">Computer</option>
-                    <option  onChange={(e) => handleChange(e)} value="History">History</option>
-                    <option  onChange={(e) => handleChange(e)} value="Civics">Civics</option>
-                    <option  onChange={(e) => handleChange(e)} value="Economics">Economics</option>
-                    <option  onChange={(e) => handleChange(e)} value="Accounts">Accounts</option>
-                    <option  onChange={(e) => handleChange(e)} value="Commerce">Commerce</option>
-                    <option  onChange={(e) => handleChange(e)} value="Art">Art</option>
-                    <option  onChange={(e) => handleChange(e)} value="Music">Music</option>
-                    <option  onChange={(e) => handleChange(e)} value="Social Studies">Social Studies</option>
-                    <option  onChange={(e) => handleChange(e)} value="Environmental Science">Environmental Science</option>
-                    <option  onChange={(e) => handleChange(e)} value="Physical Education">Physical Education</option>
-                    <option  onChange={(e) => handleChange(e)} value="Other">Other</option>
-                </select>
+                    <label htmlFor="teacherId">
+                      Teacher ID<span className="star">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      id="teacherId"
+                      name="teacher_id"
+                      placeholder="Your Teacher ID"
+                      value={values.teacher_id}
+                      onChange={(e) => handleChange(e)}
+                    />
                   </div>
+
                   <div className="inputField">
                     <label htmlFor="school">
                       School<span className="star">*</span>
@@ -448,19 +444,70 @@ function InstructorRegister() {
                       onChange={(e) => handleChange(e)}
                     />
                   </div>
+                  
                   <div className="inputField">
-                    <label htmlFor="teacherId">
-                      Teacher ID<span className="star">*</span>
+                    <label htmlFor="bookclass1">
+                      Select Subject<span className="star">*</span>
                     </label>
-                    <input
-                      type="number"
-                      id="teacherId"
-                      name="teacher_id"
-                      placeholder="Your Teacher ID"
-                      value={values.teacher_id}
-                      onChange={(e) => handleChange(e)}
-                    />
+                    <select id="bookclass1" name="subject"
+                        value={values.subject}
+                        onChange={(e) => handleChange(e)}
+                    >
+                      <option value="">-- select one --</option>
+                      <option value="Mathematics">Mathematics</option>
+                      <option value="Science">Science</option>
+                      <option value="Hindi">Hindi</option>
+                      <option value="English">English</option>
+                      <option value="Physics">Physics</option>
+                      <option value="Chemistry">Chemistry</option>
+                      <option value="Biology">Biology</option>
+                      <option value="Computer">Computer</option>
+                      <option value="History">History</option>
+                      <option value="Civics">Civics</option>
+                      <option value="Economics">Economics</option>
+                      <option value="Accounts">Accounts</option>
+                      <option value="Commerce">Commerce</option>
+                      <option value="Art">Art</option>
+                      <option value="Music">Music</option>
+                      <option value="Social Studies">Social Studies</option>
+                      <option value="Environmental Science">Environmental Science</option>
+                      <option value="Physical Education">Physical Education</option>
+                      <option value="Other">Other</option>
+                    </select>
                   </div>
+
+                  <div className="inputField">
+                    <label htmlFor="higherdegree">
+                      Higher Degree<span className="star">*</span>
+                    </label>
+                    <select id="higherdegree" name="degree"
+                        value={values.degree}
+                        onChange={(e) => handleChange(e)}
+                    >
+                      <option value="">-- select one --</option>
+                      <option value="Primary education">Primary Education</option>
+                      <option value="Secondary education">Secondary Education</option>
+                      <option value="Bachelor's degree">Bachelor's degree</option>
+                      <option value="Master's degree">Master's degree</option>
+                      <option value="Doctorate or higher">Doctorate or higher</option>
+                    </select>
+                  </div>
+
+                  <div className="inputField">
+                    <label htmlFor="teacherofclass">
+                      Class Teacher<span className="star">*</span>
+                    </label>
+                    <select id="teacherofclass" name="classteacher"
+                        value={values.classteacher}
+                        onChange={(e) => handleChange(e)}
+                    >
+                      <option value="">-- select one --</option>
+                      <option value="Primary education">Primary School(class 1-5)</option>
+                      <option value="Middle school">Middle School(class 6-10)</option>
+                      <option value="Secondary education">Secondary education(class 11-12)</option>
+                    </select>
+                  </div>
+                  
                   <div className="inputField btn">
                     <label htmlFor="idImage">
                       Teacher ID<span className="star">*</span>
@@ -530,7 +577,7 @@ function InstructorRegister() {
               </div>
 
               <div className="instructorRegisterBtn">
-                <div>
+                <div style={{textAlign: 'center'}}>
                   <img src={Loader} alt="Loader" id="loader-reg" />
                   <p className="uploadphoto">{err}</p>
                 </div>

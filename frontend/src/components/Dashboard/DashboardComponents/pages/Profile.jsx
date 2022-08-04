@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-// import Avtar from "./../../../assets/images/avtar.png";
 import Avtar from "../../../../assets/images/avtar.png";
 import { FaUpload } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import Sidebar from "../Sidebar";
+import axios from "axios";
 
 export default function Profile() {
   let navigate = useNavigate();
@@ -97,9 +95,7 @@ export default function Profile() {
 
   return (
     <>
-      <div className="studWrapper">
-        <Sidebar />
-        {/* Div contain Image and profile data */}
+      {/* Div contain Image and profile data */}
         <div className="mainDashContainer">
           {/* My Profile Content  */}
           <h2>&nbsp;&nbsp;My Profile</h2>
@@ -217,15 +213,14 @@ export default function Profile() {
             </div>
 
             <div className="DashProfileButton">
-              <Link to="/updateStudentProfile">
+              <Link to="/update-student-profile">
                 <button>Edit Profile</button>
               </Link>
-              <Link to="/change-password">
+              <Link to="/change-student-password">
                 <button>Change Password</button>
               </Link>
             </div>
           </div>
-        </div>
       </div>
     </>
   );

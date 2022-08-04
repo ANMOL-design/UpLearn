@@ -48,7 +48,6 @@ export default function Subject() {
           })}
         </div>
         <div className="nextBtn">
-          {/* <a href="#">Next &raquo;</a> */}
           <Link to={`/stud-courses/${board}/${classs}/${subject}`}>
             Next &raquo;
           </Link>

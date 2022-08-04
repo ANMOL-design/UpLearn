@@ -24,19 +24,22 @@ router.post("/InstructorRegister", (req, res) => {
         teacher_id,
         aadharCard,
         AadharcardImage,
+        degree,
+        classteacher,
     } = req.body;
 
     console.log(req.body);
- function generatePassword() {
-    var length = 8,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
+
+    function generatePassword() {
+        var length = 8,
+            charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+            retVal = "";
+        for (var i = 0, n = charset.length; i < length; ++i) {
+            retVal += charset.charAt(Math.floor(Math.random() * n));
+        }
+        return retVal;
     }
-    return retVal;
-}
-const password = generatePassword();
+    const password = generatePassword();
     if (!Teachername || !email) {
         return res.sendStatus(201);
     }
@@ -64,18 +67,20 @@ const password = generatePassword();
                 teacher_id,
                 aadharCard,
                 AadharcardImage,
+                degree,
+                classteacher,
             });
             instructors
                 .save()
                 .then(() => {
-                    sendInstructorRegistrationEmail(email,Teachername,instructors._id,image,password,subject).then(()=>{
+                    sendInstructorRegistrationEmail(email, Teachername, instructors._id, image, password, subject).then(() => {
                         res
-                        .status(200)
-                        .json({ msg: "Instructor Registration Registration Successful" });
-                    }).catch((err)=>{
+                            .status(200)
+                            .json({ msg: "Instructor Registration Registration Successful" });
+                    }).catch((err) => {
                         console.log(err);
                     })
-                   
+
                 })
                 .catch((err) => {
                     console.log(err);

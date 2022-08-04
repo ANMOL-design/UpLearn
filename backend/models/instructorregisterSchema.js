@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bycrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const instructorSchema = new mongoose.Schema({
-   Teachername: {
+    Teachername: {
         type: String,
         required: true,
     },
@@ -15,92 +15,88 @@ const instructorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    subject:{
-        type : String,
+    subject: {
+        type: String,
         required: true,
     },
-    block:{
-        type : String,
+    block: {
+        type: String,
         required: true,
     },
-    permanentAddress :{
-        type : String,
+    permanentAddress: {
+        type: String,
         required: true,
     },
-    school :{
-        type : String,
+    school: {
+        type: String,
         required: true,
     },
-    city :{
-        type : String,
+    city: {
+        type: String,
         required: true,
     },
-    state :{
-        type : String,
+    state: {
+        type: String,
         required: true,
     },
-    pincode :{
-        type : Number,
+    pincode: {
+        type: Number,
         required: true,
     },
-    mobileno :{
-        type :Number,
+    mobileno: {
+        type: Number,
         required: true,
     },
-    idImage : {
-        type : String,
+    idImage: {
+        type: String,
         required: true,
     },
-    image : {
-        type : String,
+    image: {
+        type: String,
         required: true,
     },
-    isInstructor :{
-        type : Boolean,
-        default : true,
+    isInstructor: {
+        type: Boolean,
+        default: true,
         required: true,
     },
-    teacher_id : {
-        type : Number,
+    teacher_id: {
+        type: Number,
         required: true,
     },
-    aadharCard : {
-        type : Number,
+    aadharCard: {
+        type: Number,
         required: true,
     },
-    AadharcardImage : {
-        type : String,
+    AadharcardImage: {
+        type: String,
         required: true,
     },
-    // TeacherHigherQualification : {
-    //     type : String,
-    //     required:true,
-    // },
-    // Instructordegree : {
-    //     type : String,
-    //     required:true,
-    // },
-    // InstructorClass : {
-    //     type : String,
-    //     required:true,
-    // },
-    CousesList :[{
-        nameOfCourse:{
-            type : String,
+    degree: {
+        type: String,
+        required: true,
+    },
+    classteacher: {
+        type: String,
+        required: true,
+    },
+    CousesList: [{
+        nameOfCourse: {
+            type: String,
         },
-         courseId :{
-            type : String,
-         }
-    }], 
-    followers :[{
-        studentId : {
-            type : String,
+        courseId: {
+            type: String,
+        }
+    }],
+    followers: [{
+        studentId: {
+            type: String,
         }
     }],
     MyLibrary: [{
         BookId: {
             type: String,
-            unique:true,
+            unique: true,
         }
     }],
     tokens: [{
@@ -109,9 +105,9 @@ const instructorSchema = new mongoose.Schema({
             required: true,
         }
     }]
-    
-    
-    
+
+
+
 });
 
 instructorSchema.pre('save', async function(next) {
@@ -121,7 +117,7 @@ instructorSchema.pre('save', async function(next) {
     next();
 })
 instructorSchema.methods
-    .generateAuthToken= async function() {
+    .generateAuthToken = async function() {
         try {
             let token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
             this.tokens = this.tokens.concat({ token: token })
