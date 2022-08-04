@@ -27,11 +27,11 @@
     {
 
         "id": 4,
-        "image": "./assets/images/education-banner.png",
-        "heading": "Add a Course",
-        "title": "Attitude Is A Little Thing That Makes A Big Difference.",
-        "Link": "/home",
-        "name": "Start"
+        "image": "./assets/images/contact-Img.jpg",
+        "heading": "Contact Details",
+        "title": "Curiosity is the fuel for discovery, inquiry and learning & questions will get you further than confidence and answers",
+        "Link": "/admin-portal-contact-details-190310554227",
+        "name": "Check Details"
     },
     {
 

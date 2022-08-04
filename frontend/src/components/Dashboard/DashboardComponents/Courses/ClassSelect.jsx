@@ -62,6 +62,7 @@ export default function ClassSelect() {
         <h2>
           For <span style={{ color: "#4262FD" }}>{board}</span> Board
         </h2>
+
         <h1>Choose Your Class</h1>
 
         <div className="class">

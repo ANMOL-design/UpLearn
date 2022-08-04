@@ -18,12 +18,13 @@ app.use(require("./routes/aboutUser"));
 app.use(require("./routes/updateUserProfile"));
 app.use(require("./routes/addCourse"));
 app.use(require("./routes/libraryRoute"));
+app.use(require("./routes/contactData"));
 // mongodbconnection
 mongoose.connect(
     process.env.MONGODB_CONNECTION_STRING, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    },
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+},
     (err) => {
         if (err) throw err;
         console.log("MongoDB connection established");

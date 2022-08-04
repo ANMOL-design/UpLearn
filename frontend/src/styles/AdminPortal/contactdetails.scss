@@ -1,0 +1,146 @@
+
+.contact-heading{
+    font-family: $font_El;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+.contactDetailTable {
+    font-family: $font_El;
+    width: 100%;
+        border-collapse: collapse;
+}
+.contactDetailTable tr:nth-of-type(odd) {
+    background: #3a4dad34;
+}
+
+.contactDetailTable th {
+    background: #2b4eff;
+    color: white;
+    font-weight: bold;
+}
+
+.contactDetailTable td,
+.contactDetailTable th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+ @media only screen and (max-width: 760px),
+ (min-device-width: 768px) and (max-device-width: 1024px) {
+
+     /* Force table to not be like tables anymore */
+     .contactDetailTable table,
+     .contactDetailTable thead,
+     .contactDetailTable tbody,
+     .contactDetailTable th,
+     .contactDetailTable td,
+     .contactDetailTable tr {
+         display: block;
+     }
+
+     /* Hide table headers (but not display: none;, for accessibility) */
+     .contactDetailTable thead tr {
+         position: absolute;
+         top: -9999px;
+         left: -9999px;
+     }
+
+     .contactDetailTable tr {
+         border: 1px solid #ccc;
+     }
+
+     .contactDetailTable td {
+         /* Behave  like a "row" */
+         border: none;
+         border-bottom: 1px solid #eee;
+         position: relative;
+         padding-left: 50%;
+     }
+
+     .contactDetailTable .contactDetailTable td:before {
+         /* Now like a table header */
+         position: absolute;
+         /* Top/left values mimic padding */
+         top: 6px;
+         left: 6px;
+         width: 45%;
+         padding-right: 10px;
+         white-space: nowrap;
+     }
+
+ }
+
+ 
+
+ //modal window 
+ .sendReplyModal{
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: auto;
+        background: rgba(0, 0, 0, 0.5);
+ }
+ .sendReplyModal .sendReplyModal-content{
+        position: relative;
+        background-color: #fefefe;
+        margin: 5% auto auto;
+        padding: 1rem;
+        border: 1px solid #888;
+        width: 30%;
+        border-radius: 6px;
+    
+        div {
+            padding: 1rem 0;
+            @include displayflex;
+            justify-content: center;
+            flex-direction: column;
+            font-family: $font_El;
+    
+            h2 {
+                font-size: 2rem;
+                margin: 12px 0px;
+            }
+    
+            p {
+                text-align: center;
+            }
+    
+            button {
+                @include sitebutton;
+            }
+        }
+ }
+ .sendReplyModal .sendReplyModal-header {
+    display: flex;
+ }
+ .sendReplyModal .sendReplyModal-header .close {
+    position: absolute;
+    font-size: 3rem;
+    top: -9px;
+    right: -12px;
+    color: #2B4EFF;
+    font-weight: bold;
+    background: none;
+ }
+ .sendReplyModal-body input, textarea{
+    outline:none; 
+    background-color: #E8F0FE;
+    width: 100%;
+    padding: .5rem;
+    border-radius:7px;
+    border:none;
+ }
+ .contactDetailTable .replyBtn{
+    cursor: pointer;
+    background-color: #2B4EFF;
+    border:none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    border-radius: 1rem;
+ }

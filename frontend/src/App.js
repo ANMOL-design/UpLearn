@@ -44,6 +44,7 @@ import LibraryPage from "./components/Library/LibraryHome";
 
 // Home Route
 import Home from "./components/Home/Home";
+import ContactDetails from "./components/AdminPortal/ContactDetails";
 
 
 function App() {
@@ -92,6 +93,7 @@ function App() {
             <Route path="/admin-portal-instructorRegis-190310554227" element={<InstructorRegister />} />
             <Route path="/admin-portal-Addbook-190310554227" element={<AddBook />} />
             <Route path="/admin-portal-InstructorList-190310554227" element={<InstructorList />} />
+            <Route path="/admin-portal-contact-details-190310554227" element={<ContactDetails />} />
             {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={<AddCourses />} />
             <Route path="/instructordashboard/*" element={<InstructorDashboard />} />
