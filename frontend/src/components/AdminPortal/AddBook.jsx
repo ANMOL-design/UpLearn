@@ -209,19 +209,16 @@ export default function AddBook() {
     setbookPdf(e.target.files[0].name);
     setbookPdfData(e.target.files[0]);
   }
-  const time = 20000;
-
+  const time = 10000;
   function sendData () {
     setTimeout(function () {
-      console.log(Book_Pdf + " " + Book_Image);
-
-      if(Book_Pdf=="" || Book_Image==""){
-        time = time + 10000
-        sendData();
-      }
-      else{
-          postData();
-      }
+      console.log(Book_Pdf +" "+Book_Image);
+    if(Book_Pdf=="" || Book_Image==""){
+       sendData();
+    }
+    else{
+    postData();
+    }
   }, time);
 }
   const handleSubmit = async (event) => {

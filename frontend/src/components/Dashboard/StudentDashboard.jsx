@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-// import { SidebarData } from "./Data";
+import React, { useEffect } from "react";
+import {  Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { FaBars } from "react-icons/fa";
 import axios from "axios";
+
 import MainDash from "./DashboardComponents/MainDash";
 import Profile from "./DashboardComponents/pages/Profile";
 import Courses from "./DashboardComponents/pages/Courses";
@@ -14,8 +13,7 @@ import Sidebar from "./DashboardComponents/Sidebar";
 var CryptoJS = require("crypto-js");
 
 export default function StudentDashboard() {
-  // var x = 0;
-  // const [selected, setSelected] = useState(0);
+ 
   const loginDetails = useSelector((state) => state.userReducers);
   let navigate = useNavigate();
 
@@ -32,8 +30,9 @@ export default function StudentDashboard() {
 
     if (Number(loginDetails.isLoggedIn) && role === "INSTRUCTOR") {
       navigate("/instructordashboard");
-    } else if (Number(loginDetails.isLoggedIn) && role === "STUDENT") {
-      navigate("/studentdashboard");
+    } 
+    else if (Number(loginDetails.isLoggedIn) && role === "STUDENT") {
+
       const fetchdata = async () => {
         await axios
           .get("/aboutStudents")
@@ -46,21 +45,25 @@ export default function StudentDashboard() {
           });
       };
       fetchdata();
-    } else {
+    } 
+    else {
       navigate("/login");
     }
   }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate]);
 
-  // const SideToggler = () => {
-  //   var e = document.getElementById("dashSlider");
-  //   e.classList.toggle("hiderslider");
-  // };
 
   return (
     <>
       <div className="studWrapper">
-        <Sidebar />
-        <MainDash />
+          {/* SideBar Present at All Places  */}
+          <Sidebar />
+          <Routes>
+              <Route path="/" element={<MainDash />} /> 
+              <Route path="/my-profile" element={<Profile />} /> 
+              <Route path="/stud-courses" element={<Courses />} />          
+              <Route path="/instructor" element={<Instructor />} />          
+              <Route path="/reports" element={<Reports />} />          
+          </Routes>
       </div>
     </>
   );

@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 router.use(express.json());
 dotenv.config();
 const Courses = require("../models/coursesSchema");
-
+const Instructors = require("../models/instructorregisterSchema");
 router.post("/Instructoraddcourse", (req, res) => {
   const {
     title,
@@ -14,13 +14,13 @@ router.post("/Instructoraddcourse", (req, res) => {
     Description,
     thumbnail,
     courseInstructor,
+    courseCategory
   } = req.body;
 
-  if ( !title ||  !courseojective ||  !level ||  !language ||  !Description ||  !thumbnail ||  !courseInstructor) {
+  if ( !title ||  !courseojective ||  !level ||  !language ||  !Description ||  !thumbnail ||!courseCategory||  !courseInstructor) {
     return res.sendStatus(201);
   }
-
-  
+     
       const courses = new Courses({
         title,
     courseojective,
@@ -29,13 +29,26 @@ router.post("/Instructoraddcourse", (req, res) => {
     Description,
     thumbnail,
     courseInstructor,
+    courseCategory
       });
      courses
         .save()
-        .then(() => {
-          res
-            .status(200)
-            .json({ msg: "course added Successful" });
+        .then(async () => {
+          Instructors.findByIdAndUpdate(courseInstructor,{$push:{CousesList:{nameOfCourse:courses.title,courseId:courses._id}}},
+            function(err, result){
+       
+             if(err){
+                 console.log(err);
+             }
+             else{
+               console.log(result);
+                }
+              })
+              res
+              .status(200)
+              .json({ msg: "course added Successful" });
+         
+         
         })
         .catch((err) => {
           console.log(err);

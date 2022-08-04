@@ -10,15 +10,16 @@ import Footer from "./components/Footer/Footer";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import Loader from "./components/Loader";
 import Courses from "./components/Courses/Courses";
-import ChangePassword from "./components/Dashboard/DashboardComponents/ChangePassword";
 
 // The Admin Portal Links
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
-import UpdateMyStudentProfile from "./components/Dashboard/DashboardComponents/UpdateProfile";
 import InstructorRegister from "./components/AdminPortal/InstructorRegister";
 import Logout from "./components/logout/logout";
 import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
+import StudentList from "./components/AdminPortal/StudentList";
+import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
+import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 
 // Instructor Dashboard 
 import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
@@ -26,8 +27,9 @@ import InstructorDashboard from "./components/instructorDashboard/InstructorProf
 
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
-import Profile from "./components/Dashboard/DashboardComponents/pages/Profile";
-import StudCourses from "./components/Dashboard/DashboardComponents/pages/Courses";
+import ChangePassword from "./components/Dashboard/DashboardComponents/ChangePassword";
+import UpdateMyStudentProfile from "./components/Dashboard/DashboardComponents/UpdateProfile";
+
 //courses
 import Class from "./components/Dashboard/DashboardComponents/Courses/ClassSelect";
 import Subject from "./components/Dashboard/DashboardComponents/Courses/Subject";
@@ -45,6 +47,7 @@ import LibraryPage from "./components/Library/LibraryHome";
 // Home Route
 import Home from "./components/Home/Home";
 import ContactDetails from "./components/AdminPortal/ContactDetails";
+
 
 
 function App() {
@@ -75,15 +78,13 @@ function App() {
             {/* The Student Dashboard  */}
 
 
-            <Route path="/studentdashboard" element={<StudentDashboard />} />
-            <Route path="/updateStudentProfile" element={<UpdateMyStudentProfile />} />
-            <Route path="/change-password" element={<ChangePassword />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/stud-courses" element={<StudCourses />} />
+            <Route path="/studentdashboard/*" element={<StudentDashboard />} />
+            <Route path="/change-student-password" element={<ChangePassword />} />
+            <Route path="/update-student-profile" element={<UpdateMyStudentProfile />} />
+
             <Route path="/stud-courses/:board" element={<Class />} />
             <Route path="/stud-courses/:board/:class" element={<Subject />} />
             <Route path="/stud-courses/:board/:class/:subject" element={<ContentPage />} />
-
 
             {/* IMAGEUPLOADER */}
             <Route path="/imageuploader" element={<ImageUploader />} />
@@ -94,6 +95,9 @@ function App() {
             <Route path="/admin-portal-Addbook-190310554227" element={<AddBook />} />
             <Route path="/admin-portal-InstructorList-190310554227" element={<InstructorList />} />
             <Route path="/admin-portal-contact-details-190310554227" element={<ContactDetails />} />
+            <Route path="/admin-portal-StudentList-190310554227" element={<StudentList />} />
+            <Route path="/admin-portal-assign-task-190310554227" element={<AssignTaskToInstructor />} />
+            <Route path="/admin-portal-assign-task-190310554227/:id" element={<AssignSyllbusTask />} />
             {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={<AddCourses />} />
             <Route path="/instructordashboard/*" element={<InstructorDashboard />} />

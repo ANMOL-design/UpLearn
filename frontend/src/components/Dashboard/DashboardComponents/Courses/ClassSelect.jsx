@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Sidebar from "../Sidebar";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function ClassSelect() {
+
   const [isActive, setIsActive] = useState(0);
   const [classs, setClasss] = useState("");
   const params = useParams();
@@ -69,7 +70,6 @@ export default function ClassSelect() {
           {classItem.map((item, index) => {
             return (
               <div
-                // className={isActive === item.class ? "random" : "classItem"}
                 className="classItem"
                 onClick={handleClick(item.class)}
               >
@@ -78,11 +78,6 @@ export default function ClassSelect() {
             );
           })}
         </div>
-        {/* <div className="nextBtn">
-          <Link to={`/stud-courses/${board}/class-${classs}`}>
-            Next &raquo;
-          </Link>
-        </div> */}
       </div>
     </div>
   );

@@ -16,6 +16,14 @@ const coursesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  level: {
+    type: String,
+    required: true,
+  },
+  courseCategory :{
+    type: String,
+    required: true,
+  },
   courseInstructor: {
     type: String,
     required: true,

@@ -6,12 +6,12 @@ import { MdSearch } from "react-icons/md";
 import axios from "axios";
 import Loader from "../Loader";
 
-export default function InstructorList() {
+export default function StudentList() {
   
   let navigate = useNavigate();
   const adminstatus = useSelector((state) => state.AdminReducers);
 
-  const [InstructorsInfo,setInstructorInfo] = useState([]);
+  const [StudentsInfo,setStudentsInfo] = useState([]);
   const [InfoBackup,setInfoBackup] = useState([]);
   const [Loading, setLoading] = useState(true);
 
@@ -26,9 +26,9 @@ export default function InstructorList() {
       if(Number(adminstatus.isAdminLoggedIn)){
           // call the fetch admin detail function 
           const fetchdata = async () =>{
-              await axios.get("/allInstructor").then(response => {
-                  setInstructorInfo(response.data);
-                  setInfoBackup(response.data);
+              await axios.get("/allStudents").then(response => {
+                  setStudentsInfo(response.data);
+                  setInfoBackup(response.data)
                   setLoading(false);
               })
               .catch(error => {
@@ -45,9 +45,9 @@ export default function InstructorList() {
   }, [adminstatus.isAdminLoggedIn, navigate, refresh]);
 
 
-  const FindTheInstructor = () => { 
+  const FindTheStudent = () => { 
     if(input === ''){
-      setInstructorInfo(InfoBackup);
+        setStudentsInfo(InfoBackup);
     }
     else{
       var ans = InfoBackup.map((a) => {
@@ -57,10 +57,11 @@ export default function InstructorList() {
       });
 
       ans = ans.filter((e) => e !== undefined)
-      setInstructorInfo(ans);
+      setStudentsInfo(ans);
     }
   }
 
+  console.log(StudentsInfo)
 
   if(Loading){
     return( <Loader /> );
@@ -77,7 +78,7 @@ export default function InstructorList() {
         </div>
         {/* Search Bar  */}
         <div  className="library-filter-container" style={{margin: '0px'}}>
-          <h1>Instructor's Details</h1>
+          <h1>Students's Details</h1>
 
           <div className="librarySearch">
             {/* input box to search User  */}
@@ -87,7 +88,7 @@ export default function InstructorList() {
               value={input}
               onChange={(e) => {setinput(e.target.value)}}
             />
-            <button type="submit" onClick={FindTheInstructor}>
+            <button type="submit" onClick={FindTheStudent}>
               <i><MdSearch /></i> Search
             </button>
           </div>
@@ -95,7 +96,7 @@ export default function InstructorList() {
         
         {/* Table Show the Details of Teacher  */}
         <div className="instructor-table">
-          <p><b>Total Instructors: {InstructorsInfo.length}</b></p>
+         <p><b>Total Students: {StudentsInfo.length}</b></p>
           <table>
             <thead>
               <tr>
@@ -103,18 +104,18 @@ export default function InstructorList() {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Mobile No.</th>
-                <th>AadharCard</th>
+                <th>Address</th>
                 <th>Remove</th>
               </tr>
             </thead>
             <tbody>
-                  {InstructorsInfo.map((item)=>(
+                  {StudentsInfo.map((item)=>(
                       <tr key={item._id}>
                         <td>
                           {++x}
                         </td>
                         <td style={{textAlign: 'left', paddingLeft: '1rem'}}>
-                          {item.Teachername}
+                          {item.name}
                         </td>
                         <td style={{textTransform: 'none'}}>
                           {item.email}
@@ -123,13 +124,13 @@ export default function InstructorList() {
                           {item.mobileno}
                         </td>
                         <td>
-                          {item.aadharCard}
+                          {item.PermanentAddress}
                         </td>
                         <td>
                           <button className='rmvbtn' onClick={ async ()=>{
                               const id = item._id;
                               // console.log(id)
-                              const res =  await fetch("/InstructorRemoved" ,{
+                              const res =  await fetch("/StudentRemoved" ,{
                                 method : "POST",
                                 headers : { 
                                     "content-Type" : "application/json"

@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import Cards from "./Cards/Cards";
-import Banner from "./../../../assets/images/custom.svg"
+import Banner from "./../../../assets/images/custom.svg";
+
 // chart library
 import Chart from "react-apexcharts";
 import CourseCards from "./Cards/CourseCards";

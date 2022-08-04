@@ -1,57 +1,34 @@
-.instructor-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-
-  }
-  /* Zebra striping */
-  .instructor-table tr:nth-of-type(odd) { 
-    background: #3a4dad34; 
-  }
-  .instructor-table th { 
-    background: #2b4eff; 
-    color: white; 
-    font-weight: bold; 
-  }
-  .instructor-table td, .instructor-table th { 
-    padding: 6px; 
-    border: 1px solid #ccc; 
-    text-align: left; 
-  }
-
-  @media only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px)  {
-
-	/* Force table to not be like tables anymore */
-	.instructor-table table,.instructor-table thead,.instructor-table tbody,.instructor-table th,.instructor-table td,.instructor-table tr { 
-		display: block; 
-	}
-	
-	/* Hide table headers (but not display: none;, for accessibility) */
-	.instructor-table thead tr { 
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-	
-	.instructor-table tr { border: 1px solid #ccc; }
-	
-	.instructor-table td { 
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee; 
-		position: relative;
-		padding-left: 50%; 
-	}
-	
-	.instructor-table .instructor-table td:before { 
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-	}
-	
+.instructor-table {
+    width: 100%;
+    padding: 1rem;
+    overflow-x: scroll;
+    box-shadow: inset 1px 1px 8px #888888;
+    table,
+    th,
+    td {
+        padding: 6px;
+        border: 1px solid #ccc;
+        text-transform: capitalize;
+        text-align: center;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th {
+        background: #2b4eff;
+        color: white;
+        padding: 9px;
+        font-weight: bold;
+        font-family: $font_El;
+        font-size: 1.1rem;
+    }
+    tr:nth-of-type(even) {
+        background: #3a4dad34;
+    }
+    .rmvbtn {
+        @include sitebutton;
+        padding: 2px 1rem;
+        margin: 0px 4px
+    }
 }
