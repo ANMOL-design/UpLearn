@@ -14,9 +14,10 @@ router.post("/Instructoraddcourse", (req, res) => {
     Description,
     thumbnail,
     courseInstructor,
+    courseCategory
   } = req.body;
 
-  if ( !title ||  !courseojective ||  !level ||  !language ||  !Description ||  !thumbnail ||  !courseInstructor) {
+  if ( !title ||  !courseojective ||  !level ||  !language ||  !Description ||  !thumbnail ||!courseCategory||  !courseInstructor) {
     return res.sendStatus(201);
   }
      
@@ -28,6 +29,7 @@ router.post("/Instructoraddcourse", (req, res) => {
     Description,
     thumbnail,
     courseInstructor,
+    courseCategory
       });
      courses
         .save()

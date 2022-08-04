@@ -13,6 +13,7 @@ export default function AddCourses() {
     courseojective: "",
     level: "",
     language: "",
+    courseCategory:""
   });
 
   let navigate = useNavigate();
@@ -66,7 +67,8 @@ export default function AddCourses() {
       !COURSE.language||
       !COURSE.level||
       !Description1||
-      !thumbnailImage
+      !thumbnailImage||
+      !COURSE.courseCategory
     ) {
       seterr("Please Enter all required Fields.");
       return false;
@@ -99,7 +101,7 @@ export default function AddCourses() {
     }
   };
   const postData = async () => {
-    const { title, courseojective, level, language } = COURSE;
+    const { title, courseojective, level, language ,courseCategory} = COURSE;
     const thumbnail = thumbnai_Image;
     const Description = Description1;
     const courseInstructor=Instructor._id
@@ -109,7 +111,7 @@ export default function AddCourses() {
         "content-Type": "application/json",
       },
       body: JSON.stringify({
-        title, courseojective, level, language,Description,thumbnail,courseInstructor
+        title, courseojective, level, language,Description,thumbnail,courseInstructor,courseCategory
       }),
     });
 
@@ -239,7 +241,7 @@ export default function AddCourses() {
                     value="Beginers"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span htmlFor="Beginers">Beginers</span>
+                  <label htmlFor="Beginers">Beginers</label>
                   <br />
                   <input
                     type="radio"
@@ -248,7 +250,7 @@ export default function AddCourses() {
                     value="Intermidiate"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span htmlFor="Intermidiate">Intermidiate</span>
+                  <label htmlFor="Intermidiate">Intermidiate</label>
                   <br />
                   <input
                     type="radio"
@@ -257,7 +259,7 @@ export default function AddCourses() {
                     value="Advanced"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span htmlFor="Advanced">Advanced</span>
+                  <label htmlFor="Advanced">Advanced</label>
                 </label>
               </div>
               <div className="add-course-radio">
@@ -271,7 +273,7 @@ export default function AddCourses() {
                     value="English"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span htmlFor="English">English</span>
+                  <label htmlFor="English">English</label>
                   <br />
                   <input
                     type="radio"
@@ -281,7 +283,7 @@ export default function AddCourses() {
                     value="Hindi"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span htmlFor="Hindi">Hindi</span>
+                  <label htmlFor="Hindi">Hindi</label>
                   <br />
                   <input
                     type="radio"
@@ -291,7 +293,7 @@ export default function AddCourses() {
                     value="Hinglish"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span htmlFor="Hinglish">Hinglish</span>
+                  <label htmlFor="Hinglish">Hinglish</label>
                   <br />
                   <input
                     type="radio"
@@ -301,11 +303,30 @@ export default function AddCourses() {
                     value="other"
                     onChange={(e) => handlechange(e)}
                   />
-                  <span htmlFor="other">other</span>
+                  <label htmlFor="other">other</label>
                 </label>
               </div>
               <div className="inputField btn">
-                <p htmlFor="thumbnailofcourse">Thumbnail Image :</p>
+              <div className="inputFiel">
+              <label htmlFor="courseCategory">
+                  Select Category<span className="star">*</span>
+              </label> <br />
+              <select id="courseCategorys" name="courseCategory" value={COURSE.courseCategory} onChange={(e) => handlechange(e)}>
+                <option  disabled   value="">Select Category:</option>
+                <option  onChange={(e) => handlechange(e)} value="Art/Design">Art/Design</option>
+                <option  onChange={(e) => handlechange(e)} value="Communication/Speech">Communication/Speech</option>
+                <option  onChange={(e) => handlechange(e)} value="Computer Science">Computer Science</option>
+                <option  onChange={(e) => handlechange(e)} value="Music">Music</option>
+                <option  onChange={(e) => handlechange(e)} value="Photography">Photography</option>
+                <option  onChange={(e) => handlechange(e)} value="Personality Developmant">Personality Developmant</option>
+                <option  onChange={(e) => handlechange(e)} value="Foreign Languages">Foreign Languages</option>
+                <option  onChange={(e) => handlechange(e)} value="Business Management">Business Management</option>
+                <option  onChange={(e) => handlechange(e)} value="Other">Other</option>
+          
+              </select>
+              </div>
+              <br />
+                <label htmlFor="thumbnailofcourse">Thumbnail Image :</label> <br />
                 <input
                   type="file"
                   required
@@ -317,9 +338,11 @@ export default function AddCourses() {
                     setthumbnailImageData(e.target.files[0]);
                   }}
                 />
+                  <span className="uploadphoto">{thumbnailImage}</span>
                 <div className="course-field">
                 <div>
                   <img src={Loader} alt="Loader" id="loader-reg" />
+                
                   <p className="uploadphoto">{err}</p>
                 </div>
                 <div className="submit-btn">
