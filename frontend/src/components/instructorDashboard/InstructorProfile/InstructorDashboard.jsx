@@ -1,4 +1,4 @@
-import React, {useEffect}  from "react";
+import React, {useState, useEffect}  from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -6,6 +6,7 @@ import InstructorSidebar from "./InstructorSidebar";
 import InstructorDashCourses from "./InstrutorComponent/InstructorDashCourses";
 import InstructorDashHome from "./InstrutorComponent/InstructorDashHome";
 import InstructorAssignTask from "./InstrutorComponent/InstructorTasks";
+import InstructorAddTaskDetails from "./InstrutorComponent/InstructorAddTaskDetails";
 
 var CryptoJS = require("crypto-js");
 
@@ -13,6 +14,8 @@ function InstructorDashboard(){
 
     const loginDetails = useSelector((state) => state.userReducers);
     let navigate = useNavigate();
+
+    const [instructor, setinstructor] = useState({});
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -30,7 +33,7 @@ function InstructorDashboard(){
             await axios
               .get("/aboutInstructor")
               .then((response) => {
-                console.log(response.data);
+                setinstructor(response.data);
               })
               .catch((error) => {
                 console.log(error);
@@ -55,7 +58,8 @@ function InstructorDashboard(){
             <Routes>
                 <Route path="/" element={<InstructorDashHome />} /> 
                 <Route path="/mycourses" element={<InstructorDashCourses />} /> 
-                <Route path="/task-assign" element={<InstructorAssignTask />} /> 
+                <Route path="/task-assign" element={<InstructorAssignTask details={instructor} />} /> 
+                <Route path="/task-assign/add-lecture-data/:id" element={<InstructorAddTaskDetails details={instructor} />} /> 
             </Routes>
         </div>
     )
