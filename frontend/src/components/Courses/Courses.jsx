@@ -209,7 +209,7 @@ function Courses() {
             </button>
           </div>
         </div>
-
+   <hr style={{margin:"20px 10px"}} />
         {/* courses */}
 
         <div className="courses-list-conteiner">
