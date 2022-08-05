@@ -21,21 +21,23 @@
 @import "./AdminPortal/AdminHome.scss";
 @import "./AdminPortal/instructorRegister.scss";
 @import "./AdminPortal/InstructorList.scss";
-@import "./Contact/Contact.scss";
+@import "./AdminPortal/addbook.scss";
+@import './AdminPortal/contactdetails.scss';
+@import "./AdminPortal/addcourses.scss";
+
 //Importing Style of teacher courses
 @import"./Courses/Courses.scss";
-//Importing Style of add book of admin portal
-@import "./AdminPortal/addbook.scss";
+@import "./Contact/Contact.scss";
+
 //Importing Style of Courses on dashboard
 @import "./Dashboard/DashboardComponents/courses.scss";
 //Importing sidebar of student dashboard
 @import "./Dashboard/sidebar.scss";
 @import "./Dashboard/courses/boardSelect.scss";
-//Importing Style of add courses
-@import "./AdminPortal/addcourses.scss";
 //Importing Style of Library Style
 @import "./Library/Library.scss";
 //Importing Style of instructor Dashboard
 @import "./DashboardInstructor/InstSidebar.scss";
+@import "./DashboardInstructor/EditorInstructor.scss";
 // Home Route
 @import "./Home/Home.scss";

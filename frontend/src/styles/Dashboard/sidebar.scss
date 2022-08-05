@@ -1,11 +1,8 @@
 .stud_sidebar {
     background: #c4d8ef;
-    // color: #fff;
     color: black;
-    // height: 100vh;
     height: 100%;
     width: 220px;
-    // position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
@@ -21,18 +18,18 @@
     padding: 20px 15px;
 }
 
-.logo {
+.stud_sidebar .logo {
     font-size: 30px;
 }
 
-.bars {
+.stud_sidebar .bars {
     display: flex;
     font-size: 25px;
     margin-left: 35px;
     cursor: pointer;
 }
 
-.link {
+.stud_sidebar .link {
     display: flex;
     color: black;
     padding: 10px 15px;
@@ -40,7 +37,7 @@
     transition: all 0.5s;
 }
 
-.link:hover {
+.stud_sidebar .link:hover {
     background: #0C0F33;
     color: white;
     transition: all 0.5s;
@@ -51,7 +48,7 @@
     color: white;
 }
 
-.icon,
+.stud_sidebar .icon,
 .link_text {
     font-size: 18px;
 }

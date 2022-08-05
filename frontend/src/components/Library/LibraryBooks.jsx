@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { MdSimCardDownload, MdSearch } from "react-icons/md";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import Books from "./../../assets/images/booklibrary.jpg"
@@ -10,10 +10,12 @@ function LibraryHome(props){
     const [search, setsearch] = useState(props.bookfind);
     const [bookData , setbookData] = useState([]);
 
+    const [start, setstart] = useState(0);
+    const [end, setend] = useState(8);
+
     const searchBook=()=>{
         axios.get(
-            'https://www.googleapis.com/books/v1/volumes?q='+ search + 
-            '&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU'+'&maxResults=20'
+            'https://www.googleapis.com/books/v1/volumes?q='+ search + '&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU'+'&maxResults=20'
             )
             .then(res => {
                 setbookData(res.data.items)
@@ -21,13 +23,20 @@ function LibraryHome(props){
             .catch(err => console.log(err))
     }
 
-    console.log(bookData)
+    // console.log(bookData)
     ////////////////////////////////
    
     const product =  props.data;
 
-    const [start, setstart] = useState(0);
-    const [end, setend] = useState(8);
+    useEffect(() => {
+        var e = document.getElementById('replyprob');
+        if(e){
+            e.innerHTML = '';
+        }
+        setstart(0);
+        setend(8);
+    }, [product])
+
   
     const LoadLessBooks = () => {
         if(start > 0){

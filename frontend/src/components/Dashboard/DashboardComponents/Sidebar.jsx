@@ -7,8 +7,10 @@ import { MdLogout } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
+
   const menuItem = [
     {
       path: "/studentdashboard",
@@ -16,22 +18,22 @@ const Sidebar = () => {
       icon: <FaTh />,
     },
     {
-      path: "/profile",
+      path: "/studentdashboard/my-profile",
       name: "Profile",
       icon: <CgProfile />,
     },
     {
-      path: "/stud-courses",
+      path: "/studentdashboard/stud-courses",
       name: "Courses",
       icon: <BiSpreadsheet />,
     },
     {
-      path: "/instructor",
+      path: "/studentdashboard/instructor",
       name: "Instructor",
       icon: <FaChalkboardTeacher />,
     },
     {
-      path: "/reports",
+      path: "/studentdashboard/reports",
       name: "Reports",
       icon: <GoReport />,
     },
@@ -41,12 +43,10 @@ const Sidebar = () => {
       icon: <MdLogout />,
     },
   ];
+
   return (
     <div className="container">
-      <div
-       
-       
-      
+      <div    
         style={{ width: isOpen ? "200px" : "50px" }}
         className="stud_sidebar "
       >
@@ -75,7 +75,6 @@ const Sidebar = () => {
           </NavLink>
         ))}
       </div>
-      {/* <main>{children}</main> */}
     </div>
   );
 };
