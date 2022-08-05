@@ -5,6 +5,7 @@ router.use(express.json());
 dotenv.config();
 const Courses = require("../models/coursesSchema");
 const Instructors = require("../models/instructorregisterSchema");
+
 router.post("/Instructoraddcourse", (req, res) => {
   const {
     title,
@@ -55,10 +56,9 @@ router.post("/Instructoraddcourse", (req, res) => {
           res.status(501).json({ msg: "Failed to Register" });
         });
         
-      
-    })
+})
 
-    router.get('/CoursesUplearn', (req, res) => {
+router.get('/CoursesUplearn', (req, res) => {
       Courses.find({}).then((result) => {
           res.send(result)
       });

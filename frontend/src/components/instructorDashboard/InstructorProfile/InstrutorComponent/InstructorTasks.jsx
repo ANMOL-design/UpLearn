@@ -48,7 +48,7 @@ function InstructorAssignTask(props){
                                 <p>Board: {item.Board}</p>
                                 <p>Subject: {item.Subject}</p>
                                 <p>Due Date : {item.DueDate}</p>
-                                <Link to={'add-lecture-data/' + item._id}><button>Add Content</button></Link>
+                                <Link to={'/task-assign/add-lecture-data/' + item._id + '/' + props.details._id} ><button>Add Content</button></Link>
                             </div>
                         )
                     })}
