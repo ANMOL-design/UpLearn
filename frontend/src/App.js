@@ -46,6 +46,7 @@ import LibraryPage from "./components/Library/LibraryHome";
 
 // Home Route
 import Home from "./components/Home/Home";
+import ContactDetails from "./components/AdminPortal/ContactDetails";
 
 
 
@@ -78,8 +79,8 @@ function App() {
 
 
             <Route path="/studentdashboard/*" element={<StudentDashboard />} />
-            <Route path="/change-student-password" element={<ChangePassword />} /> 
-            <Route path="/update-student-profile" element={<UpdateMyStudentProfile />} /> 
+            <Route path="/change-student-password" element={<ChangePassword />} />
+            <Route path="/update-student-profile" element={<UpdateMyStudentProfile />} />
 
             <Route path="/stud-courses/:board" element={<Class />} />
             <Route path="/stud-courses/:board/:class" element={<Subject />} />
@@ -93,6 +94,7 @@ function App() {
             <Route path="/admin-portal-instructorRegis-190310554227" element={<InstructorRegister />} />
             <Route path="/admin-portal-Addbook-190310554227" element={<AddBook />} />
             <Route path="/admin-portal-InstructorList-190310554227" element={<InstructorList />} />
+            <Route path="/admin-portal-contact-details-190310554227" element={<ContactDetails />} />
             <Route path="/admin-portal-StudentList-190310554227" element={<StudentList />} />
             <Route path="/admin-portal-assign-task-190310554227" element={<AssignTaskToInstructor />} />
             <Route path="/admin-portal-assign-task-190310554227/:id" element={<AssignSyllbusTask />} />
