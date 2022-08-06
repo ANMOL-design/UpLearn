@@ -35,6 +35,10 @@ import UpdateMyStudentProfile from "./components/Dashboard/DashboardComponents/U
 import Class from "./components/Dashboard/DashboardComponents/Courses/ClassSelect";
 import Subject from "./components/Dashboard/DashboardComponents/Courses/Subject";
 
+//Doubt Section
+import Doubt from "./components/Doubt/Doubt";
+import Postdoubt from "./components/Doubt/Postdoubt";
+
 //redux setup
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
@@ -104,6 +108,10 @@ function App() {
             <Route path="/instructordashboard/*" element={<InstructorDashboard />} />
             <Route path="/task-assign/add-lecture-data/:id/:teacher" element={<InstructorAddTaskDetails />} /> 
 
+             {/* Doubt Dashboard */}
+             <Route path="/ask-doubt" element={<Doubt />} />
+             <Route path="/post-doubt" element={<Postdoubt />} />
+             
             {/* General  */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
