@@ -58,4 +58,70 @@ router.get("/assigntaskdetails/:id", (req, res) => {
 
 })
 
+router.get("/singleassigntaskinfo/:id", (req, res) => {
+    const id = req.params.id;
+    Lectures.find({ _id: id }).then((product) => {
+        if (product) {
+            return res.send(product)
+        }
+    }).catch((err) => {
+        console.log(err)
+        res.sendStatus(404)
+    })
+})
+
+
+router.post("/Instructoraddlecturedetails/:id", (req, res) => {
+
+    const id = req.params.id;
+    const {
+        LectureNo,
+        Title,
+        LectureContent,
+    } = req.body;
+
+    // console.log(id, LectureContentNo, LectureTitle, LectureContent)
+  
+    if (!LectureNo ||  !Title ||  !LectureContent) {
+      return res.sendStatus(201);
+    }
+       
+
+    Lectures.findByIdAndUpdate(id, {$push:
+        { ChapterContent:
+            {
+                LectureContentNo: LectureNo,
+                LectureTitle: Title,
+                LectureContent: LectureContent
+            }
+        }},
+        function(err, docs) {
+        if (err) {
+            console.log("Error occured" + err)
+        } else {
+            res.status(200).json({ msg: "Content Added" })
+            // console.log(docs);
+        }
+    })
+})
+
+
+router.post("/saveassigntaskasdeaft", (req, res) => {
+
+    const { id, content } = req.body;
+  
+    if (!id) {
+      return res.sendStatus(201);
+    }
+    
+    Lectures.findByIdAndUpdate(id, { Draft: content  }, function(err, docs) {
+        if (err) {
+            console.log("Error occured" + err)
+        } else {
+            res.status(200).json({ msg: "Content Added" })
+            // console.log(docs);
+        }
+    })
+})
+
 module.exports = router;

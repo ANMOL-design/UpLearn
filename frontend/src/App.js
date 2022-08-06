@@ -25,6 +25,7 @@ import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 // Instructor Dashboard
 import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
+import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/InstructorAddTaskDetails";
 
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
@@ -34,6 +35,10 @@ import UpdateMyStudentProfile from "./components/Dashboard/DashboardComponents/U
 //courses
 import Class from "./components/Dashboard/DashboardComponents/Courses/ClassSelect";
 import Subject from "./components/Dashboard/DashboardComponents/Courses/Subject";
+
+//Doubt Section
+import Doubt from "./components/Doubt/Doubt";
+import Postdoubt from "./components/Doubt/Postdoubt";
 
 //redux setup
 import { Provider } from "react-redux";
@@ -134,10 +139,13 @@ function App() {
             />
             {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={<AddCourses />} />
-            <Route
-              path="/instructordashboard/*"
-              element={<InstructorDashboard />}
-            />
+            <Route path="/instructordashboard/*" element={<InstructorDashboard />} />
+            <Route path="/task-assign/add-lecture-data/:id/:teacher" element={<InstructorAddTaskDetails />} /> 
+
+             {/* Doubt Dashboard */}
+             <Route path="/ask-doubt" element={<Doubt />} />
+             <Route path="/post-doubt" element={<Postdoubt />} />
+             
             {/* General  */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
