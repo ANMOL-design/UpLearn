@@ -1,0 +1,70 @@
+.addcoursebyinstructor{
+    margin: 0px 1rem 5rem;
+    font-family: $font_El;
+    h1{
+        padding: 1.2rem 1rem 0.8rem;
+        font-size: 2.3rem;
+        text-align: center;
+    }
+}
+
+.assignedtaskpreview{
+    width: 100%;
+    @include displayflex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    .assignedtaskpreview_inner{
+        min-width: 180px;
+        margin-right: 5px;
+        p{
+            font-size: 17px;
+
+        }
+    }
+}
+
+.assignedtaskpreviewdefine{
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    padding: 1.2rem 1rem 0.8rem;
+
+    text-decoration: underline;
+}
+
+.submitassigntask{
+    @include displayflex;
+    justify-content: center;
+    margin: 2rem 1rem;
+    button{
+        @include sitebutton;
+    }
+    button:first-child{
+        background-color: $dash;
+    }
+    button:last-child{
+        background-color: $success;
+    }
+}
+
+.se-wrapper{
+    min-height: 45vh;
+}
+
+.makedivision{
+    background-color: #fefefe;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+    padding: 1rem;
+    form{
+        input{
+            height: 46px;
+            background-color: #f9f9f9;
+            border: 1px solid rgba(0, 0, 0, 0.2)
+        }
+    }
+    
+    
+}
+// .sun-editor .se-toolbar {
+//     z-index: 1 !important;
+// }

@@ -1,50 +1,7 @@
-import { AiOutlineHome, AiFillCheckSquare, AiFillSafetyCertificate } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
-import { BiSpreadsheet } from "react-icons/bi";
-import { FaChalkboardTeacher } from "react-icons/fa";
-import { GrCertificate } from "react-icons/gr";
-import { MdLogout } from "react-icons/md";
+import { AiFillCheckSquare, AiFillSafetyCertificate } from "react-icons/ai";
 import { BsStickiesFill } from "react-icons/bs";
 import { MdQuiz } from "react-icons/md";
-import MainDash from "./DashboardComponents/MainDash";
-import Profile from "./DashboardComponents/Profile";
-import Courses from "./DashboardComponents/Courses";
-import Instructor from "./DashboardComponents/Instructor";
-import Reports from "./DashboardComponents/Reports";
-import Logout from "../logout/logout";
 
-//sidebar data
-export const SidebarData = [{
-        icon: AiOutlineHome,
-        heading: "Dashboard",
-        path: MainDash
-    },
-    {
-        icon: CgProfile,
-        heading: "Profile",
-        path: Profile
-    },
-    {
-        icon: BiSpreadsheet,
-        heading: "Courses",
-        path: Courses
-    },
-    {
-        icon: FaChalkboardTeacher,
-        heading: "Instructor",
-        path: Instructor
-    },
-    {
-        icon: GrCertificate,
-        heading: "Reports",
-        path: Reports
-    },
-    {
-        icon: MdLogout,
-        heading: "Logout",
-        path: Logout
-    }
-];
 
 export const CardData = [{
         icon: BsStickiesFill,
