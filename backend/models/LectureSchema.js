@@ -38,6 +38,9 @@ const LectureSchema = new mongoose.Schema({
     required: true,
     default : false,
   },
+  Draft: {
+    type: String,
+  },
   ChapterContent: [
     {
       LectureContentNo: {

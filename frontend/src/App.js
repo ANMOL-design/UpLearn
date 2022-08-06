@@ -24,6 +24,7 @@ import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 // Instructor Dashboard 
 import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
+import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/InstructorAddTaskDetails";
 
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
@@ -47,6 +48,7 @@ import LibraryPage from "./components/Library/LibraryHome";
 // Home Route
 import Home from "./components/Home/Home";
 import ContactDetails from "./components/AdminPortal/ContactDetails";
+import CourseInfo from "./components/Courses/CourseInfo";
 
 
 
@@ -101,9 +103,12 @@ function App() {
             {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={<AddCourses />} />
             <Route path="/instructordashboard/*" element={<InstructorDashboard />} />
+            <Route path="/task-assign/add-lecture-data/:id/:teacher" element={<InstructorAddTaskDetails />} /> 
+
             {/* General  */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
+            <Route path="/Course/:id" element={<CourseInfo />} />
             <Route path="/uplearn-virtual-library" element={<LibraryPage />} />
             {/* Home Route  */}
             <Route path="/" element={<Home />} exact />

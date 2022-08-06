@@ -6,10 +6,12 @@ import InstructorSidebar from "./InstructorSidebar";
 import InstructorDashCourses from "./InstrutorComponent/InstructorDashCourses";
 import InstructorDashHome from "./InstrutorComponent/InstructorDashHome";
 import InstructorAssignTask from "./InstrutorComponent/InstructorTasks";
+
 import InstructorAddTaskDetails from "./InstrutorComponent/InstructorAddTaskDetails";
 import MyCourses from "./InstrutorComponent/instructorMyCourses";
 import AddCourses from "../Instructorscomponent/addCourse";
 import InstructorEditContent from "./InstrutorComponent/InstructorEditContent";
+
 
 var CryptoJS = require("crypto-js");
 
@@ -65,7 +67,6 @@ function InstructorDashboard(){
                 <Route path="/my_courses/Edit_content/:id" element={<InstructorEditContent />} /> 
                 <Route path="/my_courses/add_new_course" element={<AddCourses />} /> 
                 <Route path="/task-assign" element={<InstructorAssignTask details={instructor} />} /> 
-                <Route path="/task-assign/add-lecture-data/:id" element={<InstructorAddTaskDetails details={instructor} />} /> 
             </Routes>
         </div>
     )
