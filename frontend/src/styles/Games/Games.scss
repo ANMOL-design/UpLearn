@@ -1,0 +1,129 @@
+.games-banner {
+    @include displayflex;
+    // Set a background Image 
+    background: url("./../../assets/images/fun-learning.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 55vh;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-family: $font_El;
+    color: #fff;
+    box-shadow: inset 1px 1px 8px #888888;
+    
+}
+.games-header{
+        font-size: 2rem;
+        padding: 2rem 2.5rem 0.1rem ;
+        font-family: $font_El;
+        text-align: center;
+        color: blue;
+        h1{
+            margin: 0;
+            padding: 0;
+        }
+}
+
+.body-game{
+    
+        display : flex;
+        align-items : center;
+        justify-content : center;  
+        background-color: #43345d;
+        min-height : 800px;
+        font-family: $font_El;
+      
+}
+.container-game {
+    position : relative;
+    width : 100%;
+    display : flex;
+    align-items : center;
+    justify-content : center;
+    flex-wrap: wrap;
+    // padding : 30px;  
+  }
+  
+  .container-game .card-game {
+    position: relative;
+    max-width : 300px;
+    height : 180px;  
+    background-color : #fff;
+    margin : 82px 52px;
+    padding : 20px 15px;
+    display : flex;
+    flex-direction : column;
+    box-shadow : 0 5px 20px rgba(0,0,0,0.5);
+    transition : 0.5s ease-in-out;
+    border-radius : 15px;
+    
+  }
+  .container-game .card-game:hover {
+    height : 300px;    
+  }
+  
+  
+  .container-game .card-game .image-game {
+    position : relative;
+    width : 18rem;
+    height : 12.5rem;
+    top : -40%;
+    left: 8px;
+    box-shadow : 0 5px 20px rgba(169, 165, 165, 0.2);
+    z-index : 1;
+  }
+  
+  .container-game .card-game .image-game img {
+    max-width : 100%;
+    border-radius : 15px;
+  }
+  
+  .container-game .card-game .content-game {
+    position : relative;
+    top : -140px;
+    padding : 10px 15px;
+    color : #111;
+    text-align : center;
+    
+    visibility : hidden;
+    opacity : 0;
+    transition : 0.3s ease-in-out;
+
+    
+    h3 {
+        text-align: center;
+        text-transform: capitalize;
+        font-size: 1.4rem;
+        margin-top: 0.8rem;
+        font-family: $font_El;
+    }
+    a {
+        button {
+            @include sitebutton;
+            margin: 1rem;
+            font-weight: 600;
+            }
+    }
+    p {
+        font-family: $font_El;
+        padding: 0px 8px;
+        font-size: 15px;
+        min-height: 70px;
+        color: #8a8a8a;
+        text-align: center;
+        text-transform: capitalize;
+    }
+      
+  }
+  
+  .container-game .card-game:hover .content-game {
+     margin-top : 30px;
+     visibility : visible;
+     opacity : 1;
+     transition-delay: 0.2s;
+    
+  }
+
+
+
