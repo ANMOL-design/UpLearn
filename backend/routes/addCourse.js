@@ -63,5 +63,18 @@ router.post("/Instructoraddcourse", (req, res) => {
           res.send(result)
       });
   })
+
+    router.get('/Instructorcourse/:id', (req, res) => {
+      const id = req.params.id;
+      Courses.find({ _id:id }).then((product) => {
+        if (product) {
+            // console.log(product)
+            return res.send(product)
+        }
+    }).catch((err) => {
+        console.log(err)
+        res.sendStatus(404)
+    })
+  })
   
 module.exports = router;
