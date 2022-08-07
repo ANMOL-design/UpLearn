@@ -48,7 +48,9 @@ import LibraryPage from "./components/Library/LibraryHome";
 import Home from "./components/Home/Home";
 import ContactDetails from "./components/AdminPortal/ContactDetails";
 
-
+//Games
+import Main from "./games/game1/Main";
+import Game2 from "./games/game2/Game2";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -108,6 +110,10 @@ function App() {
             {/* Home Route  */}
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
+
+            {/* Game */}
+            <Route path="/game1" element={<Main />} />
+            <Route path="/game2" element={<Game2 />} />
 
           </Routes>
           {/* The Footer component  */}
