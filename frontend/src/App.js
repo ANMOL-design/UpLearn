@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import Loader from "./components/Loader";
 import Courses from "./components/Courses/Courses";
-import Games from "./components/Games/Games";
+
 
 // The Admin Portal Links
 import AdminLogin from "./components/AdminPortal/AdminLogin";
@@ -55,6 +55,7 @@ import Home from "./components/Home/Home";
 import ContactDetails from "./components/AdminPortal/ContactDetails";
 
 //Games
+import Games from "./components/Games/Games";
 import Main from "./games/game1/Main";
 import Game2 from "./games/game2/Game2";
 

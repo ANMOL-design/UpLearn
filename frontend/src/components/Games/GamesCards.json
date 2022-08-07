@@ -2,16 +2,16 @@
         "id": 1,
         "image": "./assets/images/first-game.png",
         "heading": "Math Booster",
-        "desc": "Improve your math with the tick-tick",
-        "Link": "*"
+        "desc": "Improve your maths",
+        "Link": "/game1"
     },
     {
 
         "id": 2,
-        "image": "./assets/images/first-game.png",
-        "heading": "Math Booster",
-        "desc": "Improve your math with the tick-tick",
-        "Link": "*"
+        "image": "./assets/images/second-game.png",
+        "heading": "SI units",
+        "desc": "How familiar are you with the SI units? Let's Check",
+        "Link": "/game2"
     },
     {
 

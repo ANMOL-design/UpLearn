@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const style = {
   buttonRetry: {
     fontSize: "1.5em",
-    color: "#61dafb",
+    color: "#2B4EFF",
     fontFamily: "fantasy",
     cursor: "pointer",
   },
@@ -17,10 +17,10 @@ const style = {
   },
   divider: {
     height: 0,
-    border: "0.5px solid #61dafb",
+    border: "0.5px solid #2B4EFF",
   },
   poinstStyle: {
-    color: "#61dafb",
+    color: "#2B4EFF",
     fontWeight: "bold",
   },
 };
