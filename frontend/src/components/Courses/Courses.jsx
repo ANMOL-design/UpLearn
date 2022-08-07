@@ -127,7 +127,7 @@ function Courses() {
           <div className="squares-wrapper">
             <div className="banner-text">
               <h1>
-                Develop a Paasion for <br /> Learning New Things
+                Develop a Passion for <br /> Learning New Things
               </h1>
               <p>
                 {" "}
@@ -209,7 +209,7 @@ function Courses() {
             </button>
           </div>
         </div>
-
+   <hr style={{margin:"20px 10px"}} />
         {/* courses */}
 
         <div className="courses-list-conteiner">

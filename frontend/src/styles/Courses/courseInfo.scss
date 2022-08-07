@@ -1,0 +1,133 @@
+.course-info-main-container{
+    font-family: $font_El;
+}
+.banner-left{
+    width: 60%;
+    // height: 450px;
+    background-color: #f8f8fc;
+    padding-left: 5%;
+}
+.banner-left h1{
+    width: 75%;
+    margin-top: 2%;
+}
+.banner-left p{
+    width: 75%;
+    margin-top: 2%;
+    color: gray;
+}
+.course-info-banner-container{
+    display: flex;
+}
+.course-info-category{
+   display: inline-block;
+   margin-top: 10%;
+   background-color: #f14d5d;
+   padding: 2px 5px;
+   color: white;
+   border-radius: 8px;
+   
+}
+.course-info-category-2{
+   display: inline-block;
+   margin-top: 10%;
+   background-color: #996a1a;
+   padding: 2px 5px;
+   color: white;
+   border-radius: 8px;
+   margin-left: 5px;
+}
+.banner-right{
+    width: 40%;
+    // height: 450px;
+    background-image: url("../../assets/images/course-info-banner.jpg");
+    background-size: cover;
+}
+
+.enroll-course-btn button{
+    border: none;
+    padding: 5px 30px;
+    border-radius: 4px;
+    background-color: #2b4eff;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.enroll-course-btn button:hover{
+    background-color: #f14d5d;
+    cursor: pointer;
+}
+.course-info-header{
+    // height: 450px;
+}
+.course-info-banner-image{
+    position: relative;
+   right: 20%;
+    width: 100%;
+    top: 15%;
+    z-index: 10;
+    border-radius: 20px;
+    box-shadow: 4px 4px 2px gray;
+}
+.instructo-info-container img{
+ width: 50px;
+ height: 50px;
+ border-radius: 50%;
+}
+.instructo-info-container{
+    display: flex;
+}
+.instructo-info-container span{
+    margin: 10px 50px 0px 5px;
+    font-size: 20px;
+}
+.InstructorDetails{
+    display: flex;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.course-info-Description-container{
+    margin: 20px 5%;
+
+}
+.course-info-Description{
+    display: flex;
+}
+
+.course-other-detail-card{
+    width: 600px;
+    display: inline-block;
+    margin: 10px 20px 10px 50px;
+    ul li{
+        list-style: none;
+        margin: 10px 2px;
+        font-size: 18px;
+    }
+    h3{
+        font-size: 32px;
+        color: #2b4eff;
+    }
+}
+@media screen and (max-width: 900px) {
+    .course-info-Description{
+       flex-wrap: wrap-reverse;
+    }
+    .course-info-banner-container{
+        flex-direction: column;
+    }
+    .banner-left{
+        width: 100%;
+        // height: 450px;
+    }
+    .banner-right{
+        display: none;
+    }
+    
+}
+@media screen and (max-width: 420px) {
+    .InstructorDetails{
+        display: flex;
+        flex-direction: column;
+    }
+}

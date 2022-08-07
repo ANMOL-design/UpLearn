@@ -1,0 +1,99 @@
+.addcourse-main-container{
+    font-family: $font_El;
+    margin: 0% 5% 0% 10%;
+}
+
+
+.no-found-container img{
+    width: 400px;
+}
+.no-found-container h1{
+    font-size: 40px;
+    color: #2b4fee;
+}
+.btn-add-new-course {
+    background-color: #2b4fee;
+   font-size: 20px;
+    color: white;
+    border-radius: 8px;
+    height: 6vh;
+    padding: 2px 20px;
+    margin-left: 18%;
+}
+.my-courses-container{
+  
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 50px;
+}
+.btn-add-new-course-2{
+    background-color: #2b4fee;
+   font-size: 20px;
+    color: white;
+    border-radius: 8px;
+    height: 6vh;
+    padding: 2px 20px;
+}
+.my-courses-header h2{
+font-size: 32px;
+color: #2b4fee;
+}
+.add-content-card{
+    width: 800px;
+   height: 170px;
+   margin: 10px;
+   border-radius: 12px;
+   box-shadow: 4px 4px 4px grey;
+   margin: 20px 0px;
+   background-color: #fff;
+}
+.add-content-card{
+ display: flex;
+}
+.add-content-card-img-container img{
+    width: 350px;
+    height: 170px;
+    margin-right: 20px;
+}
+.add-content-card-body{
+    width: 350px;
+    height: 170px;
+}
+.add-content-card-body p strong{
+    color: #2b4fee;
+}
+.add-content-card-body button{
+    background-color: #2b4eff;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    width:75%;
+    font-size: 16px;
+    margin-top: 15px;
+    height: 6vh;
+    text-align: center;
+}
+.add-content-card-body button:hover{
+    background-color: #f14d5d;
+    cursor: pointer;
+}
+.edit-content-link{
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 900px) {
+    .add-content-card{
+       flex-direction: column;
+       }
+       .add-content-card{
+        width: 350px;
+       height: 340px;
+    }
+    .my-courses-container{
+  
+       flex-direction: row;
+    }
+}

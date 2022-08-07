@@ -25,7 +25,7 @@ export default function AddCourses() {
   const [err, seterr] = useState("");
   let thumbnai_Image ='';
   useEffect(() => {
-    window.scroll(0, 120);
+    window.scroll(0, 60);
     // Decrypting the User Role
     if(loginDetails.userRole !== ''){
       var bytes = CryptoJS.AES.decrypt(loginDetails.userRole, 'my-secret-key@123');
@@ -116,7 +116,7 @@ export default function AddCourses() {
     });
 
     if (res.status === 200) {
-      navigate("/");
+      navigate("/instructordashboard");
     } else {
       console.log(res);
       window.alert("error occured");
@@ -156,7 +156,7 @@ export default function AddCourses() {
     <>
       <div className="add-course-container">
         <div className="add-course-header">
-        <Link to="/admin-portal-home-190310554227">
+        <Link to="/instructordashboard/My_courses">
             <button className="backBtn" style={{ color: "white" }} >Back</button>
           </Link>
         </div>

@@ -203,14 +203,17 @@ $desktop : 1200px;
     margin-top: 50px;
 }
 .courses-list-conteiner{
-    margin: 50px 30px 10px 30px;
+    margin: 50px 30px 0px 30px;
 }
 .course-list-card-container{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-
+.courses-list-header h1{
+    font-size: 42px;
+    color: #2b4eff;
+}
 .all-category-btn button{
     width: 250px;
     height: 6vh;
@@ -255,9 +258,7 @@ $desktop : 1200px;
 color: #2b4eff;
 font-size: 22px;
 }
-.course-card-title h2{
 
-}
 .cours-card-instructor img{
  width:40px;
  height: 40px;
@@ -309,3 +310,5 @@ font-size: 22px;
     font-size: 20px;
     
 }
+
+
