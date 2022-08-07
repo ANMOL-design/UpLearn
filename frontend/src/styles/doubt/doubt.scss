@@ -1,0 +1,77 @@
+.doubt-container {
+    font-family: $font_El;
+}
+
+.Doubt-banner {
+    @include displayflex;
+    justify-content: flex-start;
+    flex-direction: column;
+    box-shadow: inset 1px 1px 8px #888888;
+    img {
+       
+        height: 78%;
+    }
+}
+
+.Doubt-heading {
+    h1 {
+        text-align: center;
+    }
+    p {
+        text-align: center;
+        letter-spacing: 1px;
+        color: $darkgrey;
+    }
+}
+
+.doubt-filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 1rem;
+    margin: 1rem 0px;
+    background-color: #f0f0f0;
+    .DoubtSearch {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input {
+            width: 60vw;
+            padding: 10px 20px;
+            color: #171c24;
+            border-radius: 8px 0px 0px 8px;
+            outline: none;
+            border-right: 0px;
+        }
+        button {
+            @include sitebutton;
+            padding: 5px 10px 4px;
+            margin: 0px;
+            border-radius: 0px 8px 8px 0px;
+            border: 1px solid black;
+            border-left: 0px;
+            @include displayflex;
+            i {
+                margin: 0px 5px;
+                height: 20px;
+            }
+        }
+    }
+    
+}
+
+.askbutton{
+    button {
+        @include sitebutton;
+        padding: 5px 10px 4px;
+        margin: 0px;
+        border-radius: 0px 8px 8px 0px;
+        border: 1px solid black;
+        border-left: 0px;
+        @include displayflex;
+       margin: auto;
+       border-radius: 7px;
+       margin-bottom: 10px;
+}
+}

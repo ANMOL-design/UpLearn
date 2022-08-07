@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import avtar from "../../assets/images/avtar.png";
 import { GrLinkNext } from "react-icons/gr";
+
 var CryptoJS = require("crypto-js");
 export default function CourseInfo(){
     let navigate = useNavigate();
@@ -13,6 +14,7 @@ export default function CourseInfo(){
     const [courseData, setCourseData] = useState({});
     const loginDetails = useSelector((state) => state.userReducers);
     const [InstructorInfo, setInstructorInfo] = useState([]);
+
     useEffect(() => {
       window.scroll(0, 0);
       // Decrypting the User Role
@@ -62,11 +64,17 @@ export default function CourseInfo(){
         InstructorName=Instructor.Teachername;
     }
     let courseDescription ="";
-    courseDescription = courseData.Description
+    courseDescription = courseData.Description;
+    let  NoOfVideos =0;
+    let NoOfArticles=0;
+    if(courseData.courseVideoContent && courseData.courseArticles){
+        NoOfVideos = courseData.courseVideoContent.length;
+        NoOfArticles= courseData.courseArticles.length;
+    }
     if(courseDescription){
-
         document.getElementById("course-info-description-content").innerHTML = courseDescription;
     }
+ 
     return(
         <>
        <div className="course-info-main-container">
@@ -120,9 +128,9 @@ export default function CourseInfo(){
                 <ul>
                     <li>Course Level &nbsp;&nbsp;&nbsp;&nbsp;: {courseData.level}</li>
                     <hr />
-                    <li>Video Lectures : </li>
+                    <li>Video Lectures : {NoOfVideos} </li>
                     <hr />
-                    <li>Video Lectures : </li>
+                    <li>Articles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {NoOfArticles} </li>
                     <hr />
                     <li>Quizes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 0</li>
                     <hr />
@@ -135,5 +143,6 @@ export default function CourseInfo(){
        </div>
         </>
     )
+  
   
 }

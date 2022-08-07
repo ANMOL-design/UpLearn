@@ -3,7 +3,7 @@
 }
 .banner-left{
     width: 60%;
-    height: 450px;
+    // height: 450px;
     background-color: #f8f8fc;
     padding-left: 5%;
 }
@@ -39,7 +39,7 @@
 }
 .banner-right{
     width: 40%;
-    height: 450px;
+    // height: 450px;
     background-image: url("../../assets/images/course-info-banner.jpg");
     background-size: cover;
 }
@@ -52,13 +52,14 @@
     color: white;
     font-size: 20px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 .enroll-course-btn button:hover{
     background-color: #f14d5d;
     cursor: pointer;
 }
 .course-info-header{
-    height: 450px;
+    // height: 450px;
 }
 .course-info-banner-image{
     position: relative;
@@ -88,15 +89,14 @@
 }
 .course-info-Description-container{
     margin: 20px 5%;
-    
+
 }
 .course-info-Description{
     display: flex;
-    flex-wrap: wrap-reverse;
 }
 
 .course-other-detail-card{
-    width: 400px;
+    width: 600px;
     display: inline-block;
     margin: 10px 20px 10px 50px;
     ul li{
@@ -107,5 +107,27 @@
     h3{
         font-size: 32px;
         color: #2b4eff;
+    }
+}
+@media screen and (max-width: 900px) {
+    .course-info-Description{
+       flex-wrap: wrap-reverse;
+    }
+    .course-info-banner-container{
+        flex-direction: column;
+    }
+    .banner-left{
+        width: 100%;
+        // height: 450px;
+    }
+    .banner-right{
+        display: none;
+    }
+    
+}
+@media screen and (max-width: 420px) {
+    .InstructorDetails{
+        display: flex;
+        flex-direction: column;
     }
 }
