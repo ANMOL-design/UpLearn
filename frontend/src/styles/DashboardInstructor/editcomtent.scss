@@ -3,15 +3,37 @@
 }
 
 .video-form-container{
-   border: 2px solid black;
    z-index: 99;
+   margin: 10px 20px;
    position: absolute;
-   top: 300px;
-   background-color: antiquewhite;
+   top: 200px;
+   box-shadow: 4px 4px 4px lightblue;
    display: none;
+   width: 70%;
+   padding: 20px;
+   background-color: #2b4eff0a;
 }
 .article-modal-container{
     background-color: antiquewhite;
     display: none;
 
+}
+.cut-btn-course{
+    background: none;
+    border: none;
+    position: relative;
+    float: right;
+    padding: 5px;
+    font-size: 28px;
+    margin: 10px;
+}
+.add-content-byn-container .add-video{
+   button{
+    margin-right: 20px;
+    border: none;
+    padding: 10px 20px;
+    background-color: #2b4eff;
+    color: white;
+    border-radius: 6px;
+   }
 }

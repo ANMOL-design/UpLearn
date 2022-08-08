@@ -1,47 +1,61 @@
-.course-content-navbar{
-    display: flex;
-    flex-wrap: wrap;
-    border-bottom: 1px solid gray;
-    margin-top: 20px;
+.course-content-navbar {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid gray;
+  margin-top: 20px;
 }
-.article-content-display-btn,.Video-content-display-btn,.mcqs-content-display-btn{
-    .video-content-Link,.article-content-Link,.mcqs-content-Link{
+.article-content-display-btn,
+.Video-content-display-btn,
+.mcqs-content-display-btn,
+.certi-content-display-btn {
+  .video-content-Link,
+  .article-content-Link,
+  .mcqs-content-Link,
+  .certi-content-Link {
     text-decoration: none;
     color: black;
-    }
-        border: none;
-        font-size: 28px;
-        background:none;
-        margin: 5px 20px;
+  }
+  border: none;
+  font-size: 28px;
+  background: none;
+  margin: 5px 20px 0px 20px;
+  padding: 5px;
 }
-.article-content-display-btn{
-    margin-left: 20%;
+.article-content-display-btn:hover,
+.Video-content-display-btn:hover,
+.mcqs-content-display-btn:hover,
+.certi-content-display-btn:hover {
+  border: 1px solid gray;
+  border-bottom: 0ch;
+}
+.article-content-display-btn {
+  margin-left: 20%;
 }
 .article-content-container {
-    margin: 20px;
-    ul li{
-        text-decoration: none;
-        list-style: none;
-        margin: 0px;
-        color: black;
-        border: 1px solid gray;
-        padding: 20px;
-    }
-    ul li:hover{
-        cursor: pointer;
-    }
-    span{
-        position: relative;
-        float: right;
-        font-size: 20px;
-    }
-}
-.articleDisplaycontainer{
+  margin: 20px;
+  ul li {
     text-decoration: none;
+    list-style: none;
     margin: 0px;
     color: black;
     border: 1px solid gray;
-    padding: 20px 10px 30px 10px;
-    display: none;
-    overflow: scroll;
+    padding: 20px;
+  }
+  ul li:hover {
+    cursor: pointer;
+  }
+  span {
+    position: relative;
+    float: right;
+    font-size: 20px;
+  }
+}
+.articleDisplaycontainer {
+  text-decoration: none;
+  margin: 0px;
+  color: black;
+  border: 1px solid gray;
+  padding: 20px 10px 30px 10px;
+  display: none;
+  overflow: scroll;
 }
