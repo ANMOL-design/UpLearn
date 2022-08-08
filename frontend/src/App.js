@@ -54,6 +54,7 @@ import LibraryPage from "./components/Library/LibraryHome";
 import Home from "./components/Home/Home";
 import ContactDetails from "./components/AdminPortal/ContactDetails";
 import CourseInfo from "./components/Courses/CourseInfo";
+import CourseContent from "./components/Courses/courseContent";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -152,6 +153,7 @@ function App() {
             <Route path="/Courses" element={<Courses />} />
 
             <Route path="/Course/:id" element={<CourseInfo />} />
+            <Route path="/mycourses/startLearning/:id/*" element={<CourseContent />} />
 
             <Route path="/Games" element={<Games />} />
 

@@ -1,0 +1,47 @@
+.course-content-navbar{
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid gray;
+    margin-top: 20px;
+}
+.article-content-display-btn,.Video-content-display-btn,.mcqs-content-display-btn{
+    .video-content-Link,.article-content-Link,.mcqs-content-Link{
+    text-decoration: none;
+    color: black;
+    }
+        border: none;
+        font-size: 28px;
+        background:none;
+        margin: 5px 20px;
+}
+.article-content-display-btn{
+    margin-left: 20%;
+}
+.article-content-container {
+    margin: 20px;
+    ul li{
+        text-decoration: none;
+        list-style: none;
+        margin: 0px;
+        color: black;
+        border: 1px solid gray;
+        padding: 20px;
+    }
+    ul li:hover{
+        cursor: pointer;
+    }
+    span{
+        position: relative;
+        float: right;
+        font-size: 20px;
+    }
+}
+.articleDisplaycontainer{
+    text-decoration: none;
+    margin: 0px;
+    color: black;
+    border: 1px solid gray;
+    padding: 20px 10px 30px 10px;
+    display: none;
+    overflow: scroll;
+}

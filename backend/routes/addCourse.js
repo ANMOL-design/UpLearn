@@ -5,7 +5,7 @@ router.use(express.json());
 dotenv.config();
 const Courses = require("../models/coursesSchema");
 const Instructors = require("../models/instructorregisterSchema");
-
+const User = require("../models/userSchema")
 router.post("/Instructoraddcourse", (req, res) => {
   const {
     title,
@@ -104,8 +104,42 @@ router.get('/CoursesUplearn', (req, res) => {
       let mi = today.getMinutes();
       let ss = today.getSeconds();
       let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
-      console.log(req.body);
       Courses.findByIdAndUpdate(Id,{$push:{courseArticles:{ArticleTitle:ArticleTitle,ArticleContent:ArticleContent,time:time}}},
+        function(err, result){
+       
+        if(err){
+            console.log(err);
+        }
+        else{
+          console.log(result);
+           res.status(200)
+         .json({ msg: "course added Successful" });
+           }
+         })
+         
+  })
+  
+    router.post('/EnrolledCourse', (req, res) => {
+      const { userId,CourseId,nameOfCourse} = req.body;
+     
+      User.findByIdAndUpdate(userId,{$push:{CousesEnrolled:{nameOfCourse:nameOfCourse,CourseId:CourseId}}},
+        function(err, result){
+       
+        if(err){
+            console.log(err);
+        }
+        else{
+          console.log(result);
+           res.status(200)
+         .json({ msg: "course added Successful" });
+           }
+         })
+         
+  })
+  
+    router.post('/CourseRating', (req, res) => {
+      const {courseId,UserId,rating,review} = req.body;
+      Courses.findByIdAndUpdate(courseId,{$push:{Rating:{rateBy:UserId,rating:rating,review:review}}},
         function(err, result){
        
         if(err){
