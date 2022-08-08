@@ -70,7 +70,7 @@ function LibraryHome(props){
                 null :
                 <div  className="libraryaxios">
                         <h1> No data Found ...</h1>
-                        <p>Sorry from our side but the book you are finding is not availabe in pur library, you
+                        <p>Sorry from our side but the book you are finding is not available in our library, you
                             can found more books by click on Search more.
                         </p>
                         {/* Adding Code to show extra available books using axios */}
