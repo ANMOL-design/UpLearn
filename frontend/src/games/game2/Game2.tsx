@@ -8,7 +8,7 @@ const Game2:FC = ():ReactElement => {
   return (
     <>
         <QuizProvider>
-        <QuizCore />
+          <QuizCore />
         </QuizProvider>
     </>
   );
