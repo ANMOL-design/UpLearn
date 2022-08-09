@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import avtar from "../../assets/images/avtar.png";
 import axios from "axios";
 import BannerGirl from "../../assets/images/couse-banner-student.png";
+
 import {
   MdArrowForward,
   MdBrush,
@@ -42,9 +43,34 @@ function Courses() {
 
   const [courseData, setCourseData] = useState([]);
   const [InstructorInfo, setInstructorInfo] = useState([]);
-  const loginDetails = useSelector((state) => state.userReducers);
+  const loginDetails = useSelector((state) => state.userReducers)
   let squares = [];
-
+  const STARRATING = (props) => {
+    console.log(props.item.Rating);
+    let totalRating = 0;
+    if(props){
+    if (props.item.Rating) {
+      props.item.Rating.map((item) => {
+        totalRating += item.rating;
+      });
+      totalRating /= (props.item.Rating.length);
+      console.log(totalRating);
+      totalRating = Math.round(totalRating * 10) / 10;
+      console.log(totalRating);
+    }
+    return (
+      <>
+        <StarRatings
+          rating={totalRating}
+          starDimension="20px"
+          starEmptyColor="grey"
+          starRatedColor="#2b4eff"
+          starSpacing="3px"
+        /> {"("+totalRating+")"}
+      </>
+    );
+    }
+  };
   for (let i = 0; i < 20; i++) {
     squares.push(i);
   }
@@ -209,7 +235,7 @@ function Courses() {
             </button>
           </div>
         </div>
-   <hr style={{margin:"20px 10px"}} />
+        <hr style={{ margin: "20px 10px" }} />
         {/* courses */}
 
         <div className="courses-list-conteiner">
@@ -235,21 +261,18 @@ function Courses() {
                       <div className="cours-card-instructor">
                         <CourseInstructor id={item.courseInstructor} />
                         <div className="card-rating">
-                          <StarRatings
-                            rating={2.403}
-                            starDimension="20px"
-                            starEmptyColor="grey"
-                            starRatedColor="#2b4eff"
-                            starSpacing="3px"
-                          />
-                          </div>
+                          <STARRATING item={item} />
+                        </div>
                       </div>
-                      
-                     
+
                       <div className="course-card-footer">
-                        
-                          <div className="course-card-btn">
-                            <Link className="course-card-btn-link" to={"/course/"+item._id}>Know More </Link>
+                        <div className="course-card-btn">
+                          <Link
+                            className="course-card-btn-link"
+                            to={"/course/" + item._id}
+                          >
+                            Know More{" "}
+                          </Link>
                         </div>
                       </div>
                     </div>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import SunEditor from "suneditor-react";
 import Loader from "../../../../assets/images/progressbar.gif";
+// import {  } from 'react-icons/fa';
 export default function InstructorEditContent(){
   let navigate = useNavigate();
  
@@ -224,31 +225,36 @@ document.getElementById("article-modal-container").style.display="none";
           <h1>Add Content</h1>
          </div>
         
-          <div className="add-course-Input">
+         <div className="add-course-Input">
           <label htmlFor="contenttitle">Title :</label>
               <input type="text" Value={course.title}  name="title" onChange={(e)=>handleChange(e)} id="contenttitle"/>
               </div>
            <div className="add-content-byn-container">
             <div className="add-video">
-              <button onClick={addvideobtn}>Add video Content</button>
-            </div>
+              <button onClick={addvideobtn}>Add video Content  </button>
+                  <button className="add-article-btn"  onClick={addAticleBtn}>Add Articles</button>
+              </div>
               <div className="video-form-container" id="video-form-container">
+                  <button className="cut-btn-course" onClick={closevideomodal}>X</button>
                 
-                  <button onClick={closevideomodal}>cut</button>
-                  <input type="text"   Value={COURSE.VideoContentTitle} name="VideoContentTitle" onChange={(e)=>handleChange(e)}  /> <br />
+                  <div className="add-course-Input">
                   <label htmlFor="courseVideo">
-                  Video <span className="star">*</span>
+                  Video Title: <span className="star">*</span>
                   </label>
+                  <input type="text" placeholder="video title"   Value={COURSE.VideoContentTitle} name="VideoContentTitle" onChange={(e)=>handleChange(e)}  /> <br />
+                  </div>
+                  
                   <input
                     type="file"
                     id="courseVideo"
-                    className="courseVideo"
+                    className="add-course-uploadBtn"
                     // className="bookPdf"
                     accept="video/*"
                     onChange={(e) => {
                       validatevideo(e);
                     }}
                   />
+                  <p></p>
                    <div>
                   <img src={Loader} alt="Loader" id="loader-reg" />
                   <p className="uploadphoto">{err}</p>
@@ -264,9 +270,7 @@ document.getElementById("article-modal-container").style.display="none";
                 </div>
               </div>
            </div>
-              <div className="add-text-content-container">
-                  <button className="add-article-btn"  onClick={addAticleBtn}>Add Articles</button>
-              </div>
+              
             <div className="article-modal-container" id="article-modal-container">
                <button onClick={closeArticleModal}>cut</button>
                  <div className="add-course-Input">

@@ -64,7 +64,8 @@
 .course-info-banner-image{
     position: relative;
    right: 20%;
-    width: 100%;
+    width: 600px;
+    height: 300px;
     top: 15%;
     z-index: 10;
     border-radius: 20px;
@@ -108,6 +109,9 @@
         font-size: 32px;
         color: #2b4eff;
     }
+}
+.courses-review-container{
+    margin: 20px 5%;
 }
 @media screen and (max-width: 900px) {
     .course-info-Description{
