@@ -6,8 +6,9 @@
 
 //modal window 
 .cont-md {
-    background: rgba(0, 0, 0, 0.4) !important;
-    opacity: 0.4 !important;
+    display: block !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    z-index: 11;
 }
 
 .cont-innmd {
