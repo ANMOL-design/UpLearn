@@ -32,14 +32,14 @@ const coursesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  courseVideoContent :{
+  courseVideoContent :[{
     VideoContentTitle: {
       type: String,
     },
     VideoLecture: {
       type: String,
     },
-  },
+  }],
   courseArticles: [
     {
       
@@ -62,7 +62,7 @@ const coursesSchema = new mongoose.Schema({
       }
     },
   ],
-  Rating :{
+  Rating :[{
     rateBy :{
       type: String,
     },
@@ -73,7 +73,7 @@ const coursesSchema = new mongoose.Schema({
       type: Number,
     },
     
-  },
+  }],
   totalRating :{
     type: Number,
     default:0

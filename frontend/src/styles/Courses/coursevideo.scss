@@ -1,0 +1,140 @@
+.video-content-container{
+    width: 100%;
+    display: flex;
+    ul{
+        width:35%;
+    }
+}
+.video-list-container{
+    width:100%;
+}
+
+.video-display-container{
+    width: 65%;
+}
+.video-content-display-list{
+border: 2px solid white;
+list-style: none;
+padding: 20px;
+cursor: pointer;
+background-color: #2b4eff;
+color: white;
+span{
+   position: relative;
+   float: right;
+   font-size: 22px;
+}
+
+}
+.video-content-display-list:hover{
+    background-color: #041257;
+}
+  
+  video {
+    width: 100%;
+  }
+  
+  .video-wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+   
+  }
+  
+  .video-wrapper:hover .controls {
+    transform: translateY(0%);
+  }
+  
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    max-width: 600px;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+  }
+  .video-time{
+    font-size: 18px;
+    display: inline-block;
+  }
+  .actions button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .actions button i {
+ 
+    color: black;
+    font-size: 30px;
+  }
+  
+  input[type="range"] {
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    height: 4px;
+    width: 350px;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+   
+    cursor: pointer;
+    height: 6px;
+  }
+  
+  input[type="range"]::-moz-range-progress {
+    background: rgb(67, 0, 175);
+  }
+  
+  .velocity {
+    appearance: none;
+    background: none;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+  }
+  .full-btn{
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    i{
+        background-color: none;
+        font-size: 20px;
+    }
+  }
+  
+  .mute-btn {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .mute-btn i {
+    background-color: none;
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 900px) {
+    .video-content-container{
+    
+        display: flex;
+        flex-direction: column;
+    }
+    .video-display-container{
+        width: 100%;
+    }
+  }

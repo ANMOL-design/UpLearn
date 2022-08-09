@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Import a single style file only at index file
 import "./styles/main.scss";
-// Importing  modules
+// Importing modules
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -56,10 +56,11 @@ import ContactDetails from "./components/AdminPortal/ContactDetails";
 //Games
 import Games from "./components/Games/Games";
 import Main from "./games/game1/Main";
-import Game2 from "./games/game2/Game2";
+// import Game2 from "./games/game2/Game2";
 
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
+import CourseVideo from "./components/Courses/CourseContent/courseVideos";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -78,15 +79,15 @@ function App() {
     return (
       <Provider store={store}>
         <Router>
-          {/* The Navbar component  */}
+          {/* The Navbar component */}
           <Navbar />
           <Routes>
-            {/* The Auth Routes  */}
+            {/* The Auth Routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
 
-            {/* The Student Dashboard  */}
+            {/* The Student Dashboard */}
 
             <Route path="/studentdashboard/*" element={<StudentDashboard />} />
             <Route
@@ -107,7 +108,7 @@ function App() {
 
             {/* IMAGEUPLOADER */}
             <Route path="/imageuploader" element={<ImageUploader />} />
-            {/* The Admin Routes  */}
+            {/* The Admin Routes */}
             <Route
               path="/admin-portal-login-190310554227"
               element={<AdminLogin />}
@@ -159,7 +160,7 @@ function App() {
             <Route path="/ask-doubt" element={<Doubt />} />
             <Route path="/post-doubt" element={<Postdoubt />} />
 
-            {/* General  */}
+            {/* General */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
 
@@ -168,20 +169,24 @@ function App() {
               path="/mycourses/startLearning/:id/*"
               element={<CourseContent />}
             />
+            <Route
+              path="/mycourses/startLearning/:id/videoLectures/video/:Id/*"
+              element={<CourseVideo />}
+            />
 
-            <Route path="/Games" element={<Games />} />
-
+            {/* The Library */}
             <Route path="/uplearn-virtual-library" element={<LibraryPage />} />
 
-            {/* Home Route  */}
+            {/* Game */}
+            <Route path="/play-games" element={<Games />} />
+            <Route path="/maths-booster" element={<Main />} />
+            {/* <Route path="/game2" element={<Game2 />} /> */}
+
+            {/* Home Route */}
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
-
-            {/* Game */}
-            <Route path="/game1" element={<Main />} />
-            <Route path="/game2" element={<Game2 />} />
           </Routes>
-          {/* The Footer component  */}
+          {/* The Footer component */}
           <Footer />
         </Router>
       </Provider>

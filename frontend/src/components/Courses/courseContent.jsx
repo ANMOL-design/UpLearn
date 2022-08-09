@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import Loader from "../Loader";
 import ArticleContent from "./CourseContent/Articles";
+import CourseCertificate from "./CourseContent/CourseCertificate";
 import QuizesContent from "./CourseContent/Quizes";
 import VideosContent from "./CourseContent/Video";
 var CryptoJS = require("crypto-js");
@@ -73,15 +74,19 @@ export default function CourseContent(){
             <Link className="video-content-Link"  to="videoLectures">Video Lectures</Link>
             </div>
             <div className="mcqs-content-display-btn">
-            <Link className="mcqs-content-Link" to="Quizes">Quizes</Link>
+            <Link className="mcqs-content-Link"  to="Quizes">Quizes</Link>
+            </div>
+            <div className="certi-content-display-btn">
+            <Link className="certi-content-Link" to="Certification">Certificate</Link>
             </div>
           </div>
           <Routes>
           <Route path="/" element={<ArticleContent course={courseData}   />} /> 
           <Route path="/Articles" element={<ArticleContent course={courseData}   />} /> 
-          <Route path="/videoLectures" element={<VideosContent />} /> 
+          <Route path="/videoLectures" element={<VideosContent videos={courseData}/>} /> 
           <Route path="/Quizes" element={<QuizesContent />} />  
-      </Routes>
+          <Route path="/Certification" element={<CourseCertificate />} />  
+          </Routes>
       </>
         );
       } else {

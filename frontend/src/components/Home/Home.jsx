@@ -7,6 +7,8 @@ function Home(){
             <div className="home-container">
                 <h1>Home Component</h1>
                 <Link to='/uplearn-virtual-library'>Library</Link>
+                <br /><br />
+                <Link to='/play-games'>Games</Link>
             </div>
         </>
     )
