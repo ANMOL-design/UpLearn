@@ -35,7 +35,7 @@ function Games() {
 
   return (
     <div>
-      {/* Banner Of the Admin Page  */}
+      {/* Banner Of the Games Page  */}
       <div className="games-banner"></div>
       <div className="games-header">
         <h1>Games</h1>

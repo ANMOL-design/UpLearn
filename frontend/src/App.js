@@ -11,7 +11,6 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import Loader from "./components/Loader";
 import Courses from "./components/Courses/Courses";
 
-
 // The Admin Portal Links
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
@@ -147,8 +146,14 @@ function App() {
             />
             {/* Instructor Dashboard */}
             <Route path="/instructor-addCourses" element={<AddCourses />} />
-            <Route path="/instructordashboard/*" element={<InstructorDashboard />} />
-            <Route path="/task-assign/add-lecture-data/:id/:teacher" element={<InstructorAddTaskDetails />} />
+            <Route
+              path="/instructordashboard/*"
+              element={<InstructorDashboard />}
+            />
+            <Route
+              path="/task-assign/add-lecture-data/:id/:teacher"
+              element={<InstructorAddTaskDetails />}
+            />
 
             {/* Doubt Dashboard */}
             <Route path="/ask-doubt" element={<Doubt />} />
@@ -159,7 +164,10 @@ function App() {
             <Route path="/Courses" element={<Courses />} />
 
             <Route path="/Course/:id" element={<CourseInfo />} />
-            <Route path="/mycourses/startLearning/:id/*" element={<CourseContent />} />
+            <Route
+              path="/mycourses/startLearning/:id/*"
+              element={<CourseContent />}
+            />
 
             <Route path="/Games" element={<Games />} />
 
@@ -172,7 +180,6 @@ function App() {
             {/* Game */}
             <Route path="/game1" element={<Main />} />
             <Route path="/game2" element={<Game2 />} />
-
           </Routes>
           {/* The Footer component  */}
           <Footer />
