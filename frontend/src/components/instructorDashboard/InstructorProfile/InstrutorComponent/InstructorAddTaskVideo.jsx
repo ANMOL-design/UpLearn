@@ -5,7 +5,7 @@ import "suneditor/dist/css/suneditor.min.css";
 import Loader from "../../../Loader";
 import axios from 'axios';
 
-function InstructorAddTaskDetails(){
+function InstructorAddTaskVideo(){
 
     const { id , teacher} = useParams();
     let navigate = useNavigate();
@@ -127,7 +127,7 @@ function InstructorAddTaskDetails(){
     else{  
         return(
             <div className="addcoursebyinstructor">
-                <h1>Add Course Content</h1>
+                <h1>Add Course Video</h1>
 
                 <SunEditor
                     style={{margin:"2rem"}}
@@ -196,4 +196,4 @@ function InstructorAddTaskDetails(){
     }
 }
 
-export default InstructorAddTaskDetails;
+export default InstructorAddTaskVideo;

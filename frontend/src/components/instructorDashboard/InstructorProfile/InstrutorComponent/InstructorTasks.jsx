@@ -2,11 +2,13 @@ import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../../Loader";
 import axios from 'axios';
+import { MdOndemandVideo, MdTextFields, MdQuiz } from "react-icons/md";
 
 function InstructorAssignTask(props){
 
     const [assignTask, setassignTask] = useState([]);
     const [Loading, setLoading] = useState(true);
+    const [hidden, setHidden] = useState({});
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -24,7 +26,10 @@ function InstructorAssignTask(props){
         fetchdata();
     }, [props.details._id]);
 
-    console.log(props.details, assignTask);
+    // console.log(props.details, assignTask);
+    const toggleHide = index => {
+        setHidden({ [index]: !hidden[index] });
+    };
 
     if(Loading){
         return(
@@ -34,33 +39,88 @@ function InstructorAssignTask(props){
 
     else{
         return(
-            <div style={{marginLeft: '7rem'}}>
+            <div className='PendingtaskConainer'>
+                <h1>Pending Tasks</h1>
                 {assignTask ? 
-                 <div>
-                    <h1>Task Assigned</h1>
-                    {assignTask.map( (item) => {
+                 <div className="pendingtaskinnercontainer">
+                    {assignTask.map( (item, index) => {
                         return(
-                            <div key={item._id}>
-                                <p>Chapter No: {item.ChapterNo}</p>
-                                <p>Chapter Name: {item.ChapterName}</p>
-                                <p>Chapter Description: {item.ChapterDescription}</p>
-                                <p>Class No: {item.Class}</p>
-                                <p>Board: {item.Board}</p>
-                                <p>Subject: {item.Subject}</p>
-                                <p>Due Date : {item.DueDate}</p>
-                                <Link to={'/task-assign/add-lecture-data/' + item._id + '/' + props.details._id} ><button>Add Content</button></Link>
+                            <div key={item._id} className="pendingtaskmaininnercontainer">
+                                {/* Showing the due date of Pending Task  */}
+                                <div className="pendingtaskduedate">
+                                    Due Date : &nbsp;{item.DueDate}
+                                </div>
+                                {/* Show the description of Task  */}
+                                <div className="pendingtasktitle">
+                                    <p>{index + 1}.</p>
+                                    <p className="pendingdecription">{item.ChapterDescription} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam incidunt illo earum autem! Possimus ex accusamus dolorum reiciendis, tempora inventore praesentium ipsam obcaecati sequi quibusdam? Obcaecati eos quo ducimus ullam.</p>
+                                    <button onClick={e => toggleHide(index)}>
+                                        {hidden[index] ? '-' : '+'} 
+                                    </button>
+                                </div>
+                                {/* Show the Add Content Section of Pending Task  */}
+                                {hidden[index] && 
+                                    <div className="pendingtasktogglercontainer">
+                                        <div className="innerbodyoftogglercontainer">
+                                            <Link to={'/task-assign/add-lecture-video/' + item._id + '/' + props.details._id}>
+                                                {/* Block to add Video Content  */}
+                                                <div>
+                                                    <MdOndemandVideo />
+                                                    <h3>Videos Lectures</h3>
+                                                    <p>Create a rich learning experiences with the help of video lectures.</p>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                        <div  className="innerbodyoftogglercontainer">
+                                            <Link to={'/task-assign/add-lecture-data/' + item._id + '/' + props.details._id}>
+                                                {/* Block to add Text Content  */}
+                                                <div>
+                                                    <MdTextFields />
+                                                    <h3>Theory Content</h3>
+                                                    <p>Create a rich learning experiences with the help of theory notes.</p>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                        <div  className="innerbodyoftogglercontainer">
+                                            <Link to={'/task-assign/add-lecture-data/' + item._id + '/' + props.details._id}>
+                                                {/* Block to add MdQuiz Content  */}
+                                                <div>
+                                                    <MdQuiz />
+                                                    <h3>Practice test</h3>
+                                                    <p>Help students prepare for certification exams by providing practice question.</p>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                }
+                                {/* Show the Submit Task  */}
+                                {hidden[index] && 
+                                    <div className="submitpendingtask">
+                                        <Link to='/'>
+                                            <button>Preview Task</button>
+                                        </Link>  
+                                        <button className="btn-success">Submit for Review</button>                                      
+                                    </div>
+                                }
                             </div>
                         )
                     })}
                  </div>
                  :
-                 <div>
-                    NO Pending task
+                 <div className="nopendingtask">
+                    No Pending task
                 </div>
                 }
             </div>
         )
     }
 }
+
+{/* <p>{item.Class}</p>
+<p>{item.Board}</p>
+<p>{item.Subject}</p>
+
+
+ */}
 
 export default InstructorAssignTask;

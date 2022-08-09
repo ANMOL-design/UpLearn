@@ -87,7 +87,7 @@ router.post("/Instructoraddlecturedetails/:id", (req, res) => {
     }
        
 
-    Lectures.findByIdAndUpdate(id, {$push:
+    Lectures.findByIdAndUpdate(id, {Draft: '', $push:
         { ChapterContent:
             {
                 LectureContentNo: LectureNo,
