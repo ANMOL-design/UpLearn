@@ -254,7 +254,7 @@ document.getElementById("article-modal-container").style.display="none";
                       validatevideo(e);
                     }}
                   />
-                  <p></p>
+                 <p className="star">{Video}</p>
                    <div>
                   <img src={Loader} alt="Loader" id="loader-reg" />
                   <p className="uploadphoto">{err}</p>
