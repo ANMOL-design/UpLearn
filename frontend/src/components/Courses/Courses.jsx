@@ -49,7 +49,7 @@ function Courses() {
     console.log(props.item.Rating);
     let totalRating = 0;
     if(props){
-    if (props.item.Rating) {
+    if (props.item.Rating && props.item.Rating.length>0) {
       props.item.Rating.map((item) => {
         totalRating += item.rating;
       });
