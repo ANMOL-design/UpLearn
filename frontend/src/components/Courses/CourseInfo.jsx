@@ -154,12 +154,14 @@ export default function CourseInfo() {
     let totalRating=0
     if(courseData){
       if (courseData.Rating) {
+        if(courseData.Rating.length>0){
         courseData.Rating.map((item)=>{
           totalRating += item.rating;
         })
         totalRating /= (courseData.Rating.length);
         totalRating =  Math.round(totalRating * 10) / 10
           setcourseRating(totalRating)
+      }
       }
     }
     const handleRating = (rate) => {

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import SunEditor from "suneditor-react";
 import Loader from "../../../../assets/images/progressbar.gif";
+import NotFoundImg from "../../../../assets/images/not-found.webp";
 // import {  } from 'react-icons/fa';
 export default function InstructorEditContent(){
   let navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function InstructorEditContent(){
           navigate("/login");
         });
     };
+
     fetchcourse();
   
   }, []);
@@ -40,6 +42,7 @@ export default function InstructorEditContent(){
   const handleChange = (e) => {
     SETCOURSE({ ...COURSE, [e.target.name]: e.target.value });
   };
+ 
   const [err, seterr] = useState("");
   const [Video,setVideo] = useState("");
   const [VideoData,setVideoData] = useState("");
@@ -51,16 +54,26 @@ export default function InstructorEditContent(){
   const addvideobtn = ()=>{
 document.getElementById("video-form-container").style.display="block";
 document.getElementById("article-modal-container").style.display="none";
+document.getElementById("my-quiz-container").style.display="none";
   }
   const addAticleBtn = ()=>{
 document.getElementById("article-modal-container").style.display="block";
 document.getElementById("video-form-container").style.display="none";
+document.getElementById("my-quiz-container").style.display="none";
+  }
+  const addQuizBtn = ()=>{
+document.getElementById("my-quiz-container").style.display="block";
+document.getElementById("video-form-container").style.display="none";
+document.getElementById("article-modal-container").style.display="none";
   }
   const closevideomodal = ()=>{
 document.getElementById("video-form-container").style.display="none";
   }
   const closeArticleModal = ()=>{
 document.getElementById("article-modal-container").style.display="none";
+  }
+  const closeQuizModal = ()=>{
+    document.getElementById("my-quiz-container").style.display="none";
   }
   console.log(course.title);
   console.log(COURSE);
@@ -218,6 +231,52 @@ document.getElementById("article-modal-container").style.display="none";
       sendArticle();
     }
   };
+
+  const MyQuiz = ()=>{
+    if(course){
+      if(course.courseQuiz){
+        if(course.courseQuiz.length>0){
+          return(
+            <>
+            <button className="cut-modal" onClick={closeQuizModal}>X</button>
+            <div className="add-quiz-header">
+            <Link to="add_quiz" className="btn-add-new-course btn">
+                Add New Quiz
+              </Link><br />
+              <h2>my-quiz</h2>
+            </div>
+             <div className="my-quiz-card-container">
+              <ul>
+                {console.log(course.courseQuiz)}
+                {course.courseQuiz.map((item)=>(
+                  <>
+                  <li>{item.QuizeName} <Link className="my-quiz-Link" to={"add_questions/"+item._id}>Add Questions</Link></li>
+                  </>
+                ))}
+              </ul>
+             </div>
+            </>
+          )
+        }
+        else{
+          return(<>
+           <button onClick={closeQuizModal}>X</button>
+           <div className="addcourse-main-container">
+            <div style={{width:"40%"}} className="no-found-container">
+              <img style={{width:"100%"}} src={NotFoundImg} alt="" />
+              <h4>Not Any Quiz in this course</h4>
+            </div>
+              <Link to="add_quiz" className="btn-add-new-course-2 btn">
+                Add New Quiz
+              </Link>
+          </div>
+          </>
+          )
+        }
+      }
+    }
+    
+  }
     return(
         <>
        <div className="edit-course-container">
@@ -233,6 +292,7 @@ document.getElementById("article-modal-container").style.display="none";
             <div className="add-video">
               <button onClick={addvideobtn}>Add video Content  </button>
                   <button className="add-article-btn"  onClick={addAticleBtn}>Add Articles</button>
+                  <button className="add-article-btn"  onClick={addQuizBtn}>Add Quiz</button>
               </div>
               <div className="video-form-container" id="video-form-container">
                   <button className="cut-btn-course" onClick={closevideomodal}>X</button>
@@ -254,7 +314,7 @@ document.getElementById("article-modal-container").style.display="none";
                       validatevideo(e);
                     }}
                   />
-                  <p></p>
+                 <p className="star">{Video}</p>
                    <div>
                   <img src={Loader} alt="Loader" id="loader-reg" />
                   <p className="uploadphoto">{err}</p>
@@ -333,6 +393,9 @@ document.getElementById("article-modal-container").style.display="none";
                     value="Add Article"
                   />
                    
+            </div>
+            <div id="my-quiz-container" className="my-quiz-container">
+                <MyQuiz/>
             </div>
        </div>
         </>
