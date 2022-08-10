@@ -7,6 +7,12 @@ function Home(){
             <div className="home-container">
                 <h1>Home Component</h1>
                 <Link to='/uplearn-virtual-library'>Library</Link>
+                <br /><br />
+                <Link to='/play-games'>Games</Link>
+                <br /><br />
+                <Link to='/studentdashboard'>Student Dashboard</Link>
+                <br /><br />
+                <Link to='/instructordashboard'>Instructor Dashboard</Link>
             </div>
         </>
     )

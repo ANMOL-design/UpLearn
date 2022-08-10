@@ -11,7 +11,6 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import Loader from "./components/Loader";
 import Courses from "./components/Courses/Courses";
 
-
 // The Admin Portal Links
 import AdminLogin from "./components/AdminPortal/AdminLogin";
 import AdminHome from "./components/AdminPortal/AdminHome";
@@ -26,6 +25,7 @@ import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
 import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/InstructorAddTaskDetails";
+import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/InstructorAddTaskVideo";
 
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
@@ -57,7 +57,7 @@ import ContactDetails from "./components/AdminPortal/ContactDetails";
 //Games
 import Games from "./components/Games/Games";
 import Main from "./games/game1/Main";
-import Game2 from "./games/game2/Game2";
+// import Game2 from "./games/game2/Game2.tsx";
 
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
@@ -147,9 +147,19 @@ function App() {
               element={<AssignSyllbusTask />}
             />
             {/* Instructor Dashboard */}
-            <Route path="/instructor-addCourses" element={<AddCourses />} />
-            <Route path="/instructordashboard/*" element={<InstructorDashboard />} />
-            <Route path="/task-assign/add-lecture-data/:id/:teacher" element={<InstructorAddTaskDetails />} />
+            <Route path="/instructordashboard/my-courses/add-new-course" element={<AddCourses />} />
+            <Route
+              path="/instructordashboard/*"
+              element={<InstructorDashboard />}
+            />
+            <Route
+              path="/task-assign/add-lecture-data/:id/:teacher"
+              element={<InstructorAddTaskDetails />}
+            />
+            <Route
+              path="/task-assign/add-lecture-video/:id/:teacher"
+              element={<InstructorAddTaskVideo />}
+            />
 
             {/* Doubt Dashboard */}
             <Route path="/ask-doubt" element={<Doubt />} />
@@ -160,21 +170,26 @@ function App() {
             <Route path="/Courses" element={<Courses />} />
 
             <Route path="/Course/:id" element={<CourseInfo />} />
-            <Route path="/mycourses/startLearning/:id/*" element={<CourseContent />} />
-            <Route path="/mycourses/startLearning/:id/videoLectures/video/:Id/*" element={<CourseVideo />} />
+            <Route
+              path="/mycourses/startLearning/:id/*"
+              element={<CourseContent />}
+            />
+            <Route
+              path="/mycourses/startLearning/:id/videoLectures/video/:Id/*"
+              element={<CourseVideo />}
+            />
 
-            <Route path="/Games" element={<Games />} />
-
+            {/* The Library  */}
             <Route path="/uplearn-virtual-library" element={<LibraryPage />} />
+
+            {/* Game */}
+            <Route path="/play-games" element={<Games />} />
+            <Route path="/maths-booster" element={<Main />} />
+            {/* <Route path="/game2" element={<Game2 />} /> */}
 
             {/* Home Route  */}
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
-
-            {/* Game */}
-            <Route path="/game1" element={<Main />} />
-            <Route path="/game2" element={<Game2 />} />
-
           </Routes>
           {/* The Footer component  */}
           <Footer />

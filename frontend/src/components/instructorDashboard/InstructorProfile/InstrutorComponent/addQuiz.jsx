@@ -69,6 +69,7 @@ export default function AddQuiz() {
     };
     fetchcourse();
   }, [loginDetails.isLoggedIn, loginDetails.userRole, navigate]);
+  console.log(courseData);
   const [err, seterr] = useState("");
   const handlevalidation = () => {
     if (!Quiz.QuizeName || !Quiz.QuizDifficulty || !Quiz.marksPerQuestion) {

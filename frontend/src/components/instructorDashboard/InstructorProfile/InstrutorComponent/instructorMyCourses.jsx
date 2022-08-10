@@ -1,106 +1,79 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import NotFoundImg from "../../../../assets/images/not-found.webp";
-import AddCourses from "../../Instructorscomponent/addCourse";
+import React, { useEffect, useState } from "react";
+import NotFoundImg from "../../../../assets/images/not-found.png";
+import { Link } from "react-router-dom";
 import { FaEdit } from 'react-icons/fa';
-var CryptoJS = require("crypto-js");
-export default function MyCourses() {
-  const loginDetails = useSelector((state) => state.userReducers);
-  let navigate = useNavigate();
+import Loader from "../../../Loader";
+import axios from "axios";
 
-  const [Instructor, setInstructor] = useState({});
-  const [courseData, setCourseData] = useState([]);
-  useEffect(() => {
-    window.scroll(0, 120);
-    // Decrypting the User Role
-    if (loginDetails.userRole !== "") {
-      var bytes = CryptoJS.AES.decrypt(
-        loginDetails.userRole,
-        "my-secret-key@123"
-      );
-      var role = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-    }
-    // Check is  Login Or Not
-    if (Number(loginDetails.isLoggedIn) && role === "INSTRUCTOR") {
-      // call the fetch admin detail function
-      const fetchdata = async () => {
-        await axios
-          .get("/aboutInstructor")
-          .then((response) => {
-            setInstructor(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-            navigate("/login");
-          });
-      };
-      fetchdata();
-    } else {
-      navigate("/login");
-    }
-    const fetchcourse = async () => {
+export default function MyCourses(props) {
+  
+  const [courseData, setcourseData] = useState([]);
+  const [Loading, setLoading] = useState(true);
+
+  // console.log(props.details._id)
+
+  useEffect(() => {  
+    const fetchCourse = async () => {
       await axios
-        .get("/CoursesUplearn")
+        .get("/coursesUplearn/" + props.details._id)
         .then((response) => {
-          setCourseData(response.data);
+          setcourseData(response.data);
+          setLoading(false);
         })
         .catch((error) => {
           console.log(error);
-          navigate("/login");
         });
     };
-    fetchcourse();
-  }, [loginDetails.isLoggedIn, loginDetails.userRole, navigate]);
+    fetchCourse();
+  }, [props.details._id]);
+
+  console.log(courseData)
 
   const AddCoursecontent = () => {
-    const my_courses = courseData.filter(
-      (e) => e.courseInstructor === Instructor._id
-    );
-    if (my_courses.length < 1) {
+
+    if (courseData.length < 1) {
       return (
         <>
           <div className="addcourse-main-container">
             <div className="no-found-container">
-              <img src={NotFoundImg} alt="" />
               <h1>Not Any Course Added By You</h1>
-              <Link to="add_new_course" className="btn-add-new-course btn">
+              <img src={NotFoundImg} alt="AddCourse" />
+              <Link to="/instructordashboard/my-courses/add-new-course" className="btn-add-new-course">
                 Add New Course
               </Link>
             </div>
           </div>
         </>
       );
-    } else {
+    } 
+    else {
       return (
         <>
           <div className="addcourse-main-container">
-            <div className="my-courses-container">
-              <div className="my-courses-header">
-                <h2>My Courses</h2>
-              </div>
-              <div className="add-new-course-container">
-                <Link to="add_new_course" className="btn-add-new-course-2">
-                  Add New Course
-                </Link>
-              </div>
+            {/* Course heading to Add New Course  */}
+            <div className="my-courses-container">     
+              <h2>My Courses</h2>
+
+              <Link to="/instructordashboard/my-courses/add-new-course" className="btn-add-new-course">
+                Add New Course
+              </Link>
             </div>
-            <hr style={{ marginTop: "10px" }} />
+            <hr style={{ marginTop: "8px" }} />
+
+            {/* Cards of the My  Courses to edit and manage course  */}
             <div className="add-content-card-container">
-              {my_courses.map((item) => (
-                <>
-                  <div className="add-content-card">
-                    <div className="add-content-card-img-container">
-                        <img src={item.thumbnail} alt="" />
-                    </div>
+              {courseData.map((item) => (
+                <div className="add-content-card" key={item._id}>
+                    <img src={item.thumbnail} alt="Thumbnail" />
                     <div className="add-content-card-body">
                        <h2>{item.title}</h2>
-                       <p><strong>Categoty : </strong>{item.courseCategory}</p>
-                       <Link className="edit-content-link" to={"Edit_Content/"+item._id}><button> Edit/Manage <FaEdit/></button></Link>
+                       <div className="add-content-card-body-inner">
+                          <p><strong>Category : </strong>{item.courseCategory}</p>
+                          <p><strong>Level : </strong>{item.level}</p>
+                       </div>
+                       <Link className="edit-content-link" to={"edit-content/" + item._id}><button> Edit / Manage &nbsp;<FaEdit/></button></Link>
                     </div>
-                  </div>
-                </>
+                </div>
               ))}
             </div>
           </div>
@@ -108,9 +81,18 @@ export default function MyCourses() {
       );
     }
   };
-  return (
-    <>
-      <AddCoursecontent />
-    </>
-  );
+
+  if(Loading){
+    return(
+        <Loader />
+    );
+  }
+
+  else{
+    return (
+      <>
+        <AddCoursecontent />
+      </>
+    );
+  }
 }

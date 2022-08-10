@@ -25,6 +25,7 @@ export default function InstructorEditContent(){
           navigate("/login");
         });
     };
+
     fetchcourse();
   
   }, []);
@@ -246,6 +247,7 @@ document.getElementById("article-modal-container").style.display="none";
             </div>
              <div className="my-quiz-card-container">
               <ul>
+                {console.log(course.courseQuiz)}
                 {course.courseQuiz.map((item)=>(
                   <>
                   <li>{item.QuizeName} <Link className="my-quiz-Link" to={"add_questions/"+item._id}>Add Questions</Link></li>

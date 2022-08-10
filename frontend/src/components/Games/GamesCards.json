@@ -1,66 +1,38 @@
-[{
-        "id": 1,
-        "image": "./assets/images/first-game.png",
-        "heading": "Math Booster",
-        "desc": "Improve your maths",
-        "Link": "/game1"
-    },
-    {
+[
+  {
+    "id": 1,
+    "image": "./assets/images/first-game.png",
+    "heading": "Math Booster",
+    "desc": "Improve your maths",
+    "Link": "/maths-booster"
+  },
+  {
+    "id": 2,
+    "image": "./assets/images/second-game.png",
+    "heading": "SI units",
+    "desc": "How familiar are you with the SI units? Let's Check",
+    "Link": "/game2"
+  },
+  {
+    "id": 3,
+    "image": "./assets/images/first-game.png",
+    "heading": "Math Booster",
+    "desc": "Improve your math with the tick-tick",
+    "Link": "*"
+  },
+  {
+    "id": 4,
 
-        "id": 2,
-        "image": "./assets/images/second-game.png",
-        "heading": "SI units",
-        "desc": "How familiar are you with the SI units? Let's Check",
-        "Link": "/game2"
-    },
-    {
-
-        "id": 3,
-        "image": "./assets/images/first-game.png",
-        "heading": "Math Booster",
-        "desc": "Improve your math with the tick-tick",
-        "Link": "*"
-    },
-    {
-
-        "id": 4,
-       
-        "image": "./assets/images/first-game.png",
-        "heading": "Math Booster",
-        "desc": "Improve your math with the tick-tick",
-        "Link": "*"
-    },
-    {
-
-        "id": 5,
-        "image": "./assets/images/first-game.png",
-        "heading": "Math Booster",
-        "desc": "Improve your math with the tick-tick",
-        "Link": "*"
-    },
-    {
-
-        "id": 6,
-        "image": "./assets/images/first-game.png",
-        "heading": "Math Booster",
-        "desc": "Improve your math with the tick-tick",
-        "Link": "*"
-    },
-    {
-
-        "id": 7,
-        "image": "./assets/images/first-game.png",
-        "heading": "Math Booster",
-        "desc": "Improve your math with the tick-tick",
-        "Link": "*"
-    },
-    {
-
-        "id": 8,
-        "image": "./assets/images/first-game.png",
-        "heading": "Math Booster",
-        "desc": "Improve your math with the tick-tick",
-        "Link": "*"
-        
-    }
+    "image": "./assets/images/first-game.png",
+    "heading": "Math Booster",
+    "desc": "Improve your math with the tick-tick",
+    "Link": "*"
+  },
+  {
+    "id": 5,
+    "image": "./assets/images/first-game.png",
+    "heading": "Math Booster",
+    "desc": "Improve your math with the tick-tick",
+    "Link": "*"
+  }
 ]

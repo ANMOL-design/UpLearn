@@ -68,18 +68,17 @@ router.post("/Instructoraddcourse", (req, res) => {
     });
 });
 
+
 router.get("/CoursesUplearn", (req, res) => {
   Courses.find({}).then((result) => {
     res.send(result);
   });
-});
-
-router.get("/Instructorcourse/:id", (req, res) => {
+})
+router.get("/coursesUplearn/:id", (req, res) => {
   const id = req.params.id;
-  Courses.find({ _id: id }).populate("courseQuiz")
+  Courses.find({ courseInstructor: id })
     .then((product) => {
       if (product) {
-        // console.log(product)
         return res.send(product);
       }
     })
@@ -87,7 +86,44 @@ router.get("/Instructorcourse/:id", (req, res) => {
       console.log(err);
       res.sendStatus(404);
     });
+
 });
+
+router.get("/Instructorcourse/:id", (req, res) => {
+  const id = req.params.id;
+
+  Courses.find({ _id: id }).populate("courseQuiz")
+    .then((product) => {
+      if (product) {
+        // console.log(product)
+
+  Courses.find({ _id: id })
+    .then((product) => {
+      if (product) {
+
+        return res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(404);
+    });
+  }
+});
+})
+router.get("/getQuiz", (req, res) => {
+
+
+  CoursesQuizes.find({})
+    .then((product) => {
+      if (product) {
+        // console.log(product)
+   res.send(product)
+  }
+}).catch((err)=>{
+  console.log(err)
+})
+})
 
 router.post("/addVideoToCourse", (req, res) => {
   const { VideoLecture, VideoContentTitle, Id } = req.body;
@@ -165,6 +201,7 @@ router.post("/EnrolledCourse", (req, res) => {
   );
 });
 
+
 router.post("/createQuiz", async(req, res) => {
   const { CourseId, QuizeName, QuizDifficulty, marksPerQuestion } = req.body;
 const QUIZ = await new CoursesQuizes({ 
@@ -190,6 +227,7 @@ router.post("/addQuestionToQuiz", async(req, res) => {
  
  
 });
+
 
 router.post("/CourseRating", (req, res) => {
   const { courseId, UserId, rating, review } = req.body;
