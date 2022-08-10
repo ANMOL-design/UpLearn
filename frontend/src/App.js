@@ -147,7 +147,7 @@ function App() {
               element={<AssignSyllbusTask />}
             />
             {/* Instructor Dashboard */}
-            <Route path="/instructor-addCourses" element={<AddCourses />} />
+            <Route path="/instructordashboard/my-courses/add-new-course" element={<AddCourses />} />
             <Route
               path="/instructordashboard/*"
               element={<InstructorDashboard />}

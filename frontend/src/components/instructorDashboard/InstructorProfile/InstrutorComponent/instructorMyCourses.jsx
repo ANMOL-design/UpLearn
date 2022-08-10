@@ -10,6 +10,8 @@ export default function MyCourses(props) {
   const [courseData, setcourseData] = useState([]);
   const [Loading, setLoading] = useState(true);
 
+  // console.log(props.details._id)
+
   useEffect(() => {  
     const fetchCourse = async () => {
       await axios
@@ -23,7 +25,7 @@ export default function MyCourses(props) {
         });
     };
     fetchCourse();
-  }, []);
+  }, [props.details._id]);
 
   console.log(courseData)
 
@@ -36,7 +38,7 @@ export default function MyCourses(props) {
             <div className="no-found-container">
               <h1>Not Any Course Added By You</h1>
               <img src={NotFoundImg} alt="AddCourse" />
-              <Link to="add-new-course" className="btn-add-new-course">
+              <Link to="/instructordashboard/my-courses/add-new-course" className="btn-add-new-course">
                 Add New Course
               </Link>
             </div>
@@ -52,7 +54,7 @@ export default function MyCourses(props) {
             <div className="my-courses-container">     
               <h2>My Courses</h2>
 
-              <Link to="add-new-course" className="btn-add-new-course">
+              <Link to="/instructordashboard/my-courses/add-new-course" className="btn-add-new-course">
                 Add New Course
               </Link>
             </div>
@@ -67,7 +69,6 @@ export default function MyCourses(props) {
                        <h2>{item.title}</h2>
                        <div className="add-content-card-body-inner">
                           <p><strong>Category : </strong>{item.courseCategory}</p>
-                          <p><strong>Language : </strong>{item.language}</p>
                           <p><strong>Level : </strong>{item.level}</p>
                        </div>
                        <Link className="edit-content-link" to={"edit-content/" + item._id}><button> Edit / Manage &nbsp;<FaEdit/></button></Link>

@@ -156,7 +156,7 @@ export default function AddCourses() {
     <>
       <div className="add-course-container">
         <div className="add-course-header">
-        <Link to="/instructordashboard/My_courses">
+        <Link to="/instructordashboard/my-courses">
             <button className="backBtn" style={{ color: "white" }} >Back</button>
           </Link>
         </div>

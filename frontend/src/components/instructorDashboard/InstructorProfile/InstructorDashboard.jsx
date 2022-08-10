@@ -7,7 +7,6 @@ import InstructorDashHome from "./InstrutorComponent/InstructorDashHome";
 import InstructorAssignTask from "./InstrutorComponent/InstructorTasks";
 
 import MyCourses from "./InstrutorComponent/instructorMyCourses";
-import AddCourses from "../Instructorscomponent/addCourse";
 import InstructorEditContent from "./InstrutorComponent/InstructorEditContent";
 
 
@@ -64,7 +63,6 @@ function InstructorDashboard(){
                 {/* Courses Routes  */}
                 <Route path="/my-courses" element={<MyCourses details={instructor} />} /> 
                 <Route path="/my-courses/edit-content/:id" element={<InstructorEditContent />} /> 
-                <Route path="/my-courses/add-new-course" element={<AddCourses />} /> 
             </Routes>
         </div>
     )
