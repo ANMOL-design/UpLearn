@@ -118,9 +118,7 @@ function InstructorAddTaskDetails() {
   } else {
     return (
       <div className="addcoursebyinstructor">
-        <h1>Add Course Content</h1>
-
-        {/* <SunEditor
+         <SunEditor
                     // style={{margin:"2rem"}}
                     onChange={handleEditorChange}
                     required
@@ -139,7 +137,10 @@ function InstructorAddTaskDetails() {
                         ]
                         ]
                     }}
-                /> */}
+                />
+        <h1>Add Course Content</h1>
+
+       
 
         <div className="makedivision">
           <form>
