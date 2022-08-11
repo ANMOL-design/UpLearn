@@ -10,6 +10,7 @@ export default function InstructorEditContent(){
  
   const {id} =useParams();
   console.log(id);
+  const [Quiz, setQuiz] = useState({});
   const [course, setCourse] = useState({});
   useEffect(() => {
     window.scroll(0, 120);
@@ -25,8 +26,9 @@ export default function InstructorEditContent(){
           navigate("/login");
         });
     };
+   
+fetchcourse();
 
-    fetchcourse();
   
   }, []);
   const [COURSE, SETCOURSE] = useState({
@@ -234,6 +236,8 @@ document.getElementById("article-modal-container").style.display="none";
 
   const MyQuiz = ()=>{
     if(course){
+      console.log(course);
+     console.log(Quiz)
       if(course.courseQuiz){
         if(course.courseQuiz.length>0){
           return(
@@ -247,12 +251,13 @@ document.getElementById("article-modal-container").style.display="none";
             </div>
              <div className="my-quiz-card-container">
               <ul>
-                {console.log(course.courseQuiz)}
-                {course.courseQuiz.map((item)=>(
+              
+             
+                {course.courseQuiz.map((item)=> (
                   <>
                   <li>{item.QuizeName} <Link className="my-quiz-Link" to={"add_questions/"+item._id}>Add Questions</Link></li>
                   </>
-                ))}
+        ))}
               </ul>
              </div>
             </>

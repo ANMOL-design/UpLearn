@@ -94,11 +94,9 @@ router.get("/Instructorcourse/:id", (req, res) => {
 
   Courses.find({ _id: id }).populate("courseQuiz")
     .then((product) => {
-      if (product) {
-        // console.log(product)
+    
 
-  Courses.find({ _id: id })
-    .then((product) => {
+ 
       if (product) {
 
         return res.send(product);
@@ -108,8 +106,8 @@ router.get("/Instructorcourse/:id", (req, res) => {
       console.log(err);
       res.sendStatus(404);
     });
-  }
-});
+  
+
 })
 router.get("/getQuiz", (req, res) => {
 
