@@ -31,7 +31,7 @@ export default function MyCourses(props) {
 
   const AddCoursecontent = () => {
 
-    if (courseData.length < 1) {
+    if (!courseData.length) {
       return (
         <>
           <div className="addcourse-main-container">
@@ -70,8 +70,9 @@ export default function MyCourses(props) {
                        <div className="add-content-card-body-inner">
                           <p><strong>Category : </strong>{item.courseCategory}</p>
                           <p><strong>Level : </strong>{item.level}</p>
+                          <p><strong>Language : </strong>{item.language}</p>
                        </div>
-                       <Link className="edit-content-link" to={"edit-content/" + item._id}><button> Edit / Manage &nbsp;<FaEdit/></button></Link>
+                       <Link className="edit-content-link" to={"/instructordashboard/my-courses/edit-content/" + item._id}><button> Edit / Manage &nbsp;<FaEdit/></button></Link>
                     </div>
                 </div>
               ))}
