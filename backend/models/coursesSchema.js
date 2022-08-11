@@ -62,6 +62,10 @@ const coursesSchema = new mongoose.Schema({
       }
     },
   ],
+  courseQuiz:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"COURSEQUIZ"
+  }],
   Rating :[{
     rateBy :{
       type: String,
@@ -74,10 +78,6 @@ const coursesSchema = new mongoose.Schema({
     },
     
   }],
-  totalRating :{
-    type: Number,
-    default:0
-  },
   specialization: {
     type: String,
   },

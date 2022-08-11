@@ -2,10 +2,10 @@ import React, {useState, useEffect} from "react";
 import { useParams ,useNavigate } from "react-router-dom";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
-import Loader from "../../../Loader";
+import Loader from "../../../../Loader";
 import axios from 'axios';
 
-function InstructorAddTaskDetails(){
+function InstructorAddTaskVideo(){
 
     const { id , teacher} = useParams();
     let navigate = useNavigate();
@@ -15,7 +15,6 @@ function InstructorAddTaskDetails(){
     const [Loading, setLoading] = useState(true);
     const [instructor, setinstructor] = useState({});
 
-    const [LectureContentNo, setLectureContentNo] = useState('');
     const [LectureTitle, setLectureTitle] = useState('');
 
     useEffect(() => {
@@ -78,19 +77,16 @@ function InstructorAddTaskDetails(){
 
     const SubmitMyTask = async () => {
 
-        if(LectureContentNo <= 0 || LectureContentNo === ''){
-            window.alert('Please Enter a valid chapter number.')
-        }
-        else if(LectureTitle === ''){
+        if(LectureTitle === ''){
             window.alert('Please Enter a valid chapter title.')
         }
         else if(content === ''){
             window.alert('Please Enter content to added Chapter.')
         }
         else{
-            const LectureNo = LectureContentNo
-            const Title = LectureTitle
-            const LectureContent = content
+            const LectureNo = assignTask[0].ChapterNo;
+            const Title = LectureTitle;
+            const LectureContent = content;
 
             const res =  await fetch("/Instructoraddlecturedetails/" + id ,{
                 method : "POST",
@@ -120,6 +116,8 @@ function InstructorAddTaskDetails(){
         }
     } 
     
+    console.log(assignTask)
+
     if(Loading){
         return(
             <Loader />
@@ -129,7 +127,7 @@ function InstructorAddTaskDetails(){
     else{  
         return(
             <div className="addcoursebyinstructor">
-                <h1>Add Course Content</h1>
+                <h1>Add Course Video</h1>
 
                 <SunEditor
                     style={{margin:"2rem"}}
@@ -153,27 +151,14 @@ function InstructorAddTaskDetails(){
 
                 <div className="makedivision">
                     <form>
-                        {/* The tLectureContentNo Input  */}
-                        <div className="signInput">
-                        <label htmlFor="chapterno">Chapter Number</label><br /> 
-                        <input
-                            type="text"
-                            id="chapterno"
-                            placeholder="Enter chapter number like 1.1 of unit 1"
-                            name="chapterno"
-                            value={LectureContentNo}
-                            onChange={ (e) => {setLectureContentNo(e.target.value)}}
-                        />
-
-                        </div>
                         {/* The Email Input  */}
                         <div className="signInput">
-                        <label htmlFor="decribe">Chapter Description</label><br /> 
+                        <label htmlFor="title">Chapter Title</label><br /> 
                         <input
                             type="text"
-                            id="decribe"
+                            id="title"
                             placeholder="Add heading title of the chapter"
-                            name="decribe"
+                            name="title"
                             value={LectureTitle}
                             onChange={ (e) => {setLectureTitle(e.target.value)}}
                         />
@@ -184,26 +169,24 @@ function InstructorAddTaskDetails(){
                 <div className="submitassigntask">
                     <button onClick={SaveAsDraft}>Save as Draft</button>
                     <button onClick={SubmitMyTask}>Submit Task</button>
-                    <button onClick={SubmitMyTask}>Submit For Review</button>
                 </div>
 
                 <hr />
                 <p  className="assignedtaskpreviewdefine"><b>Task Description</b></p>
                 {assignTask ? 
                     <div className="assignedtaskpreview">
+                        <p className="asstskdecp">{assignTask[0].ChapterDescription} Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero eaque velit qui. Rerum dolores earum commodi expedita officia necessitatibus excepturi magni aliquid eos iure sed quaerat, a dolorum placeat est?</p>
+
+                        {/* More Details of Task  */}
                         <div className="assignedtaskpreview_inner">
-                            <p><b>Chapter No : </b>{assignTask[0].ChapterNo}</p>
-                            <p><b>Chapter Name : </b>{assignTask[0].ChapterName}</p>
-                        </div>
-                        <div className="assignedtaskpreview_inner">
-                            <p><b>Subject : </b>{assignTask[0].Subject}</p>
-                            <p><b>Board : </b>{assignTask[0].Board}</p>
-                            <p><b>Class : </b>{assignTask[0].Class}</p>
+                            <p><b>Chapter No : </b><br />{assignTask[0].ChapterNo}</p>
+                            <p><b>Chapter Name : </b><br />{assignTask[0].ChapterName}</p>
+                            <p><b>Subject : </b><br />{assignTask[0].Subject}</p>
+                            <p><b>Board : </b><br />{assignTask[0].Board}</p>
+                            <p><b>Class : </b><br />{assignTask[0].Class}</p>
+                            <p><b>Due Date : </b><br />{assignTask[0].DueDate}</p>
                         </div>
                         
-                        <div className="assignedtaskpreview_inner">
-                            <p><b>Chapter Description : </b> <br /> {assignTask[0].ChapterDescription} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum ipsum quisquam libero dolore unde numquam nisi soluta. Quisquam distinctio, culpa praesentium explicabo necessitatibus nihil quaerat. Repellendus ipsa voluptas magni odit. </p>
-                        </div> 
                     </div>
                     : null
                 }
@@ -213,4 +196,4 @@ function InstructorAddTaskDetails(){
     }
 }
 
-export default InstructorAddTaskDetails;
+export default InstructorAddTaskVideo;
