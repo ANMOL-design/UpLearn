@@ -9,21 +9,12 @@
     justify-content: flex-end;
     background-color: #0C0F33;
     .backBtn {
-        @include sitebutton;
         margin-right: 6rem;
-        font-size: 1rem;
+        font-size: 1.6rem;
         cursor: pointer;
         margin-top: .5rem;
     }
-}
-
- .add-course-heading {
-     height: 50px;
-    text-align: center;
-     justify-content: flex-end;
-     font-size: 2rem;
- }
- 
+} 
 
  .add-course-body {
      display: flex;
@@ -35,12 +26,12 @@
 .add-course-form-container {
     width: 100%;
     max-width: 1200px;
-    margin: 0.5rem 0;
+    margin: 0.8rem;
     padding: 1.5rem;
     border-radius: .5rem;
     background-color: white;
-    h3 {
-        font-size: 1.8rem;
+    h1 {
+        
         text-align: center;
         padding-bottom: 1rem;
     }

@@ -11,10 +11,9 @@ function Logout(){
         width: "100%",
         height: "85vh",
         display: "flex",
-        justifyContent: "flex-end",
+        justifyContent: "center",
         alignItems: 'center',
         fontSize: "4rem",
-        marginRight: "5rem"
     }
     useEffect( ()=> {
         fetch('/logout',{

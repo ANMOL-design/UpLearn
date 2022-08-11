@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import NotFoundImg from "../../../../assets/images/not-found.png";
+import NotFoundImg from "../../../../../assets/images/not-found.png";
 import { Link } from "react-router-dom";
 import { FaEdit } from 'react-icons/fa';
-import Loader from "../../../Loader";
+import Loader from "../../../../Loader";
 import axios from "axios";
 
 export default function MyCourses(props) {
