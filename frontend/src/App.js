@@ -60,11 +60,10 @@ import ContactDetails from "./components/AdminPortal/ContactDetails";
 //Games
 import Games from "./components/Games/Games";
 import Main from "./games/game1/Main";
-<<<<<<< HEAD
+
 import Hangman from "./games/game2/Hangman";
 import Game3 from "./games/game3/Game3";
-=======
->>>>>>> 4ff8ff66e57dd1033272a3eed8fede4d7ad51fdf
+
 
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
@@ -161,7 +160,7 @@ function App() {
 
             {/* ////////////////////////////////////////  */}
             {/* Instructor Dashboard */}
-            
+
             <Route
               path="/instructordashboard/*"
               element={<InstructorDashboard />}
@@ -189,7 +188,7 @@ function App() {
               path="/instructordashboard/my-courses/edit-content/add-quiz/:id"
               element={<AddQuiz />}
             />
-            
+
             <Route
               path="/instructordashboard/my-courses/edit-content/add-quiz/add-questions/:id/:quiz_id"
               element={<AddQuestion />}
@@ -223,13 +222,12 @@ function App() {
             {/* Game */}
             <Route path="/play-games" element={<Games />} />
             <Route path="/maths-booster" element={<Main />} />
-<<<<<<< HEAD
+
             <Route path="/hangman" element={<Hangman />} />
             <Route path="/game3" element={<Game3 />} />
-=======
+
 
             {/* ///////////////////////////////////////////////////////  */}
->>>>>>> 4ff8ff66e57dd1033272a3eed8fede4d7ad51fdf
             {/* Home Route  */}
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
