@@ -29,15 +29,21 @@ export default function InstructorEditContent() {
 
     fetchcourse();
   }, []);
+
   const [COURSE, SETCOURSE] = useState({
     title: course.title,
     VideoContentTitle: "",
     ArticleTitle: "",
   });
+
   const [Description, setDescription] = useState("");
+
+  // Store/Change in Suneditor 
   const handleEditorChange = (content) => {
     setDescription(content);
   };
+
+  // Handle input box changes
   const handleChange = (e) => {
     SETCOURSE({ ...COURSE, [e.target.name]: e.target.value });
   };
@@ -45,11 +51,17 @@ export default function InstructorEditContent() {
   const [err, seterr] = useState("");
   const [Video, setVideo] = useState("");
   const [VideoData, setVideoData] = useState("");
+
+  // Variable to store video link
   let course_video = "";
+
+  // Set the values of video
   function validatevideo(e) {
     setVideo(e.target.files[0].name);
     setVideoData(e.target.files[0]);
   }
+
+  //////////////////////////////////////////////////////////
   const addvideobtn = () => {
     document.getElementById("video-form-container").style.display = "block";
     document.getElementById("article-modal-container").style.display = "none";
@@ -74,8 +86,12 @@ export default function InstructorEditContent() {
   const closeQuizModal = () => {
     document.getElementById("my-quiz-container").style.display = "none";
   };
+
+  //////////////////////////////////////////////////////////////////////////
   console.log(course.title);
   console.log(COURSE);
+
+  // Check that the video is availabe or not
   const handleVideoValidation = () => {
     if (!COURSE.VideoContentTitle || !Video) {
       seterr("Please Enter all required Fields.");
@@ -86,12 +102,13 @@ export default function InstructorEditContent() {
     }
     return true;
   };
+
+  
   const handleArticleValidation = () => {
     if (!COURSE.ArticleTitle || !Description) {
       seterr("Please Enter all required Fields.");
       return false;
     }
-
     return true;
   };
   const submitVideo = async (image, imageData) => {
