@@ -56,11 +56,13 @@ import ContactDetails from "./components/AdminPortal/ContactDetails";
 //Games
 import Games from "./components/Games/Games";
 import Main from "./games/game1/Main";
-// import Game2 from "./games/game2/Game2";
+import Hangman from "./games/game2/Hangman";
+import Game3 from "./games/game3/Game3";
 
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
 import CourseVideo from "./components/Courses/CourseContent/courseVideos";
+
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -180,8 +182,8 @@ function App() {
             {/* Game */}
             <Route path="/play-games" element={<Games />} />
             <Route path="/maths-booster" element={<Main />} />
-            {/* <Route path="/game2" element={<Game2 />} /> */}
-
+            <Route path="/hangman" element={<Hangman />} />
+            <Route path="/game3" element={<Game3 />} />
             {/* Home Route  */}
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
