@@ -22,10 +22,10 @@ import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
 import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 
 // Instructor Dashboard
-import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
+import AddCourses from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addCourse";
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
-import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/InstructorAddTaskDetails";
-import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/InstructorAddTaskVideo";
+import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskDetails";
+import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskVideo";
 
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
@@ -147,7 +147,10 @@ function App() {
               element={<AssignSyllbusTask />}
             />
             {/* Instructor Dashboard */}
-            <Route path="/instructordashboard/my-courses/add-new-course" element={<AddCourses />} />
+            <Route
+              path="/instructordashboard/my-courses/add-new-course"
+              element={<AddCourses />}
+            />
             <Route
               path="/instructordashboard/*"
               element={<InstructorDashboard />}

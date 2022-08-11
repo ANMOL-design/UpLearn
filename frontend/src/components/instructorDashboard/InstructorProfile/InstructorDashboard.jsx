@@ -4,13 +4,13 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import InstructorSidebar from "./InstructorSidebar";
 import InstructorDashHome from "./InstrutorComponent/InstructorDashHome";
-import InstructorAssignTask from "./InstrutorComponent/InstructorTasks";
+import InstructorAssignTask from "./InstrutorComponent/MyTask/InstructorTasks";
 
-import MyCourses from "./InstrutorComponent/instructorMyCourses";
-import InstructorEditContent from "./InstrutorComponent/InstructorEditContent";
-import AddQuiz from "./InstrutorComponent/addQuiz";
-import AddQuestion from "./InstrutorComponent/addQuestion";
-import AddCourses from "../Instructorscomponent/addCourse";
+import MyCourses from "./InstrutorComponent/MyCourses/instructorMyCourses";
+import InstructorEditContent from "./InstrutorComponent/MyCourses/InstructorEditContent";
+import AddQuiz from "./InstrutorComponent/MyCourses/addQuiz";
+import AddQuestion from "./InstrutorComponent/MyCourses/addQuestion";
+import AddCourses from "./InstrutorComponent/MyCourses/addCourse";
 
 
 var CryptoJS = require("crypto-js");
@@ -62,17 +62,15 @@ function InstructorDashboard(){
             <InstructorSidebar />
             <Routes>
                 <Route path="/" element={<InstructorDashHome />} /> 
-{/* 
-                <Route path="/mycourses" element={<InstructorDashCourses />} />  */}
-                <Route path="/my_courses" element={<MyCourses />} /> 
+
                 <Route path="/my_courses/Edit_content/:id" element={<InstructorEditContent />} /> 
                 <Route path="/my_courses/Edit_content/:id/add_questions/:quiz_id" element={<AddQuestion />} /> 
                 <Route path="/my-courses/Edit-content/:id/add_quiz" element={<AddQuiz/>} /> 
-                <Route path="/my_courses/add_new_course" element={<AddCourses />} /> 
 
                 <Route path="/task-assign" element={<InstructorAssignTask details={instructor} />} /> 
                 {/* Courses Routes  */}
                 <Route path="/my-courses" element={<MyCourses details={instructor} />} /> 
+                <Route path="/my_courses/add_new_course" element={<AddCourses />} /> 
                 <Route path="/my-courses/edit-content/:id" element={<InstructorEditContent />} /> 
             </Routes>
         </div>

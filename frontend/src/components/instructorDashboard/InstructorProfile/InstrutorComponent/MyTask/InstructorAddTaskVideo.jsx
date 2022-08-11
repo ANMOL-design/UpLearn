@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useParams ,useNavigate } from "react-router-dom";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
-import Loader from "../../../Loader";
+import Loader from "../../../../Loader";
 import axios from 'axios';
 
 function InstructorAddTaskVideo(){

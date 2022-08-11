@@ -2,8 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
 import SunEditor from "suneditor-react";
-import Loader from "../../../../assets/images/progressbar.gif";
-import NotFoundImg from "../../../../assets/images/not-found.webp";
+import Loader from "../../../../../assets/images/progressbar.gif";
+import NotFoundImg from "../../../../../assets/images/not-found.webp";
 // import {  } from 'react-icons/fa';
 export default function InstructorEditContent(){
   let navigate = useNavigate();
