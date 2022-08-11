@@ -60,13 +60,12 @@ function InstructorDashboard(){
             <InstructorSidebar />
             <Routes>
                 <Route path="/" element={<InstructorDashHome />} /> 
-
-                <Route path="/my_courses/Edit_content/:id/add_questions/:quiz_id" element={<AddQuestion />} /> 
-                <Route path="/my-courses/Edit-content/:id/add_quiz" element={<AddQuiz/>} /> 
-
                 <Route path="/task-assign" element={<InstructorAssignTask details={instructor} />} /> 
-                {/* Courses Routes  */}
                 <Route path="/my-courses" element={<MyCourses details={instructor} />} /> 
+
+                <Route path="/my-courses/edit-content/:id/add_questions/:quiz_id" element={<AddQuestion />} /> 
+                <Route path="/my-courses/Edit-content/:id/add_quiz" element={<AddQuiz/>} /> 
+                
             </Routes>
         </div>
     )

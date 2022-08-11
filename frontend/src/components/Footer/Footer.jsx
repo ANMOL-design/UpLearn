@@ -91,9 +91,9 @@ function Footer(){
                             Educators can customize lesson plans to best.
                         </p>
                         <span>
-                            <a href="google.com" rel="nofollow" to="_blank"><BsFacebook /></a>
-                            <a href="google.com" rel="nofollow" to="_blank"><BsTwitter /></a> 
-                            <a href="google.com" rel="nofollow" to="_blank"><BsYoutube /></a> 
+                            <a href="https://www.google.com/" rel="nofollow" target="_blank"><BsFacebook /></a>
+                            <a href="https://www.google.com/" rel="nofollow" target="_blank"><BsTwitter /></a> 
+                            <a href="https://www.google.com/" rel="nofollow" target="_blank"><BsYoutube /></a> 
                         </span>
                     </div>
                     {/* The container 2 contain site Link  */}

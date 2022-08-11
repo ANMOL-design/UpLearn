@@ -1,87 +1,85 @@
-.edit-course-container{
-    margin: 0px 5% 0% 10%;
+.edit-course-container {
+  margin: 0px 5% 0% 10%;
 }
 
-.video-form-container{
-   z-index: 99;
-   margin: 10px 20px;
-   position: absolute;
-   top: 200px;
-   box-shadow: 4px 4px 4px lightblue;
-   display: none;
-   width: 70%;
-   padding: 20px;
-   background-color: #2b4eff0a;
+.video-form-container {
+  z-index: 99;
+  margin: 10px 20px;
+  position: absolute;
+  top: 200px;
+  box-shadow: 4px 4px 4px lightblue;
+  display: none;
+  width: 70%;
+  padding: 20px;
+  background-color: #2b4eff0a;
 }
-.article-modal-container{
-    background-color: antiquewhite;
-    display: none;
-
+.article-modal-container {
+  background-color: antiquewhite;
+  display: none;
 }
-.cut-btn-course{
-    background: none;
-    border: none;
-    position: relative;
-    float: right;
-    padding: 5px;
-    font-size: 28px;
-    margin: 10px;
+.cut-btn-course {
+  background: none;
+  border: none;
+  position: relative;
+  float: right;
+  padding: 5px;
+  font-size: 28px;
+  margin: 10px;
 }
-.add-content-byn-container .add-video{
-   button{
+.add-content-byn-container .add-video {
+  button {
     margin-right: 20px;
     border: none;
     padding: 10px 20px;
     background-color: #2b4eff;
     color: white;
     border-radius: 6px;
-   }
-   .add-quiz-header .btn-add-new-course{
+  }
+  .add-quiz-header .btn-add-new-course {
     position: absolute;
     float: right;
     margin: 20px;
-   }
+  }
 }
-.my-quiz-container{
-    padding: 20px;
-    display: none;
-    border: none;
-    margin: 40px 20px;
-    border-radius: 8px;
-    background-color: #E8F0FE;
-    .cut-modal{
-        display: inline-block;
-        position: relative;
-        float: right;
-        width: 40px;
-        margin: 5px;
-    }
-    .btn-add-new-course{
-        position: relative;
-        float: right;
-        margin: 20px;
-       }
+.my-quiz-container {
+  padding: 20px;
+  display: none;
+  border: none;
+  margin: 40px 20px;
+  border-radius: 8px;
+  background-color: #e8f0fe;
+  .cut-modal {
+    display: inline-block;
+    position: relative;
+    float: right;
+    width: 40px;
+    margin: 5px;
+  }
+  .btn-add-new-course {
+    position: relative;
+    float: right;
+    margin: 20px;
+  }
 }
 .my-quiz-card-container {
-    ul{
-        margin: 20px;
-        li{
-            width: 60%;
-            list-style: none;
-            background-color: #2b4eff;
-            margin: 4px;
-            padding: 20px;
-            border-radius: 8px;
-            color: white;
-            .my-quiz-Link{
-                position: relative;
-                float: right;
-                color: white;
-                background-color: red;
-                padding: 5px;
-                border-radius: 8px;
-            }
-        }
-
+  ul {
+    margin: 20px;
+    li {
+      width: 60%;
+      list-style: none;
+      background-color: #2b4eff;
+      margin: 4px;
+      padding: 20px;
+      border-radius: 8px;
+      color: white;
+      .my-quiz-Link {
+        position: relative;
+        float: right;
+        color: white;
+        background-color: red;
+        padding: 5px;
+        border-radius: 8px;
+      }
     }
+  }
 }

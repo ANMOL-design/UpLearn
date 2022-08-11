@@ -1,14 +1,14 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom";
 import SunEditor from "suneditor-react";
 import Loader from "../../../../../assets/images/progressbar.gif";
 import NotFoundImg from "../../../../../assets/images/not-found.webp";
-// import {  } from 'react-icons/fa';
-export default function InstructorEditContent(){
+import axios from "axios";
+
+export default function InstructorEditContent() {
   let navigate = useNavigate();
- 
-  const {id} =useParams();
+
+  const { id } = useParams();
   console.log(id);
   const [Quiz, setQuiz] = useState({});
   const [course, setCourse] = useState({});
@@ -16,7 +16,7 @@ export default function InstructorEditContent(){
     window.scroll(0, 120);
     const fetchcourse = async () => {
       await axios
-        .get("/Instructorcourse/"+id)
+        .get("/Instructorcourse/" + id)
         .then((response) => {
           console.log(response.data[0]);
           setCourse(response.data[0]);
@@ -26,92 +26,78 @@ export default function InstructorEditContent(){
           navigate("/login");
         });
     };
-   
-fetchcourse();
 
-  
+    fetchcourse();
   }, []);
   const [COURSE, SETCOURSE] = useState({
     title: course.title,
-    VideoContentTitle : "" ,
-    ArticleTitle:""
-   
+    VideoContentTitle: "",
+    ArticleTitle: "",
   });
-  const [Description,setDescription] = useState("");
+  const [Description, setDescription] = useState("");
   const handleEditorChange = (content) => {
     setDescription(content);
   };
   const handleChange = (e) => {
     SETCOURSE({ ...COURSE, [e.target.name]: e.target.value });
   };
- 
+
   const [err, seterr] = useState("");
-  const [Video,setVideo] = useState("");
-  const [VideoData,setVideoData] = useState("");
-  let course_video ="";
+  const [Video, setVideo] = useState("");
+  const [VideoData, setVideoData] = useState("");
+  let course_video = "";
   function validatevideo(e) {
     setVideo(e.target.files[0].name);
     setVideoData(e.target.files[0]);
   }
-  const addvideobtn = ()=>{
-document.getElementById("video-form-container").style.display="block";
-document.getElementById("article-modal-container").style.display="none";
-document.getElementById("my-quiz-container").style.display="none";
-  }
-  const addAticleBtn = ()=>{
-document.getElementById("article-modal-container").style.display="block";
-document.getElementById("video-form-container").style.display="none";
-document.getElementById("my-quiz-container").style.display="none";
-  }
-  const addQuizBtn = ()=>{
-document.getElementById("my-quiz-container").style.display="block";
-document.getElementById("video-form-container").style.display="none";
-document.getElementById("article-modal-container").style.display="none";
-  }
-  const closevideomodal = ()=>{
-document.getElementById("video-form-container").style.display="none";
-  }
-  const closeArticleModal = ()=>{
-document.getElementById("article-modal-container").style.display="none";
-  }
-  const closeQuizModal = ()=>{
-    document.getElementById("my-quiz-container").style.display="none";
-  }
+  const addvideobtn = () => {
+    document.getElementById("video-form-container").style.display = "block";
+    document.getElementById("article-modal-container").style.display = "none";
+    document.getElementById("my-quiz-container").style.display = "none";
+  };
+  const addAticleBtn = () => {
+    document.getElementById("article-modal-container").style.display = "block";
+    document.getElementById("video-form-container").style.display = "none";
+    document.getElementById("my-quiz-container").style.display = "none";
+  };
+  const addQuizBtn = () => {
+    document.getElementById("my-quiz-container").style.display = "block";
+    document.getElementById("video-form-container").style.display = "none";
+    document.getElementById("article-modal-container").style.display = "none";
+  };
+  const closevideomodal = () => {
+    document.getElementById("video-form-container").style.display = "none";
+  };
+  const closeArticleModal = () => {
+    document.getElementById("article-modal-container").style.display = "none";
+  };
+  const closeQuizModal = () => {
+    document.getElementById("my-quiz-container").style.display = "none";
+  };
   console.log(course.title);
   console.log(COURSE);
   const handleVideoValidation = () => {
-    if (
-     !COURSE.VideoContentTitle ||
-     !Video
-    ) 
-    {
+    if (!COURSE.VideoContentTitle || !Video) {
       seterr("Please Enter all required Fields.");
       return false;
-    } 
-    else if (Video === "") {
+    } else if (Video === "") {
       seterr("Please Upload Video.");
       return false;
-    } 
+    }
     return true;
   };
-  const handleArticleValidation= () => {
-    if (
-     !COURSE.ArticleTitle ||
-     !Description
-    ) 
-    {
+  const handleArticleValidation = () => {
+    if (!COURSE.ArticleTitle || !Description) {
       seterr("Please Enter all required Fields.");
       return false;
-    } 
-    
+    }
+
     return true;
   };
   const submitVideo = async (image, imageData) => {
-
     if (image === "") {
       window.alert("Please Upload an Image.");
-    } 
-    else {
+    } else {
       const formData = new FormData();
       formData.append("image", imageData);
 
@@ -123,18 +109,15 @@ document.getElementById("article-modal-container").style.display="none";
         .then((data) => {
           if (data.error) {
             console.log(data.error);
-          } 
-          else {
-           
-             course_video = data.image.image;
+          } else {
+            course_video = data.image.image;
           }
-          
         });
     }
   };
   const postVideo = async () => {
     const VideoLecture = course_video;
-    const {VideoContentTitle} = COURSE;
+    const { VideoContentTitle } = COURSE;
     console.log(VideoLecture);
     const Id = id;
     console.log(Id);
@@ -145,7 +128,9 @@ document.getElementById("article-modal-container").style.display="none";
         "content-Type": "application/json",
       },
       body: JSON.stringify({
-       VideoLecture,VideoContentTitle,Id
+        VideoLecture,
+        VideoContentTitle,
+        Id,
       }),
     });
 
@@ -159,7 +144,7 @@ document.getElementById("article-modal-container").style.display="none";
   };
   const postArticle = async () => {
     const ArticleContent = Description;
-    const {ArticleTitle} = COURSE;
+    const { ArticleTitle } = COURSE;
     const Id = id;
     const res = await fetch("/addArticleToCourse", {
       method: "POST",
@@ -167,7 +152,9 @@ document.getElementById("article-modal-container").style.display="none";
         "content-Type": "application/json",
       },
       body: JSON.stringify({
-       ArticleTitle,ArticleContent,Id
+        ArticleTitle,
+        ArticleContent,
+        Id,
       }),
     });
 
@@ -181,16 +168,15 @@ document.getElementById("article-modal-container").style.display="none";
   };
 
   const time = 10000;
-  function sendVideo () {
+  function sendVideo() {
     setTimeout(function () {
-    if(course_video==''){
-       sendVideo();
-    }
-    else{
-    postVideo();
-    }
-  }, time);
-}
+      if (course_video == "") {
+        sendVideo();
+      } else {
+        postVideo();
+      }
+    }, time);
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleVideoValidation();
@@ -201,24 +187,23 @@ document.getElementById("article-modal-container").style.display="none";
       document.getElementById("loader-reg").style.display = "inline";
 
       // Send video cloud
-      await submitVideo(Video,VideoData);
+      await submitVideo(Video, VideoData);
 
       // Send Data to Backend after 10 sec
       sendVideo();
     }
   };
 
-  function sendArticle () {
+  function sendArticle() {
     setTimeout(function () {
-    if(Description==''){
-       sendArticle();
-    }
-    else{
-    postArticle();
-    }
-  }, 3000);
-}
-  const handleArticleSubmit= async (event) => {
+      if (Description == "") {
+        sendArticle();
+      } else {
+        postArticle();
+      }
+    }, 3000);
+  }
+  const handleArticleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleArticleValidation();
 
@@ -227,183 +212,212 @@ document.getElementById("article-modal-container").style.display="none";
       document.getElementById("addArtiCleBtn").disabled = true;
       document.getElementById("loader-reg").style.display = "inline";
 
-
-
       // Send Data to Backend after 10 sec
       sendArticle();
     }
   };
 
-  const MyQuiz = ()=>{
-    if(course){
+  const MyQuiz = () => {
+    if (course) {
       console.log(course);
-     console.log(Quiz)
-      if(course.courseQuiz){
-        if(course.courseQuiz.length>0){
-          return(
+      console.log(Quiz);
+      if (course.courseQuiz) {
+        if (course.courseQuiz.length > 0) {
+          return (
             <>
-            <button className="cut-modal" onClick={closeQuizModal}>X</button>
-            <div className="add-quiz-header">
-            <Link to="add_quiz" className="btn-add-new-course btn">
-                Add New Quiz
-              </Link><br />
-              <h2>my-quiz</h2>
-            </div>
-             <div className="my-quiz-card-container">
-              <ul>
-              
-             
-                {course.courseQuiz.map((item)=> (
-                  <>
-                  <li>{item.QuizeName} <Link className="my-quiz-Link" to={"add_questions/"+item._id}>Add Questions</Link></li>
-                  </>
-        ))}
-              </ul>
-             </div>
+              <button className="cut-modal" onClick={closeQuizModal}>
+                X
+              </button>
+              <div className="add-quiz-header">
+                <Link to="add_quiz" className="btn-add-new-course btn">
+                  Add New Quiz
+                </Link>
+                <br />
+                <h2>my-quiz</h2>
+              </div>
+              <div className="my-quiz-card-container">
+                <ul>
+                  {course.courseQuiz.map((item) => (
+                    <>
+                      <li>
+                        {item.QuizeName}{" "}
+                        <Link
+                          className="my-quiz-Link"
+                          to={"add_questions/" + item._id}
+                        >
+                          Add Questions
+                        </Link>
+                      </li>
+                    </>
+                  ))}
+                </ul>
+              </div>
             </>
-          )
-        }
-        else{
-          return(<>
-           <button onClick={closeQuizModal}>X</button>
-           <div className="addcourse-main-container">
-            <div style={{width:"40%"}} className="no-found-container">
-              <img style={{width:"100%"}} src={NotFoundImg} alt="" />
-              <h4>Not Any Quiz in this course</h4>
-            </div>
-              <Link to="add_quiz" className="btn-add-new-course-2 btn">
-                Add New Quiz
-              </Link>
-          </div>
-          </>
-          )
+          );
+        } else {
+          return (
+            <>
+              <button onClick={closeQuizModal}>X</button>
+              <div className="addcourse-main-container">
+                <div style={{ width: "40%" }} className="no-found-container">
+                  <img style={{ width: "100%" }} src={NotFoundImg} alt="" />
+                  <h4>Not Any Quiz in this course</h4>
+                </div>
+                <Link to="add_quiz" className="btn-add-new-course-2 btn">
+                  Add New Quiz
+                </Link>
+              </div>
+            </>
+          );
         }
       }
     }
-    
-  }
-    return(
-        <>
-       <div className="edit-course-container">
-         <div className="coursecontent-header">
+  };
+  return (
+    <>
+      <div className="edit-course-container">
+        <div className="coursecontent-header">
           <h1>Add Content</h1>
-         </div>
-        
-         <div className="add-course-Input">
-          <label htmlFor="contenttitle">Title :</label>
-              <input type="text" Value={course.title}  name="title" onChange={(e)=>handleChange(e)} id="contenttitle"/>
-              </div>
-           <div className="add-content-byn-container">
-            <div className="add-video">
-              <button onClick={addvideobtn}>Add video Content  </button>
-                  <button className="add-article-btn"  onClick={addAticleBtn}>Add Articles</button>
-                  <button className="add-article-btn"  onClick={addQuizBtn}>Add Quiz</button>
-              </div>
-              <div className="video-form-container" id="video-form-container">
-                  <button className="cut-btn-course" onClick={closevideomodal}>X</button>
-                
-                  <div className="add-course-Input">
-                  <label htmlFor="courseVideo">
-                  Video Title: <span className="star">*</span>
-                  </label>
-                  <input type="text" placeholder="video title"   Value={COURSE.VideoContentTitle} name="VideoContentTitle" onChange={(e)=>handleChange(e)}  /> <br />
-                  </div>
-                  
-                  <input
-                    type="file"
-                    id="courseVideo"
-                    className="add-course-uploadBtn"
-                    // className="bookPdf"
-                    accept="video/*"
-                    onChange={(e) => {
-                      validatevideo(e);
-                    }}
-                  />
-                 <p className="star">{Video}</p>
-                   <div>
-                  <img src={Loader} alt="Loader" id="loader-reg" />
-                  <p className="uploadphoto">{err}</p>
-                </div>
-                <div className="submit-btn">
-                  <input
-                    type="submit"
-                    id="addVideoBtn"
-                    className="addBtn"
-                    onClick={handleSubmit}
-                    value="Add Lecture"
-                  />
-                </div>
-              </div>
-           </div>
-              
-            <div className="article-modal-container" id="article-modal-container">
-               <button onClick={closeArticleModal}>cut</button>
-                 <div className="add-course-Input">
-                  <label htmlFor="ArticleTitle">Article Title</label>
-                  <input type="text" Value={COURSE.ArticleTitle}  name="ArticleTitle" onChange={(e)=>handleChange(e)} id="ArticleTitle"/>
-                 </div>
-                 <div className="add-course-Input">
-                <label htmlFor="Description">Description :</label>
-                <SunEditor
-                  // setContents="My contents"
-                  onChange={handleEditorChange}
-                  required
-                  showToolbar={true}
-                  setOptions={{
-                    buttonList: [
-                      [
-                        "undo",
-                        "redo",
-                        "font",
-                        "fontSize",
-                        "formatBlock",
-                        "paragraphStyle",
-                        "blockquote",
-                        "bold",
-                        "underline",
-                        "italic",
-                        "subscript",
-                        "superscript",
-                        "hiliteColor",
-                        "textStyle",
-                        "align",
-                        "table",
-                        "horizontalRule",
-                        "list",
-                        "lineHeight",
-                        "image",
-                        // "math",
-                        // ,
-                        // You must add the 'katex' library at options to use the 'math' plugin.
-                        /** 'imageGallery', */ // You must add the "imageGalleryUrl".
-                        // "fullScreen",
-                        // "showBlocks",
-                        // "codeView",
-                        // "preview",
-                        // "print",
-                        // "save",
-                        // "template",
-                      ],
-                    ],
-                  }}
-                />
-              </div>
-              <img src={Loader} alt="Loader" id="loader-reg" />
-                  <p className="uploadphoto">{err}</p>
-              <input
-                    type="submit"
-                    id="addArtiCleBtn"
-                    className="addBtn"
-                    onClick={handleArticleSubmit}
-                    value="Add Article"
-                  />
-                   
-            </div>
-            <div id="my-quiz-container" className="my-quiz-container">
-                <MyQuiz/>
-            </div>
-       </div>
-        </>
-    )
+        </div>
 
+        <div className="add-course-Input">
+          <label htmlFor="contenttitle">Title :</label>
+          <input
+            type="text"
+            Value={course.title}
+            name="title"
+            onChange={(e) => handleChange(e)}
+            id="contenttitle"
+          />
+        </div>
+        <div className="add-content-byn-container">
+          <div className="add-video">
+            <button onClick={addvideobtn}>Add video Content </button>
+            <button className="add-article-btn" onClick={addAticleBtn}>
+              Add Articles
+            </button>
+            <button className="add-article-btn" onClick={addQuizBtn}>
+              Add Quiz
+            </button>
+          </div>
+          <div className="video-form-container" id="video-form-container">
+            <button className="cut-btn-course" onClick={closevideomodal}>
+              X
+            </button>
+
+            <div className="add-course-Input">
+              <label htmlFor="courseVideo">
+                Video Title: <span className="star">*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="video title"
+                Value={COURSE.VideoContentTitle}
+                name="VideoContentTitle"
+                onChange={(e) => handleChange(e)}
+              />{" "}
+              <br />
+            </div>
+
+            <input
+              type="file"
+              id="courseVideo"
+              className="add-course-uploadBtn"
+              // className="bookPdf"
+              accept="video/*"
+              onChange={(e) => {
+                validatevideo(e);
+              }}
+            />
+            <p className="star">{Video}</p>
+            <div>
+              <img src={Loader} alt="Loader" id="loader-reg" />
+              <p className="uploadphoto">{err}</p>
+            </div>
+            <div className="submit-btn">
+              <input
+                type="submit"
+                id="addVideoBtn"
+                className="addBtn"
+                onClick={handleSubmit}
+                value="Add Lecture"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="article-modal-container" id="article-modal-container">
+          <button onClick={closeArticleModal}>cut</button>
+          <div className="add-course-Input">
+            <label htmlFor="ArticleTitle">Article Title</label>
+            <input
+              type="text"
+              Value={COURSE.ArticleTitle}
+              name="ArticleTitle"
+              onChange={(e) => handleChange(e)}
+              id="ArticleTitle"
+            />
+          </div>
+          <div className="add-course-Input">
+            <label htmlFor="Description">Description :</label>
+            <SunEditor
+              // setContents="My contents"
+              onChange={handleEditorChange}
+              required
+              showToolbar={true}
+              setOptions={{
+                buttonList: [
+                  [
+                    "undo",
+                    "redo",
+                    "font",
+                    "fontSize",
+                    "formatBlock",
+                    "paragraphStyle",
+                    "blockquote",
+                    "bold",
+                    "underline",
+                    "italic",
+                    "subscript",
+                    "superscript",
+                    "hiliteColor",
+                    "textStyle",
+                    "align",
+                    "table",
+                    "horizontalRule",
+                    "list",
+                    "lineHeight",
+                    "image",
+                    // "math",
+                    // ,
+                    // You must add the 'katex' library at options to use the 'math' plugin.
+                    /** 'imageGallery', */ // You must add the "imageGalleryUrl".
+                    // "fullScreen",
+                    // "showBlocks",
+                    // "codeView",
+                    // "preview",
+                    // "print",
+                    // "save",
+                    // "template",
+                  ],
+                ],
+              }}
+            />
+          </div>
+          <img src={Loader} alt="Loader" id="loader-reg" />
+          <p className="uploadphoto">{err}</p>
+          <input
+            type="submit"
+            id="addArtiCleBtn"
+            className="addBtn"
+            onClick={handleArticleSubmit}
+            value="Add Article"
+          />
+        </div>
+        <div id="my-quiz-container" className="my-quiz-container">
+          <MyQuiz />
+        </div>
+      </div>
+    </>
+  );
 }
