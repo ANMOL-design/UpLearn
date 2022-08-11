@@ -56,7 +56,7 @@ import ContactDetails from "./components/AdminPortal/ContactDetails";
 //Games
 import Games from "./components/Games/Games";
 import Main from "./games/game1/Main";
-// import Game2 from "./games/game2/Game2";
+//import Game2 from "./games/game2/Game2";
 
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";

@@ -53,15 +53,11 @@ function Games() {
   }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate]);
 
   return (
-<<<<<<< HEAD
+     
     <div>
-      {/* Banner Of the Games Page  */}
-=======
-    <>
-      {/* Banner Of the Admin Page  */}
->>>>>>> c76c334adbf818607c89e5234b8ba048e5157dc6
+  
       <div className="games-banner"></div>
-      {/* Main  Games Section  */}
+     
       <div className="games-header">
         <h1>Games</h1>
       </div>
@@ -85,7 +81,8 @@ function Games() {
             );
           })}
       </div>
-    </>
+      </div>
+    
   );
 }
 
