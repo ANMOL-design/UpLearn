@@ -4,8 +4,10 @@ const dotenv = require("dotenv");
 router.use(express.json());
 dotenv.config();
 const Courses = require("../models/coursesSchema");
+const CoursesQuizes = require("../models/CourseQuizSchema");
 const Instructors = require("../models/instructorregisterSchema");
-const User = require("../models/userSchema")
+const User = require("../models/userSchema");
+
 router.post("/Instructoraddcourse", (req, res) => {
   const {
     title,
@@ -15,143 +17,241 @@ router.post("/Instructoraddcourse", (req, res) => {
     Description,
     thumbnail,
     courseInstructor,
-    courseCategory
+    courseCategory,
   } = req.body;
 
-  if ( !title ||  !courseojective ||  !level ||  !language ||  !Description ||  !thumbnail ||!courseCategory||  !courseInstructor) {
+  if (
+    !title ||
+    !courseojective ||
+    !level ||
+    !language ||
+    !Description ||
+    !thumbnail ||
+    !courseCategory ||
+    !courseInstructor
+  ) {
     return res.sendStatus(201);
   }
-     
-      const courses = new Courses({
-        title,
+
+  const courses = new Courses({
+    title,
     courseojective,
     level,
     language,
     Description,
     thumbnail,
     courseInstructor,
-    courseCategory
-      });
-     courses
-        .save()
-        .then(async () => {
-          Instructors.findByIdAndUpdate(courseInstructor,{$push:{CousesList:{nameOfCourse:courses.title,courseId:courses._id}}},
-            function(err, result){
-       
-             if(err){
-                 console.log(err);
-             }
-             else{
-               console.log(result);
-                }
-              })
-              res
-              .status(200)
-              .json({ msg: "course added Successful" });
-         
-         
-        })
-        .catch((err) => {
-          console.log(err);
-          res.status(501).json({ msg: "Failed to Register" });
-        });
-        
-})
-
-router.get('/CoursesUplearn', (req, res) => {
-      Courses.find({}).then((result) => {
-          res.send(result)
-      });
-  })
-
-    router.get('/Instructorcourse/:id', (req, res) => {
-      const id = req.params.id;
-      Courses.find({ _id:id }).then((product) => {
-        if (product) {
-            // console.log(product)
-            return res.send(product)
+    courseCategory,
+  });
+  courses
+    .save()
+    .then(async () => {
+      Instructors.findByIdAndUpdate(
+        courseInstructor,
+        {
+          $push: {
+            CousesList: { nameOfCourse: courses.title, courseId: courses._id },
+          },
+        },
+        function (err, result) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(result);
+          }
         }
-    }).catch((err) => {
-        console.log(err)
-        res.sendStatus(404)
+      );
+      res.status(200).json({ msg: "course added Successful" });
     })
+    .catch((err) => {
+      console.log(err);
+      res.status(501).json({ msg: "Failed to Register" });
+    });
+});
+
+router.get("/CoursesUplearn", (req, res) => {
+  Courses.find({}).then((result) => {
+    res.send(result);
+  });
+});
+
+router.get("/coursesUplearn/:id", (req, res) => {
+  const id = req.params.id;
+  Courses.find({ courseInstructor: id })
+    .then((product) => {
+      if (product) {
+        return res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(404);
+    });
+});
+
+router.get("/Instructorcourse/:id", (req, res) => {
+  const id = req.params.id;
+
+  Courses.find({ _id: id })
+    .populate("courseQuiz")
+    .then((product) => {
+      if (product) {
+        return res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(404);
+    });
+});
+
+router.get("/getQuiz", (req, res) => {
+  CoursesQuizes.find({})
+    .then((product) => {
+      if (product) {
+        // console.log(product)
+        res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+router.post("/addVideoToCourse", (req, res) => {
+  const { VideoLecture, VideoContentTitle, Id } = req.body;
+  console.log(req.body);
+  Courses.findByIdAndUpdate(
+    Id,
+    {
+      $push: {
+        courseVideoContent: {
+          VideoLecture: VideoLecture,
+          VideoContentTitle: VideoContentTitle,
+        },
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.status(200).json({ msg: "course added Successful" });
+      }
+    }
+  );
+});
+
+router.post("/addArticleToCourse", (req, res) => {
+  const { ArticleTitle, ArticleContent, Id } = req.body;
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yy = today.getFullYear();
+  let hh = today.getHours();
+  let mi = today.getMinutes();
+  let ss = today.getSeconds();
+  let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
+  Courses.findByIdAndUpdate(
+    Id,
+    {
+      $push: {
+        courseArticles: {
+          ArticleTitle: ArticleTitle,
+          ArticleContent: ArticleContent,
+          time: time,
+        },
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.status(200).json({ msg: "course added Successful" });
+      }
+    }
+  );
+});
+
+router.post("/EnrolledCourse", (req, res) => {
+  const { userId, CourseId, nameOfCourse } = req.body;
+
+  User.findByIdAndUpdate(
+    userId,
+    {
+      $push: {
+        CousesEnrolled: { nameOfCourse: nameOfCourse, CourseId: CourseId },
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.status(200).json({ msg: "course added Successful" });
+      }
+    }
+  );
+});
+
+router.post("/createQuiz", async (req, res) => {
+  const { CourseId, QuizeName, QuizDifficulty, marksPerQuestion } = req.body;
+  const QUIZ = await new CoursesQuizes({
+    QuizeName: QuizeName,
+    QuizDifficulty: QuizDifficulty,
+    marksPerQuestion: marksPerQuestion,
+  });
+  await QUIZ.save();
+  const CO = await Courses.findById(CourseId);
+  await CO.courseQuiz.push(QUIZ);
+  await CO.save();
+  res.sendStatus(200);
+});
+
+router.post("/addQuestionToQuiz", async (req, res) => {
+  const {
+    CourseId,
+    question,
+    options,
+    correctOption,
+    quizId,
+    MarksPerquestion,
+  } = req.body;
+
+  CoursesQuizes.findByIdAndUpdate(quizId, {
+    $push: {
+      QuestionsofQuiz: {
+        question: question,
+        options: options,
+        correctOption: correctOption,
+        MarksPerquestion: MarksPerquestion,
+      },
+    },
   })
-   
-    router.post('/addVideoToCourse', (req, res) => {
-      const {VideoLecture,VideoContentTitle,Id} = req.body;
-      console.log(req.body);
-      Courses.findByIdAndUpdate(Id,{$push:{courseVideoContent:{VideoLecture:VideoLecture,VideoContentTitle:VideoContentTitle}}},
-        function(err, result){
-       
-        if(err){
-            console.log(err);
-        }
-        else{
-          console.log(result);
-           res.status(200)
-         .json({ msg: "course added Successful" });
-           }
-         })
-         
-  })
-    router.post('/addArticleToCourse', (req, res) => {
-      const { ArticleTitle,ArticleContent,Id} = req.body;
-      let today = new Date();
-      let dd = today.getDate();
-      let mm = today.getMonth() + 1;
-      let yy = today.getFullYear();
-      let hh = today.getHours();
-      let mi = today.getMinutes();
-      let ss = today.getSeconds();
-      let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
-      Courses.findByIdAndUpdate(Id,{$push:{courseArticles:{ArticleTitle:ArticleTitle,ArticleContent:ArticleContent,time:time}}},
-        function(err, result){
-       
-        if(err){
-            console.log(err);
-        }
-        else{
-          console.log(result);
-           res.status(200)
-         .json({ msg: "course added Successful" });
-           }
-         })
-         
-  })
-  
-    router.post('/EnrolledCourse', (req, res) => {
-      const { userId,CourseId,nameOfCourse} = req.body;
-     
-      User.findByIdAndUpdate(userId,{$push:{CousesEnrolled:{nameOfCourse:nameOfCourse,CourseId:CourseId}}},
-        function(err, result){
-       
-        if(err){
-            console.log(err);
-        }
-        else{
-          console.log(result);
-           res.status(200)
-         .json({ msg: "course added Successful" });
-           }
-         })
-         
-  })
-  
-    router.post('/CourseRating', (req, res) => {
-      const {courseId,UserId,rating,review} = req.body;
-      Courses.findByIdAndUpdate(courseId,{$push:{Rating:{rateBy:UserId,rating:rating,review:review}}},
-        function(err, result){
-       
-        if(err){
-            console.log(err);
-        }
-        else{
-          console.log(result);
-           res.status(200)
-         .json({ msg: "course added Successful" });
-           }
-         })
-         
-  })
-  
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+router.post("/CourseRating", (req, res) => {
+  const { courseId, UserId, rating, review } = req.body;
+  Courses.findByIdAndUpdate(
+    courseId,
+    { $push: { Rating: { rateBy: UserId, rating: rating, review: review } } },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.status(200).json({ msg: "course added Successful" });
+      }
+    }
+  );
+});
+
 module.exports = router;

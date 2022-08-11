@@ -18,6 +18,7 @@ const [curentVideo,setCurrentVideo] = useState(VideoContent.courseVideoContent[0
   }
   console.log(curentVideo);
   if(VideoContent){
+    if(VideoContent.courseVideoContent.length>0){
     return(
       <>
       <div className="video-content-container" id="video-content-container">
@@ -40,6 +41,12 @@ const [curentVideo,setCurrentVideo] = useState(VideoContent.courseVideoContent[0
   
     
     )
+           }
+           else{
+            return(
+             <h1>No Video Added</h1>
+            )
+           }
            }
            else{
             return(

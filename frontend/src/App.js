@@ -22,9 +22,13 @@ import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
 import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 
 // Instructor Dashboard
-import AddCourses from "./components/instructorDashboard/Instructorscomponent/addCourse";
+import AddCourses from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addCourse";
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
-import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/InstructorAddTaskDetails";
+import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskDetails";
+import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskVideo";
+import InstructorEditContent from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/InstructorEditContent";
+import AddQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuiz";
+import AddQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuestion";
 
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
@@ -56,8 +60,11 @@ import ContactDetails from "./components/AdminPortal/ContactDetails";
 //Games
 import Games from "./components/Games/Games";
 import Main from "./games/game1/Main";
+<<<<<<< HEAD
 import Hangman from "./games/game2/Hangman";
 import Game3 from "./games/game3/Game3";
+=======
+>>>>>>> 4ff8ff66e57dd1033272a3eed8fede4d7ad51fdf
 
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
@@ -84,13 +91,14 @@ function App() {
           {/* The Navbar component  */}
           <Navbar />
           <Routes>
+            {/* ////////// Starting Routes //////////  */}
             {/* The Auth Routes  */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
 
+            {/* /////////////////////////////////////////////////// */}
             {/* The Student Dashboard  */}
-
             <Route path="/studentdashboard/*" element={<StudentDashboard />} />
             <Route
               path="/change-student-password"
@@ -108,8 +116,11 @@ function App() {
               element={<ContentPage />}
             />
 
+            {/* /////////////////////////////////////////////////  */}
             {/* IMAGEUPLOADER */}
             <Route path="/imageuploader" element={<ImageUploader />} />
+
+            {/* ///////////////////////////////////////////////// */}
             {/* The Admin Routes  */}
             <Route
               path="/admin-portal-login-190310554227"
@@ -147,8 +158,10 @@ function App() {
               path="/admin-portal-assign-task-190310554227/:id"
               element={<AssignSyllbusTask />}
             />
+
+            {/* ////////////////////////////////////////  */}
             {/* Instructor Dashboard */}
-            <Route path="/instructor-addCourses" element={<AddCourses />} />
+            
             <Route
               path="/instructordashboard/*"
               element={<InstructorDashboard />}
@@ -157,11 +170,37 @@ function App() {
               path="/task-assign/add-lecture-data/:id/:teacher"
               element={<InstructorAddTaskDetails />}
             />
+            <Route
+              path="/task-assign/add-lecture-video/:id/:teacher"
+              element={<InstructorAddTaskVideo />}
+            />
 
+            <Route
+              path="/instructordashboard/my-courses/edit-content/:id"
+              element={<InstructorEditContent />}
+            />
+
+            <Route
+              path="/instructordashboard/my-courses/add-new-course"
+              element={<AddCourses />}
+            />
+
+            <Route
+              path="/instructordashboard/my-courses/edit-content/add-quiz/:id"
+              element={<AddQuiz />}
+            />
+            
+            <Route
+              path="/instructordashboard/my-courses/edit-content/add-quiz/add-questions/:id/:quiz_id"
+              element={<AddQuestion />}
+            />
+
+            {/* ////////////////////////////////////////////////  */}
             {/* Doubt Dashboard */}
             <Route path="/ask-doubt" element={<Doubt />} />
             <Route path="/post-doubt" element={<Postdoubt />} />
 
+            {/* ///////////////////////////////////////////////////  */}
             {/* General  */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
@@ -176,17 +215,26 @@ function App() {
               element={<CourseVideo />}
             />
 
+            {/* ////////////////////////////////////////////////////  */}
             {/* The Library  */}
             <Route path="/uplearn-virtual-library" element={<LibraryPage />} />
 
+            {/* ////////////////////////////////////////////////////  */}
             {/* Game */}
             <Route path="/play-games" element={<Games />} />
             <Route path="/maths-booster" element={<Main />} />
+<<<<<<< HEAD
             <Route path="/hangman" element={<Hangman />} />
             <Route path="/game3" element={<Game3 />} />
+=======
+
+            {/* ///////////////////////////////////////////////////////  */}
+>>>>>>> 4ff8ff66e57dd1033272a3eed8fede4d7ad51fdf
             {/* Home Route  */}
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
+
+            {/* //////// End Of Routes //////////  */}
           </Routes>
           {/* The Footer component  */}
           <Footer />
