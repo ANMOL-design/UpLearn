@@ -27,6 +27,8 @@ import InstructorDashboard from "./components/instructorDashboard/InstructorProf
 import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskDetails";
 import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskVideo";
 import InstructorEditContent from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/InstructorEditContent";
+import AddQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuiz";
+import AddQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuestion";
 
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
@@ -59,9 +61,14 @@ import ContactDetails from "./components/AdminPortal/ContactDetails";
 import Games from "./components/Games/Games";
 import Main from "./games/game1/Main";
 
+import Hangman from "./games/game2/Hangman";
+import Game3 from "./games/game3/Game3";
+
+
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
 import CourseVideo from "./components/Courses/CourseContent/courseVideos";
+
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -153,10 +160,7 @@ function App() {
 
             {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
-            <Route
-              path="/instructordashboard/my-courses/add-new-course"
-              element={<AddCourses />}
-            />
+
             <Route
               path="/instructordashboard/*"
               element={<InstructorDashboard />}
@@ -175,7 +179,26 @@ function App() {
               element={<InstructorEditContent />}
             />
 
+
             {/* //////////////////////////////////////////////// */}
+
+            <Route
+              path="/instructordashboard/my-courses/add-new-course"
+              element={<AddCourses />}
+            />
+
+            <Route
+              path="/instructordashboard/my-courses/edit-content/add-quiz/:id"
+              element={<AddQuiz />}
+            />
+
+            <Route
+              path="/instructordashboard/my-courses/edit-content/add-quiz/add-questions/:id/:quiz_id"
+              element={<AddQuestion />}
+            />
+
+            {/* ////////////////////////////////////////////////  */}
+
             {/* Doubt Dashboard */}
             <Route path="/ask-doubt" element={<Doubt />} />
             <Route path="/post-doubt" element={<Postdoubt />} />
@@ -204,8 +227,17 @@ function App() {
             <Route path="/play-games" element={<Games />} />
             <Route path="/maths-booster" element={<Main />} />
 
+
             {/* /////////////////////////////////////////////////////// */}
             {/* Home Route */}
+
+            <Route path="/hangman" element={<Hangman />} />
+            <Route path="/game3" element={<Game3 />} />
+
+
+            {/* ///////////////////////////////////////////////////////  */}
+            {/* Home Route  */}
+
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
 

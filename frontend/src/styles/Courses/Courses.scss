@@ -168,30 +168,35 @@ $desktop : 1200px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     margin-bottom: 20px;
-    color: #2b4eff;
+    color: #2246f7;
 }
-.category-overlay{
-    display: none;
+.category-overlay h2{
+    display: flex;
+    justify-content: center;
     color: #fff;
 }
 .category-overlay{
     font-size: 20px;
+    
 }
 .category-overlay button{
     font-size: 30px;
     border: none;
-    background-color: #2b4eff85;
+    background-color: white;
     padding: 3px 5px;
     border-radius: 9px;
     margin: 20% 40%;
+    
 }
 .category-overlay button:hover{
     background-color: #f14d5d;
     cursor: pointer;
+    
 }
 .category-card:hover{
-    background-color: #6073ce;
-    .category-card-icon ,.category-card-text{
+    background-color: #2243e9;
+    .category-card-icon ,
+    .category-card-text{
         display: none;
         
     }
@@ -291,7 +296,8 @@ font-size: 22px;
 .course-card-btn{
     background-color: #2b4eff;
     color: white;
-   
+    display: flex;
+    justify-content: baseline;
     border-radius: 6px;
     width:75%;
     height: 6vh;

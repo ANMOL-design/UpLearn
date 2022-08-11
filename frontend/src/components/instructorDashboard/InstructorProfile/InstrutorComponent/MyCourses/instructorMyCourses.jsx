@@ -27,7 +27,7 @@ export default function MyCourses(props) {
     fetchCourse();
   }, [props.details._id]);
 
-  console.log(courseData)
+  // console.log(courseData)
 
   const AddCoursecontent = () => {
 

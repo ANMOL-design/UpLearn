@@ -7,6 +7,7 @@ const Courses = require("../models/coursesSchema");
 const CoursesQuizes = require("../models/CourseQuizSchema");
 const Instructors = require("../models/instructorregisterSchema");
 const User = require("../models/userSchema");
+
 router.post("/Instructoraddcourse", (req, res) => {
   const {
     title,
@@ -68,12 +69,12 @@ router.post("/Instructoraddcourse", (req, res) => {
     });
 });
 
-
 router.get("/CoursesUplearn", (req, res) => {
   Courses.find({}).then((result) => {
     res.send(result);
   });
-})
+});
+
 router.get("/coursesUplearn/:id", (req, res) => {
   const id = req.params.id;
   Courses.find({ courseInstructor: id })
@@ -86,19 +87,15 @@ router.get("/coursesUplearn/:id", (req, res) => {
       console.log(err);
       res.sendStatus(404);
     });
-
 });
 
 router.get("/Instructorcourse/:id", (req, res) => {
   const id = req.params.id;
 
-  Courses.find({ _id: id }).populate("courseQuiz")
+  Courses.find({ _id: id })
+    .populate("courseQuiz")
     .then((product) => {
-    
-
- 
       if (product) {
-
         return res.send(product);
       }
     })
@@ -106,22 +103,20 @@ router.get("/Instructorcourse/:id", (req, res) => {
       console.log(err);
       res.sendStatus(404);
     });
-  
+});
 
-})
 router.get("/getQuiz", (req, res) => {
-
-
   CoursesQuizes.find({})
     .then((product) => {
       if (product) {
         // console.log(product)
-   res.send(product)
-  }
-}).catch((err)=>{
-  console.log(err)
-})
-})
+        res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 router.post("/addVideoToCourse", (req, res) => {
   const { VideoLecture, VideoContentTitle, Id } = req.body;
@@ -146,6 +141,7 @@ router.post("/addVideoToCourse", (req, res) => {
     }
   );
 });
+
 router.post("/addArticleToCourse", (req, res) => {
   const { ArticleTitle, ArticleContent, Id } = req.body;
   let today = new Date();
@@ -199,33 +195,48 @@ router.post("/EnrolledCourse", (req, res) => {
   );
 });
 
-
-router.post("/createQuiz", async(req, res) => {
+router.post("/createQuiz", async (req, res) => {
   const { CourseId, QuizeName, QuizDifficulty, marksPerQuestion } = req.body;
-const QUIZ = await new CoursesQuizes({ 
-  QuizeName: QuizeName,
-  QuizDifficulty: QuizDifficulty,
-  marksPerQuestion: marksPerQuestion,})
-  await QUIZ.save()
-  const CO = await Courses.findById(CourseId)
-  await CO.courseQuiz.push(QUIZ)
+  const QUIZ = await new CoursesQuizes({
+    QuizeName: QuizeName,
+    QuizDifficulty: QuizDifficulty,
+    marksPerQuestion: marksPerQuestion,
+  });
+  await QUIZ.save();
+  const CO = await Courses.findById(CourseId);
+  await CO.courseQuiz.push(QUIZ);
   await CO.save();
   res.sendStatus(200);
 });
-router.post("/addQuestionToQuiz", async(req, res) => {
-  const { CourseId, question, options, correctOption,quizId,MarksPerquestion} = req.body;
- 
-   CoursesQuizes.findByIdAndUpdate(quizId,{$push:{QuestionsofQuiz:{question:question,options:options,correctOption:correctOption,MarksPerquestion:MarksPerquestion}}}).then((result)=>{
 
-    res.sendStatus(200)
-   }).catch((err)=>{
-     console.log(err);
-    res.sendStatus(500)
-   })
- 
- 
+router.post("/addQuestionToQuiz", async (req, res) => {
+  const {
+    CourseId,
+    question,
+    options,
+    correctOption,
+    quizId,
+    MarksPerquestion,
+  } = req.body;
+
+  CoursesQuizes.findByIdAndUpdate(quizId, {
+    $push: {
+      QuestionsofQuiz: {
+        question: question,
+        options: options,
+        correctOption: correctOption,
+        MarksPerquestion: MarksPerquestion,
+      },
+    },
+  })
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 });
-
 
 router.post("/CourseRating", (req, res) => {
   const { courseId, UserId, rating, review } = req.body;
