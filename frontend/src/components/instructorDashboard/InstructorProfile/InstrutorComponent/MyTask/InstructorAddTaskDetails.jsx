@@ -121,9 +121,29 @@ function InstructorAddTaskDetails() {
           <div className="add-course-body">
             <div className="add-course-form-container">
               <h1>Add Course Content</h1>
+              {/* Chapter Title  */}
+              <div className="makedivision">
+                <form>
+                  {/* The Email Input  */}
+                  <div className="signInput">
+                    <label htmlFor="title">Chapter Title :<span className="star"> *</span></label>
+                    <br />
+                    <input
+                      type="text"
+                      id="title"
+                      placeholder="Add heading title of the chapter"
+                      name="title"
+                      value={LectureTitle}
+                      onChange={(e) => {
+                        setLectureTitle(e.target.value);
+                      }}
+                    />
+                  </div>
+                </form>
+              </div>
 
               {/* Enter Description Of task  */}
-              <label htmlFor="Description"> Chapter Description :</label>
+              <label htmlFor="Description"> Chapter Description :<span className="star"> *</span></label>
               <SunEditor
                 onChange={handleEditorChange}
                 required
@@ -168,29 +188,10 @@ function InstructorAddTaskDetails() {
                   ],
                 }}
               />
-              {/* Chapter Title  */}
-              <div className="makedivision">
-                <form>
-                  {/* The Email Input  */}
-                  <div className="signInput">
-                    <label htmlFor="title">Chapter Title</label>
-                    <br />
-                    <input
-                      type="text"
-                      id="title"
-                      placeholder="Add heading title of the chapter"
-                      name="title"
-                      value={LectureTitle}
-                      onChange={(e) => {
-                        setLectureTitle(e.target.value);
-                      }}
-                    />
-                  </div>
-                </form>
-              </div>
+
               {/* Submit Task  */}
               <div className="submitassigntask">
-                <button onClick={SaveAsDraft}>Save as Draft</button>
+                <button onClick={SaveAsDraft}>Save Draft</button>
                 <button onClick={SubmitMyTask}>Submit Task</button>
               </div>
 
