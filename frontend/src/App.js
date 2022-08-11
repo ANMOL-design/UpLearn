@@ -27,6 +27,8 @@ import InstructorDashboard from "./components/instructorDashboard/InstructorProf
 import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskDetails";
 import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskVideo";
 import InstructorEditContent from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/InstructorEditContent";
+import AddQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuiz";
+import AddQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuestion";
 
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
@@ -153,10 +155,7 @@ function App() {
 
             {/* ////////////////////////////////////////  */}
             {/* Instructor Dashboard */}
-            <Route
-              path="/instructordashboard/my-courses/add-new-course"
-              element={<AddCourses />}
-            />
+            
             <Route
               path="/instructordashboard/*"
               element={<InstructorDashboard />}
@@ -173,6 +172,21 @@ function App() {
             <Route
               path="/instructordashboard/my-courses/edit-content/:id"
               element={<InstructorEditContent />}
+            />
+
+            <Route
+              path="/instructordashboard/my-courses/add-new-course"
+              element={<AddCourses />}
+            />
+
+            <Route
+              path="/instructordashboard/my-courses/edit-content/add-quiz/:id"
+              element={<AddQuiz />}
+            />
+            
+            <Route
+              path="/instructordashboard/my-courses/edit-content/add-quiz/add-questions/:id/:quiz_id"
+              element={<AddQuestion />}
             />
 
             {/* ////////////////////////////////////////////////  */}
