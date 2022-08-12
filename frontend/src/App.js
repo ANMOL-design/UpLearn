@@ -42,6 +42,7 @@ import Subject from "./components/Dashboard/DashboardComponents/Courses/Subject"
 //Doubt Section
 import Doubt from "./components/Doubt/Doubt";
 import Postdoubt from "./components/Doubt/Postdoubt";
+import MainDoubt from "./components/Doubt/MainDoubt";
 
 //redux setup
 import { Provider } from "react-redux";
@@ -198,10 +199,10 @@ function App() {
             />
 
             {/* ////////////////////////////////////////////////  */}
-
             {/* Doubt Dashboard */}
             <Route path="/ask-doubt" element={<Doubt />} />
             <Route path="/post-doubt" element={<Postdoubt />} />
+            <Route path="/ask-doubt/:id" element={<MainDoubt />} />
 
             {/* /////////////////////////////////////////////////// */}
             {/* General */}

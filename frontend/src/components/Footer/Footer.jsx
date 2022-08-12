@@ -85,13 +85,13 @@ function Footer() {
               can customize lesson plans to best.
             </p>
             <span>
-              <a href="https://www.google.com/" rel="nofollow" target="_blank">
+              <a href="https://www.google.com/" rel="noreferrer" target="_blank">
                 <BsFacebook />
               </a>
-              <a href="https://www.google.com/" rel="nofollow" target="_blank">
+              <a href="https://www.google.com/" rel="noreferrer" target="_blank">
                 <BsTwitter />
               </a>
-              <a href="https://www.youtube.com/" rel="nofollow" target="_blank">
+              <a href="https://www.youtube.com/" rel="noreferrer" target="_blank">
                 <BsYoutube />
               </a>
             </span>
