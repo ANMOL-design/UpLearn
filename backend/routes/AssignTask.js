@@ -106,6 +106,41 @@ router.post("/Instructoraddlecturedetails/:id", (req, res) => {
 })
 
 
+router.post("/Instructoraddlecturevideo/:id", (req, res) => {
+
+    const id = req.params.id;
+    const {
+        LectureNo,
+        Title,
+        VideoLecture,
+    } = req.body;
+
+    // console.log(id, LectureContentNo, LectureTitle, LectureContent)
+  
+    if (!LectureNo ||  !Title ||  !VideoLecture) {
+      return res.sendStatus(201);
+    }
+       
+
+    Lectures.findByIdAndUpdate(id, {$push:
+        { ChapterVideo:
+            {
+                LectureContentNo: LectureNo,
+                LectureVideoTitle: Title,
+                LectureVideo: VideoLecture
+            }
+        }},
+        function(err, docs) {
+        if (err) {
+            console.log("Error occured" + err)
+        } else {
+            res.status(200).json({ msg: "Content Added" })
+            // console.log(docs);
+        }
+    })
+})
+
+
 router.post("/saveassigntaskasdeaft", (req, res) => {
 
     const { id, content } = req.body;

@@ -97,7 +97,7 @@ function InstructorAddTaskDetails() {
 
       if (res.status === 200) {
         window.alert("Data Submit Successfully");
-        navigate("/");
+        navigate("/instructordashboard/task-assign");
       } else {
         console.log(res);
         window.alert("Internal Server Error, Try Later");
