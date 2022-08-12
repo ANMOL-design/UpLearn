@@ -1,6 +1,33 @@
 .App {
   text-align: center;
 }
+.game-back-btn {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #0C0F33;
+}
+.game-back-btn .backBtn {
+  margin-right: 6rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  margin-top: .5rem;
+}
+
+.game1-btn{
+    
+    font-size: 18px;
+    font-weight: 500;
+    background: blue;
+    color: #fff;
+    border-radius: 5px;
+    padding: 6px 20px;
+    margin-top: 2rem;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
 
 .App-logo {
   /*animation: App-logo-spin infinite 20s linear;*/

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
 import { mapDispatchToProps, mapStateToProps } from "./redux/index";
 import Start from "./containers/Start";
 import MathQuiz from "./containers/MathQuiz";
@@ -12,7 +14,12 @@ class Game1 extends Component {
   };
 
   render() {
-    return (
+    return (<div>
+      <div className="game-back-btn">
+        <Link to="/play-games">
+            <BiArrowBack className="backBtn" style={{ color: "white" }} />
+          </Link>
+          </div>
       <div className="App">
         <header className="App-header">
           {!this.props.isStarted ? (
@@ -22,6 +29,7 @@ class Game1 extends Component {
           )}
         </header>
         {/* <Footer></Footer> */}
+      </div>
       </div>
     );
   }
