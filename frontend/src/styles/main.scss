@@ -24,7 +24,11 @@
 @import "./AdminPortal/addbook.scss";
 @import './AdminPortal/contactdetails.scss';
 @import "./AdminPortal/addcourses.scss";
+
+// Importing the Style of the Doubt Page
 @import "./doubt/doubt.scss";
+@import "./doubt/post.scss";
+@import "./doubt/maindoubt.scss";
 
 //Importing Style of teacher courses
 @import"./Courses/Courses.scss";

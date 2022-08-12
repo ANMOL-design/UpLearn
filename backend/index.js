@@ -25,6 +25,7 @@ app.use(require("./routes/updateUserProfile"));
 app.use(require("./routes/addCourse"));
 app.use(require("./routes/libraryRoute"));
 app.use(require("./routes/AssignTask"));
+app.use(require("./routes/doubtRoute"));
 
 // mongodbconnection
 mongoose.connect(
