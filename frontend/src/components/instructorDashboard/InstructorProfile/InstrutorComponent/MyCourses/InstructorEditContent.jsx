@@ -24,7 +24,7 @@ export default function InstructorEditContent() {
   const [quizShow, setquizShow] = useState(false);
 
   useEffect(() => {
-    window.scroll(0, 0);
+    window.scroll(0, 80);
     // Decrypting the User Role
     if (loginDetails.userRole !== "") {
       var bytes = CryptoJS.AES.decrypt(
