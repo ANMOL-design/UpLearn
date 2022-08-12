@@ -1,22 +1,29 @@
 // Importing the base style
 @import "./base/base.scss";
+
 // Import thr variable and mixins
 @import "./abstract/variables.scss";
 @import "./abstract/mixin.scss";
+
 // Importing the Navbar Style
 @import "./Navbar/Navbar.scss";
+
 //Importing the Footer Style
 @import "./Footer/Footer.scss";
+
 //Importing Register style
 @import "./Register/Register.scss";
+
 //Importing Page Not Found
 @import "./PageNotFound/PageNotFound.scss";
+
 //Importing Style of Student Dashboard
 @import "./Dashboard/student.scss";
 @import "./Dashboard/DashboardComponents/mainDash.scss";
 @import "./Dashboard/DashboardComponents/cards.scss";
 @import "./Dashboard/DashboardComponents/profile.scss";
 @import "./Dashboard/DashboardComponents/updateProfile.scss";
+
 //Importing Style of Admin Portal
 @import "./AdminPortal/AdminHome.scss";
 @import "./AdminPortal/instructorRegister.scss";
@@ -26,25 +33,39 @@
 @import "./AdminPortal/addcourses.scss";
 
 // Importing the Style of the Doubt Page
+@import "./AdminPortal/contactdetails.scss";
 @import "./doubt/doubt.scss";
 @import "./doubt/post.scss";
 @import "./doubt/maindoubt.scss";
 
 //Importing Style of teacher courses
-@import"./Courses/Courses.scss";
+@import "./Courses/Courses.scss";
+@import "./Courses/courseInfo.scss";
+@import "./Courses/courseContent.scss";
+@import "./Courses/coursevideo.scss";
 @import "./Contact/Contact.scss";
 
 //Importing Style of Courses on dashboard
 @import "./Dashboard/DashboardComponents/courses.scss";
+
 //Importing sidebar of student dashboard
 @import "./Dashboard/sidebar.scss";
 @import "./Dashboard/courses/boardSelect.scss";
+
 //Importing Style of Library Style
 @import "./Library/Library.scss";
+
 //Importing Style of instructor Dashboard
 @import "./DashboardInstructor/InstSidebar.scss";
-@import "./DashboardInstructor/EditorInstructor.scss";
+@import "./DashboardInstructor/mycourse.scss";
+@import "./DashboardInstructor/EditContent.scss";
+@import "./DashboardInstructor/CoursesQuiz.scss";
+@import "./DashboardInstructor/InstructorPendigtask.scss";
+@import "./DashboardInstructor/addcourses.scss";
+
 // Home Route
 @import "./Home/Home.scss";
+
 //Importing Style of Games
 @import "./Games/Games.scss";
+

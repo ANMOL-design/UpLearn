@@ -50,8 +50,10 @@ const InstructorSidebar = () => {
                         <ul className="sub-menu">
                             <li><a className="link_name" href="#">Category</a></li>
                             <li><Link to="task-assign">My Task</Link></li>
+
                             <li><Link to="add-courses">My Courses</Link></li>
                             <li><Link to="/ask-doubt">Answers Doubts</Link></li>
+
                         </ul>
                     </li>
                     {/* Request and Followers  */}

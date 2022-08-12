@@ -168,30 +168,35 @@ $desktop : 1200px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     margin-bottom: 20px;
-    color: #2b4eff;
+    color: #2246f7;
 }
-.category-overlay{
-    display: none;
+.category-overlay h2{
+    display: flex;
+    justify-content: center;
     color: #fff;
 }
 .category-overlay{
     font-size: 20px;
+    
 }
 .category-overlay button{
     font-size: 30px;
     border: none;
-    background-color: #2b4eff85;
+    background-color: white;
     padding: 3px 5px;
     border-radius: 9px;
     margin: 20% 40%;
+    
 }
 .category-overlay button:hover{
     background-color: #f14d5d;
     cursor: pointer;
+    
 }
 .category-card:hover{
-    background-color: #6073ce;
-    .category-card-icon ,.category-card-text{
+    background-color: #2243e9;
+    .category-card-icon ,
+    .category-card-text{
         display: none;
         
     }
@@ -203,14 +208,17 @@ $desktop : 1200px;
     margin-top: 50px;
 }
 .courses-list-conteiner{
-    margin: 50px 30px 10px 30px;
+    margin: 50px 30px 0px 30px;
 }
 .course-list-card-container{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-
+.courses-list-header h1{
+    font-size: 42px;
+    color: #2b4eff;
+}
 .all-category-btn button{
     width: 250px;
     height: 6vh;
@@ -229,7 +237,7 @@ $desktop : 1200px;
 }
 .course-list-card{
    width: 350px;
-   height: 425px;
+   height: 450px;
    margin: 10px;
    border-radius: 12px;
    box-shadow: 4px 4px 4px grey;
@@ -244,7 +252,7 @@ $desktop : 1200px;
 .course-card-body{
   
     width: 350px;
-    height: 250px;
+    height: 275px;
     margin: 0%;
     margin: 20px 10px;
 }
@@ -255,9 +263,7 @@ $desktop : 1200px;
 color: #2b4eff;
 font-size: 22px;
 }
-.course-card-title h2{
 
-}
 .cours-card-instructor img{
  width:40px;
  height: 40px;
@@ -269,7 +275,7 @@ font-size: 22px;
     margin-top: 10px;
 }
 .cours-card-instructor span{
- font-size: 18px;
+ font-size: 16px;
  text-align: center;
  margin: 10px 0px 0px 10px;
  font-weight: 600;
@@ -290,7 +296,8 @@ font-size: 22px;
 .course-card-btn{
     background-color: #2b4eff;
     color: white;
-   
+    display: flex;
+    justify-content: baseline;
     border-radius: 6px;
     width:75%;
     height: 6vh;
@@ -301,7 +308,7 @@ font-size: 22px;
     cursor: pointer;
 }
 .card-rating{
-    margin: 10px 20px;
+    margin: 10px 5px;
 }
 .course-card-btn-link{
     color: white;
@@ -309,3 +316,5 @@ font-size: 22px;
     font-size: 20px;
     
 }
+
+

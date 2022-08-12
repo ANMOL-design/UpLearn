@@ -1,0 +1,84 @@
+.add-question-main-container{
+    margin: 0px 10rem;
+    padding: 20px 0px;
+}
+.addQuiz-Input input{
+    width: 60%;
+    height: 60px;
+    line-height: 50px;
+    padding: 0px;
+    padding: 15px;
+    font-size: 15px;
+    background: #E8F0FE;
+    color: $black;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+   
+}
+.addQuiz-Input-option{
+    width: 20%;
+    height: 30px;
+    line-height: 50px;
+    padding: 15px;
+    font-size: 15px;
+    background: #E8F0FE;
+    color: $black;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+   
+}
+.addQuiz-Input-options-select{
+    width: 5%;
+    height: 30px;
+}
+.add-quiz-btn{
+    font-family: $font_El;
+    font-size: 18px;
+    font-weight: 500;
+    background: $navbar_color;
+    color: #fff;
+    border-radius: 5px;
+    padding: 6px 20px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin: 20px 20px;
+}
+.add-question-card-container{
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 4px gray;
+    margin: 20px 5px;
+    background-color: whitesmoke
+}
+.submit-quiz-btn{
+    font-family: $font_El;
+    font-size: 18px;
+    font-weight: 500;
+    background: $navbar_color;
+    color: #fff;
+    width: 80%;
+    border-radius: 5px;
+    padding: 6px 20px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin: 20px 7rem
+}
+.my-quiz-container{
+    display: none;
+    border: 2px solid black;
+    margin: 40px 20px;
+    border-radius: 8px;
+    background-color: #E8F0FE;
+    .cut-modal{
+        display: inline-block;
+        position: relative;
+        float: right;
+        width: 40px;
+        margin: 5px;
+    }
+}

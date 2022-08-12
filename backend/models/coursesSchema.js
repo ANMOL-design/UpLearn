@@ -32,26 +32,52 @@ const coursesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  courseContent: [
+  courseVideoContent :[{
+    VideoContentTitle: {
+      type: String,
+    },
+    VideoLecture: {
+      type: String,
+    },
+  }],
+  courseArticles: [
     {
-      courseId: {
+      
+      ArticleTitle: {
         type: String,
       },
-      lectureName: {
+      ArticleContent: {
         type: String,
       },
-      LectureDescription: {
-        type: String,
+      time:{
+        type:String
       },
-      LecturVideos: {
-        type: String,
+      upVotes:{
+        typr:Number,
+        default : 0
       },
-      lectureThumbnail: {
-        type: String,
-      },
+      downVotes:{
+        typr:Number,
+        default : 0
+      }
     },
   ],
-
+  courseQuiz:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"COURSEQUIZ"
+  }],
+  Rating :[{
+    rateBy :{
+      type: String,
+    },
+    review :{
+      type: String,
+    },
+    rating :{
+      type: Number,
+    },
+    
+  }],
   specialization: {
     type: String,
   },
