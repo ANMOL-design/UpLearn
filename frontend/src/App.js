@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Import a single style file only at index file
 import "./styles/main.scss";
-// Importing  modules
+// Importing modules
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -61,9 +61,14 @@ import ContactDetails from "./components/AdminPortal/ContactDetails";
 import Games from "./components/Games/Games";
 import Main from "./games/game1/Main";
 
+import Hangman from "./games/game2/Hangman";
+import Game3 from "./games/game3/Game3";
+
+
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
 import CourseVideo from "./components/Courses/CourseContent/courseVideos";
+
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -82,17 +87,17 @@ function App() {
     return (
       <Provider store={store}>
         <Router>
-          {/* The Navbar component  */}
+          {/* The Navbar component */}
           <Navbar />
           <Routes>
-            {/* ////////// Starting Routes //////////  */}
-            {/* The Auth Routes  */}
+            {/* ////////// Starting Routes ////////// */}
+            {/* The Auth Routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
 
             {/* /////////////////////////////////////////////////// */}
-            {/* The Student Dashboard  */}
+            {/* The Student Dashboard */}
             <Route path="/studentdashboard/*" element={<StudentDashboard />} />
             <Route
               path="/change-student-password"
@@ -110,12 +115,12 @@ function App() {
               element={<ContentPage />}
             />
 
-            {/* /////////////////////////////////////////////////  */}
+            {/* ///////////////////////////////////////////////// */}
             {/* IMAGEUPLOADER */}
             <Route path="/imageuploader" element={<ImageUploader />} />
 
             {/* ///////////////////////////////////////////////// */}
-            {/* The Admin Routes  */}
+            {/* The Admin Routes */}
             <Route
               path="/admin-portal-login-190310554227"
               element={<AdminLogin />}
@@ -153,9 +158,9 @@ function App() {
               element={<AssignSyllbusTask />}
             />
 
-            {/* ////////////////////////////////////////  */}
+            {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
-            
+
             <Route
               path="/instructordashboard/*"
               element={<InstructorDashboard />}
@@ -174,6 +179,9 @@ function App() {
               element={<InstructorEditContent />}
             />
 
+
+            {/* //////////////////////////////////////////////// */}
+
             <Route
               path="/instructordashboard/my-courses/add-new-course"
               element={<AddCourses />}
@@ -183,19 +191,20 @@ function App() {
               path="/instructordashboard/my-courses/edit-content/add-quiz/:id"
               element={<AddQuiz />}
             />
-            
+
             <Route
               path="/instructordashboard/my-courses/edit-content/add-quiz/add-questions/:id/:quiz_id"
               element={<AddQuestion />}
             />
 
             {/* ////////////////////////////////////////////////  */}
+
             {/* Doubt Dashboard */}
             <Route path="/ask-doubt" element={<Doubt />} />
             <Route path="/post-doubt" element={<Postdoubt />} />
 
-            {/* ///////////////////////////////////////////////////  */}
-            {/* General  */}
+            {/* /////////////////////////////////////////////////// */}
+            {/* General */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
 
@@ -209,23 +218,32 @@ function App() {
               element={<CourseVideo />}
             />
 
-            {/* ////////////////////////////////////////////////////  */}
-            {/* The Library  */}
+            {/* //////////////////////////////////////////////////// */}
+            {/* The Library */}
             <Route path="/uplearn-virtual-library" element={<LibraryPage />} />
 
-            {/* ////////////////////////////////////////////////////  */}
+            {/* //////////////////////////////////////////////////// */}
             {/* Game */}
             <Route path="/play-games" element={<Games />} />
             <Route path="/maths-booster" element={<Main />} />
 
+
+            {/* /////////////////////////////////////////////////////// */}
+            {/* Home Route */}
+
+            <Route path="/hangman" element={<Hangman />} />
+            <Route path="/game3" element={<Game3 />} />
+
+
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}
+
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
 
-            {/* //////// End Of Routes //////////  */}
+            {/* //////// End Of Routes ////////// */}
           </Routes>
-          {/* The Footer component  */}
+          {/* The Footer component */}
           <Footer />
         </Router>
       </Provider>

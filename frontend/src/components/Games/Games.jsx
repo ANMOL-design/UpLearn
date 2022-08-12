@@ -53,10 +53,11 @@ function Games() {
   }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate]);
 
   return (
-    <>
-      {/* Banner Of the Admin Page  */}
+     
+    <div>
+  
       <div className="games-banner"></div>
-      {/* Main  Games Section  */}
+     
       <div className="games-header">
         <h1>Games</h1>
       </div>
@@ -80,7 +81,8 @@ function Games() {
             );
           })}
       </div>
-    </>
+      </div>
+    
   );
 }
 
