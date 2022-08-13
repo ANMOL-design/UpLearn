@@ -48,11 +48,7 @@ function InstructorAssignTask(props) {
                   <div className="pendingtasktitle">
                     <p>{index + 1}.</p>
                     <p className="pendingdecription">
-                      {item.ChapterDescription} Lorem ipsum dolor sit amet
-                      consectetur adipisicing elit. Quisquam incidunt illo earum
-                      autem! Possimus ex accusamus dolorum reiciendis, tempora
-                      inventore praesentium ipsam obcaecati sequi quibusdam?
-                      Obcaecati eos quo ducimus ullam.
+                      {item.ChapterDescription}
                     </p>
                     <button onClick={(e) => toggleHide(index)}>
                       {hidden[index] ? "-" : "+"}

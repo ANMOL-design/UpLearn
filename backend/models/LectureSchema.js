@@ -43,6 +43,11 @@ const LectureSchema = new mongoose.Schema({
     required: true,
     default: false
   },
+  StartAt: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
   Draft: {
     type: String,
   },

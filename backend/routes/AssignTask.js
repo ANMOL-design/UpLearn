@@ -157,7 +157,7 @@ router.post("/saveassigntaskasdeaft", (req, res) => {
 // Routes for add quiz and its question
 
 router.post("/createLectureQuiz", async (req, res) => {
-  const { id, QuizeName, QuizDifficulty } = req.body;
+  const { _id, QuizeName, QuizDifficulty } = req.body;
 
   const QUIZ = await new LectureQuiz({
     QuizeName: QuizeName,
@@ -165,13 +165,13 @@ router.post("/createLectureQuiz", async (req, res) => {
   });
 
   await QUIZ.save();
-  const CO = await Lectures.findById(id);
+  const CO = await Lectures.findById(_id);
   await CO.lectureQuiz.push(QUIZ);
   await CO.save();
   res.sendStatus(200);
 });
 
-router.post("/addQuestionToQuiz", async (req, res) => {
+router.post("/addQuestionToLecturesQuiz", async (req, res) => {
   const { question, options, correctOption, quizId, MarksPerquestion } =
     req.body;
 
@@ -191,6 +191,22 @@ router.post("/addQuestionToQuiz", async (req, res) => {
     .catch((err) => {
       console.log(err);
       res.sendStatus(500);
+    });
+});
+
+router.get("/lecturedatapop/:id", (req, res) => {
+  const id = req.params.id;
+
+  Lectures.find({ _id: id })
+    .populate("lectureQuiz")
+    .then((product) => {
+      if (product) {
+        return res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(404);
     });
 });
 

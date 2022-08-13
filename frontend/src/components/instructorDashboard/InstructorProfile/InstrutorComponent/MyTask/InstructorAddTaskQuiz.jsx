@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { BiArrowBack } from "react-icons/bi";
+import Loader from "../../../../Loader";
+import NotFoundImg from "../../../../../assets/images/not-found.png";
 import axios from "axios";
 
 var CryptoJS = require("crypto-js");
@@ -12,16 +14,8 @@ export default function InstructorAddTaskQuiz() {
 
   const { id } = useParams();
   const [Instructor, setInstructor] = useState({});
-  const [courseData, setCourseData] = useState([]);
-
-  const [Quiz, setQuiz] = useState({
-    QuizeName: "",
-    QuizDifficulty: "",
-    marksPerQuestion: 0,
-  });
-
-  // console.log(courseData);
-  const [err, seterr] = useState("");
+  const [assignTask, setassignTask] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     window.scroll(0, 80);
@@ -55,9 +49,10 @@ export default function InstructorAddTaskQuiz() {
     // Fetch The Course Details To which quiz were added
     const fetchcourse = async () => {
       await axios
-        .get("/singleassigntaskinfo/" + id)
+        .get("/lecturedatapop/" + id)
         .then((response) => {
-          setCourseData(response.data);
+          setassignTask(response.data[0]);
+          setisLoading(false);
         })
         .catch((error) => {
           console.log(error);
@@ -67,203 +62,138 @@ export default function InstructorAddTaskQuiz() {
     fetchcourse();
 
     // end of useEffect
-  }, [loginDetails.isLoggedIn, loginDetails.userRole, navigate]);
+  }, [loginDetails.isLoggedIn, loginDetails.userRole, navigate, id]);
 
-  // Set the values of Quiz
-  const handlechange = (e) => {
-    setQuiz({ ...Quiz, [e.target.name]: e.target.value });
-  };
+  // console.log(assignTask);
 
-  // Check that all valus is provided
-  const handlevalidation = () => {
-    if (!Quiz.QuizeName || !Quiz.QuizDifficulty || !Quiz.marksPerQuestion) {
-      seterr("Please Enter All Fields");
-      return false;
-    } else if (Quiz.marksPerQuestion <= 0 || Quiz.marksPerQuestion > 5) {
-      seterr("Please choose marks per Question between 1 to 5");
-      return false;
-    } else {
-      return true;
-    }
-  };
+  if (isLoading) {
+    return <Loader />;
+  } else {
+    return (
+      <>
+        {/* The Main Div  */}
+        <div className="add-course-container">
+          {/* This Link Heading to return back  */}
+          <div className="add-course-header">
+            <Link to={"/instructordashboard/task-assign"}>
+              <BiArrowBack className="backBtn" style={{ color: "white" }} />
+            </Link>
+          </div>
 
-  // Send Data to backend
-  const postData = async () => {
-    const CourseId = id;
-    const { QuizeName, QuizDifficulty, marksPerQuestion } = Quiz;
+          {/* Body Of Content  */}
+          <div className="add-course-body">
+            {/* Inner Body Container  */}
+            <div className="add-course-form-container">
+              {/* Heading Of Container  */}
+              <h1>Add Quiz to Lecture</h1>
 
-    const res = await fetch("/createQuiz", {
-      method: "POST",
-      headers: {
-        "content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        CourseId,
-        QuizeName,
-        QuizDifficulty,
-        marksPerQuestion,
-      }),
-    });
-
-    if (res.status === 200) {
-      navigate("/instructordashboard");
-    } else {
-      console.log(res);
-      window.alert("error occured");
-    }
-  };
-
-  // Send Data to backend after checking validation
-  const handleSubmit = async () => {
-    const submit = handlevalidation();
-
-    if (submit) {
-      seterr("Please wait we are uploading your Data");
-      document.getElementById("addquiz-btn").disabled = true;
-      postData();
-    }
-  };
-
-  return (
-    <>
-      {/* The Main Div  */}
-      <div className="add-course-container">
-        {/* This Link Heading to return back  */}
-        <div className="add-course-header">
-          <Link to={"/instructordashboard/task-assign"}>
-            <BiArrowBack className="backBtn" style={{ color: "white" }} />
-          </Link>
-        </div>
-
-        {/* Body Of Content  */}
-        <div className="add-course-body">
-          {/* Inner Body Container  */}
-          <div className="add-course-form-container">
-            {/* Heading Of Container  */}
-            <h1>Add Quiz to Lecture</h1>
-
-            {/* Start taking input for quiz  */}
-
-            {/* Course Title  */}
-            <div className="makedivision">
-              <form>
-                {/* The Email Input  */}
-                <div className="signInput">
-                  <label htmlFor="title">
-                    {" "}
-                    Course Name :<span className="star"> *</span>
-                  </label>
-                  <br />
-                  <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    defaultValue={courseData[0] ? courseData[0].title : ''}
-                    disabled
-                  />
-                </div>
-              </form>
-            </div>
-
-            {/* Quiz name  */}
-            <div className="makedivision">
-              <form>
-                {/* The Email Input  */}
-                <div className="signInput">
-                  <label htmlFor="QuizeName">
-                    {" "}
-                    Name of Quiz :<span className="star"> *</span>
-                  </label>
-                  <br />
-                  <input
-                    type="text"
-                    id="QuizeName"
-                    name="QuizeName"
-                    placeholder="Name of the test"
-                    value={Quiz.QuizeName}
-                    onChange={(e) => handlechange(e)}
-                  />
-                </div>
-              </form>
-            </div>
-
-            {/* Quiz Marks  */}
-            <div className="makedivision">
-              <form>
-                {/* The Email Input  */}
-                <div className="signInput">
-                  <label htmlFor="marksPerQuestion">
-                    {" "}
-                    Marks Per Question :<span className="star"> *</span>
-                  </label>
-                  <br />
-                  <input
-                    type="number"
-                    id="marksPerQuestion"
-                    name="marksPerQuestion"
-                    placeholder="Please enter quiz marks between 1 and 5"
-                    value={Quiz.marksPerQuestion}
-                    onChange={(e) => handlechange(e)}
-                  />
-                </div>
-              </form>
-            </div>
-
-            {/* Asking Level of course  */}
-            <p>
-              &nbsp;Difficulty Level of Test :<span className="star"> *</span>
-            </p>
-            <div className="add-course-radio">
+              {/* Start taking input for quiz  */}
               <div>
-                <input
-                  type="radio"
-                  id="Beginers"
-                  name="QuizDifficulty"
-                  value="Easy"
-                  onChange={(e) => handlechange(e)}
-                />
-                <label htmlFor="Beginers">Easy</label>
+                {assignTask ? (
+                  assignTask.lectureQuiz.length ? (
+                    <div>
+                      {/* Heading of Quiz Page  */}
+                      <div className="edit-course-add-quiz-header">
+                        <h2>My Quiz</h2>
+                        <Link
+                          to={
+                            "/task-assign/add-lecture-quiz/add-new-quiz/" + id
+                          }
+                          className="edit-course-container-btn-new-quiz"
+                        >
+                          Add New Quiz
+                        </Link>
+                      </div>
+                      {/* Quizes List  */}
+                      <div className="edit-course-add-quiz-card-container">
+                        {assignTask.lectureQuiz.map((item) => (
+                          <div
+                            key={item._id}
+                            className="edit-add-quiz-card-inner-container"
+                          >
+                            <div className="edit-add-quiz-card-body">
+                              <h3>{item.QuizeName}</h3>
+                              <Link
+                                className="my-quiz-Link"
+                                to={
+                                  "/task-assign/add-lecture-quiz/add-new-quiz/add-questions/" +
+                                  id +
+                                  "/" +
+                                  item._id
+                                }
+                              >
+                                Add Questions
+                              </Link>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="edit-course-container-quiz">
+                      <h2>Not any quiz in this course</h2>
+                      <img src={NotFoundImg} alt="noQuiz" />
+                      <Link
+                        to={"/task-assign/add-lecture-quiz/add-new-quiz/" + id}
+                        className="edit-course-container-btn-new-quiz"
+                      >
+                        Add New Quiz
+                      </Link>
+                    </div>
+                  )
+                ) : null}
               </div>
 
-              <div>
-                <input
-                  type="radio"
-                  id="Intermidiate"
-                  name="QuizDifficulty"
-                  value="Medium"
-                  onChange={(e) => handlechange(e)}
-                />
-                <label htmlFor="Intermidiate">Medium</label>
-              </div>
+              {/* The Task description  */}
+              <hr />
+              <p className="assignedtaskpreviewdefine">
+                <b>Task Description</b>
+              </p>
+              {assignTask ? (
+                <div className="assignedtaskpreview">
+                  <p className="asstskdecp">
+                    {assignTask.ChapterDescription}
+                  </p>
 
-              <div>
-                <input
-                  type="radio"
-                  id="Advanced"
-                  name="QuizDifficulty"
-                  value="Hard"
-                  onChange={(e) => handlechange(e)}
-                />
-                <label htmlFor="Advanced">Hard</label>
-              </div>
-            </div>
-
-            {/* Finaly a submit button  */}
-            <div className="course-field-submit">
-              <p className="uploadphoto">{err}</p>
-              <div className="submit-btn">
-                <input
-                  type="submit"
-                  id="addquiz-btn"
-                  className="addBtn"
-                  onClick={handleSubmit}
-                  value="Create Quiz"
-                />
-              </div>
+                  {/* More Details of Task  */}
+                  <div className="assignedtaskpreview_inner">
+                    <p>
+                      <b>Chapter No : </b>
+                      <br />
+                      {assignTask.ChapterNo}
+                    </p>
+                    <p>
+                      <b>Chapter Name : </b>
+                      <br />
+                      {assignTask.ChapterName}
+                    </p>
+                    <p>
+                      <b>Subject : </b>
+                      <br />
+                      {assignTask.Subject}
+                    </p>
+                    <p>
+                      <b>Board : </b>
+                      <br />
+                      {assignTask.Board}
+                    </p>
+                    <p>
+                      <b>Class : </b>
+                      <br />
+                      {assignTask.Class}
+                    </p>
+                    <p>
+                      <b>Due Date : </b>
+                      <br />
+                      {assignTask.DueDate}
+                    </p>
+                  </div>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }

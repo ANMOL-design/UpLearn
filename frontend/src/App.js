@@ -27,6 +27,9 @@ import InstructorDashboard from "./components/instructorDashboard/InstructorProf
 import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskDetails";
 import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskVideo";
 import InstructorAddTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskQuiz";
+import InstAddNewTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/AddNewTaskQuiz";
+import AddNewQuizQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/AddNewQuizQuestion";
+
 // Instructor My Courses
 import AddCourses from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addCourse";
 import InstructorEditContent from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/InstructorEditContent";
@@ -184,10 +187,19 @@ function App() {
             />
 
             <Route
+              path="/task-assign/add-lecture-quiz/add-new-quiz/:id"
+              element={<InstAddNewTaskQuiz />}
+            />
+
+            <Route
               path="/instructordashboard/my-courses/edit-content/:id"
               element={<InstructorEditContent />}
             />
 
+            <Route
+              path="/task-assign/add-lecture-quiz/add-new-quiz/add-questions/:id/:quiz_id"
+              element={<AddNewQuizQuestion />}
+            />
 
             {/* //////////////////////////////////////////////// */}
 

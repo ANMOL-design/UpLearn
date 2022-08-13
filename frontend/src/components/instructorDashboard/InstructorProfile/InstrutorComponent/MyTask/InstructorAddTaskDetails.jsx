@@ -203,11 +203,7 @@ function InstructorAddTaskDetails() {
               {assignTask ? (
                 <div className="assignedtaskpreview">
                   <p className="asstskdecp">
-                    {assignTask[0].ChapterDescription} Lorem ipsum dolor sit
-                    amet consectetur adipisicing elit. Vero eaque velit qui.
-                    Rerum dolores earum commodi expedita officia necessitatibus
-                    excepturi magni aliquid eos iure sed quaerat, a dolorum
-                    placeat est?
+                    {assignTask[0].ChapterDescription}
                   </p>
 
                   {/* More Details of Task  */}
