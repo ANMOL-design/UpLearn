@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../../../Loader";
-import axios from "axios";
 import { MdOndemandVideo, MdTextFields, MdQuiz } from "react-icons/md";
+import axios from "axios";
 
 function InstructorAssignTask(props) {
   const [assignTask, setassignTask] = useState([]);
@@ -29,6 +29,8 @@ function InstructorAssignTask(props) {
     setHidden({ [index]: !hidden[index] });
   };
 
+  console.log(assignTask);
+
   if (Loading) {
     return <Loader />;
   } else {
@@ -42,8 +44,9 @@ function InstructorAssignTask(props) {
                 <div key={item._id} className="pendingtaskmaininnercontainer">
                   {/* Showing the due date of Pending Task  */}
                   <div className="pendingtaskduedate">
-                    Due Date : &nbsp;{item.DueDate}
+                    Due Date : &nbsp;{item.DueDate}{" "}
                   </div>
+
                   {/* Show the description of Task  */}
                   <div className="pendingtasktitle">
                     <p>{index + 1}.</p>
@@ -122,10 +125,32 @@ function InstructorAssignTask(props) {
                   {/* Show the Submit Task  */}
                   {hidden[index] && (
                     <div className="submitpendingtask">
-                      <Link to="/">
-                        <button>Preview Task</button>
+                      <Link
+                        to={
+                          "/task-assign/preview-my-data/" +
+                          item._id +
+                          "/" +
+                          props.details._id
+                        }
+                      >
+                        <button>Preview My Task</button>
                       </Link>
-                      <button className="btn-success">Submit for Review</button>
+                      {item.isUnderReview ? (
+                        <button className="btn-success" style={{cursor: 'not-allowed'}} disabled>Under Review</button>
+                      ) : (
+                        <button
+                          className="btn-success"
+                          onClick={(e) => {
+                            axios
+                              .get("/sendlecturedataforreview/" + item._id)
+                              .then((response) => {
+                                console.log(response.data);
+                              });
+                          }}
+                        >
+                          Submit for Review
+                        </button>
+                      )}
                     </div>
                   )}
                 </div>

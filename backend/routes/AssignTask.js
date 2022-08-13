@@ -154,6 +154,23 @@ router.post("/saveassigntaskasdeaft", (req, res) => {
   });
 });
 
+router.get("/sendlecturedataforreview/:id", (req, res) => {
+  const id = req.params.id;
+
+  if (!id) {
+    return res.sendStatus(201);
+  }
+
+  Lectures.findByIdAndUpdate(id, { isUnderReview: true }, function (err, docs) {
+    if (err) {
+      console.log("Error occured" + err);
+    } else {
+      res.status(200).json({ msg: "Content goes under review" });
+      // console.log(docs);
+    }
+  });
+});
+
 // Routes for add quiz and its question
 
 router.post("/createLectureQuiz", async (req, res) => {

@@ -20,6 +20,7 @@ import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 import StudentList from "./components/AdminPortal/StudentList";
 import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
 import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
+import AdminReviewLectData from "./components/AdminPortal/AdminReviewLectData";
 
 // Instructor Dashboard
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
@@ -165,6 +166,11 @@ function App() {
               element={<AssignSyllbusTask />}
             />
 
+            <Route
+              path="/admin-portal-review-assign-task-190310554227"
+              element={<AdminReviewLectData />}
+            />
+            
             {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
 
