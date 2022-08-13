@@ -25,7 +25,7 @@ function Message({ text, type }) {
       )}
       {text && type !== "success" && (
         <h4 style={{ color: Colors.midGray }}>
-          Answer: <span style={{ color: Colors.lightGray }}>{text}</span>
+         <span style={{ color: Colors.lightGray }}>{text}</span>
         </h4>
       )}
     </span>

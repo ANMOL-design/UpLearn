@@ -132,6 +132,7 @@ class Quiz extends React.Component {
                 onKeyUp={this.keyingUp}
                 style={{ outline: "none" }}
               />
+              <button className="game1-btn" onClick={this.evaluateProblem}>Submit</button>
             </div>
           )}
         </div>
