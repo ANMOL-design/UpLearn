@@ -22,10 +22,13 @@ import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
 import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 
 // Instructor Dashboard
-import AddCourses from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addCourse";
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
+// Instructor My Task
 import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskDetails";
 import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskVideo";
+import InstructorAddTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskQuiz";
+// Instructor My Courses
+import AddCourses from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addCourse";
 import InstructorEditContent from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/InstructorEditContent";
 import AddQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuiz";
 import AddQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuestion";
@@ -173,6 +176,11 @@ function App() {
             <Route
               path="/task-assign/add-lecture-video/:id/:teacher"
               element={<InstructorAddTaskVideo />}
+            />
+
+            <Route
+              path="/task-assign/add-lecture-quiz/:id/:teacher"
+              element={<InstructorAddTaskQuiz />}
             />
 
             <Route

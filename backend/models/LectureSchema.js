@@ -38,6 +38,11 @@ const LectureSchema = new mongoose.Schema({
     required: true,
     default : false,
   },
+  isUnderReview : {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   Draft: {
     type: String,
   },
@@ -67,19 +72,10 @@ const LectureSchema = new mongoose.Schema({
       },
     },
   ],
-  ChapterQuiz : [{
-       QuizQuestion : {
-        type: String,
-       },
-       Options :[{
-        Options : {
-            type: String,
-           },
-       }],
-       RightOption : {
-        type: String,
-       }
-  }]
+  lectureQuiz:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"LECTUREQUIZ"
+  }],
 });
 
 const Lectures = mongoose.model("LECTURES", LectureSchema);

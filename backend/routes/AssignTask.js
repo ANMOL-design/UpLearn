@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 router.use(express.json());
 dotenv.config();
 const Lectures = require("../models/LectureSchema");
+const LectureQuiz = require("../models/LectureQuizSchema");
 
 router.post("/AssignTaskToInstructor", (req, res) => {
   const {
@@ -152,5 +153,47 @@ router.post("/saveassigntaskasdeaft", (req, res) => {
     }
   });
 });
+
+// Routes for add quiz and its question
+
+router.post("/createLectureQuiz", async (req, res) => {
+  const { id, QuizeName, QuizDifficulty } = req.body;
+
+  const QUIZ = await new LectureQuiz({
+    QuizeName: QuizeName,
+    QuizDifficulty: QuizDifficulty,
+  });
+
+  await QUIZ.save();
+  const CO = await Lectures.findById(id);
+  await CO.lectureQuiz.push(QUIZ);
+  await CO.save();
+  res.sendStatus(200);
+});
+
+router.post("/addQuestionToQuiz", async (req, res) => {
+  const { question, options, correctOption, quizId, MarksPerquestion } =
+    req.body;
+
+  LectureQuiz.findByIdAndUpdate(quizId, {
+    $push: {
+      QuestionsofQuiz: {
+        question: question,
+        options: options,
+        correctOption: correctOption,
+        MarksPerquestion: MarksPerquestion,
+      },
+    },
+  })
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+///////////////////////////////////////////////////////////////
 
 module.exports = router;
