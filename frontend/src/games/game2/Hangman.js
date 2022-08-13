@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Hangman.css';
 import { randomWord } from './Words.js';
+import { Link } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
 
 
 
@@ -74,8 +76,14 @@ class Hangman extends Component {
             gameStat = "You Lost 😞😞"
         }
 
-        return (
-            <div className="Hangman-container">
+        return (<div>
+                    <div className="game-back-btn">
+                    <Link to="/play-games">
+                        <BiArrowBack className="backBtn" style={{ color: "white" }} />
+                    </Link>
+                    </div>
+                <div className="Hangman-container">
+
                 {/* <h1 className='text-center'>Hangman</h1> */}
                 {/* <div className="float-right">Wrong Guesses: {this.state.mistake} of {this.props.maxWrong}</div> */}
 
@@ -95,7 +103,7 @@ class Hangman extends Component {
 
                 </div>
 
-
+               </div> 
             </div>
         )
     }

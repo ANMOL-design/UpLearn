@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
 import StarFrame from "./starFrame";
 import ButtonFrame from "./buttonFrame";
 import AnswerFrame from "./answerFrame";
@@ -156,7 +157,12 @@ class App extends Component {
       redraws = this.state.redraws,
       doneStatus = this.state.doneStatus;
 
-    return (
+    return (<>
+      <div className="game-back-btn">
+        <Link to="/play-games">
+            <BiArrowBack className="backBtn" style={{ color: "white" }} />
+          </Link>
+          </div>
       <div className="gamecontainer">
         <h1 style={{ marginBottom: "1rem" }}>Count and Choose number</h1>
 
@@ -186,6 +192,7 @@ class App extends Component {
 
         <DoneFrame doneStatus={doneStatus} playAgain={this.playAgain} />
       </div>
+      </>
     );
   }
 }
