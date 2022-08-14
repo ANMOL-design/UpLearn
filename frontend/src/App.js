@@ -63,6 +63,7 @@ import Main from "./games/game1/Main";
 
 import Hangman from "./games/game2/Hangman";
 import Game3 from "./games/game3/Game3";
+import Game4 from "./games/game4/Game4";
 
 
 import CourseInfo from "./components/Courses/CourseInfo";
@@ -225,6 +226,7 @@ function App() {
 
             <Route path="/hangman" element={<Hangman />} />
             <Route path="/game3" element={<Game3 />} />
+            <Route path="/game4" element={<Game4 />} />
 
 
             {/* ///////////////////////////////////////////////////////  */}
