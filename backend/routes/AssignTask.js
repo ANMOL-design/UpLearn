@@ -45,6 +45,9 @@ router.post("/AssignTaskToInstructor", (req, res) => {
 router.get("/assigntaskdetails/:id", (req, res) => {
   const id = req.params.id;
   // console.log(id)
+  if(!id){
+    res.sendStatus(422);
+  }
   Lectures.find({ TeacherId: id, iSVarified: false })
     .then((product) => {
       if (product) {
@@ -154,10 +157,27 @@ router.post("/saveassigntaskasdeaft", (req, res) => {
   });
 });
 
+router.get("/sendlecturedataforreview/:id", (req, res) => {
+  const id = req.params.id;
+
+  if (!id) {
+    return res.sendStatus(201);
+  }
+
+  Lectures.findByIdAndUpdate(id, { isUnderReview: true }, function (err, docs) {
+    if (err) {
+      console.log("Error occured" + err);
+    } else {
+      res.status(200).json({ msg: "Content goes under review" });
+      // console.log(docs);
+    }
+  });
+});
+
 // Routes for add quiz and its question
 
 router.post("/createLectureQuiz", async (req, res) => {
-  const { id, QuizeName, QuizDifficulty } = req.body;
+  const { _id, QuizeName, QuizDifficulty } = req.body;
 
   const QUIZ = await new LectureQuiz({
     QuizeName: QuizeName,
@@ -165,13 +185,13 @@ router.post("/createLectureQuiz", async (req, res) => {
   });
 
   await QUIZ.save();
-  const CO = await Lectures.findById(id);
+  const CO = await Lectures.findById(_id);
   await CO.lectureQuiz.push(QUIZ);
   await CO.save();
   res.sendStatus(200);
 });
 
-router.post("/addQuestionToQuiz", async (req, res) => {
+router.post("/addQuestionToLecturesQuiz", async (req, res) => {
   const { question, options, correctOption, quizId, MarksPerquestion } =
     req.body;
 
@@ -194,6 +214,37 @@ router.post("/addQuestionToQuiz", async (req, res) => {
     });
 });
 
+router.get("/lecturedatapop/:id", (req, res) => {
+  const id = req.params.id;
+
+  Lectures.find({ _id: id })
+    .populate("lectureQuiz")
+    .then((product) => {
+      if (product) {
+        return res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(404);
+    });
+});
+
 ///////////////////////////////////////////////////////////////
+
+router.get("/instructorTaskUnderReview", (req, res) => {
+
+  Lectures.find({ isUnderReview: true })
+    .populate("TeacherId")
+    .then((product) => {
+      if (product) {
+        return res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(404);
+    });
+});
 
 module.exports = router;

@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const LectureSchema = new mongoose.Schema({
-  TeacherId: {
-    type: String,
-    required: true,
+  TeacherId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"INSTRUCTORS"
   },
   DueDate: {
     type: String,
@@ -42,6 +42,11 @@ const LectureSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
     default: false
+  },
+  StartAt: {
+    type: Date,
+    required: true,
+    default: Date.now,
   },
   Draft: {
     type: String,

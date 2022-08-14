@@ -93,12 +93,10 @@ export default function AddQuestion() {
       });
 
       if (res.status === 200) {
-        console.log("ok");
         if (Question.length - 1 === index) {
           window.alert("Questions added successfully.");
+          navigate("/instructordashboard/my-courses");
         }
-      } else if (res.status === 422) {
-        window.alert("Required Fields are not provided.");
       } else {
         console.log(res);
         window.alert("error occured");

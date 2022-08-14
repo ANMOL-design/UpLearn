@@ -53,36 +53,33 @@ function Games() {
   }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate]);
 
   return (
-     
     <div>
-  
       <div className="games-banner"></div>
-     
+
       <div className="games-header">
-        <h1>Games</h1>
+        <h1>Learn With Fun</h1>
       </div>
       {/* Cards Of The Game Page  */}
       <div className="container-game">
-          {data.map((item) => {
-            return (
-              <div className="card-game" key={item.id}>
-                <div className="image-game">
-                  <img src={item.image} alt="game" />
-                </div>
-
-                <div className="content-game">
-                  <h3>{item.heading}</h3>
-                  <p>{item.desc}</p>
-                  <Link to={item.Link}>
-                    <button>Play Now</button>
-                  </Link>
-                </div>
+        {data.map((item) => {
+          return (
+            <div className="card-game" key={item.id}>
+              <div className="image-game">
+                <img src={item.image} alt="game" />
               </div>
-            );
-          })}
+
+              <div className="content-game">
+                <h3>{item.heading}</h3>
+                <p>{item.desc}</p>
+                <Link to={item.Link}>
+                  <button>Play Now</button>
+                </Link>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      </div>
-    
+    </div>
   );
 }
 

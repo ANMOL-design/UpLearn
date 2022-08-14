@@ -20,6 +20,7 @@ import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 import StudentList from "./components/AdminPortal/StudentList";
 import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
 import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
+import AdminReviewLectData from "./components/AdminPortal/AdminReviewLectData";
 
 // Instructor Dashboard
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
@@ -27,6 +28,9 @@ import InstructorDashboard from "./components/instructorDashboard/InstructorProf
 import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskDetails";
 import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskVideo";
 import InstructorAddTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskQuiz";
+import InstAddNewTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/AddNewTaskQuiz";
+import AddNewQuizQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/AddNewQuizQuestion";
+
 // Instructor My Courses
 import AddCourses from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addCourse";
 import InstructorEditContent from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/InstructorEditContent";
@@ -64,9 +68,9 @@ import ContactDetails from "./components/AdminPortal/ContactDetails";
 //Games
 import Games from "./components/Games/Games";
 import Main from "./games/game1/Main";
-
 import Hangman from "./games/game2/Hangman";
 import Game3 from "./games/game3/Game3";
+import Game4 from "./games/game4/Game4";
 
 
 import CourseInfo from "./components/Courses/CourseInfo";
@@ -162,6 +166,11 @@ function App() {
               element={<AssignSyllbusTask />}
             />
 
+            <Route
+              path="/admin-portal-review-assign-task-190310554227"
+              element={<AdminReviewLectData />}
+            />
+            
             {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
 
@@ -184,10 +193,19 @@ function App() {
             />
 
             <Route
+              path="/task-assign/add-lecture-quiz/add-new-quiz/:id"
+              element={<InstAddNewTaskQuiz />}
+            />
+
+            <Route
               path="/instructordashboard/my-courses/edit-content/:id"
               element={<InstructorEditContent />}
             />
 
+            <Route
+              path="/task-assign/add-lecture-quiz/add-new-quiz/add-questions/:id/:quiz_id"
+              element={<AddNewQuizQuestion />}
+            />
 
             {/* //////////////////////////////////////////////// */}
 
@@ -214,10 +232,9 @@ function App() {
 
             {/* /////////////////////////////////////////////////// */}
             {/* General */}
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/Courses" element={<Courses />} />
+            <Route path="/courses" element={<Courses />} />
 
-            <Route path="/Course/:id" element={<CourseInfo />} />
+            <Route path="/course/:id" element={<CourseInfo />} />
             <Route
               path="/mycourses/startLearning/:id/*"
               element={<CourseContent />}
@@ -233,20 +250,16 @@ function App() {
 
             {/* //////////////////////////////////////////////////// */}
             {/* Game */}
-            <Route path="/play-games" element={<Games />} />
+            <Route path="/learn-with-fun" element={<Games />} />
             <Route path="/maths-booster" element={<Main />} />
-
-
-            {/* /////////////////////////////////////////////////////// */}
-            {/* Home Route */}
-
             <Route path="/hangman" element={<Hangman />} />
-            <Route path="/game3" element={<Game3 />} />
+            <Route path="/count-and-choose" element={<Game3 />} />
+            <Route path="/guess-language" element={<Game4 />} />
 
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}
-
+            <Route path="/contact" element={<Contact />} />
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
 
