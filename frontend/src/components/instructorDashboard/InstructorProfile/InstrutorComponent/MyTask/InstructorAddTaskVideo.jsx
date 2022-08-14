@@ -18,6 +18,8 @@ function InstructorAddTaskVideo() {
   const [VideoData, setVideoData] = useState("");
   const [VideoTitle, setVideoTitle] = useState("");
 
+  const [VideoLink, setVideoLink] = useState("");
+
   // Variable to store video link
   let course_video = "";
 
@@ -41,7 +43,7 @@ function InstructorAddTaskVideo() {
       await axios
         .get("/singleassigntaskinfo/" + id)
         .then((response) => {
-          setassignTask(response.data);
+          setassignTask(response.data[0]);
           setLoading(false);
         })
         .catch((error) => {
@@ -85,9 +87,14 @@ function InstructorAddTaskVideo() {
 
   // Finally Post the video to backend
   const postVideo = async () => {
-    const LectureNo = assignTask[0].ChapterNo;
+    const LectureNo = assignTask.ChapterNo;
     const Title = VideoTitle;
-    const VideoLecture = course_video;
+    var VideoLecture;
+    if (!VideoLink) {
+      VideoLecture = course_video;
+    } else {
+      VideoLecture = VideoLink;
+    }
 
     const res = await fetch("/Instructoraddlecturevideo/" + id, {
       method: "POST",
@@ -128,8 +135,10 @@ function InstructorAddTaskVideo() {
       seterr("Please Enter Video Title.");
       return false;
     } else if (!Video) {
-      seterr("Please Upload a Video.");
-      return false;
+      if (!VideoLink) {
+        seterr("Please Upload a Video or provide Video URL.");
+        return false;
+      }
     }
     return true;
   };
@@ -142,11 +151,15 @@ function InstructorAddTaskVideo() {
       document.getElementById("addVideoBtn").disabled = true;
       document.getElementById("loader-reg").style.display = "inline";
 
-      // Send video cloud
-      await submitVideo(Video, VideoData);
+      // Send video cloud if external Link is not availabe
+      if (!VideoLink) {
+        await submitVideo(Video, VideoData);
 
-      // Send Data to Backend after 10 sec
-      sendVideo();
+        // Send Data to Backend after 10 sec
+        sendVideo();
+      } else {
+        postVideo();
+      }
     }
   };
 
@@ -206,6 +219,26 @@ function InstructorAddTaskVideo() {
               <p className="star">{Video}</p>
             </div>
 
+            {/* Or Try To add a Video Link  */}
+            <div className="edit-course-container-title">
+              <div className="star">
+                {" "}
+                <strong>&nbsp;Note : </strong>Must be provided only when video
+                is not availabe for upload.
+              </div>
+
+              <input
+                type="text"
+                id="VideoLink"
+                name="VideoLink"
+                placeholder="Video Link (If no Upload video is available)"
+                value={VideoLink}
+                onChange={(e) => {
+                  setVideoLink(e.target.value);
+                }}
+              />
+            </div>
+
             {/* Submit the video uploaded  */}
             <div className="edit-course-submit-btn">
               <div>
@@ -227,45 +260,39 @@ function InstructorAddTaskVideo() {
             </p>
             {assignTask ? (
               <div className="assignedtaskpreview">
-                <p className="asstskdecp">
-                  {assignTask[0].ChapterDescription} Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Vero eaque velit qui. Rerum
-                  dolores earum commodi expedita officia necessitatibus
-                  excepturi magni aliquid eos iure sed quaerat, a dolorum
-                  placeat est?
-                </p>
+                <p className="asstskdecp">{assignTask.ChapterDescription}</p>
 
                 {/* More Details of Task  */}
                 <div className="assignedtaskpreview_inner">
                   <p>
                     <b>Chapter No : </b>
                     <br />
-                    {assignTask[0].ChapterNo}
+                    {assignTask.ChapterNo}
                   </p>
                   <p>
                     <b>Chapter Name : </b>
                     <br />
-                    {assignTask[0].ChapterName}
+                    {assignTask.ChapterName}
                   </p>
                   <p>
                     <b>Subject : </b>
                     <br />
-                    {assignTask[0].Subject}
+                    {assignTask.Subject}
                   </p>
                   <p>
                     <b>Board : </b>
                     <br />
-                    {assignTask[0].Board}
+                    {assignTask.Board}
                   </p>
                   <p>
                     <b>Class : </b>
                     <br />
-                    {assignTask[0].Class}
+                    {assignTask.Class}
                   </p>
                   <p>
                     <b>Due Date : </b>
                     <br />
-                    {assignTask[0].DueDate}
+                    {assignTask.DueDate}
                   </p>
                 </div>
               </div>

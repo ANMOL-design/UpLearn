@@ -1,6 +1,11 @@
+import QuizPreform from "./Quiztest";
+
 export default function QuizesContent(){
 
     return(
-        <h2>Quizes</h2>
+        <>
+        <QuizPreform/>
+        </>
+
     )
 }

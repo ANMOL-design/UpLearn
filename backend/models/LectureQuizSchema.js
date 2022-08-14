@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
-const courseQuiz = new mongoose.Schema({
+
+const lectureQuiz = new mongoose.Schema({
   QuizeName: {
     type: String,
   },
   QuizDifficulty: {
     type: String,
   },
-  CourseId: {
+  LectureId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "COURSES",
+    ref: "LECTURES",
   },
   QuestionsofQuiz: [
     {
@@ -35,5 +36,5 @@ const courseQuiz = new mongoose.Schema({
   ],
 });
 
-const CoursesQuizes = mongoose.model("COURSEQUIZ", courseQuiz);
-module.exports = CoursesQuizes;
+const LectureQuizes = mongoose.model("LECTUREQUIZ", lectureQuiz);
+module.exports = LectureQuizes;
