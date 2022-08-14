@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "../../../../Loader";
 import { MdOndemandVideo, MdTextFields, MdQuiz } from "react-icons/md";
 import axios from "axios";
@@ -9,27 +9,31 @@ function InstructorAssignTask(props) {
   const [Loading, setLoading] = useState(true);
   const [hidden, setHidden] = useState({});
 
+  let navigate = useNavigate();
+
   useEffect(() => {
     window.scroll(0, 0);
-    const fetchdata = async () => {
-      await axios
-        .get("/assigntaskdetails/" + props.details._id)
-        .then((response) => {
-          setassignTask(response.data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    fetchdata();
+    if(props.details._id){
+      const fetchdata = async () => {
+        await axios
+          .get("/assigntaskdetails/" + props.details._id)
+          .then((response) => {
+            setassignTask(response.data);
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+      fetchdata();
+    }
   }, [props.details._id]);
 
   const toggleHide = (index) => {
     setHidden({ [index]: !hidden[index] });
   };
 
-  console.log(assignTask);
+  // console.log(assignTask);
 
   if (Loading) {
     return <Loader />;
@@ -139,12 +143,18 @@ function InstructorAssignTask(props) {
                         <button className="btn-success" style={{cursor: 'not-allowed'}} disabled>Under Review</button>
                       ) : (
                         <button
+                          id="btn-under-admin-review"
                           className="btn-success"
                           onClick={(e) => {
+                            const btn = document.getElementById('btn-under-admin-review');
+                            btn.style.cursor = 'not-allowed';
+                            btn.disabled = true;
                             axios
                               .get("/sendlecturedataforreview/" + item._id)
                               .then((response) => {
                                 console.log(response.data);
+                                window.alert('Your Task goes under Admin Review.\nWe will reach you back shortly.')
+                                navigate("/instructordashboard");
                               });
                           }}
                         >

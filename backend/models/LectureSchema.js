@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const LectureSchema = new mongoose.Schema({
-  TeacherId: {
-    type: String,
-    required: true,
+  TeacherId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"INSTRUCTORS"
   },
   DueDate: {
     type: String,

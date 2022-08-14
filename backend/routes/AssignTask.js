@@ -45,6 +45,9 @@ router.post("/AssignTaskToInstructor", (req, res) => {
 router.get("/assigntaskdetails/:id", (req, res) => {
   const id = req.params.id;
   // console.log(id)
+  if(!id){
+    res.sendStatus(422);
+  }
   Lectures.find({ TeacherId: id, iSVarified: false })
     .then((product) => {
       if (product) {
@@ -228,5 +231,20 @@ router.get("/lecturedatapop/:id", (req, res) => {
 });
 
 ///////////////////////////////////////////////////////////////
+
+router.get("/instructorTaskUnderReview", (req, res) => {
+
+  Lectures.find({ isUnderReview: true })
+    .populate("TeacherId")
+    .then((product) => {
+      if (product) {
+        return res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(404);
+    });
+});
 
 module.exports = router;
