@@ -1,21 +1,24 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { GrLinkNext } from "react-icons/gr";
 import StarRatings from "react-star-ratings";
 import avtar from "../../assets/images/avtar.png";
-import { GrLinkNext } from "react-icons/gr";
+import axios from "axios";
+import Loader from "../Loader";
+
 var CryptoJS = require("crypto-js");
+
 export default function CourseInfo() {
+  const loginDetails = useSelector((state) => state.userReducers);
   let navigate = useNavigate();
   let { id } = useParams();
-  console.log(id);
+
   const [courseData, setCourseData] = useState({});
-  const loginDetails = useSelector((state) => state.userReducers);
   const [InstructorInfo, setInstructorInfo] = useState([]);
   const [User, setUser] = useState({});
   const [courserating, setcourseRating] = useState(0);
-
+  const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -28,12 +31,12 @@ export default function CourseInfo() {
       var role = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     }
 
-    if (Number(loginDetails.isLoggedIn) && role === "STUDENT") {
+    if (Number(loginDetails.isLoggedIn) && role === "INSTRUCTOR") {
       const fetchdata = async () => {
         await axios
-          .get("/Instructorcourse/" + id)
+          .get("/aboutInstructor")
           .then((response) => {
-            setCourseData(response.data[0]);
+            setUser(response.data);
           })
           .catch((error) => {
             console.log(error);
@@ -41,7 +44,8 @@ export default function CourseInfo() {
           });
       };
       fetchdata();
-      const fetchUser = async () => {
+    } else if (Number(loginDetails.isLoggedIn) && role === "STUDENT") {
+      const fetchdata = async () => {
         await axios
           .get("/aboutStudents")
           .then((response) => {
@@ -52,10 +56,12 @@ export default function CourseInfo() {
             navigate("/login");
           });
       };
-      fetchUser();
+      fetchdata();
     } else {
       navigate("/login");
     }
+
+    // Fetching Detail of all available Instructors
     const fetchInstructor = async () => {
       await axios
         .get("/allInstructor")
@@ -68,9 +74,22 @@ export default function CourseInfo() {
         });
     };
     fetchInstructor();
- 
-       
-  }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate]);
+
+    // Fetching Data of a Single Course details of item id
+    const fetchdata = async () => {
+      await axios
+        .get("/Instructorcourse/" + id)
+        .then((response) => {
+          setCourseData(response.data[0]);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          navigate("/login");
+        });
+    };
+    fetchdata();
+  }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate, id]);
 
   let Instructor = InstructorInfo.find(
     (i) => i._id == courseData.courseInstructor
@@ -144,24 +163,24 @@ export default function CourseInfo() {
       );
     }
   };
-  
+
   const CourseReview = () => {
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState("");
     const [err, seterr] = useState("");
     let courseId = courseData._id;
     let UserId = User._id;
-    let totalRating=0
-    if(courseData){
+    let totalRating = 0;
+    if (courseData) {
       if (courseData.Rating) {
-        if(courseData.Rating.length>0){
-        courseData.Rating.map((item)=>{
-          totalRating += item.rating;
-        })
-        totalRating /= (courseData.Rating.length);
-        totalRating =  Math.round(totalRating * 10) / 10
-          setcourseRating(totalRating)
-      }
+        if (courseData.Rating.length > 0) {
+          courseData.Rating.map((item) => {
+            totalRating += item.rating;
+          });
+          totalRating /= courseData.Rating.length;
+          totalRating = Math.round(totalRating * 10) / 10;
+          setcourseRating(totalRating);
+        }
       }
     }
     const handleRating = (rate) => {
@@ -176,7 +195,6 @@ export default function CourseInfo() {
       } else {
         let isRating = [];
         if (courseData.Rating) {
-        
           isRating = courseData.Rating.find((i) => i.rateBy == User._id);
           if (isRating) {
             seterr("Already Rating to Course");
@@ -196,7 +214,7 @@ export default function CourseInfo() {
 
             if (res.status === 200) {
               seterr("Thankyou for Rating .\nRating Succesfull!");
-              navigate("/courses")
+              navigate("/courses");
             } else {
               console.log(res);
               window.alert("error occured");
@@ -267,90 +285,96 @@ export default function CourseInfo() {
     }
   };
 
-  return (
-    <>
-      <div className="course-info-main-container">
-        <div className="course-info-header">
-          <div className="course-info-banner-container">
-            <div className="banner-left">
-              <span className="course-info-category">
-                {courseData.courseCategory}
-              </span>
-              <span className="course-info-category-2">{courseData.level}</span>
-              <h1>{courseData.title}</h1>
-              <p>{courseData.courseojective}</p>
+  if (Loading) {
+    return <Loader />;
+  } else {
+    return (
+      <>
+        <div className="course-info-main-container">
+          <div className="course-info-header">
+            <div className="course-info-banner-container">
+              <div className="banner-left">
+                <span className="course-info-category">
+                  {courseData.courseCategory}
+                </span>
+                <span className="course-info-category-2">
+                  {courseData.level}
+                </span>
+                <h1>{courseData.title}</h1>
+                <p>{courseData.courseojective}</p>
 
-              <div className="InstructorDetails">
-                <div className="instructo-info-container">
-                  <img src={instructorImage} alt="" />
-                  <span>{InstructorName}</span>
+                <div className="InstructorDetails">
+                  <div className="instructo-info-container">
+                    <img src={instructorImage} alt="" />
+                    <span>{InstructorName}</span>
+                  </div>
+                  <div className="card-rating">
+                    <StarRatings
+                      rating={courserating}
+                      starDimension="20px"
+                      starEmptyColor="grey"
+                      starRatedColor="#2b4eff"
+                      starSpacing="3px"
+                    />
+                    <span>{courserating}</span>
+                  </div>
                 </div>
-                <div className="card-rating">
-                  <StarRatings
-                    rating={courserating}
-                    starDimension="20px"
-                    starEmptyColor="grey"
-                    starRatedColor="#2b4eff"
-                    starSpacing="3px"
-                  />
-                  <span>{courserating}</span>
+                <div className="enroll-course-btn">
+                  <CheckEnrolled />
                 </div>
               </div>
-              <div className="enroll-course-btn">
-                <CheckEnrolled />
+
+              <div className="banner-right">
+                <img
+                  className="course-info-banner-image"
+                  src={courseData.thumbnail}
+                  alt=""
+                />
               </div>
             </div>
-
-            <div className="banner-right">
-              <img
-                className="course-info-banner-image"
-                src={courseData.thumbnail}
-                alt=""
-              />
+          </div>
+          <div className="course-info-Description-container">
+            <h1>Course Overview</h1>
+            <div className="course-info-Description">
+              <div
+                id="course-info-description-content"
+                className="course-info-description-content"
+              ></div>
+              <div className="course-other-detail-card">
+                <h3>Free</h3>
+                <ul>
+                  <li>
+                    Course Level &nbsp;&nbsp;&nbsp;&nbsp;: {courseData.level}
+                  </li>
+                  <hr />
+                  <li>Video Lectures : {NoOfVideos} </li>
+                  <hr />
+                  <li>
+                    Articles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{" "}
+                    {NoOfArticles}{" "}
+                  </li>
+                  <hr />
+                  <li>
+                    Quizes
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                    0
+                  </li>
+                  <hr />
+                  <li>
+                    Language
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{" "}
+                    {courseData.language}
+                  </li>
+                  <hr />
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="course-info-Description-container">
-          <h1>Course Overview</h1>
-          <div className="course-info-Description">
-            <div
-              id="course-info-description-content"
-              className="course-info-description-content"
-            ></div>
-            <div className="course-other-detail-card">
-              <h3>Free</h3>
-              <ul>
-                <li>
-                  Course Level &nbsp;&nbsp;&nbsp;&nbsp;: {courseData.level}
-                </li>
-                <hr />
-                <li>Video Lectures : {NoOfVideos} </li>
-                <hr />
-                <li>
-                  Articles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{" "}
-                  {NoOfArticles}{" "}
-                </li>
-                <hr />
-                <li>
-                  Quizes
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                  0
-                </li>
-                <hr />
-                <li>
-                  Language
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{" "}
-                  {courseData.language}
-                </li>
-                <hr />
-              </ul>
-            </div>
+          <div className="courses-review-container">
+            <CourseReview />
           </div>
         </div>
-        <div className="courses-review-container">
-          <CourseReview />
-        </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }
