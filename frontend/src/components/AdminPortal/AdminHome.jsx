@@ -32,7 +32,7 @@ function AdminHome(){
         }
     }, [adminstatus.isAdminLoggedIn, navigate])
 
-    console.log(adminInfo)
+    // console.log(adminInfo)
 
     return(
         <>

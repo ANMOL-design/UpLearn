@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Import a single style file only at index file
 import "./styles/main.scss";
-// Importing  modules
+// Importing modules
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -20,12 +20,19 @@ import ImageUploader from "./components/IMAGEUPLOADER/ImageUploader";
 import StudentList from "./components/AdminPortal/StudentList";
 import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
 import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
+import AdminReviewLectData from "./components/AdminPortal/AdminReviewLectData";
 
 // Instructor Dashboard
-import AddCourses from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addCourse";
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
+// Instructor My Task
 import InstructorAddTaskDetails from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskDetails";
 import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskVideo";
+import InstructorAddTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskQuiz";
+import InstAddNewTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/AddNewTaskQuiz";
+import AddNewQuizQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/AddNewQuizQuestion";
+
+// Instructor My Courses
+import AddCourses from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addCourse";
 import InstructorEditContent from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/InstructorEditContent";
 import AddQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuiz";
 import AddQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuestion";
@@ -42,6 +49,7 @@ import Subject from "./components/Dashboard/DashboardComponents/Courses/Subject"
 //Doubt Section
 import Doubt from "./components/Doubt/Doubt";
 import Postdoubt from "./components/Doubt/Postdoubt";
+import MainDoubt from "./components/Doubt/MainDoubt";
 
 //redux setup
 import { Provider } from "react-redux";
@@ -88,17 +96,17 @@ function App() {
     return (
       <Provider store={store}>
         <Router>
-          {/* The Navbar component  */}
+          {/* The Navbar component */}
           <Navbar />
           <Routes>
-            {/* ////////// Starting Routes //////////  */}
-            {/* The Auth Routes  */}
+            {/* ////////// Starting Routes ////////// */}
+            {/* The Auth Routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
 
             {/* /////////////////////////////////////////////////// */}
-            {/* The Student Dashboard  */}
+            {/* The Student Dashboard */}
             <Route path="/studentdashboard/*" element={<StudentDashboard />} />
             <Route
               path="/change-student-password"
@@ -116,12 +124,12 @@ function App() {
               element={<ContentPage />}
             />
 
-            {/* /////////////////////////////////////////////////  */}
+            {/* ///////////////////////////////////////////////// */}
             {/* IMAGEUPLOADER */}
             <Route path="/imageuploader" element={<ImageUploader />} />
 
             {/* ///////////////////////////////////////////////// */}
-            {/* The Admin Routes  */}
+            {/* The Admin Routes */}
             <Route
               path="/admin-portal-login-190310554227"
               element={<AdminLogin />}
@@ -159,7 +167,12 @@ function App() {
               element={<AssignSyllbusTask />}
             />
 
-            {/* ////////////////////////////////////////  */}
+            <Route
+              path="/admin-portal-review-assign-task-190310554227"
+              element={<AdminReviewLectData />}
+            />
+            
+            {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
 
             <Route
@@ -176,9 +189,26 @@ function App() {
             />
 
             <Route
+              path="/task-assign/add-lecture-quiz/:id/:teacher"
+              element={<InstructorAddTaskQuiz />}
+            />
+
+            <Route
+              path="/task-assign/add-lecture-quiz/add-new-quiz/:id"
+              element={<InstAddNewTaskQuiz />}
+            />
+
+            <Route
               path="/instructordashboard/my-courses/edit-content/:id"
               element={<InstructorEditContent />}
             />
+
+            <Route
+              path="/task-assign/add-lecture-quiz/add-new-quiz/add-questions/:id/:quiz_id"
+              element={<AddNewQuizQuestion />}
+            />
+
+            {/* //////////////////////////////////////////////// */}
 
             <Route
               path="/instructordashboard/my-courses/add-new-course"
@@ -199,9 +229,10 @@ function App() {
             {/* Doubt Dashboard */}
             <Route path="/ask-doubt" element={<Doubt />} />
             <Route path="/post-doubt" element={<Postdoubt />} />
+            <Route path="/ask-doubt/:id" element={<MainDoubt />} />
 
-            {/* ///////////////////////////////////////////////////  */}
-            {/* General  */}
+            {/* /////////////////////////////////////////////////// */}
+            {/* General */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/Courses" element={<Courses />} />
 
@@ -215,14 +246,18 @@ function App() {
               element={<CourseVideo />}
             />
 
-            {/* ////////////////////////////////////////////////////  */}
-            {/* The Library  */}
+            {/* //////////////////////////////////////////////////// */}
+            {/* The Library */}
             <Route path="/uplearn-virtual-library" element={<LibraryPage />} />
 
-            {/* ////////////////////////////////////////////////////  */}
+            {/* //////////////////////////////////////////////////// */}
             {/* Game */}
             <Route path="/play-games" element={<Games />} />
             <Route path="/maths-booster" element={<Main />} />
+
+
+            {/* /////////////////////////////////////////////////////// */}
+            {/* Home Route */}
 
             <Route path="/hangman" element={<Hangman />} />
             <Route path="/game3" element={<Game3 />} />
@@ -231,12 +266,13 @@ function App() {
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}
+
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
 
-            {/* //////// End Of Routes //////////  */}
+            {/* //////// End Of Routes ////////// */}
           </Routes>
-          {/* The Footer component  */}
+          {/* The Footer component */}
           <Footer />
         </Router>
       </Provider>

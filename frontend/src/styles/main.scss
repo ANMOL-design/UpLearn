@@ -29,15 +29,22 @@
 @import "./AdminPortal/instructorRegister.scss";
 @import "./AdminPortal/InstructorList.scss";
 @import "./AdminPortal/addbook.scss";
+@import './AdminPortal/contactdetails.scss';
+
+// Importing the Style of the Doubt Page
 @import "./AdminPortal/contactdetails.scss";
 @import "./doubt/doubt.scss";
+@import "./doubt/post.scss";
+@import "./doubt/maindoubt.scss";
 
 //Importing Style of teacher courses
 @import "./Courses/Courses.scss";
 @import "./Courses/courseInfo.scss";
 @import "./Courses/courseContent.scss";
 @import "./Courses/coursevideo.scss";
+@import "./Courses/coursesQuiz.scss";
 @import "./Contact/Contact.scss";
+
 
 //Importing Style of Courses on dashboard
 @import "./Dashboard/DashboardComponents/courses.scss";
@@ -62,3 +69,4 @@
 
 //Importing Style of Games
 @import "./Games/Games.scss";
+

@@ -4,48 +4,41 @@ import progressbar from "../../assets/images/progressbar.gif";
 function ImageUploader() {
   const [image, setImage] = useState("");
   const [imageData, setImageData] = useState();
-  const [isupload,setupload]= useState(false);
+  const [isupload, setupload] = useState(false);
 
-  const UPOLAD = ()=>{
-    if(isupload){
-        return(
-          <>
-            <img style={{width:"30px"}} src={progressbar} alt="uploader"></img>
-            Uploading.....
-          </>
-        );
+  const UPOLAD = () => {
+    if (isupload) {
+      return (
+        <>
+          <img style={{ width: "30px" }} src={progressbar} alt="uploader"></img>
+          Uploading.....
+        </>
+      );
+    } else {
+      return <>..</>;
     }
-    else{
-        return(
-          <>
-            ..
-          </>
-        );
-    }
-  }
+  };
 
   const handleSubmit = (e) => {
-    setupload(true)
+    setupload(true);
     e.preventDefault();
     if (image === "") {
       console.log("no image");
-    } 
-    else {
+    } else {
       const formData = new FormData();
       formData.append("image", imageData);
       fetch(`/upload_image`, {
         method: "POST",
         body: formData,
       })
-        .then((response) => (
-            response.json()))
+        .then((response) => response.json())
         .then((data) => {
           if (data.error) {
-            setupload(false)
+            setupload(false);
             alert("upload fail");
             console.log(data.error);
           } else {
-            setupload(false)
+            setupload(false);
             console.log(data.image.image);
             alert("image uploaded");
           }
@@ -66,9 +59,9 @@ function ImageUploader() {
             }}
           />
         </p>
-        
+
         <button type="submit">Submit</button>
-        <UPOLAD/>
+        <UPOLAD />
       </form>
     </div>
   );

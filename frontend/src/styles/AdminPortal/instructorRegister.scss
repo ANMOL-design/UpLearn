@@ -137,6 +137,22 @@
     display: none;
 }
 
+.assignTasktextArea{
+    @include siteinputbox;
+    height: 22vh;
+    background-color: #fff;
+    border: 1px solid #aaa;
+    padding: 10px;
+    line-height: 20px;
+}
+
+.instructor-info-fTask{
+    font-size: 17px;
+    p{
+        padding: 4px 10px;
+    }
+}
+
 @media (max-width: 943px) {
     .instructorForm .fields {
         justify-content: space-between;

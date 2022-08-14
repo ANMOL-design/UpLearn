@@ -23,8 +23,10 @@ export default function InstructorEditContent() {
   const [videoShow, setvideoShow] = useState(false);
   const [quizShow, setquizShow] = useState(false);
 
+  const [VideoLink, setVideoLink] = useState("");
+
   useEffect(() => {
-    window.scroll(0, 0);
+    window.scroll(0, 80);
     // Decrypting the User Role
     if (loginDetails.userRole !== "") {
       var bytes = CryptoJS.AES.decrypt(
@@ -112,7 +114,7 @@ export default function InstructorEditContent() {
     setquizShow(true);
   };
 
-  // console.log(COURSE, course);
+  // console.log(course);
 
   ///////////////////////////////////////////////////////////
   // Function Of Video Route
@@ -149,7 +151,12 @@ export default function InstructorEditContent() {
 
   // Finally Post the video to backend
   const postVideo = async () => {
-    const VideoLecture = course_video;
+    var VideoLecture;
+    if (!VideoLink) {
+      VideoLecture = course_video;
+    } else {
+      VideoLecture = VideoLink;
+    }
     const { VideoContentTitle } = COURSE;
     const Id = id;
 
@@ -188,12 +195,14 @@ export default function InstructorEditContent() {
 
   // Check that the video is availabe or not
   const handleVideoValidation = () => {
-    if (!COURSE.VideoContentTitle || !Video) {
+    if (!COURSE.VideoContentTitle) {
       seterr("Please Enter all required Fields.");
       return false;
-    } else if (Video === "") {
-      seterr("Please Upload Video.");
-      return false;
+    } else if (!Video) {
+      if (!VideoLink) {
+        seterr("Please Upload a Video or provide Video URL.");
+        return false;
+      }
     }
     return true;
   };
@@ -201,16 +210,21 @@ export default function InstructorEditContent() {
   // Handle The Area of submiting the video
   const handleSubmitVideo = async () => {
     const submit = handleVideoValidation();
+
     if (submit) {
       seterr("Please wait we are uploading your Data");
       document.getElementById("addVideoBtn").disabled = true;
       document.getElementById("loader-reg").style.display = "inline";
 
-      // Send video cloud
-      await submitVideo(Video, VideoData);
-
-      // Send Data to Backend after 10 sec
-      sendVideo();
+      // Send video cloud if external Link is not availabe
+      if (!VideoLink) {
+        // Send video cloud
+        await submitVideo(Video, VideoData);
+        // Send Data to Backend after 10 sec
+        sendVideo();
+      } else {
+        postVideo();
+      }
     }
   };
   ///////////////////////////////////////////////////////////
@@ -433,6 +447,26 @@ export default function InstructorEditContent() {
                   <p className="star">{Video}</p>
                 </div>
 
+                {/* Or Try To add a Video Link  */}
+                <div className="edit-course-container-title">
+                  <div className="star">
+                    {" "}
+                    <strong>&nbsp;Note : </strong>Must be provided only when
+                    video is not availabe for upload.
+                  </div>
+
+                  <input
+                    type="text"
+                    id="VideoLink"
+                    name="VideoLink"
+                    placeholder="Video Link (If no Upload video is available)"
+                    value={VideoLink}
+                    onChange={(e) => {
+                      setVideoLink(e.target.value);
+                    }}
+                  />
+                </div>
+
                 {/* Submit the video uploaded  */}
                 <div className="edit-course-submit-btn">
                   <div>
@@ -470,22 +504,27 @@ export default function InstructorEditContent() {
                       </div>
                       {/* Quizes List  */}
                       <div className="edit-course-add-quiz-card-container">
-                          {course.courseQuiz.map((item) => (
-                            <div key={item._id} className="edit-add-quiz-card-inner-container">
-                              <div className="edit-add-quiz-card-body">
-                                <h3>{item.QuizeName}lorem Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
-                                <Link
-                                  className="my-quiz-Link"
-                                  to={
-                                    "/instructordashboard/my-courses/edit-content/add-quiz/add-questions/" +
-                                    id + "/" + item._id
-                                  }
-                                >
-                                  Add Questions
-                                </Link>
-                              </div>
+                        {course.courseQuiz.map((item) => (
+                          <div
+                            key={item._id}
+                            className="edit-add-quiz-card-inner-container"
+                          >
+                            <div className="edit-add-quiz-card-body">
+                              <h3>{item.QuizeName}</h3>
+                              <Link
+                                className="my-quiz-Link"
+                                to={
+                                  "/instructordashboard/my-courses/edit-content/add-quiz/add-questions/" +
+                                  id +
+                                  "/" +
+                                  item._id
+                                }
+                              >
+                                Add Questions
+                              </Link>
                             </div>
-                          ))}
+                          </div>
+                        ))}
                       </div>
                     </div>
                   ) : (

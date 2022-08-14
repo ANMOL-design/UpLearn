@@ -211,7 +211,6 @@ router.post("/createQuiz", async (req, res) => {
 
 router.post("/addQuestionToQuiz", async (req, res) => {
   const {
-    CourseId,
     question,
     options,
     correctOption,

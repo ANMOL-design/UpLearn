@@ -97,7 +97,7 @@ function InstructorAddTaskDetails() {
 
       if (res.status === 200) {
         window.alert("Data Submit Successfully");
-        navigate("/");
+        navigate("/instructordashboard/task-assign");
       } else {
         console.log(res);
         window.alert("Internal Server Error, Try Later");
@@ -126,7 +126,9 @@ function InstructorAddTaskDetails() {
                 <form>
                   {/* The Email Input  */}
                   <div className="signInput">
-                    <label htmlFor="title">Chapter Title :<span className="star"> *</span></label>
+                    <label htmlFor="title">
+                      Chapter Title :<span className="star"> *</span>
+                    </label>
                     <br />
                     <input
                       type="text"
@@ -143,12 +145,16 @@ function InstructorAddTaskDetails() {
               </div>
 
               {/* Enter Description Of task  */}
-              <label htmlFor="Description"> Chapter Description :<span className="star"> *</span></label>
+              <label htmlFor="Description">
+                {" "}
+                Chapter Description :<span className="star"> *</span>
+              </label>
               <SunEditor
                 onChange={handleEditorChange}
                 required
                 showToolbar={true}
                 defaultValue={content}
+                placeholder="Please type lecture content here..."
                 setOptions={{
                   buttonList: [
                     [
@@ -203,11 +209,7 @@ function InstructorAddTaskDetails() {
               {assignTask ? (
                 <div className="assignedtaskpreview">
                   <p className="asstskdecp">
-                    {assignTask[0].ChapterDescription} Lorem ipsum dolor sit
-                    amet consectetur adipisicing elit. Vero eaque velit qui.
-                    Rerum dolores earum commodi expedita officia necessitatibus
-                    excepturi magni aliquid eos iure sed quaerat, a dolorum
-                    placeat est?
+                    {assignTask[0].ChapterDescription}
                   </p>
 
                   {/* More Details of Task  */}

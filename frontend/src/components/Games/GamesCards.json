@@ -8,9 +8,9 @@
   },
   {
     "id": 2,
-    "image": "./assets/images/continent.png",
+    "image": "./assets/images/solarsystem.jpg",
     "heading": "Hangman",
-    "desc": "How familiar are you with the Continents? Let's Check",
+    "desc": "How familiar are you with the Planets? Let's Check",
     "Link": "/hangman"
   },
   {
@@ -36,3 +36,4 @@
     "Link": "*"
   }
 ]
+
