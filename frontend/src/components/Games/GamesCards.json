@@ -3,14 +3,14 @@
     "id": 1,
     "image": "./assets/images/first-game.png",
     "heading": "Maths Booster",
-    "desc": "Improve your maths",
+    "desc": "Boost up your maths!",
     "Link": "/maths-booster"
   },
   {
     "id": 2,
-    "image": "./assets/images/solarsystem.jpg",
+    "image": "./assets/images/game2bg.png",
     "heading": "Hangman",
-    "desc": "How familiar are you with the Planets? Let's Check",
+    "desc": "How familiar are you with the states of India? Let's Check",
     "Link": "/hangman"
   },
   {
@@ -27,13 +27,6 @@
     "heading": "Guess the Language",
     "desc": "How many Languages do you know? Let's Check!",
     "Link": "/game4"
-  },
-  {
-    "id": 5,
-    "image": "./assets/images/first-game.png",
-    "heading": "Math Booster",
-    "desc": "Improve your math with the tick-tick",
-    "Link": "*"
   }
 ]
 
