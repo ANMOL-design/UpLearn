@@ -126,7 +126,9 @@ function InstructorAddTaskDetails() {
                 <form>
                   {/* The Email Input  */}
                   <div className="signInput">
-                    <label htmlFor="title">Chapter Title :<span className="star"> *</span></label>
+                    <label htmlFor="title">
+                      Chapter Title :<span className="star"> *</span>
+                    </label>
                     <br />
                     <input
                       type="text"
@@ -143,12 +145,16 @@ function InstructorAddTaskDetails() {
               </div>
 
               {/* Enter Description Of task  */}
-              <label htmlFor="Description"> Chapter Description :<span className="star"> *</span></label>
+              <label htmlFor="Description">
+                {" "}
+                Chapter Description :<span className="star"> *</span>
+              </label>
               <SunEditor
                 onChange={handleEditorChange}
                 required
                 showToolbar={true}
                 defaultValue={content}
+                placeholder="Please type lecture content here..."
                 setOptions={{
                   buttonList: [
                     [
