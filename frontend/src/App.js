@@ -72,11 +72,8 @@ import Hangman from "./games/game2/Hangman";
 import Game3 from "./games/game3/Game3";
 import Game4 from "./games/game4/Game4";
 
-
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
-import CourseVideo from "./components/Courses/CourseContent/courseVideos";
-
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -170,7 +167,7 @@ function App() {
               path="/admin-portal-review-assign-task-190310554227"
               element={<AdminReviewLectData />}
             />
-            
+
             {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
 
@@ -231,17 +228,14 @@ function App() {
             <Route path="/ask-doubt/:id" element={<MainDoubt />} />
 
             {/* /////////////////////////////////////////////////// */}
-            {/* General */}
+            {/* Courses of User */}
             <Route path="/courses" element={<Courses />} />
 
             <Route path="/course/:id" element={<CourseInfo />} />
+
             <Route
-              path="/mycourses/start-learning/:id/*"
+              path="/mycourses/start-learning/:id"
               element={<CourseContent />}
-            />
-            <Route
-              path="/mycourses/startLearning/:id/videoLectures/video/:Id/*"
-              element={<CourseVideo />}
             />
 
             {/* //////////////////////////////////////////////////// */}
@@ -255,7 +249,6 @@ function App() {
             <Route path="/hangman" element={<Hangman />} />
             <Route path="/count-and-choose" element={<Game3 />} />
             <Route path="/guess-language" element={<Game4 />} />
-
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}

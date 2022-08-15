@@ -94,7 +94,7 @@ export default function CourseInfo() {
   // console.log(courseData, User);
 
   let Instructor = InstructorInfo.find(
-    (i) => i._id == courseData.courseInstructor
+    (i) => i._id === courseData.courseInstructor
   );
 
   // Finding the No of video, article and quiz in course
@@ -172,7 +172,7 @@ export default function CourseInfo() {
     let isEnrolled = "";
     if (User.CousesEnrolled) {
       isEnrolled = User.CousesEnrolled.find(
-        (i) => i.CourseId == courseData._id
+        (i) => i.CourseId === courseData._id
       );
       if (isEnrolled) {
         return (
@@ -232,7 +232,7 @@ export default function CourseInfo() {
       } else {
         let isRating = [];
         if (courseData.Rating) {
-          isRating = courseData.Rating.find((i) => i.rateBy == User._id);
+          isRating = courseData.Rating.find((i) => i.rateBy === User._id);
           if (isRating) {
             seterr("Already Rating to Course");
           } else {
@@ -284,7 +284,7 @@ export default function CourseInfo() {
     let isEnrolled = "";
     if (User.CousesEnrolled) {
       isEnrolled = User.CousesEnrolled.find(
-        (i) => i.CourseId == courseData._id
+        (i) => i.CourseId === courseData._id
       );
       if (isEnrolled) {
         return (

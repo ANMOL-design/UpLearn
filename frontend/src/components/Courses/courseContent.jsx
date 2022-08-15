@@ -9,6 +9,7 @@ import QuizesContent from "./CourseContent/Quizes";
 import VideosContent from "./CourseContent/Video";
 
 import axios from "axios";
+import Loader from "../Loader";
 
 var CryptoJS = require("crypto-js");
 
@@ -111,7 +112,7 @@ export default function CourseContent() {
     setCertificateShow(true);
   };
 
-  console.log(courseData, User);
+  // console.log(courseData, User);
 
   let isEnrolled = "";
 
@@ -128,6 +129,7 @@ export default function CourseContent() {
           </div>
           {/* The Linker Page to navigate the components  */}
           <div className="course-content-navbar">
+            <h1>{courseData.title}</h1>
             {/* Buttons to make video, text and quiz visible at different time  */}
             <div className="edit-course-container-btnchanger">
               <button
@@ -173,16 +175,12 @@ export default function CourseContent() {
       );
     } else {
       return (
-        <div className="not-enrolled-course">
-          <h1>Please Enroll For the Course First</h1>
-        </div>
+        <Loader />
       );
     }
   } else {
     return (
-      <div className="not-enrolled-course">
-        <h1>Please Enroll For the Course First</h1>
-      </div>
+      <Loader />
     );
   }
 }
