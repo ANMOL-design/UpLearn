@@ -107,7 +107,6 @@ $desktop: 1200px;
 
 .category-card {
   width: 16rem;
-  height: 250px;
   border-radius: 6px;
   background-color: #fff;
   padding: 10px;
@@ -131,6 +130,20 @@ $desktop: 1200px;
   color: #2246f7;
 }
 
+.category-card-forward{
+  text-align: center;
+  padding: 0.3rem;
+  font-size: 26px;
+  color: $black;
+  svg{
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+}
+
+.category-card-forward:hover{
+  color: $navbar-color;
+}
 .react-multi-carousel-track {
   padding: 1rem !important;
 }

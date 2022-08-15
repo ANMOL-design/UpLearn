@@ -8,7 +8,7 @@ import avtar from "../../assets/images/avtar.png";
 import axios from "axios";
 import BannerGirl from "../../assets/images/couse-banner-student.png";
 
-import { MdNotStarted } from "react-icons/md";
+import { MdNotStarted, MdArrowForward } from "react-icons/md";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -243,6 +243,9 @@ function Courses() {
                     </div>
                     <div className="category-card-text">
                       <h2>{item.heading}</h2>
+                    </div>
+                    <div className="category-card-forward">
+                      <MdArrowForward />
                     </div>
                   </Link>
                 </div>

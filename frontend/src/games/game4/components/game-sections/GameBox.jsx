@@ -8,7 +8,7 @@ import BoxFooter from "./BoxFooter";
 import Modal from "../modal/Modal";
 import countryLang from "../../../../assets/images/countryLang.png";
 // utils
-import Flags from "../../utils/flags";
+// import Flags from "../../utils/flags";
 import resultTexts from "../../utils/result";
 // contexts
 import FlagsContext from "../../contexts/FlagsContext";
@@ -42,7 +42,7 @@ const GameBox = () => {
     setOptions(quiz[0].options);
     setCorrectAns(quiz[0].correctAnswer);
     setIsLoading(false);
-  }, []);
+  }, [quiz]);
 
   useEffect(() => {
     setOptions(quiz[currentFlagIndex].options);
@@ -51,11 +51,11 @@ const GameBox = () => {
 
   // necessary functions
 
-  const errorHandler = (error) => {
-    setIsLoading(false);
-    console.error(error);
-    throw new Error("Something went wrong!");
-  };
+  // const errorHandler = (error) => {
+  //   setIsLoading(false);
+  //   console.error(error);
+  //   throw new Error("Something went wrong!");
+  // };
 
   const handleRestart = () => {
     defaultState();

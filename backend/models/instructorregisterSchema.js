@@ -102,6 +102,16 @@ const instructorSchema = new mongoose.Schema({
       },
     },
   ],
+  CousesEnrolled: [
+    {
+      nameOfCourse: {
+        type: String,
+      },
+      CourseId: {
+        type: String,
+      },
+    },
+  ],
   MyLibrary: [
     {
       BookId: {
