@@ -1,33 +1,20 @@
+.not-enrolled-course{
+  font-family: $font_El;
+  height: 85vh;
+  @include displayflex;
+  justify-content: center;
+}
+
 .course-content-navbar {
-  display: flex;
-  flex-wrap: wrap;
-  border-bottom: 1px solid gray;
-  margin-top: 20px;
-}
-.article-content-display-btn,
-.Video-content-display-btn,
-.mcqs-content-display-btn,
-.certi-content-display-btn {
-  .video-content-Link,
-  .article-content-Link,
-  .mcqs-content-Link,
-  .certi-content-Link {
-    text-decoration: none;
-    color: black;
+  margin: 1.2rem 0px 0px;
+  .edit-course-container-btnchanger{
+    width: 100%;
   }
-  border: none;
-  font-size: 28px;
-  background: none;
-  margin: 5px 20px 0px 20px;
-  padding: 5px;
+  
 }
-.article-content-display-btn:hover,
-.Video-content-display-btn:hover,
-.mcqs-content-display-btn:hover,
-.certi-content-display-btn:hover {
-  border: 1px solid gray;
-  border-bottom: 0ch;
-}
+
+
+
 .article-content-display-btn {
   margin-left: 20%;
 }

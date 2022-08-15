@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Link, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { BiArrowBack } from "react-icons/bi";
 
 import ArticleContent from "./CourseContent/Articles";
 import CourseCertificate from "./CourseContent/CourseCertificate";
 import QuizesContent from "./CourseContent/Quizes";
 import VideosContent from "./CourseContent/Video";
 
-import Loader from "../Loader";
 import axios from "axios";
 
 var CryptoJS = require("crypto-js");
 
 export default function CourseContent() {
-
   const loginDetails = useSelector((state) => state.userReducers);
   let navigate = useNavigate();
   let { id } = useParams();
 
-  console.log(id);
-
   const [courseData, setCourseData] = useState({});
   const [User, setUser] = useState({});
 
+  // States to handle component changes in page
+  const [articleShow, setarticleShow] = useState(true);
+  const [videoShow, setvideoShow] = useState(false);
+  const [quizShow, setquizShow] = useState(false);
+  const [CertificateShow, setCertificateShow] = useState(false);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -65,8 +67,7 @@ export default function CourseContent() {
       navigate("/login");
     }
 
-
-    // Fetching the Course Detail 
+    // Fetching the Course Detail
     const fetchcourse = async () => {
       await axios
         .get("/Instructorcourse/" + id)
@@ -81,60 +82,107 @@ export default function CourseContent() {
     fetchcourse();
   }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate, id]);
 
+  // Component Show / Hide function
+  const handleArticleShow = () => {
+    setarticleShow(true);
+    setvideoShow(false);
+    setquizShow(false);
+    setCertificateShow(false);
+  };
+
+  const handleVideoShow = () => {
+    setarticleShow(false);
+    setvideoShow(true);
+    setquizShow(false);
+    setCertificateShow(false);
+  };
+
+  const handleQuizShow = () => {
+    setarticleShow(false);
+    setvideoShow(false);
+    setquizShow(true);
+    setCertificateShow(false);
+  };
+
+  const handleCertificateShow = () => {
+    setarticleShow(false);
+    setvideoShow(false);
+    setquizShow(false);
+    setCertificateShow(true);
+  };
+
   console.log(courseData, User);
-  
+
   let isEnrolled = "";
 
   if (User.CousesEnrolled) {
-    isEnrolled = User.CousesEnrolled.find((i) => i.CourseId == courseData._id);
+    isEnrolled = User.CousesEnrolled.find((i) => i.CourseId === courseData._id);
     if (isEnrolled) {
       return (
         <>
+          {/* This Link Heading to return back  */}
+          <div className="add-course-header">
+            <Link to="/courses">
+              <BiArrowBack className="backBtn" style={{ color: "white" }} />
+            </Link>
+          </div>
+          {/* The Linker Page to navigate the components  */}
           <div className="course-content-navbar">
-            <div className="article-content-display-btn">
-              <Link
-                id="article-content-Link"
-                className="article-content-Link"
-                to="Articles"
+            {/* Buttons to make video, text and quiz visible at different time  */}
+            <div className="edit-course-container-btnchanger">
+              <button
+                onClick={handleArticleShow}
+                className={articleShow ? "bt-active" : ""}
               >
                 Articles
-              </Link>
-            </div>
-            <div className="Video-content-display-btn">
-              <Link className="video-content-Link" to="videoLectures">
-                Video Lectures
-              </Link>
-            </div>
-            <div className="mcqs-content-display-btn">
-              <Link className="mcqs-content-Link" to="Quizes">
+              </button>
+              <button
+                onClick={handleVideoShow}
+                className={videoShow ? "bt-active" : ""}
+              >
+                Videos
+              </button>
+              <button
+                onClick={handleQuizShow}
+                className={quizShow ? "bt-active" : ""}
+              >
                 Quizes
-              </Link>
-            </div>
-            <div className="certi-content-display-btn">
-              <Link className="certi-content-Link" to="Certification">
+              </button>
+
+              <button
+                onClick={handleCertificateShow}
+                className={CertificateShow ? "bt-active" : ""}
+              >
                 Certificate
-              </Link>
+              </button>
             </div>
           </div>
-          <Routes>
-            <Route path="/" element={<ArticleContent course={courseData} />} />
-            <Route
-              path="/Articles"
-              element={<ArticleContent course={courseData} />}
-            />
-            <Route
-              path="/videoLectures"
-              element={<VideosContent videos={courseData} />}
-            />
-            <Route path="/Quizes" element={<QuizesContent />} />
-            <Route path="/Certification" element={<CourseCertificate />} />
-          </Routes>
+
+          {/* Showing Article if Article is Active  */}
+          {articleShow && <ArticleContent course={courseData} />}
+
+          {/* Showing Video if Video is Active  */}
+          {videoShow && <VideosContent videos={courseData} />}
+
+          {/* Showing Quiz if Quiz is Active  */}
+          {quizShow && <QuizesContent />}
+
+          {/* Showing Certificate if Certificate is Active  */}
+          {CertificateShow && <CourseCertificate />}
         </>
       );
     } else {
-      return <Loader />;
+      return (
+        <div className="not-enrolled-course">
+          <h1>Please Enroll For the Course First</h1>
+        </div>
+      );
     }
   } else {
-    return <Loader />;
+    return (
+      <div className="not-enrolled-course">
+        <h1>Please Enroll For the Course First</h1>
+      </div>
+    );
   }
 }
