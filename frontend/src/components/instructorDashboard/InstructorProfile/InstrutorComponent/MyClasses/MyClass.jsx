@@ -40,7 +40,6 @@ const Title = ({ title, dark }) => {
   return <h2 style={{ color: dark ? primary : "#fff" }}>{title}</h2>;
 };
 
-
 const MessageList = ({ messages }) => {
   return (
     <div>
@@ -412,9 +411,7 @@ const ParticipantsView = () => {
       {console.log(participants)}
       {chunk([...participants.keys()]).map((k) => (
         <div style={{ display: "flex" }}>
-           
-          {k.map((l) => 
-            (
+          {k.map((l) => (
             <ParticipantView key={l} participantId={l} />
           ))}
         </div>
@@ -828,7 +825,6 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
             height: `calc(100vh - ${tollbarHeight}px)`,
           }}
         >
-       
           {/* <ParticipantsView /> */}
           {participantViewVisible ? <ParticipantsView /> : <ConnectionsView />}
         </div>
