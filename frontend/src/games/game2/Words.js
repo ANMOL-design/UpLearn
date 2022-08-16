@@ -8,9 +8,8 @@ var planets = [
 	"neptune",
 	"uranus"
 ]
-
 function randomWord() {
-	return planets[Math.floor(Math.random() * planets.length)]
+	return  planets[Math.floor(Math.random() * planets.length)]
 }
 
 export { randomWord }
