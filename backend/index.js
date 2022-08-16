@@ -39,13 +39,14 @@ app.use(require("./routes/doubtRoute"));
 var uuid4 = require("uuid4");
 
 // Need to generate from app.videosdk.live
-const API_KEY = "960fa010-ee89-4c43-afa3-daeb64d9302d";
+const API_KEY = "31ab4b2d-be51-4ac2-9255-de9360074ab8";
 const SECRET_KEY =
-  "a4cd08e71761cf57fbed1ab83cc5462bccfd218077ccdce5d5482e4aeb32adbb";
+  "3f6a3041dcb8dd15e418d97510129dcae943c9e014575514368a1fb50471fa91";
 
 jwt.sign(
   {
     apikey: API_KEY,
+    permissions: ["allow_join"],
   },
   SECRET_KEY,
   {
@@ -53,7 +54,10 @@ jwt.sign(
     expiresIn: "24h",
     jwtid: uuid4(),
   },
-  function (err, token) {}
+
+  function (err, token) {
+    console.log(token);
+  }
 );
 
 // mongodbconnection
