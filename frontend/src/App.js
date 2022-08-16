@@ -77,6 +77,7 @@ import Game4 from "./games/game4/Game4";
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
 import CourseVideo from "./components/Courses/CourseContent/courseVideos";
+import After12th from "./components/Career Counselling/After12th";
 
 
 function App() {
@@ -171,7 +172,7 @@ function App() {
               path="/admin-portal-review-assign-task-190310554227"
               element={<AdminReviewLectData />}
             />
-            
+
             {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
 
@@ -263,6 +264,10 @@ function App() {
             <Route path="/game3" element={<Game3 />} />
             <Route path="/game4" element={<Game4 />} />
 
+
+            {/* ///////////////////////////////////////////////////////  */}
+            {/* Career Counselling Route */}
+            <Route path="/after12th" element={<After12th />} />
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}

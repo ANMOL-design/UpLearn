@@ -87,6 +87,29 @@ function Navbar() {
                 </li>
               </ul>
             </li>
+            {/* links and dropdown for Career Counselling */}
+            <li>
+              <NavLink
+                to="/careercounselling"
+                className="desktop-link"
+                style={{ paddingRight: "0px" }}
+              >
+                Career Counselling
+              </NavLink>
+              <input type="checkbox" id="show-blogs" />
+              <label htmlFor="show-blogs">
+                <span className="hideNav"> Career Counselling</span>
+                <FaAngleDown />
+              </label>
+              <ul>
+                <li>
+                  <NavLink to="/after10th">After 10th</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/after12th">After 12th</NavLink>
+                </li>
+              </ul>
+            </li>
             {/* Link and Dropdown for pages  */}
             <li>
               <NavLink

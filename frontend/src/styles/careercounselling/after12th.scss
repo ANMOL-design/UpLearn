@@ -1,0 +1,60 @@
+// .after-banner{
+//     @include displayflex;
+//     background: url("./../../assets/images/career-banner.png");
+//     background-position: center;
+//         background-repeat: no-repeat;
+//         background-size: cover;
+//         height: 50vh;
+//         box-shadow: inset 1px 1px 8px #888888;
+// }
+.after-banner{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #0C0F33;
+}
+.after-banner-text span{
+    color: white;
+    font-size: 2.7rem;
+
+}
+.after-banner-img img{
+    height: 15rem;
+    margin-left: 0;
+}
+.afterBannerWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.afterBannerWrapper .courseCategory{
+    margin-top: 2rem;
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.courseCategory .courseCateHeading{
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: underline;
+    color: #2B4EFF;
+    
+}
+.courseCategory .courseCategoryItem {
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.courseCategory ul{
+    margin-top: .5rem;
+    list-style: none;
+    color: #0C0F33;
+    cursor: pointer;
+}
+.courseCategory ul a:hover{
+    color:#2B4EFF;
+}
