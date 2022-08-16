@@ -35,7 +35,27 @@ app.use(require("./routes/addCourse"));
 app.use(require("./routes/libraryRoute"));
 app.use(require("./routes/AssignTask"));
 app.use(require("./routes/doubtRoute"));
+var uuid4 = require("uuid4");
 
+// Need to generate from app.videosdk.live
+const API_KEY = "31ab4b2d-be51-4ac2-9255-de9360074ab8";
+const SECRET_KEY = "3f6a3041dcb8dd15e418d97510129dcae943c9e014575514368a1fb50471fa91";
+
+jwt.sign(
+  {
+    apikey: API_KEY,
+    permissions: ["allow_join"],
+  },
+  SECRET_KEY,
+  {
+    algorithm: "HS256",
+    expiresIn: "24h",
+    jwtid: uuid4(),
+  },
+  function (err, token) {
+    console.log(token);
+  }
+);
 // mongodbconnection
 mongoose.connect(
     process.env.MONGODB_CONNECTION_STRING, {
