@@ -16,7 +16,7 @@ class Game1 extends Component {
   render() {
     return (<div>
       <div className="game-back-btn">
-        <Link to="/play-games">
+        <Link to="/learn-with-fun">
             <BiArrowBack className="backBtn" style={{ color: "white" }} />
           </Link>
           </div>
