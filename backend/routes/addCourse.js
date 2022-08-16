@@ -195,6 +195,27 @@ router.post("/EnrolledCourse", (req, res) => {
   );
 });
 
+router.post("/EnrolledCourseTeacher", (req, res) => {
+  const { userId, CourseId, nameOfCourse } = req.body;
+
+  Instructors.findByIdAndUpdate(
+    userId,
+    {
+      $push: {
+        CousesEnrolled: { nameOfCourse: nameOfCourse, CourseId: CourseId },
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.status(200).json({ msg: "course added Successful" });
+      }
+    }
+  );
+});
+
 router.post("/createQuiz", async (req, res) => {
   const { CourseId, QuizeName, QuizDifficulty, marksPerQuestion } = req.body;
   const QUIZ = await new CoursesQuizes({
@@ -210,14 +231,8 @@ router.post("/createQuiz", async (req, res) => {
 });
 
 router.post("/addQuestionToQuiz", async (req, res) => {
-  const {
-    CourseId,
-    question,
-    options,
-    correctOption,
-    quizId,
-    MarksPerquestion,
-  } = req.body;
+  const { question, options, correctOption, quizId, MarksPerquestion } =
+    req.body;
 
   CoursesQuizes.findByIdAndUpdate(quizId, {
     $push: {

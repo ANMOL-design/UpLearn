@@ -1,84 +1,96 @@
-.add-question-main-container{
-    margin: 0px 10rem;
-    padding: 20px 0px;
+.addQuizQuestionMain {
+  font-family: $font_El;
 }
-.addQuiz-Input input{
-    width: 60%;
-    height: 60px;
-    line-height: 50px;
-    padding: 0px;
-    padding: 15px;
-    font-size: 15px;
-    background: #E8F0FE;
-    color: $black;
-    border-radius: 8px;
-    outline: none;
-    border: none;
-   
+.addQuizQuestion-Heading {
+  padding: 1.2rem 1.5rem;
 }
-.addQuiz-Input-option{
-    width: 20%;
-    height: 30px;
-    line-height: 50px;
-    padding: 15px;
-    font-size: 15px;
-    background: #E8F0FE;
-    color: $black;
-    border-radius: 8px;
-    outline: none;
-    border: none;
-   
+
+.add-question-main-body {
+  margin: 0px 1.5rem;
 }
-.addQuiz-Input-options-select{
-    width: 5%;
-    height: 30px;
+
+.add-question-card-container {
+  border: 1px solid $black;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
 }
-.add-quiz-btn{
-    font-family: $font_El;
+
+.add-question-input-container {
+  @include displayflex;
+  .add-question-div1 {
+    width: 75%;
+    padding-right: 1.25rem;
+  }
+  .add-question-div2 {
+    width: 25%;
+  }
+  label {
     font-size: 18px;
-    font-weight: 500;
-    background: $navbar_color;
-    color: #fff;
-    border-radius: 5px;
-    padding: 6px 20px;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    margin: 20px 20px;
-}
-.add-question-card-container{
-    border: 2px solid black;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 4px 4px 4px gray;
-    margin: 20px 5px;
-    background-color: whitesmoke
-}
-.submit-quiz-btn{
-    font-family: $font_El;
-    font-size: 18px;
-    font-weight: 500;
-    background: $navbar_color;
-    color: #fff;
-    width: 80%;
-    border-radius: 5px;
-    padding: 6px 20px;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    margin: 20px 7rem
-}
-.my-quiz-container{
-    display: none;
-    border: 2px solid black;
-    margin: 40px 20px;
+  }
+  input {
+    width: 100%;
+    height: 45px;
+    padding: 1rem;
+    border: 1px solid $black !important;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    background-color: #E8F0FE;
-    .cut-modal{
-        display: inline-block;
-        position: relative;
-        float: right;
-        width: 40px;
-        margin: 5px;
+    outline: none;
+    border: none;
+  }
+}
+
+.add-question-options-container {
+  @include displayflex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 1.2rem 0px;
+  .add-question-options-inner {
+    width: 25%;
+    padding-right: 1rem;
+    padding-bottom: 0.8rem;
+    label {
+      font-size: 18px;
     }
+    .add-question-options-inner-input {
+      @include displayflex;
+      input {
+        width: 80%;
+        height: 40px;
+        padding: 1rem;
+        border: 1px solid $black !important;
+        border-radius: 8px;
+        outline: none;
+        border: none;
+        background-color: #f9f9f9;
+      }
+      input[type="radio"] {
+        width: 20%;
+        height: 25px;
+        background-color: #f9f9f9;
+      }
+    }
+  }
+}
+
+.add-more-option-btn {
+  button {
+    @include sitebutton;
+    margin: 0px;
+    font-size: 16px;
+  }
+  p {
+    margin-top: 1rem;
+  }
+}
+
+.add-quiz-btn {
+  @include sitebutton;
+  margin: 0.3rem 1.2rem;
+}
+
+.submit-quiz-btn {
+  @include sitebutton;
+  width: 85%;
+  margin: 0.4rem 1.2rem 3rem;
 }
