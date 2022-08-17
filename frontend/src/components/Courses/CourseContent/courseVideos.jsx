@@ -44,6 +44,7 @@ export default function CourseVideo(props) {
     <>
       <div className="video-wrapper">
         <video
+        label={"144p"}
           src={video.VideoLecture}
           ref={videoElement}
           //   poster={props.course.thumbnail}
