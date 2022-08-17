@@ -42,7 +42,7 @@ const GameBox = () => {
     setOptions(quiz[0].options);
     setCorrectAns(quiz[0].correctAnswer);
     setIsLoading(false);
-  }, [quiz]);
+  }, []);
 
   useEffect(() => {
     setOptions(quiz[currentFlagIndex].options);
