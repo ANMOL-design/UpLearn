@@ -108,6 +108,9 @@ function Navbar() {
                 <li>
                   <NavLink to="/after12th">After 12th</NavLink>
                 </li>
+                <li>
+                  <NavLink to="/Exams">Exams</NavLink>
+                </li>
               </ul>
             </li>
             {/* Link and Dropdown for pages  */}

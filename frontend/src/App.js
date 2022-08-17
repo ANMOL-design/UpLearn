@@ -80,6 +80,7 @@ import CourseVideo from "./components/Courses/CourseContent/courseVideos";
 // career counselling
 import After12th from "./components/Career Counselling/After12th";
 import After10th from "./components/Career Counselling/After10th";
+import Exams from "./components/Career Counselling/Exams";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -173,10 +174,7 @@ function App() {
               path="/admin-portal-review-assign-task-190310554227"
               element={<AdminReviewLectData />}
             />
-            <Route
-              path="/add-career-courses"
-              element={<Addcareercourses />}
-            />
+            <Route path="/add-career-courses" element={<Addcareercourses />} />
 
             {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
@@ -264,6 +262,7 @@ function App() {
             {/* Career Counselling Route */}
             <Route path="/after12th" element={<After12th />} />
             <Route path="/after10th" element={<After10th />} />
+            <Route path="/exams" element={<Exams />} />
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}
