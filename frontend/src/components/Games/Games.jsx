@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import data from "./GamesCards.json";
 import axios from "axios";
+import Loader from "../Loader";
 
 var CryptoJS = require("crypto-js");
 
 function Games() {
   const loginDetails = useSelector((state) => state.userReducers);
   let navigate = useNavigate();
+
+  const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -26,7 +29,7 @@ function Games() {
         await axios
           .get("/aboutInstructor")
           .then((response) => {
-            console.log();
+            setLoading(false);
           })
           .catch((error) => {
             console.log(error);
@@ -39,7 +42,7 @@ function Games() {
         await axios
           .get("/aboutStudents")
           .then((response) => {
-            console.log();
+            setLoading(false);
           })
           .catch((error) => {
             console.log(error);
@@ -52,17 +55,18 @@ function Games() {
     }
   }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate]);
 
-  return (
-     
-    <div>
-  
-      <div className="games-banner"></div>
-     
-      <div className="games-header">
-        <h1>Games</h1>
-      </div>
-      {/* Cards Of The Game Page  */}
-      <div className="container-game">
+  if (Loading) {
+    return <Loader />;
+  } else {
+    return (
+      <div>
+        <div className="games-banner"></div>
+
+        <div className="games-header">
+          <h1>Learn With Fun</h1>
+        </div>
+        {/* Cards Of The Game Page  */}
+        <div className="container-game">
           {data.map((item) => {
             return (
               <div className="card-game" key={item.id}>
@@ -80,10 +84,10 @@ function Games() {
               </div>
             );
           })}
+        </div>
       </div>
-      </div>
-    
-  );
+    );
+  }
 }
 
 export default Games;

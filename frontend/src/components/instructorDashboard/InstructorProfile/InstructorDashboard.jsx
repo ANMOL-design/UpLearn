@@ -7,6 +7,7 @@ import InstructorSidebar from "./InstructorSidebar";
 import InstructorDashHome from "./InstrutorComponent/InstructorDashHome";
 import InstructorAssignTask from "./InstrutorComponent/MyTask/InstructorTasks";
 import MyCourses from "./InstrutorComponent/MyCourses/instructorMyCourses";
+import MyClass from "./InstrutorComponent/MyClasses/MyClass";
 
 var CryptoJS = require("crypto-js");
 
@@ -60,6 +61,10 @@ function InstructorDashboard() {
         <Route
           path="/my-courses"
           element={<MyCourses details={instructor} />}
+        />
+        <Route
+          path="/my-classroom"
+          element={<MyClass/>}
         />
       </Routes>
     </div>
