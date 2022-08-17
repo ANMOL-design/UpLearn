@@ -21,6 +21,7 @@ import StudentList from "./components/AdminPortal/StudentList";
 import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
 import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 import AdminReviewLectData from "./components/AdminPortal/AdminReviewLectData";
+import Addcareercourses from "./components/AdminPortal/addcareercourses";
 
 // Instructor Dashboard
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
@@ -79,7 +80,6 @@ import CourseVideo from "./components/Courses/CourseContent/courseVideos";
 // career counselling
 import After12th from "./components/Career Counselling/After12th";
 import After10th from "./components/Career Counselling/After10th";
-
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -172,6 +172,10 @@ function App() {
             <Route
               path="/admin-portal-review-assign-task-190310554227"
               element={<AdminReviewLectData />}
+            />
+            <Route
+              path="/add-career-courses"
+              element={<Addcareercourses />}
             />
 
             {/* //////////////////////////////////////// */}

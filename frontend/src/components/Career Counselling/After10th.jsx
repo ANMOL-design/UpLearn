@@ -20,41 +20,29 @@ export default function After10th() {
         <h1>After 10th</h1>
         <div className="courseCategory">
           <div className="courseCategoryItem">
-            <span className="courseCateHeading">Engineering</span>
+            <span className="courseCateHeading">Class 11th-12th</span>
             <ul>
               <li>
-                <a>B.Tech</a>
+                <a>Science</a>
               </li>
               <li>
-                <a>Computer Science</a>
+                <a>Commerce</a>
               </li>
               <li>
-                <a>Information Technology</a>
-              </li>
-              <li>
-                <a>Electrical Engineering</a>
+                <a>Arts</a>
               </li>
             </ul>
           </div>
           <div className="courseCategoryItem">
-            <span className="courseCateHeading">Medical & Health Care</span>
+            <span className="courseCateHeading">Diploma Courses</span>
             <ul>
               <li>
                 <a>MBBS</a>
               </li>
-              <li>
-                <a>BPT</a>
-              </li>
-              <li>
-                <a>BDS</a>
-              </li>
-              <li>
-                <a>BAMS</a>
-              </li>
             </ul>
           </div>
           <div className="courseCategoryItem">
-            <span className="courseCateHeading">Commerce</span>
+            <span className="courseCateHeading">Paramedical Courses</span>
             <ul>
               <li>
                 <a>B.Com</a>
@@ -62,7 +50,7 @@ export default function After10th() {
             </ul>
           </div>
           <div className="courseCategoryItem">
-            <span className="courseCateHeading">Diploma in Engineering</span>
+            <span className="courseCateHeading">ITI Courses</span>
             <ul>
               <li>
                 <a>Polytechnic</a>
@@ -70,7 +58,7 @@ export default function After10th() {
             </ul>
           </div>
           <div className="courseCategoryItem">
-            <span className="courseCateHeading">Arts and Humanities</span>
+            <span className="courseCateHeading">Vocational Courses</span>
             <ul>
               <li>
                 <a>BA</a>
@@ -84,10 +72,16 @@ export default function After10th() {
             </ul>
           </div>
           <div className="courseCategoryItem">
-            <span className="courseCateHeading">Computers</span>
+            <span className="courseCateHeading">Polytechnic Courses</span>
             <ul>
               <li>
-                <a>BCA</a>
+                <a>BA</a>
+              </li>
+              <li>
+                <a>BFA</a>
+              </li>
+              <li>
+                <a>DFA</a>
               </li>
             </ul>
           </div>
