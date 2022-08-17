@@ -77,7 +77,10 @@ import Game4 from "./games/game4/Game4";
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
 import CourseVideo from "./components/Courses/CourseContent/courseVideos";
+
+// career counselling
 import After12th from "./components/Career Counselling/After12th";
+import After10th from "./components/Career Counselling/After10th";
 
 
 function App() {
@@ -268,6 +271,7 @@ function App() {
             {/* ///////////////////////////////////////////////////////  */}
             {/* Career Counselling Route */}
             <Route path="/after12th" element={<After12th />} />
+            <Route path="/after10th" element={<After10th />} />
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}

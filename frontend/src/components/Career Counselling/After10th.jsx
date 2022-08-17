@@ -1,7 +1,7 @@
 import React from "react";
 import CareerImg from "./../../assets/images/career-img.png";
 
-export default function After12th() {
+export default function After10th() {
   return (
     <div className="career-counselling">
       <div className="after-banner">
@@ -17,7 +17,7 @@ export default function After12th() {
         </div>
       </div>
       <div className="afterBannerWrapper">
-        <h1>After 12th</h1>
+        <h1>After 10th</h1>
         <div className="courseCategory">
           <div className="courseCategoryItem">
             <span className="courseCateHeading">Engineering</span>
