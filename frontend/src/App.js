@@ -21,6 +21,7 @@ import StudentList from "./components/AdminPortal/StudentList";
 import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
 import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 import AdminReviewLectData from "./components/AdminPortal/AdminReviewLectData";
+import Addcareercourses from "./components/AdminPortal/addcareercourses";
 
 // Instructor Dashboard
 import InstructorDashboard from "./components/instructorDashboard/InstructorProfile/InstructorDashboard";
@@ -74,6 +75,12 @@ import Game4 from "./games/game4/Game4";
 
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
+import CourseVideo from "./components/Courses/CourseContent/courseVideos";
+
+// career counselling
+import After12th from "./components/Career Counselling/After12th";
+import After10th from "./components/Career Counselling/After10th";
+import Exams from "./components/Career Counselling/Exams";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -167,6 +174,7 @@ function App() {
               path="/admin-portal-review-assign-task-190310554227"
               element={<AdminReviewLectData />}
             />
+            <Route path="/add-career-courses" element={<Addcareercourses />} />
 
             {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
@@ -249,6 +257,12 @@ function App() {
             <Route path="/hangman" element={<Hangman />} />
             <Route path="/count-and-choose" element={<Game3 />} />
             <Route path="/guess-language" element={<Game4 />} />
+
+            {/* ///////////////////////////////////////////////////////  */}
+            {/* Career Counselling Route */}
+            <Route path="/after12th" element={<After12th />} />
+            <Route path="/after10th" element={<After10th />} />
+            <Route path="/exams" element={<Exams />} />
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}

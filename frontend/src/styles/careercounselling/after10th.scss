@@ -1,0 +1,63 @@
+
+.career-counselling{
+    font-family: $font_El;
+    }
+    .after-banner{
+        
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        background-color: #0C0F33;
+    }
+    .after-banner-text span{
+        color: white;
+        font-size: 2.7rem;
+    
+    }
+    .after-banner-img img{
+        height: 15rem;
+        margin-left: 0;
+    }
+    .afterBannerWrapper{
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .afterBannerWrapper .courseCategory{
+        margin-top: 2rem;
+        // width: 60%;
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+        align-items: center;
+        // text-align: center;
+        flex-wrap: wrap;
+    }
+    
+    .courseCategory .courseCateHeading{
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-decoration: underline;
+        color: #2B4EFF;
+        
+    }
+    .courseCategory .courseCategoryItem {
+        margin: 1.5rem 0;
+        // flex: 1 1 0px;
+        // width: 0;
+        flex-basis: 50%;
+        text-align: center;
+    }
+    .courseCategory ul{
+        margin-top: .5rem;
+        list-style: none;
+        color: #5c5d68;
+        cursor: pointer;
+        // text-align: left;
+    }
+    .courseCategory ul a:hover{
+        color:#2B4EFF;
+    }

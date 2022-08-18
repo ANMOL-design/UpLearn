@@ -64,5 +64,13 @@
     "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
     "Link": "/home",
     "name": "Start"
+  },
+  {
+    "id": 9,
+    "image": "./assets/images/education-banner.png",
+    "heading": "Add Councelling details",
+    "title": "Career Councelling courses",
+    "Link": "/add-career-courses",
+    "name": "Add courses"
   }
 ]

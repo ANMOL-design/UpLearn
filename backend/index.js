@@ -35,6 +35,7 @@ app.use(require("./routes/addCourse"));
 app.use(require("./routes/libraryRoute"));
 app.use(require("./routes/AssignTask"));
 app.use(require("./routes/doubtRoute"));
+app.use(require("./routes/postcareerDetail"));
 
 var uuid4 = require("uuid4");
 
