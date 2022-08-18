@@ -1,60 +1,70 @@
-import { useEffect, useRef, useState } from "react";
-import { MdVideoLibrary } from "react-icons/md";
-import { AiFillPauseCircle, AiFillPlayCircle } from "react-icons/ai";
-import { GoMute, GoUnmute } from "react-icons/go";
-import useVideoPlayer from "../../hooks/videoplayer";
+import React, { useState } from "react";
+import { MdVideocam } from "react-icons/md";
 import Loader from "../../Loader";
-import CourseVideo from "./courseVideos";
+import PlayVideo from "./PlayVideo";
 
 export default function VideosContent(props) {
-  let VideoContent = "";
-  VideoContent = props.videos;
-  console.log(VideoContent);
-  let i = 0;
-  const videoElement = useRef(null);
+  let VideoContent = props.videos;
 
   const [curentVideo, setCurrentVideo] = useState(
     VideoContent.courseVideoContent[0]
   );
-  const playcurrentvideo = (item) => {
-    setCurrentVideo(item);
+
+  const [active, setactive] = useState({});
+
+  const toggleActive = (index) => {
+    setactive({ [index]: !active[index] });
   };
-  console.log(curentVideo);
+
+  const playcurrentvideo = (item, index) => {
+    setCurrentVideo(item);
+    toggleActive(index);
+  };
+
   if (VideoContent) {
     if (VideoContent.courseVideoContent.length > 0) {
       return (
         <>
-          <div className="video-content-container" id="video-content-container">
+          <div className="video-content-container">
             <ul>
-              {VideoContent.courseVideoContent.map((item) => (
-                <>
-                  <div className="video-list-container">
-                    {console.log(item)}
-                    <li
-                      onClick={() => playcurrentvideo(item)}
-                      id={"video-content-display" + item._id}
-                      className="video-content-display-list"
-                    >
-                      {"1." + ++i + " " + item.VideoContentTitle}{" "}
-                      <span>
-                        <MdVideoLibrary />
-                      </span>
-                    </li>
-                  </div>
-                </>
+              {/* The Heading To Toggle the Video Content  */}
+              <li>
+                <h3 className="heading-toggler-video">{VideoContent.title}</h3>
+              </li>
+
+              {/* Show the Name of Videos  */}
+              {VideoContent.courseVideoContent.map((item, index) => (
+                <div className="video-list-container" key={index}>
+                  <li
+                    onClick={() => playcurrentvideo(item, index)}
+                    className={
+                      active[index]
+                        ? "video-content-display-list my-active-video"
+                        : "video-content-display-list"
+                    }
+                  >
+                    <span>
+                      <MdVideocam />
+                    </span>
+                    {item.VideoContentTitle}
+                  </li>
+                </div>
               ))}
             </ul>
-            <div
-              className="video-display-container"
-              id={"video-display-container" + curentVideo._id}
-            >
-              <CourseVideo course={VideoContent} id={curentVideo._id} />
+
+            {/* Set the Video And Play it  */}
+            <div className="video-display-container">
+              <PlayVideo course={VideoContent} id={curentVideo._id} />
             </div>
           </div>
         </>
       );
     } else {
-      return <h1>No Video Added</h1>;
+      return (
+        <div className="not-available-incourse">
+          <h1>Not Video Available</h1>
+        </div>
+      );
     }
   } else {
     return <Loader />;

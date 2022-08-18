@@ -75,7 +75,6 @@ import Game4 from "./games/game4/Game4";
 
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
-import CourseVideo from "./components/Courses/CourseContent/courseVideos";
 
 // career counselling
 import After12th from "./components/Career Counselling/After12th";
