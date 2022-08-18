@@ -94,9 +94,11 @@ const Uploadpage = () => {
                     onChange={(e) => handleChange(e)}
                   >
                     <option value="">Select</option>
-                    <option value="after-10">course 1</option>
-                    <option value="after-12">course 2</option>
-                    <option value="exams">course 3</option>
+                    <option value="class-11-12">Class 11th-12th</option>
+                    <option value="diploma-courses">Diploma Courses</option>
+                    <option value="paramedial-courses">
+                      Paramedical Courses
+                    </option>
                   </select>
                 </>
               )}
@@ -109,9 +111,14 @@ const Uploadpage = () => {
                     onChange={(e) => handleChange(e)}
                   >
                     <option value="">Select</option>
-                    <option value="after10">After 10th</option>
-                    <option value="after12">After 12th</option>
-                    <option value="examssds">Exams</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="medical-health-care">
+                      Medical & Health Care
+                    </option>
+                    <option value="commerce">Commerce</option>
+                    <option value="diploma-in-engineering">
+                      Diploma in Engineering
+                    </option>
                   </select>
                 </>
               )}

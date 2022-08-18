@@ -81,6 +81,7 @@ import CourseVideo from "./components/Courses/CourseContent/courseVideos";
 import After12th from "./components/Career Counselling/After12th";
 import After10th from "./components/Career Counselling/After10th";
 import Exams from "./components/Career Counselling/Exams";
+import AboutCourse from "./components/Career Counselling/AboutCourse";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -260,9 +261,10 @@ function App() {
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Career Counselling Route */}
-            <Route path="/after12th" element={<After12th />} />
-            <Route path="/after10th" element={<After10th />} />
+            <Route path="/after-12/:after_12" element={<After12th />} />
+            <Route path="/after-10/:after_10" element={<After10th />} />
             <Route path="/exams" element={<Exams />} />
+            <Route path="/about/:id" element={<AboutCourse />} />
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}

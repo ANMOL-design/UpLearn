@@ -1,22 +1,26 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 dotenv.config();
-mongoose.connect(
-    process.env.MONGODB_CONNECTION_STRING,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    },
-    (err) => {
-        if (err) throw err;
-        console.log("MongoDB connection established");
-    }
-);
 
 const PostData = require("../models/postCareerDetailSchema");
+
+router.get("/admin/getAllCareerBy/:courseCategory", (req, res) => {
+    const category = req.params.courseCategory;
+
+    console.log(category);
+
+    PostData.find({ category: category }, (err, data) => {
+        if (err) {
+            res.status(500).json({ message: "Internal Server Error" });
+        } else {
+            console.log(data);
+            res.status(200).json(data);
+        }
+    });
+})
+
 
 router.get("/admin/getAllCareer/:subcategory", (req, res) => {
     const subcategory = req.params.subcategory;
@@ -25,6 +29,7 @@ router.get("/admin/getAllCareer/:subcategory", (req, res) => {
         if (err) {
             res.status(500).json({ message: "Internal Server Error" });
         } else {
+            console.log(data);
             res.status(200).json(data);
         }
     });
