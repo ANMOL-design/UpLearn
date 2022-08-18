@@ -260,7 +260,7 @@ function App() {
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Career Counselling Route */}
-            <Route path="/after-12/:after_12" element={<After12th />} />
+            <Route path="carrercounsling/:after_12" element={<After12th />} />
             <Route path="/after-10/:after_10" element={<After10th />} />
             <Route path="/exams" element={<Exams />} />
             <Route path="/about/:id" element={<AboutCourse />} />
