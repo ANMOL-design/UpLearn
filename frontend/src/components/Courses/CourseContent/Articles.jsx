@@ -17,6 +17,7 @@ export default function ArticleContent(props) {
 
       const toggleHide = (index) => {
         setHidden({ [index]: !hidden[index] });
+        window.scroll(0, 120);
       };
 
       // The Main Area Where Article were Written

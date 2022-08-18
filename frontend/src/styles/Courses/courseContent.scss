@@ -19,6 +19,7 @@
 
 .article-content-container {
   margin: 1rem 0.8rem 3rem;
+  min-height: 50vh;
   ul li {
     text-decoration: none;
     list-style: none;
@@ -63,6 +64,10 @@
   }
   ul {
     margin-left: 1rem !important;
+  }
+
+  span{
+    float: left !important;
   }
 
   img {
