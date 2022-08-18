@@ -55,17 +55,19 @@ function Question({
         <h2 className="question-text">{data.question}</h2>
         <ul className="question-answers">
           {data.options.map((text, index) => {
-            const value = `q${data.id}-${index}`;
+            const value = `q${data._id}-${index}`;
             return (
               <li
                 className={
-                  index === data.correct && showAnswer ? "is-true" : ""
+                  index === data.correctOption - 1 && showAnswer
+                    ? "is-true"
+                    : ""
                 }
                 data-selected={markSelection === index ? true : null}
               >
                 <input
                   type="radio"
-                  name={`q_${data.id}`}
+                  name={`q_${data._id}`}
                   value={value}
                   id={value}
                   onChange={(e) => setAnswer(e.target.value)}
@@ -161,14 +163,14 @@ function Results({ wrong, correct, empty }) {
   );
 }
 
-function QuestionCorrection({ data }) {
+function QuestionCorrection({ data, selection }) {
   return (
     <div className="correction">
-      {data.map((question) => {
+      {data.map((question, index) => {
         return (
           <Question
             hasButton={false}
-            markSelection={question.selection}
+            markSelection={selection[index]}
             showAnswer={true}
             data={question}
           />
@@ -183,10 +185,9 @@ function QuestionCorrection({ data }) {
 ///////////////////////////////////////////////////////////////////////////
 
 export default function QuizPreform(props) {
+  var myquiz = props.myquiz;
+  const [select, setselect] = useState([]);
 
-  const myquiz = props.myquiz;
-
-  console.log(myquiz);
   const [gameStarted, setGameStarted] = useState(false);
   const totalQuestion = myquiz.QuestionsofQuiz.length - 1;
   const gameRef = useRef(null);
@@ -198,29 +199,24 @@ export default function QuizPreform(props) {
 
   const handleNewQuestionClick = (selectedValue, currQuestion) => {
     if (totalQuestion >= question.value) {
-      if (selectedValue === currQuestion.correctOption) {
+      if (selectedValue === currQuestion.correctOption - 1) {
         correct.add();
       } else if (
         selectedValue !== null &&
-        selectedValue !== currQuestion.correctOption
+        selectedValue !== currQuestion.correctOption - 1
       ) {
         wrong.add();
       } else {
         empty.add();
       }
-      // myquiz.QuestionsofQuiz[currQuestion.id].selection = selectedValue;
-      console.log( myquiz.QuestionsofQuiz[currQuestion.id], selectedValue)
+      setselect((select) => [...select, selectedValue]);
       question.add();
     }
   };
 
-  const resetSelection = () => {
-    myquiz.QuestionsofQuiz.forEach((q) => (q.selection = null));
-  };
-
   const handleRestartClick = () => {
     setGameStarted(false);
-    resetSelection();
+    setselect([]);
     question.reset();
     correct.reset();
     wrong.reset();
@@ -275,11 +271,14 @@ export default function QuizPreform(props) {
               </button>
             </>
           )}
+
+          {/* This Div Will Present the indicator of Question  */}
           {gameStarted && (
             <div className="indicator">
               {myquiz.QuestionsofQuiz.map((q, index) => {
                 return (
-                  <span key={index}
+                  <span
+                    key={index}
                     className="indicator-item"
                     style={{
                       backgroundColor: indicatorBg(index),
@@ -321,7 +320,10 @@ export default function QuizPreform(props) {
 
         {!myquiz.QuestionsofQuiz[question.value] && (
           <>
-            <QuestionCorrection data={myquiz.QuestionsofQuiz} />
+            <QuestionCorrection
+              data={myquiz.QuestionsofQuiz}
+              selection={select}
+            />
           </>
         )}
       </div>
