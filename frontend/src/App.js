@@ -56,6 +56,7 @@ import MainDoubt from "./components/Doubt/MainDoubt";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Contact from "./components/Contact/Contact";
+import AboutUs from "./components/About/AboutUs";
 import AddBook from "./components/AdminPortal/AddBook";
 import ContentPage from "./components/Dashboard/ContentPage";
 
@@ -267,6 +268,7 @@ function App() {
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}
             <Route path="/contact" element={<Contact />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
 

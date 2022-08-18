@@ -1,0 +1,86 @@
+.about-banner {
+    @include displayflex;
+    justify-content: center;
+    // Set a background Image
+    background-color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40vh;
+    width: 100vw;
+    border-bottom: 1px solid whitesmoke;
+    box-shadow: inset 1px 1px 8px black;
+  }
+  .about-header {
+        background-color: whitesmoke;
+    h1 {
+      font-family: $font_El;
+      padding: 1rem;
+      color: $navbar_color;
+      text-align: center;
+      font-size: 4rem;
+    }
+  }
+  .left-td{
+    padding-top:1rem;
+    height: 480px;
+    display: inline-block;
+    h2{
+      font-family: $font_El;
+      padding: 1rem;
+      color: $navbar_color;
+      text-align: center;
+      font-size: 3rem;
+    }
+    p{
+        font-family: $font_El;
+        padding: 1rem;
+        text-align: center;
+        font-size: 1.2rem;  
+    }
+  }
+  .right-td{
+    height: 480px;
+    display: inline-block;
+    text-align: center;
+    padding-top: 5rem;
+  }
+  .lower-left-td{
+    height:500px;
+    background-color:#2ba9ffc7;
+    h2{
+      font-family: $font_El;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+      font-size: 3rem;
+    }
+    p{
+        font-family: $font_El;
+        padding: 1rem;
+        text-align: center;
+        font-size: 1.2rem; 
+        width: 100%; 
+        color: white;
+    }
+  }
+  .lower-right-td{
+    height:500px;
+    background-color: whitesmoke;
+    h2{
+        font-family: $font_El;
+        padding: 1rem;
+        color: black;
+        text-align: center;
+        font-size: 3rem;
+      }
+      p{
+          font-family: $font_El;
+          padding: 1rem;
+          text-align: center;
+          font-size: 1.2rem;
+          width: 100%; 
+          color: black; 
+      }
+  }
+ 
