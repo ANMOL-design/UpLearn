@@ -39,9 +39,9 @@ $color: #1f8197;
     position: relative;
     max-width: 600px;
     width: 100%;
-    height: 36vh;
+    height: 46vh;
     min-height: max-content;
-    margin: 32vh auto;
+    margin: 30vh auto;
     box-shadow: 0 0 80px rgba(0, 0, 0, 1), 0 0 0 16px rgba(152, 236, 255, 0.1);
     border-radius: 12px;
     overflow: hidden;
@@ -50,8 +50,8 @@ $color: #1f8197;
     transition: 0.3s;
   
     @media (max-width: 980px), (max-height: 580px) {
-      margin: auto;
-      height: 52vh;
+      margin: 10vh auto;
+      height: 55vh;
       flex-direction: column;
       overflow: auto;
       align-items: flex-start;
@@ -60,12 +60,12 @@ $color: #1f8197;
     &[data-game-started] {
       max-width: 1200px;
       margin: 15vh auto;
-      height: 70vh;
+      height: 75vh;
   
       @media (max-width: 980px), (max-height: 580px) {
         height: auto;
         overflow: auto;
-        margin: auto;
+        margin: 8vh auto;
         max-height: 100%;
       }
   
@@ -94,6 +94,7 @@ $color: #1f8197;
         flex-wrap: wrap;
         transition: 0.3s;
         flex-grow: 1;
+        min-height: 70vh;
   
         @media (max-width: 980px), (max-height: 580px) {
           width: 100%;
@@ -106,7 +107,7 @@ $color: #1f8197;
   .game-area {
     background-color: #fff;
     overflow: auto;
-    padding: 40px;
+    padding: 28px;
   
     @media (max-width: 980px), (max-height: 580px) {
       padding: 0;
@@ -140,6 +141,11 @@ $color: #1f8197;
     &-title {
       margin: 0;
       font-size: 2rem;
+      font-family: $font_El;
+    }
+
+    &-level{
+      margin: 0;
       font-family: $font_El;
     }
   
@@ -279,7 +285,7 @@ $color: #1f8197;
   
     &-text {
       color: #333;
-      margin: 20px 0;
+      margin: 0px 0px 1rem;
     }
   
     input {
@@ -372,9 +378,8 @@ $color: #1f8197;
     flex-direction: column;
     width: 100%;
     max-width: 80%;
-    margin: auto;
+    margin: 0.5rem auto;
     height: 0;
-    overflow: hidden;
   
     &-item {
       display: inline-flex;
@@ -464,7 +469,7 @@ $color: #1f8197;
   .restart-button {
     height: 40px;
     border: 1px solid rgba(#fff, 0.4);
-    margin: 30px auto 0;
+    margin: 30px auto 0 !important;
     background-color: transparent;
     color: #fff;
     border-radius: 4px;
@@ -474,9 +479,5 @@ $color: #1f8197;
     cursor: pointer;
     display: none;
     animation: result-item 0.4s 1.45s both;
-  
-    &:hover {
-      background-color: rgba(#fff, 0.1);
-    }
   }
   

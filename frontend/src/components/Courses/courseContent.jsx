@@ -148,7 +148,7 @@ export default function CourseContent() {
                 onClick={handleQuizShow}
                 className={quizShow ? "bt-active" : ""}
               >
-                Quizes
+                Quiz
               </button>
 
               <button

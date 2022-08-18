@@ -257,6 +257,7 @@ export default function QuizPreform(props) {
       <div className="intro">
         <div className="intro-inner">
           <h1 className="intro-title">{myquiz.QuizeName}</h1>
+          <h4 className="intro-level">Level: {myquiz.QuizDifficulty}</h4>
           {!gameStarted && (
             <>
               <p className="intro-desc">
@@ -290,11 +291,15 @@ export default function QuizPreform(props) {
           )}
 
           {/* This Component will render the result After Completion  */}
-          <Results
-            wrong={wrong.value}
-            correct={correct.value}
-            empty={empty.value}
-          />
+          {!myquiz.QuestionsofQuiz[question.value] && (
+            <>
+              <Results
+                wrong={wrong.value}
+                correct={correct.value}
+                empty={empty.value}
+              />
+            </>
+          )}
 
           {/* Button To Start the Quiz Again  */}
           <button
