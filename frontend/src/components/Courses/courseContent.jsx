@@ -148,7 +148,7 @@ export default function CourseContent() {
                 onClick={handleQuizShow}
                 className={quizShow ? "bt-active" : ""}
               >
-                Quizes
+                Quiz
               </button>
 
               <button
@@ -167,7 +167,7 @@ export default function CourseContent() {
           {videoShow && <VideosContent videos={courseData} />}
 
           {/* Showing Quiz if Quiz is Active  */}
-          {quizShow && <QuizesContent />}
+          {quizShow && <QuizesContent quiz={courseData} />}
 
           {/* Showing Certificate if Certificate is Active  */}
           {CertificateShow && <CourseCertificate />}
