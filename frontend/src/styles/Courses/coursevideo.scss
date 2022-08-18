@@ -1,140 +1,81 @@
-.video-content-container{
-    width: 100%;
-    display: flex;
-    ul{
-        width:35%;
-    }
-}
-.video-list-container{
-    width:100%;
-}
-
-.video-display-container{
-    width: 65%;
-}
-.video-content-display-list{
-border: 2px solid white;
-list-style: none;
-padding: 20px;
-cursor: pointer;
-background-color: #2b4eff;
-color: white;
-span{
-   position: relative;
-   float: right;
-   font-size: 22px;
-}
-
-}
-.video-content-display-list:hover{
-    background-color: #041257;
-}
-  
-  video {
-    width: 100%;
+.video-content-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 0.3rem;
+  ul {
+    width: 30%;
+    max-height: 75vh;
+    overflow-y: scroll;
   }
-  
-  .video-wrapper {
-    width: 100%;
+}
+
+.heading-toggler-video {
+  list-style: none;
+  background-color: #041257;
+  border-bottom: 2px solid white;
+  color: #fff;
+  padding: 18px 12px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.video-list-container {
+  width: 100%;
+}
+
+.video-content-display-list {
+  border-bottom: 2px solid white;
+  list-style: none;
+  padding: 20px 14px;
+  cursor: pointer;
+  background-color: $navbar-color;
+  color: #fff;
+  span {
+    margin: 0px 5px;
     position: relative;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-   
+    float: right;
+    font-size: 22px;
   }
-  
-  .video-wrapper:hover .controls {
-    transform: translateY(0%);
+}
+
+.video-content-display-list:hover {
+  background-color: #041257;
+}
+
+.my-active-video {
+  background-color: #041257;
+}
+
+/////////////////////////////////
+/// Video Player
+
+.video-display-container {
+  @include displayflex;
+  justify-content: center;
+  width: 70%;
+  max-height: 75vh;
+  box-sizing: border-box;
+}
+
+@media (max-width: 991px) {
+  .video-content-container {
+    margin-bottom: 0.2rem;
+    ul {
+      width: 100%;
+      max-height: 50vh;
+      overflow-y: scroll;
+    }
   }
-  
-  .controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    position: absolute;
-    bottom: 10px;
+
+  /////////////////////////////////
+  /// Video Player
+
+  .video-display-container {
     width: 100%;
-    max-width: 600px;
-    flex-wrap: wrap;
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-
+    height: 75vh;
+    overflow-x: scroll;
   }
-  .video-time{
-    font-size: 18px;
-    display: inline-block;
-  }
-  .actions button {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-  }
-  
-  .actions button i {
- 
-    color: black;
-    font-size: 30px;
-  }
-  
-  input[type="range"] {
-
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    height: 4px;
-    width: 350px;
-  }
-  
-  input[type="range"]::-webkit-slider-thumb {
-   
-    cursor: pointer;
-    height: 6px;
-  }
-  
-  input[type="range"]::-moz-range-progress {
-    background: rgb(67, 0, 175);
-  }
-  
-  .velocity {
-    appearance: none;
-    background: none;
-    outline: none;
-    border: none;
-    text-align: center;
-    font-size: 16px;
-  }
-  .full-btn{
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    i{
-        background-color: none;
-        font-size: 20px;
-    }
-  }
-  
-  .mute-btn {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-  }
-  
-  .mute-btn i {
-    background-color: none;
-    font-size: 20px;
-  }
-
-  @media screen and (max-width: 900px) {
-    .video-content-container{
-    
-        display: flex;
-        flex-direction: column;
-    }
-    .video-display-container{
-        width: 100%;
-    }
-  }
+}

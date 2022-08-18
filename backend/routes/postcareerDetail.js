@@ -25,6 +25,7 @@ router.get("/admin/getAllCareerBy/:courseCategory", (req, res) => {
 router.get("/admin/getAllCareer/:subcategory", (req, res) => {
     const subcategory = req.params.subcategory;
 
+
     PostData.find({ subcategory: subcategory }, (err, data) => {
         if (err) {
             res.status(500).json({ message: "Internal Server Error" });
@@ -35,6 +36,8 @@ router.get("/admin/getAllCareer/:subcategory", (req, res) => {
     });
 })
 
+
+
 router.get("/admin/getCareerbyId/:id", (req, res) => {
     const id = req.params.id;
     PostData.findById(id, (err, data) => {
@@ -44,7 +47,7 @@ router.get("/admin/getCareerbyId/:id", (req, res) => {
             res.status(200).json(data);
         }
     });
-})
+});
 router.post("/admin/postCareerDetails", (req, res) => {
     try {
         const { title, description, category, subcategory } = req.body;
@@ -56,7 +59,7 @@ router.post("/admin/postCareerDetails", (req, res) => {
                 title,
                 description,
                 category,
-                subcategory
+                subcategory,
             });
             newContactData
                 .save()

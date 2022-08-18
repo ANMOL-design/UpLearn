@@ -319,7 +319,6 @@ export function JoiningScreen({
           <MeetingDetailsScreen
             onClickJoin={async (id) => {
               const token = await getToken();
-              {console.log(token)}
               const valid = await validateMeeting({ meetingId: id, token });
               if (valid) {
                 setReadyToJoin(true);
@@ -331,7 +330,6 @@ export function JoiningScreen({
             }}
             onClickCreateMeeting={async () => {
               const token = await getToken();
-              {console.log(token)}
               const _meetingId = await createMeeting({ token });
               setToken(token);
               setMeetingId(_meetingId);
