@@ -59,18 +59,10 @@
   },
   {
     "id": 8,
-    "image": "./assets/images/education-banner.png",
-    "heading": "Add a Quiz",
-    "title": "A learning community dedicated to building respectful and responsible citizens and empowering all learners.",
-    "Link": "/home",
-    "name": "Start"
-  },
-  {
-    "id": 9,
     "image": "./assets/images/career-admin.png",
     "heading": "Add Councelling details",
     "title": "Counselling is an active process of communication and dialogue between a trained professional and a Student community",
-    "Link": "/add-career-courses",
+    "Link": "/admin-portal-Add-Carrier-190310554227",
     "name": "Add Careers"
   }
 ]

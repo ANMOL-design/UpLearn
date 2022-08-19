@@ -35,7 +35,7 @@
     box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
     font-size: 17px;
   }
-  span {
+  .left-icon-article {
     position: relative;
     float: right;
     font-size: 20px;
@@ -66,14 +66,26 @@
     margin-left: 1rem !important;
   }
 
-  span{
-    float: left !important;
-  }
-
   img {
     margin: 8px auto;
     max-width: 25rem;
     max-height: 22rem;
+  }
+}
+
+//// Styling for Admin page Review
+.review-instructor-task-buttons {
+  @include displayflex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .review-success-btn {
+    @include sitebutton;
+    background-color: $success;
+    margin-top: 1rem;
+  }
+  .review-reject-btn {
+    @include sitebutton;
+    margin-top: 1rem;
   }
 }
 

@@ -21,6 +21,7 @@ import StudentList from "./components/AdminPortal/StudentList";
 import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
 import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 import AdminReviewLectData from "./components/AdminPortal/AdminReviewLectData";
+import ReviewInstructorTaskHome from "./components/AdminPortal/ReviewInstructorTask/ReviewTaskHome";
 import Addcareercourses from "./components/AdminPortal/addcareercourses";
 
 // Instructor Dashboard
@@ -176,7 +177,13 @@ function App() {
               path="/admin-portal-review-assign-task-190310554227"
               element={<AdminReviewLectData />}
             />
-            <Route path="/add-career-courses" element={<Addcareercourses />} />
+
+            <Route
+              path="/admin-portal-review-assign-task-190310554227/:id"
+              element={<ReviewInstructorTaskHome />}
+            />
+
+            <Route path="/admin-portal-Add-Carrier-190310554227" element={<Addcareercourses />} />
 
             {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
