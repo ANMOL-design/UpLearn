@@ -67,10 +67,10 @@
   },
   {
     "id": 9,
-    "image": "./assets/images/education-banner.png",
+    "image": "./assets/images/career-admin.png",
     "heading": "Add Councelling details",
-    "title": "Career Councelling courses",
+    "title": "Counselling is an active process of communication and dialogue between a trained professional and a Student community",
     "Link": "/add-career-courses",
-    "name": "Add courses"
+    "name": "Add Careers"
   }
 ]

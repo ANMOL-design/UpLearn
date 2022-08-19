@@ -85,6 +85,10 @@ const instructorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  MyClassrooms:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"LIVECLASSES"
+  }],
   CousesList: [
     {
       nameOfCourse: {

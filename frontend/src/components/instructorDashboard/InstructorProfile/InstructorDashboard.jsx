@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
-
 import InstructorSidebar from "./InstructorSidebar";
 import InstructorDashHome from "./InstrutorComponent/InstructorDashHome";
 import InstructorAssignTask from "./InstrutorComponent/MyTask/InstructorTasks";
 import MyCourses from "./InstrutorComponent/MyCourses/instructorMyCourses";
-import MyClass from "./InstrutorComponent/MyClasses/MyClass";
+import MyClassrooms from "./InstrutorComponent/MyClasses/MyClassrooms";
+import AddNewClass from "./InstrutorComponent/MyClasses/AddNewClass";
+import ManageClass from "./InstrutorComponent/MyClasses/ManageClass";
+
 
 var CryptoJS = require("crypto-js");
 
@@ -64,8 +66,17 @@ function InstructorDashboard() {
         />
         <Route
           path="/my-classroom"
-          element={<MyClass/>}
+          element={<MyClassrooms InstructorInfo={instructor} />}
         />
+        <Route
+          path="/my-classrooms/add-new-class"
+          element={<AddNewClass details={instructor}/>}
+        />
+        <Route
+          path="/my-classrooms/:id"
+          element={<ManageClass InstructorInfo={instructor}/>}
+        />
+   
       </Routes>
     </div>
   );

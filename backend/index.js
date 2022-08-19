@@ -5,12 +5,10 @@ const PORT = 5000;
 const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
-const morgan = require("morgan");
-
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
+
+
 
 ///////////////
 // This query will help to send upto 50 MB data to backend at a time
@@ -34,6 +32,7 @@ app.use(require("./routes/libraryRoute"));
 app.use(require("./routes/AssignTask"));
 app.use(require("./routes/doubtRoute"));
 app.use(require("./routes/postcareerDetail"));
+app.use(require("./routes/liveClass"));
 
 // mongodbconnection
 mongoose.connect(
