@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SunEditor from "suneditor-react";
+
 
 const Uploadpage = () => {
   const [description, setDescription] = useState("");
@@ -49,68 +50,77 @@ const Uploadpage = () => {
 
   return (
     <>
-      <div className="container-fluid">
-        <div className="uploadpost-container">
-          <h1
-            style={{ fontSize: "3rem", color: "#77bc3f" }}
-            className="m-2 text-decoration-underline text-center mt-4"
-          >
-            Upload Blog Post
-          </h1>
-
-          <div className="form-container">
+      <div className="addcareercourses">
+      <div className="career-course-header">
+            <Link to="/admin-portal-home-190310554227">
+              <button className="backBtn" style={{ color: "white" }}>
+                Back
+              </button>
+            </Link>
+          </div>
+        <div className="career-upload-body">
+          <div className="career-form-container">
             <form method="POST">
               {/* Blog Title  */}
+              <h1 className="career-course-heading">Add Careers</h1>
+              <div className="career-course-Input">
               <label htmlFor="title">Title :</label> <br />
               <input
                 type="text"
-                placeholder="Enter Blog Title ..."
+                placeholder="Enter Title"
                 name="courseTitle"
                 value={CAREERDETAILS.courseTitle}
                 onChange={(e) => handleChange(e)}
                 id="title"
               />{" "}
-              <br />
+              </div>
+              
               {/* Blog Category  */}
+              <div className="career-course-Input">
               <label htmlFor="category">Category :</label>
-              <br />
+              
               <select
                 id="subject"
                 name="courseCategory"
                 value={CAREERDETAILS.courseCategory}
                 onChange={(e) => handleChange(e)}
               >
-                <option value="">Select</option>
+                <option value="">Select Category</option>
                 <option value="after-10">After 10th</option>
                 <option value="after-12">After 12th</option>
                 <option value="exams">Exams</option>
               </select>
+              </div>
               {CAREERDETAILS.courseCategory === "after-10" && (
-                <>
+                
+                <div className="career-course-Input">
+              <label htmlFor="category">Sub-Category :</label>
                   <select
                     id="subject"
                     name="courseSubCategory"
                     value={CAREERDETAILS.courseSubCategory}
                     onChange={(e) => handleChange(e)}
                   >
-                    <option value="">Select</option>
+                    <option value="">Select Sub-Category</option>
                     <option value="class-11-12">Class 11th-12th</option>
                     <option value="diploma-courses">Diploma Courses</option>
                     <option value="paramedial-courses">
                       Paramedical Courses
                     </option>
                   </select>
-                </>
+                  </div>
+                
               )}
               {CAREERDETAILS.courseCategory === "after-12" && (
-                <>
+                <div className="career-course-Input">
+                <label htmlFor="category">Sub-Category :</label>
                   <select
                     id="subject"
                     name="courseSubCategory"
                     value={CAREERDETAILS.courseSubCategory}
                     onChange={(e) => handleChange(e)}
                   >
-                    <option value="">Select</option>
+                    <option value="">Select Sub-Category</option>
                     <option value="engineering">Engineering</option>
                     <option value="medical-health-care">
                       Medical & Health Care
@@ -120,26 +130,29 @@ const Uploadpage = () => {
                       Diploma in Engineering
                     </option>
                   </select>
-                </>
+                </div>
               )}
               {CAREERDETAILS.courseCategory === "exams" && (
-                <>
+                <div className="career-course-Input">
+                <label htmlFor="category">Sub-Category :</label>
                   <select
                     id="subject"
                     name="courseSubCategory"
                     value={CAREERDETAILS.courseSubCategory}
                     onChange={(e) => handleChange(e)}
                   >
-                    <option value="">Select</option>
+                    <option value="">Select Sub-Category</option>
                     <option value="aftersds-10">exam 1</option>
                     <option value="aftersadsa-12">exam 2</option>
                     <option value="examsdsfd">Exams</option>
                   </select>
-                </>
+                </div>
+                
               )}
               {/* Blog Text  */}
+              <div className="career-course-Input">
               <label htmlFor="description">Description :</label>
-              {/* <div className="description"  onChange={quillcontent}   name="description"    theme="snow"/> */}
+              
               <SunEditor
                 onChange={handleEditorChange}
                 required
@@ -175,14 +188,19 @@ const Uploadpage = () => {
                       "template",
                     ],
                   ],
+                  
                 }}
               />
+              </div>
+              <div className="career-submit-btn">
               <input
                 id="post-btn"
                 onClick={(e) => postData(e)}
+                className="addBtn"
                 type="submit"
-                value="Add Post"
+                value="Submit"
               />
+              </div>
             </form>
           </div>
         </div>
