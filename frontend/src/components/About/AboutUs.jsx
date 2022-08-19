@@ -1,120 +1,90 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import AboutBanner from "../../assets/images/SIH2022-white-logo.png";
-import About2img from "../../assets/images/about2img.png"
-var CryptoJS = require("crypto-js");
+import React, { useEffect } from "react";
 
-export default function Contact() {
-
-  const loginDetails = useSelector((state) => state.userReducers);
-  let navigate = useNavigate();
-  
-  const [User,SetUser] = useState({});
-  const [invalid, setinvalid] = useState('');
-  
+export default function AboutUs() {
   useEffect(() => {
-    window.scroll(0, 120);
-    // Decrypting the User Role
-    if(loginDetails.userRole !== ''){
-      var bytes = CryptoJS.AES.decrypt(loginDetails.userRole, 'my-secret-key@123');
-      var role = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-    }
-    // Check is  Login Or Not 
-    if (Number(loginDetails.isLoggedIn) && role === "INSTRUCTOR") 
-    {
-      // call the fetch admin detail function 
-      const fetchdata = async () =>{
-        await axios.get("/aboutInstructor").then(response => {
-          SetUser(response.data);
-          })
-          .catch(error => {
-            console.log(error);
-            navigate("/login");
-          });
-      }
-      fetchdata();
-    }
-    else if((Number(loginDetails.isLoggedIn) && role === "STUDENT")){
-        // call the fetch admin detail function 
-        const fetchdata = async () =>{
-            await axios.get("/aboutStudents").then(response => {
-              SetUser(response.data);
-              })
-              .catch(error => {
-                console.log(error);
-                navigate("/login");
-              });
-        }
-        fetchdata();
-    }
-    // If User is not login redirect to login 
-    else{
-      navigate("/login");
-    }
-  }, [loginDetails.isLoggedIn])
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <>
-  
-        <div>
-          <img className='about-banner' src={AboutBanner} alt="bg-img" />
+      {/* The banner image of about us  */}
+      <div className="about-banner-image"></div>
+      {/* Boxes on Both Side  */}
+      <div className="about-uplearn">
+        <div className="about-left-side">
+          <h1>What is UpLearn?</h1>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+          </p>
         </div>
-        <div className="about-header">
-          <h1>About Us</h1>
-        </div>
-        <div className="parallel-boxes">
-          <table>
-            <tr>
-                <td className="left-td">
-                    
-                      <h2>What is UpLearn?</h2>
-                      <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                      </p>
-                    
-                </td><td className="right-td">
-                    <img className="about2img" src={About2img} alt='img' height="300px"></img>
-                </td>        
-            </tr>
-          </table>
-        </div>
-        <div className="lower-parallel-boxes">
-        <table>
-            <tr>
-                <td className="lower-left-td">
-                    
-                      <h2>Purpose</h2>
-                      <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                      </p>
-                    
-                </td><td className="lower-right-td">
-                    <h2>Scope</h2>
-                    <p>
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-                        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </p>
-                </td>        
-            </tr>
-          </table>
-        </div>
+      </div>
 
+      <div className="about-uplearn">
+        <div className="about-left-side">
+          <h1 style={{textAlign: 'left'}}>The Future of Education</h1>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+          </p>
+          <h1 style={{textAlign: 'left', fontSize: '1.75rem', margin: '0.75rem 0px'}}>Mission &amp; Vision:</h1>
+          <ul>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores qui velit.</li>
+            <li>asperiores eum assumenda ratione quis. Nesciunt perferendis atque quidem et.</li>
+            <li>asperiores eum assumenda ratione quis. Nesciunt perferendis atque quidem et.</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores qui velit.</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores qui velit.</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores qui velit.</li>
+            <li>asperiores eum assumenda ratione quis. Nesciunt perferendis atque quidem et.</li>
+          </ul>
+        </div>    
+      </div>
+
+      {/* Purpose and Scope About  */}
+      <div className="lower-parallel-boxes">
+        <div className="lower-left-td">
+          <h1>Purpose</h1>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+          </p>
+        </div>
+        <div className="lower-right-td">
+          <h1>Scope</h1>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+          </p>
+        </div>
+      </div>
     </>
-  )
+  );
 }
