@@ -76,6 +76,7 @@ import Game4 from "./games/game4/Game4";
 
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
+import SubCourses from "./components/Courses/SubCourses";
 
 // career counselling
 import After12th from "./components/Career Counselling/After12th";
@@ -239,6 +240,8 @@ function App() {
             {/* /////////////////////////////////////////////////// */}
             {/* Courses of User */}
             <Route path="/courses" element={<Courses />} />
+
+            <Route path="/courses/:value" element={<SubCourses />} />
 
             <Route path="/course/:id" element={<CourseInfo />} />
 

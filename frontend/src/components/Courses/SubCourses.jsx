@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import data from "./CoursesCards.json";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { GiNetworkBars } from "react-icons/gi";
 import StarRatings from "react-star-ratings";
 import { useSelector } from "react-redux";
@@ -8,43 +7,30 @@ import avtar from "../../assets/images/avtar.png";
 import axios from "axios";
 import BannerGirl from "../../assets/images/couse-banner-student.png";
 
-import { MdNotStarted, MdArrowForward } from "react-icons/md";
+import { MdNotStarted, MdSearch } from "react-icons/md";
 
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Loader from "../Loader";
 
 var CryptoJS = require("crypto-js");
 
-function Courses() {
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
+function SubCourses() {
+  const { value } = useParams();
 
   let navigate = useNavigate();
 
   const [courseData, setCourseData] = useState([]);
+  const [subData, setsubData] = useState([]);
+  const [input, setinput] = useState('');
+
   const [InstructorInfo, setInstructorInfo] = useState([]);
   const [User, setUser] = useState([]);
   const loginDetails = useSelector((state) => state.userReducers);
   const [Loading, setLoading] = useState(true);
 
   let squares = [];
+
+  console.log(courseData, value);
 
   const STARRATING = (props) => {
     let totalRating = 0;
@@ -160,12 +146,33 @@ function Courses() {
     } else {
       return (
         <>
-          <img src={avtar}></img>
+          <img src={avtar} alt="avtar"></img>
           <span>Instructor</span>
         </>
       );
     }
   };
+
+  useEffect(() => {
+    // Filter Out the Data From Courses
+    if (courseData) {
+      var data = courseData.filter((e) => e.courseCategory === value);
+      setsubData(data);
+    }
+  }, [courseData, value]);
+
+  console.log(subData);
+
+  const FindTheCourse = () => {
+    var ans = courseData.map((a) => {
+        if(a.title.toUpperCase().search(input.toUpperCase()) > -1){
+            return a
+        }
+      });
+
+      ans = ans.filter((e) => e !== undefined)
+      setsubData(ans);
+  }
 
   // Start of Main Container To present Courses
   if (Loading) {
@@ -223,47 +230,39 @@ function Courses() {
           </div>
           {/* end of Banner  */}
 
-          {/* Category slider */}
-          <div className="category-slider">
-            <div className="category-slider-header">
-              <h2>Popular Topics to Learn</h2>
-              <p>Browse with Categories</p>
+          {/* Input box to search Course  */}
+          <div className="library-filter-container" style={{ margin: "0px" }}>
+            <div className="librarySearch">
+              {/* input box to search User  */}
+              <input
+                type="text"
+                placeholder="Find my course ..."
+                id="finder"
+                name="coursefind"
+                value={input}
+                onChange={(e) => {
+                  setinput(e.target.value);
+                }}
+              />
+              <button type="submit" onClick={FindTheCourse}>
+                <i>
+                  <MdSearch />
+                </i>{" "}
+                Search
+              </button>
             </div>
-            <Carousel
-              responsive={responsive}
-              infinite={true}
-              autoPlay={true}
-              autoPlaySpeed={2000}
-            >
-              {data.map((item) => (
-                <div key={item.id} className="category-card">
-                  <Link to={item.Link}>
-                    <div className="category-card-icon">
-                      <img src={item.image} alt="icons" />
-                    </div>
-                    <div className="category-card-text">
-                      <h2>{item.heading}</h2>
-                    </div>
-                    <div className="category-card-forward">
-                      <MdArrowForward />
-                    </div>
-                  </Link>
-                </div>
-              ))}
-            </Carousel>
           </div>
-          <hr />
 
           {/* Start Presenting Main courses data */}
           <div className="courses-list-container">
             <div className="courses-list-header">
-              <h1>Top Recommended Courses</h1>
+              <h1>Top {value} Courses</h1>
             </div>
             <p>
-              <b>Total Courses : {courseData.length}</b>
+              <b>Total Courses : {subData.length}</b>
             </p>
             <div className="course-list-card-container">
-              {courseData.map((item) => {
+              {subData.map((item) => {
                 return (
                   <>
                     <div className="course-list-card">
@@ -309,4 +308,4 @@ function Courses() {
   }
 }
 
-export default Courses;
+export default SubCourses;
