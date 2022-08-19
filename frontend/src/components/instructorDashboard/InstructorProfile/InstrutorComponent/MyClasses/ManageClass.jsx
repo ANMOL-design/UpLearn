@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
-import { MdPadding, MdSearch } from "react-icons/md";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../../Loader";
+
 export default function ManageClass() {
   const [MyClassroom, setMyClassroom] = useState({});
-  const [StudentInfo,  setStudentsInfo] = useState([]);
+  const [StudentInfo, setStudentsInfo] = useState([]);
   const { id } = useParams();
   let navigate = useNavigate();
   const [Loading, setLoading] = useState(true);
@@ -23,14 +23,16 @@ export default function ManageClass() {
         });
     };
     fetchClassroom();
-    const fetchdata = async () =>{
-        await axios.get("/allStudents").then(response => {
-            setStudentsInfo(response.data);
+    const fetchdata = async () => {
+      await axios
+        .get("/allStudents")
+        .then((response) => {
+          setStudentsInfo(response.data);
         })
-        .catch(error => {
-            console.log(error);
+        .catch((error) => {
+          console.log(error);
         });
-      }
+    };
     fetchdata();
   }, [id]);
 
@@ -69,44 +71,42 @@ export default function ManageClass() {
   };
 
   const AddParticipants = () => {
-    const [err,seterr]= useState("");
-    const [newParticipant,setParticipant]= useState("");
-    const AddNewParticipant = async ()=>{
-        const isSameStudent = StudentInfo.find((i)=>i.email==newParticipant);
-          if(newParticipant===""){
-            seterr("Select Participant from the List")
-          }
-          else{
-             const isParticipantAdded = MyClassroom[0].classUsers.find((j)=>j==isSameStudent._id)
+    const [err, seterr] = useState("");
+    const [newParticipant, setParticipant] = useState("");
+    const AddNewParticipant = async () => {
+      const isSameStudent = StudentInfo.find((i) => i.email == newParticipant);
+      if (newParticipant === "") {
+        seterr("Select Participant from the List");
+      } else {
+        const isParticipantAdded = MyClassroom[0].classUsers.find(
+          (j) => j == isSameStudent._id
+        );
 
-             if(isParticipantAdded){
-                 seterr("Participant Already Added")
-             }
-             else{
-                const UserId = isSameStudent._id;
-                const classId = id;
-                const res = await fetch("/Add-Participant", {
-                    method: "POST",
-                    headers: {
-                      "content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                     UserId,
-                     classId
-                    }),
-                  });
-              
-                  if (res.status === 200) {
-                    seterr("Participant Added Succesfully")
-                    navigate("/InstructorDashboard/my-classroom");
-                  } else {
-                    
-                    seterr("Something Went Wrong, Try Later\nError Occured");
-                  }
-                
-             }
+        if (isParticipantAdded) {
+          seterr("Participant Already Added");
+        } else {
+          const UserId = isSameStudent._id;
+          const classId = id;
+          const res = await fetch("/Add-Participant", {
+            method: "POST",
+            headers: {
+              "content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              UserId,
+              classId,
+            }),
+          });
+
+          if (res.status === 200) {
+            seterr("Participant Added Succesfully");
+            navigate("/instructordashboard/my-classroom");
+          } else {
+            seterr("Something Went Wrong, Try Later\nError Occured");
           }
-    }
+        }
+      }
+    };
     if (MyClassroom[0].classUsers.length < 1) {
       return (
         <>
@@ -119,24 +119,22 @@ export default function ManageClass() {
                     name="librarySearch"
                     value={newParticipant}
                     placeholder="What are you looking for ?"
-                    onChange={(e)=>setParticipant(e.target.value)}
+                    onChange={(e) => setParticipant(e.target.value)}
                   />
-                  {
-                      (StudentInfo.length > 0) ?
-                        <datalist id="library-search">
-                          {StudentInfo.map((item) => (
-                            <option value={item.email} />
-                          ))}
-                        </datalist>
-                      : null
-                  }
+                  {StudentInfo.length > 0 ? (
+                    <datalist id="library-search">
+                      {StudentInfo.map((item) => (
+                        <option value={item.email} />
+                      ))}
+                    </datalist>
+                  ) : null}
 
                   <button onClick={AddNewParticipant} type="submit">
                     Add Participant
                   </button>
                 </div>
                 <br />
-                  <p className="star">{err}</p>
+                <p className="star">{err}</p>
                 <br />
                 <h2 style={{ textAlign: "center" }}>
                   No Participants in class{" "}
@@ -151,24 +149,22 @@ export default function ManageClass() {
         <>
           <div className="add-participants-container">
             <div className="add-user-Container">
-            <div className="library-filter-container">
+              <div className="library-filter-container">
                 <div className="librarySearch">
                   <input
                     list="library-search"
                     name="librarySearch"
                     value={newParticipant}
                     placeholder="What are you looking for ?"
-                    onChange={(e)=>setParticipant(e.target.value)}
+                    onChange={(e) => setParticipant(e.target.value)}
                   />
-                  {
-                      (StudentInfo.length > 0) ?
-                        <datalist id="library-search">
-                          {StudentInfo.map((item) => (
-                            <option value={item.email} />
-                          ))}
-                        </datalist>
-                      : null
-                  }
+                  {StudentInfo.length > 0 ? (
+                    <datalist id="library-search">
+                      {StudentInfo.map((item) => (
+                        <option value={item.email} />
+                      ))}
+                    </datalist>
+                  ) : null}
 
                   <button onClick={AddNewParticipant} type="submit">
                     Add Participant
@@ -176,9 +172,7 @@ export default function ManageClass() {
                 </div>
                 <br />
                 <p className="star">{err}</p>
-           <div className="my-participant-container">
-
-           </div>
+                <div className="my-participant-container"></div>
               </div>
             </div>
           </div>
@@ -204,7 +198,7 @@ export default function ManageClass() {
       return (
         <>
           <div className="add-course-header">
-            <Link to="/instructorDashboard/my-classroom">
+            <Link to="/instructordashboard/my-classroom">
               <BiArrowBack className="backBtn" style={{ color: "white" }} />
             </Link>
           </div>
@@ -220,18 +214,12 @@ export default function ManageClass() {
                 </p>{" "}
                 <br />
                 <p>
-                  <strong>Class Description : </strong>
-                  {MyClassroom[0].ClassDescription}
-                </p>{" "}
-                <br />
-                <p>
                   <strong>Subject : </strong>
                   {MyClassroom[0].Subject}
                 </p>{" "}
                 <br />
                 <p>
-                  <strong>Class : </strong>{" "}
-                  {MyClassroom[0].Class || +"10"}th
+                  <strong>Class : </strong> {MyClassroom[0].Class || +"10"}th
                 </p>{" "}
                 <br />
                 <p>
@@ -247,6 +235,11 @@ export default function ManageClass() {
                 <p>
                   <strong>Total Number of Students : </strong>
                   {MyClassroom[0].classUsers.length}
+                </p>{" "}
+                <br />
+                <p>
+                  <strong>Class Description : </strong>
+                  {MyClassroom[0].ClassDescription}
                 </p>{" "}
                 <br />
               </div>
@@ -266,7 +259,7 @@ export default function ManageClass() {
                     onClick={handleNoticeShow}
                     className={NoticeShow ? "bt-active" : ""}
                   >
-                    Notice
+                    Activity
                   </button>
                   <button
                     onClick={handleNotesShow}
@@ -279,7 +272,7 @@ export default function ManageClass() {
                     onClick={handleAtandanceShow}
                     className={AtandanceShow ? "bt-active" : ""}
                   >
-                    Atandance
+                    Attendance
                   </button>
                 </div>
               </div>

@@ -2,24 +2,24 @@ import React, { useEffect, useState } from "react";
 import NotFoundImg from "../../../../../assets/images/not-found.png";
 import LiveClassImg from "../../../../../assets/images/live-online-classes.jpg";
 import { Link } from "react-router-dom";
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit } from "react-icons/fa";
 import Loader from "../../../../Loader";
 import axios from "axios";
 
- function MyClassrooms(props) {
-   let Instructors;
-  if(props.InstructorInfo){
+function MyClassrooms(props) {
+  let Instructors;
+  if (props.InstructorInfo) {
     Instructors = props.InstructorInfo;
   }
   const [Loading, setLoading] = useState(true);
   const [MyClassroom, setMyClassroom] = useState([]);
 
- console.log(Instructors);
+  // console.log(Instructors);
   const Id = Instructors._id;
-  useEffect(() => {  
+  useEffect(() => {
     const fetchCourse = async () => {
       await axios
-        .get("/myClassrooms/"+Id)
+        .get("/myClassrooms/" + Id)
         .then((response) => {
           setMyClassroom(response.data);
           setLoading(false);
@@ -29,10 +29,9 @@ import axios from "axios";
         });
     };
     fetchCourse();
-   
   }, [props.InstructorInfo._id]);
 
-  const gettimestamp=(day)=>{
+  const gettimestamp = (day) => {
     let today = new Date(day);
     let dd = today.getDate();
     let mm = today.getMonth() + 1;
@@ -42,34 +41,38 @@ import axios from "axios";
     let ss = today.getSeconds();
     let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
     return time;
-  }
+  };
   const AddnewClass = () => {
-    console.log(MyClassroom);
-    if (MyClassroom.length<1 || !MyClassroom) {
+    // console.log(MyClassroom);
+    if (MyClassroom.length < 1 || !MyClassroom) {
       return (
         <>
           <div className="addcourse-main-container">
             <div className="no-found-container">
               <h1>Not Any Class Added By You</h1>
               <img src={NotFoundImg} alt="AddCourse" />
-              <Link to="/instructordashboard/my-classroom/add-new-class" className="btn-add-new-course">
+              <Link
+                to="/instructordashboard/my-classroom/add-new-class"
+                className="btn-add-new-course"
+              >
                 Add New Class
               </Link>
             </div>
           </div>
         </>
       );
-    } 
-    else if(MyClassroom) {
-
+    } else if (MyClassroom) {
       return (
         <>
           <div className="addcourse-main-container">
             {/* Course heading to Add New Course  */}
-            <div className="my-courses-container">     
+            <div className="my-courses-container">
               <h2>My ClassRooms</h2>
 
-              <Link to="/instructordashboard/my-classrooms/add-new-class" className="btn-add-new-course">
+              <Link
+                to="/instructordashboard/my-classroom/add-new-class"
+                className="btn-add-new-course"
+              >
                 Add New Class
               </Link>
             </div>
@@ -79,36 +82,53 @@ import axios from "axios";
             <div className="add-content-card-container">
               {MyClassroom.map((item) => (
                 <div className="add-content-card" key={item._id}>
-                    <img src={LiveClassImg } alt="Thumbnail" />
-                    <div className="add-content-card-body">
-                       <h2>{item.ClassName}</h2>
-                       <div className="add-content-card-body-inner">
-                          <p><strong>Description : </strong>{item.ClassDescription}</p><br /> <br />
-                          <p><strong>class : </strong>{item.Class}</p>
-                          <p><strong>Subject : </strong>{item.Subject}</p>
-                          <p><strong>Created at : </strong>{gettimestamp(item.classDatePost)}</p>
-                       </div>
-                       <Link className="edit-content-link" to={"/instructordashboard/my-cLassrooms/" + item._id}><button>Manage Classroom&nbsp;<FaEdit/></button></Link>
+                  <img src={LiveClassImg} alt="Thumbnail" style={{height: '220px'}}/>
+                  <div className="add-content-card-body">
+                    <h2>{item.ClassName}</h2>
+                    <div className="add-content-card-body-inner">
+                      <p>
+                        <strong>Description : </strong>
+                        {item.ClassDescription}
+                      </p>
+                      <br /> <br />
+                      <p>
+                        <strong>class : </strong>
+                        {item.Class}
+                      </p>
+                      <p>
+                        <strong>Subject : </strong>
+                        {item.Subject}
+                      </p>
+                      <p>
+                        <strong>Created at : </strong>
+                        {gettimestamp(item.classDatePost)}
+                      </p>
                     </div>
+                    <Link
+                      className="edit-content-link"
+                      to={"/instructordashboard/my-classroom/" + item._id}
+                    >
+                      <button>
+                        Manage Classroom&nbsp;
+                        <FaEdit />
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </>
       );
-    }
-    else{
-        return(
-            <Loader/>
-        )
+    } else {
+      return <Loader />;
     }
   };
 
-    return (
-      <>
-        <AddnewClass />
-      </>
-    );
-  
+  return (
+    <>
+      <AddnewClass />
+    </>
+  );
 }
 export default MyClassrooms;

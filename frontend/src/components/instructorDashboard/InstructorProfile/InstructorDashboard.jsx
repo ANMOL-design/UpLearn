@@ -69,11 +69,11 @@ function InstructorDashboard() {
           element={<MyClassrooms InstructorInfo={instructor} />}
         />
         <Route
-          path="/my-classrooms/add-new-class"
+          path="/my-classroom/add-new-class"
           element={<AddNewClass details={instructor}/>}
         />
         <Route
-          path="/my-classrooms/:id"
+          path="/my-classroom/:id"
           element={<ManageClass InstructorInfo={instructor}/>}
         />
    
