@@ -41,7 +41,8 @@ import AddCourses from "./components/instructorDashboard/InstructorProfile/Instr
 import InstructorEditContent from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/InstructorEditContent";
 import AddQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuiz";
 import AddQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuestion";
-
+import InstPreviewMyCourseHome from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/PreviewMyCourse/PreviewMyCourseHome";
+import EditMyCourseArticle from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/PreviewMyCourse/EditArticle";
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
 import ChangePassword from "./components/Dashboard/DashboardComponents/ChangePassword";
@@ -256,6 +257,16 @@ function App() {
             <Route
               path="/instructordashboard/my-courses/edit-content/add-quiz/add-questions/:id/:quiz_id"
               element={<AddQuestion />}
+            />
+
+            <Route
+              path="/instructordashboard/my-courses/preview-content/:id"
+              element={<InstPreviewMyCourseHome />}
+            />
+
+            <Route
+              path="/my-course/edit-course-article/:id/:course"
+              element={<EditMyCourseArticle />}
             />
 
             {/* ////////////////////////////////////////////////  */}

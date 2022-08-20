@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import NotFoundImg from "../../../../../assets/images/not-found.png";
 import { Link } from "react-router-dom";
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit } from "react-icons/fa";
+import { MdOutlineAppRegistration } from "react-icons/md";
 import Loader from "../../../../Loader";
 import axios from "axios";
 
 export default function MyCourses(props) {
-  
   const [courseData, setcourseData] = useState([]);
   const [Loading, setLoading] = useState(true);
 
   // console.log(props.details._id)
 
-  useEffect(() => {  
+  useEffect(() => {
     const fetchCourse = async () => {
       await axios
         .get("/coursesUplearn/" + props.details._id)
@@ -30,7 +30,6 @@ export default function MyCourses(props) {
   // console.log(courseData)
 
   const AddCoursecontent = () => {
-
     if (!courseData.length) {
       return (
         <>
@@ -38,23 +37,28 @@ export default function MyCourses(props) {
             <div className="no-found-container">
               <h1>Not Any Course Added By You</h1>
               <img src={NotFoundImg} alt="AddCourse" />
-              <Link to="/instructordashboard/my-courses/add-new-course" className="btn-add-new-course">
+              <Link
+                to="/instructordashboard/my-courses/add-new-course"
+                className="btn-add-new-course"
+              >
                 Add New Course
               </Link>
             </div>
           </div>
         </>
       );
-    } 
-    else {
+    } else {
       return (
         <>
           <div className="addcourse-main-container">
             {/* Course heading to Add New Course  */}
-            <div className="my-courses-container">     
+            <div className="my-courses-container">
               <h2>My Courses</h2>
 
-              <Link to="/instructordashboard/my-courses/add-new-course" className="btn-add-new-course">
+              <Link
+                to="/instructordashboard/my-courses/add-new-course"
+                className="btn-add-new-course"
+              >
                 Add New Course
               </Link>
             </div>
@@ -64,16 +68,52 @@ export default function MyCourses(props) {
             <div className="add-content-card-container">
               {courseData.map((item) => (
                 <div className="add-content-card" key={item._id}>
-                    <img src={item.thumbnail} alt="Thumbnail" />
-                    <div className="add-content-card-body">
-                       <h2>{item.title}</h2>
-                       <div className="add-content-card-body-inner">
-                          <p><strong>Category : </strong>{item.courseCategory}</p>
-                          <p><strong>Level : </strong>{item.level}</p>
-                          <p><strong>Language : </strong>{item.language}</p>
-                       </div>
-                       <Link className="edit-content-link" to={"/instructordashboard/my-courses/edit-content/" + item._id}><button> Edit / Manage &nbsp;<FaEdit/></button></Link>
+                  <img src={item.thumbnail} alt="Thumbnail" />
+                  <div className="add-content-card-body">
+                    <h2>{item.title}</h2>
+                    <div className="add-content-card-body-inner">
+                      <p>
+                        <strong>Category : </strong>
+                        {item.courseCategory}
+                      </p>
+                      <p>
+                        <strong>Level : </strong>
+                        {item.level}
+                      </p>
+                      <p>
+                        <strong>Language : </strong>
+                        {item.language}
+                      </p>
                     </div>
+                    {/* Link to Edit and Manage Course  */}
+                    <Link
+                      className="edit-content-link"
+                      to={
+                        "/instructordashboard/my-courses/edit-content/" +
+                        item._id
+                      }
+                    >
+                      <button>
+                        {" "}
+                        Edit / Manage &nbsp;
+                        <FaEdit />
+                      </button>
+                    </Link>
+                    {/* Link To preview course  */}
+                    <Link
+                      className="edit-content-link"
+                      to={
+                        "/instructordashboard/my-courses/preview-content/" +
+                        item._id
+                      }
+                    >
+                      <button>
+                        {" "}
+                        Preview &nbsp;
+                        <MdOutlineAppRegistration />
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>
@@ -83,13 +123,9 @@ export default function MyCourses(props) {
     }
   };
 
-  if(Loading){
-    return(
-        <Loader />
-    );
-  }
-
-  else{
+  if (Loading) {
+    return <Loader />;
+  } else {
     return (
       <>
         <AddCoursecontent />
