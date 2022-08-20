@@ -32,6 +32,9 @@ import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorP
 import InstructorAddTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskQuiz";
 import InstAddNewTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/AddNewTaskQuiz";
 import AddNewQuizQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/AddNewQuizQuestion";
+// Instructor Edit and Preview task
+import InstructorPreviewTaskHome from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/PreviewTask/PreviewMyTaskHome";
+import EditMyArticleTask from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/PreviewTask/EditTaskAfterReview/EditArticle";
 
 // Instructor My Courses
 import AddCourses from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addCourse";
@@ -183,7 +186,10 @@ function App() {
               element={<ReviewInstructorTaskHome />}
             />
 
-            <Route path="/admin-portal-Add-Carrier-190310554227" element={<Addcareercourses />} />
+            <Route
+              path="/admin-portal-Add-Carrier-190310554227"
+              element={<Addcareercourses />}
+            />
 
             {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
@@ -212,9 +218,23 @@ function App() {
             />
 
             <Route
+              path="/task-assign/preview-my-data/:id/:teacher"
+              element={<InstructorPreviewTaskHome />}
+            />
+
+            {/* /// Edit And Preview Leacture Task ///  */}
+
+            <Route
               path="/instructordashboard/my-courses/edit-content/:id"
               element={<InstructorEditContent />}
             />
+
+            <Route
+              path="/task-assign/edit-lecture-article/:id/:teacher/:course"
+              element={<EditMyArticleTask />}
+            />
+
+            {/* //////////////////////  */}
 
             <Route
               path="/task-assign/add-lecture-quiz/add-new-quiz/add-questions/:id/:quiz_id"

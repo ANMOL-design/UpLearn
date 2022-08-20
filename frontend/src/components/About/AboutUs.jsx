@@ -14,44 +14,67 @@ export default function AboutUs() {
         <div className="about-left-side">
           <h1>What is UpLearn?</h1>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
+            At UpLearn, we aim to provide a seamless integration of our online,
+            user friendly platform along with the ideal for “Education for all
+            barring none”. We aim to make education accessible in all its forms
+            to every child in the country, irrespective of their socio-economic
+            status through means of this free platform. By bringing instructors
+            from all over the country to contribute to our archive of resources
+            for the students, we hope to maximize the possibility of each
+            student learning while overcoming paywalls and economic barriers.
+          </p>
+          <br />
+          <p>
+            In the words of Dr. APJ Abdul Kalam,{" "}
+            <q>
+              <b>
+                Education is the most powerful weapon which can be used to
+                change the world
+              </b>
+            </q>
           </p>
         </div>
       </div>
 
       <div className="about-uplearn">
         <div className="about-left-side">
-          <h1 style={{textAlign: 'left'}}>The Future of Education</h1>
+          <h1 style={{ textAlign: "left" }}>The Future of Education</h1>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
+            We, at UpLearn firmly believe that it is imperative for every child
+            to get an equal access to education at all levels, especially
+            unbound by the rigidity of traditional classrooms that often don't
+            take into account the socio-economic restrictions on the
+            economically weaker sections, thus preventing the students from
+            appropriately prioritizing education. The pandemic of 2020 has
+            highlighted some previously under-explored methods of teaching,
+            vis-a-vis online mode of education. With internet facilities now
+            better available in even remote areas, it has significantly improved
+            the accessibility of education to the masses.
           </p>
-          <h1 style={{textAlign: 'left', fontSize: '1.75rem', margin: '0.75rem 0px'}}>Mission &amp; Vision:</h1>
+          <h1
+            style={{
+              textAlign: "left",
+              fontSize: "1.75rem",
+              margin: "0.75rem 0px",
+            }}
+          >
+            Mission &amp; Vision:
+          </h1>
           <ul>
-            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores qui velit.</li>
-            <li>asperiores eum assumenda ratione quis. Nesciunt perferendis atque quidem et.</li>
-            <li>asperiores eum assumenda ratione quis. Nesciunt perferendis atque quidem et.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores qui velit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores qui velit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores qui velit.</li>
-            <li>asperiores eum assumenda ratione quis. Nesciunt perferendis atque quidem et.</li>
+            <li>
+              <b>Mission:</b> UpLearn strives to connect students to instructors
+              from all over the country, helping them access online resources
+              specifically curated in consideration with trends in Indian
+              Academic curriculum.
+            </li>
+            <li>
+              <b>Vision:</b> To create equal opportunities for every student to
+              access quality education, free of cost outside the restrictions of
+              traditional classrooms by engaging in self paced academic and
+              extracurricular courses.
+            </li>
           </ul>
-        </div>    
+        </div>
       </div>
 
       {/* Purpose and Scope About  */}
@@ -59,29 +82,31 @@ export default function AboutUs() {
         <div className="lower-left-td">
           <h1>Purpose</h1>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
+            We aim to bridge this gap between education and financial
+            disparities, especially among the pandemic concerns by bringing
+            quality education without the constraints of real-time classes.
+            Together, with the help of learned instructors from all across the
+            country, we aim to curate a cost-free, powerful resource base
+            equipped with ebooks, video lectures and quizzes, among many more,
+            synchronized with the latest trends in education. Additionally, we
+            also hope to emphasize the importance of all around holistic
+            development of students by inculcating various courses on our
+            platform.
           </p>
         </div>
         <div className="lower-right-td">
           <h1>Scope</h1>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
+            UpLearn is a one of its kind platform, that focuses on significantly
+            helping students from economically weaker sections of society in
+            reaching their true potential, aided with self-paced courses that
+            help a child learn at their own pace, without the socio-economic
+            pressure of real time classrooms, especially post-pandemic when
+            classroom teaching has been thrown into a disarray. At UpLearn, we
+            aim to be a stepping stone in each student's academic journey as
+            they grow and learn collaboratively.
+            <br />
+            <b>Padhega Bharat tabhi toh badhega Bharat!</b>
           </p>
         </div>
       </div>
