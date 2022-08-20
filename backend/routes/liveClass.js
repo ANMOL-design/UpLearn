@@ -3,7 +3,8 @@ const router = express.Router();
 const dotenv = require("dotenv");
 dotenv.config();
 const LiveClass = require("../models/LiveClassSchema")
-const Instructors = require("../models/instructorregisterSchema")
+const Instructors = require("../models/instructorregisterSchema");
+const User = require("../models/userSchema");
 
 router.get("/myClassrooms/:Id", (req, res) => {
     const id = req.params.Id;
@@ -21,7 +22,7 @@ router.get("/myClassrooms/:Id", (req, res) => {
 router.get("/myClass/:Id", (req, res) => {
     const id = req.params.Id;
     LiveClass.find({_id : id })
-      .then((product) => {
+    .then((product) => {
         if (product) {
           return res.send(product);
         }
@@ -41,15 +42,55 @@ router.get("/myClass/:Id", (req, res) => {
         $push: {
             classUsers: UserId
         },
+      }
+    ).then(()=>{
+      User.findByIdAndUpdate(
+        UserId,
+      {
+        $push: {
+            MyClassrooms: classId
+        },
       },
       function (err, result) {
         if (err) {
           console.log(err);
         } else {
-          res.status(200).json({ msg: "course added Successful" });
+          res.status(200).json({ msg: "User added Successful" });
         }
       }
-    );
+    )
+    }).catch((error)=>{
+      console.log(error);
+    })
+  });
+  router.post("/removefromclass", (req, res) => {
+    const { UserId ,ClassId} = req.body;
+    LiveClass.findByIdAndUpdate(
+        ClassId,
+      {
+        $pull: {
+            classUsers: UserId
+        },
+      }
+    ).then(()=>{
+      User.findByIdAndUpdate(
+        UserId,
+      {
+        $pull: {
+            MyClassrooms: ClassId
+        },
+      },
+      function (err, result) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.status(200).json({ msg: "User Removed Successful" });
+        }
+      }
+    )
+    }).catch((error)=>{
+      console.log(error);
+    })
   });
 router.post("/Create-room", async (req, res) => {
         const { classOwner,Subject,Class,ClassName,ClassDescription,meetingId,classDatePost} = req.body;

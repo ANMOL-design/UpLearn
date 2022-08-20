@@ -11,6 +11,7 @@ export default function ManageClass() {
   let navigate = useNavigate();
   const [Loading, setLoading] = useState(true);
   useEffect(() => {
+    window.scroll(0,0);
     const fetchClassroom = async () => {
       await axios
         .get("/myClass/" + id)
@@ -32,8 +33,8 @@ export default function ManageClass() {
         });
       }
     fetchdata();
-  }, [id]);
-
+  }, [id,Loading]);
+console.log(MyClassroom);
   // States to handle component changes in page
   const [ParticipantShow, setParticipantShow] = useState(true);
   const [NoticeShow, setNoticeShow] = useState(false);
@@ -147,6 +148,8 @@ export default function ManageClass() {
         </>
       );
     } else {
+        let x=0;
+        let MyStudent;
       return (
         <>
           <div className="add-participants-container">
@@ -157,7 +160,7 @@ export default function ManageClass() {
                     list="library-search"
                     name="librarySearch"
                     value={newParticipant}
-                    placeholder="What are you looking for ?"
+                    placeholder="Enter User Email to Search ..." 
                     onChange={(e)=>setParticipant(e.target.value)}
                   />
                   {
@@ -176,12 +179,91 @@ export default function ManageClass() {
                 </div>
                 <br />
                 <p className="star">{err}</p>
-           <div className="my-participant-container">
-
+           
+        
+        {/* Table Show the Details of Teacher  */}
+        <div className="instructor-table" style={{marginTop:"40px"}}>
+        <div className="my-participant-container" style={{margin:"40px 0px"}}>
+           <div className="librarySearch">
+            {/* input box to search User  */}
+            <input type="text" 
+            placeholder="What are you looking for ?"
+             
+              id="finder" name="emailfind"
+            //   value={}
+            //   onChange={(e) => {setinput(e.target.value)}}
+            />
+            <button type="submit" >
+              <i><MdSearch /></i> Search
+            </button>
+          </div>
+        </div>
+         <p><b>Total Students: {MyClassroom[0].classUsers.length}</b></p>
+          <table>
+            <thead>
+              <tr>
+                <th>Sr. No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+                  {MyClassroom[0].classUsers.map((items)=>{
+                    let MyStudent = StudentInfo.find((i)=>i._id ===items)
+                    if(MyStudent){
+                    return (
+                        <>
+                      <tr key={MyStudent._id}>
+                        <td>
+                          {++x}
+                        </td>
+                        <td style={{textAlign: 'left', paddingLeft: '1rem'}}>
+                          {MyStudent.name}
+                        </td>
+                        <td style={{textTransform: 'none'}}>
+                          {MyStudent.email}
+                        </td>
+                        <td>
+                          <button className='rmvbtn' onClick={ async ()=>{
+                              const UserId = MyStudent._id;
+                              const ClassId = id;
+                              console.log(UserId)
+                              console.log(ClassId)
+                              const res =  await fetch("/removefromclass" ,{
+                                method : "POST",
+                                headers : { 
+                                    "content-Type" : "application/json"
+                                },
+                                body : JSON.stringify({
+                                  UserId,ClassId
+                                })
+                              });
+                              if (res.status === 200) {
+                                setLoading(true);
+                                setTimeout(() => {
+                                  setLoading(false);
+                              
+                                },5000);
+                              }
+                              else{
+                                console.log(res);
+                              }
+                            } 
+                          }
+                          >
+                            Delete
+                          </button>
+                        </td>
+                  </tr>
+                  </>
+                )}})}
+            </tbody>
+          </table>
+        </div>
            </div>
               </div>
             </div>
-          </div>
         </>
       );
     }
@@ -210,7 +292,7 @@ export default function ManageClass() {
           </div>
           <div
             className="my-class-main-container"
-            style={{ marginLeft: "6rem", paddingTop: "20px" }}
+            style={{ marginLeft: "6rem",marginRight:"2rem", paddingTop: "20px" }}
           >
             <div className="my-class-header">
               <div className="myclass-details">
@@ -266,7 +348,7 @@ export default function ManageClass() {
                     onClick={handleNoticeShow}
                     className={NoticeShow ? "bt-active" : ""}
                   >
-                    Notice
+                    Activities
                   </button>
                   <button
                     onClick={handleNotesShow}
@@ -279,7 +361,7 @@ export default function ManageClass() {
                     onClick={handleAtandanceShow}
                     className={AtandanceShow ? "bt-active" : ""}
                   >
-                    Atandance
+                    Attandance
                   </button>
                 </div>
               </div>
