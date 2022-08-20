@@ -86,6 +86,7 @@ console.log(MyClassroom);
              else{
                 const UserId = isSameStudent._id;
                 const classId = id;
+                const InstructorId = MyClassroom[0].classOwner
                 const res = await fetch("/Add-Participant", {
                     method: "POST",
                     headers: {
@@ -93,13 +94,18 @@ console.log(MyClassroom);
                     },
                     body: JSON.stringify({
                      UserId,
-                     classId
+                     classId,
+                     InstructorId
                     }),
                   });
               
                   if (res.status === 200) {
                     seterr("Participant Added Succesfully")
-                    navigate("/InstructorDashboard/my-classroom");
+                    setLoading(true);
+                    setTimeout(() => {
+                      setLoading(false);
+                  
+                    },5000);
                   } else {
                     
                     seterr("Something Went Wrong, Try Later\nError Occured");
@@ -361,7 +367,7 @@ console.log(MyClassroom);
                     onClick={handleAtandanceShow}
                     className={AtandanceShow ? "bt-active" : ""}
                   >
-                    Attandance
+                    Attendance
                   </button>
                 </div>
               </div>

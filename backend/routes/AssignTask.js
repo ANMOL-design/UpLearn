@@ -5,6 +5,8 @@ router.use(express.json());
 dotenv.config();
 const Lectures = require("../models/LectureSchema");
 const LectureQuiz = require("../models/LectureQuizSchema");
+const sendVerifyTaskmsg = require("../utils/emails/VerifyInstructorTask");
+const sendRejectTaskmsg = require("../utils/emails/RejectInstructorTask");
 
 router.post("/AssignTaskToInstructor", (req, res) => {
   const {
@@ -45,7 +47,7 @@ router.post("/AssignTaskToInstructor", (req, res) => {
 router.get("/assigntaskdetails/:id", (req, res) => {
   const id = req.params.id;
   // console.log(id)
-  if(!id){
+  if (!id) {
     res.sendStatus(422);
   }
   Lectures.find({ TeacherId: id, iSVarified: false })
@@ -233,7 +235,6 @@ router.get("/lecturedatapop/:id", (req, res) => {
 ///////////////////////////////////////////////////////////////
 
 router.get("/instructorTaskUnderReview", (req, res) => {
-
   Lectures.find({ isUnderReview: true })
     .populate("TeacherId")
     .then((product) => {
@@ -245,6 +246,69 @@ router.get("/instructorTaskUnderReview", (req, res) => {
       console.log(err);
       res.sendStatus(404);
     });
+});
+
+router.get("/instructorTaskDataFetch/:id", (req, res) => {
+  const id = req.params.id;
+  // console.log(id)
+  Lectures.find({ _id: id })
+    .populate("lectureQuiz")
+    .populate("TeacherId")
+    .then((product) => {
+      if (product) {
+        // console.log(product)
+        return res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(404);
+    });
+});
+
+router.post("/verifyinstructorttask", (req, res) => {
+  const { id, name, email } = req.body;
+  // console.log(id);
+
+  if (!id) {
+    return res.sendStatus(201);
+  }
+
+  Lectures.findByIdAndUpdate(
+    id,
+    { isUnderReview: false, iSVarified: true },
+    function (err, docs) {
+      if (err) {
+        console.log("Error occured" + err);
+      } else {
+        sendVerifyTaskmsg(email, name);
+        res.status(200).json({ msg: "Content Verified" });
+        // console.log(docs);
+      }
+    }
+  );
+});
+
+router.post("/rejectedinstructorttask", (req, res) => {
+  const { id, name, email, duedate, message } = req.body;
+  // console.log(id);
+
+  if (!id) {
+    return res.sendStatus(201);
+  }
+
+  Lectures.findByIdAndUpdate(
+    id,
+    { isUnderReview: false, DueDate: duedate },
+    function (err, docs) {
+      if (err) {
+        console.log("Error occured" + err);
+      } else {
+        sendRejectTaskmsg(email, name, duedate, message);
+        res.status(200).json({ msg: "Content Verified" });
+      }
+    }
+  );
 });
 
 module.exports = router;

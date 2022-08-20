@@ -5,6 +5,7 @@ dotenv.config();
 const LiveClass = require("../models/LiveClassSchema")
 const Instructors = require("../models/instructorregisterSchema");
 const User = require("../models/userSchema");
+const AddtoClassEmail = require("../utils/emails/AddToClassEmail");
 
 router.get("/myClassrooms/:Id", (req, res) => {
     const id = req.params.Id;
@@ -33,9 +34,11 @@ router.get("/myClass/:Id", (req, res) => {
       });
   });
 
-  router.post("/Add-Participant", (req, res) => {
-    const { UserId,classId} = req.body;
-  
+  router.post("/Add-Participant",async (req, res) => {
+    const { UserId,classId,InstructorId} = req.body;
+   const getUser = await User.findById(UserId)
+   const getClass = await LiveClass.findById(classId)
+   const getInstructor= await Instructors.findById(InstructorId)
     LiveClass.findByIdAndUpdate(
         classId,
       {
@@ -55,6 +58,7 @@ router.get("/myClass/:Id", (req, res) => {
         if (err) {
           console.log(err);
         } else {
+          AddtoClassEmail(getUser.name,getUser.email,getClass.ClassName,getClass.ClassDescription,getInstructor.Teachername,getClass.Subject,getClass.Class)
           res.status(200).json({ msg: "User added Successful" });
         }
       }

@@ -10,9 +10,9 @@ export default function ArticleContent(props) {
   const [hidden, setHidden] = useState({});
 
   // Checking is Data is availabe else show no Article available
-  if (CourseArticle) {
-    if (CourseArticle.courseArticles.length > 0) {
-      courseArticlecontent = CourseArticle.courseArticles;
+  if (CourseArticle.ChapterContent) {
+    if (CourseArticle.ChapterContent.length > 0) {
+      courseArticlecontent = CourseArticle.ChapterContent;
       let i = 1;
 
       const toggleHide = (index) => {
@@ -27,8 +27,8 @@ export default function ArticleContent(props) {
             {courseArticlecontent.map((item, index) => (
               <div key={index}>
                 <li onClick={() => toggleHide(index)}>
-                  {"1." + i++} &nbsp; {item.ArticleTitle}
-                  <span className="left-icon-article">
+                  {"1." + i++} &nbsp; {item.LectureTitle}
+                  <span  className="left-icon-article">
                     <IoDocumentOutline />
                   </span>
                 </li>
@@ -36,7 +36,7 @@ export default function ArticleContent(props) {
                 {hidden[index] && (
                   <div
                     className="articleDisplaycontainer"
-                    dangerouslySetInnerHTML={{ __html: item.ArticleContent }}
+                    dangerouslySetInnerHTML={{ __html: item.LectureContent }}
                   ></div>
                 )}
               </div>
