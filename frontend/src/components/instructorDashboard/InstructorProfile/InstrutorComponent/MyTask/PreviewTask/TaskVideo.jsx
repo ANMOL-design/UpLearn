@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import PlayVideo from "./TaskSubVideo";
 import Loader from "../../../../../Loader";
 
 export default function VideosContent(props) {
   let VideoContent = props.videos;
+  let navigate = useNavigate();
 
   const [curentVideo, setCurrentVideo] = useState(VideoContent.ChapterVideo[0]);
 
@@ -19,11 +21,29 @@ export default function VideosContent(props) {
     toggleActive(index);
   };
 
-  const DeleteTaskVideo = () => {
-    if (window.confirm("Press a button!") === true) {
-      console.log("Delete Video");
+  const DeleteTaskVideo = async (id) => {
+    if (window.confirm("Are you Sure you want to delete the Video!") === true) {
+      const courseid = VideoContent._id;
+
+      const res = await fetch("/delteAssignTaskVideo", {
+        method: "POST",
+        headers: {
+          "content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          courseid,
+        }),
+      });
+
+      if (res.status === 200) {
+        window.alert('Video Removed Successfully');
+        navigate("/instructordashboard/task-assign");
+      } else {
+        console.log(res);
+      }
     } else {
-      console.log("Cancel Video Delete");
+      console.log("Cancel");
     }
   };
 
@@ -51,7 +71,11 @@ export default function VideosContent(props) {
                         : "video-content-display-list"
                     }
                   >
-                    <span onClick={DeleteTaskVideo}>
+                    <span
+                      onClick={(e) => {
+                        DeleteTaskVideo(item._id);
+                      }}
+                    >
                       <MdDelete />
                     </span>
                     {item.LectureVideoTitle}

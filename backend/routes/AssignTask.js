@@ -311,4 +311,62 @@ router.post("/rejectedinstructorttask", (req, res) => {
   );
 });
 
+/// Edit Lecture Task
+router.post("/delteAssignTaskVideo", (req, res) => {
+  const { id, courseid } = req.body;
+  Lectures.findByIdAndUpdate(
+    courseid,
+    {
+      $pull: {
+        ChapterVideo: { _id: id },
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).json({ msg: "Video Removed Successful" });
+      }
+    }
+  );
+});
+
+router.post("/Editlecturedetails", (req, res) => {
+  const { id, course, Title, LectureContent } = req.body;
+  Lectures.updateOne(
+    { _id: course, "ChapterContent._id": id },
+    {
+      $set: {
+        "ChapterContent.$.LectureTitle": Title,
+        "ChapterContent.$.LectureContent": LectureContent,
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).json({ msg: "Lecture Update Successful" });
+      }
+    }
+  );
+});
+
+router.post("/delteAssignTaskQuiz", (req, res) => {
+  const { id, courseid } = req.body;
+
+  Lectures.findByIdAndUpdate(courseid, {
+    $pull: {
+      lectureQuiz: id,
+    },
+  }).then(() => {
+    LectureQuiz.findByIdAndDelete(id, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).json({ msg: "Quiz Removed Successful" });
+      }
+    });
+  });
+});
+
 module.exports = router;

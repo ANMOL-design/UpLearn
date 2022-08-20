@@ -47,7 +47,7 @@ function EditMyArticleTask() {
         });
     };
     fetchdata();
-  }, [id, navigate]);
+  }, [id, navigate, course]);
 
   // Find the Article to be edit
   useEffect(() => {
@@ -61,7 +61,7 @@ function EditMyArticleTask() {
         setLectureTitle(Lectcontent.LectureTitle)
       }
     }
-  }, [assignTask]);
+  }, [assignTask, id]);
 
   const handleEditorChange = (content) => {
     setcontent(content);
@@ -75,24 +75,24 @@ function EditMyArticleTask() {
     } else if (content === "") {
       window.alert("Please Enter content to added Chapter.");
     } else {
-      const LectureNo = assignTask.ChapterNo;
       const Title = LectureTitle;
       const LectureContent = content;
 
-      const res = await fetch("/Instructoraddlecturedetails/" + id, {
+      const res = await fetch("/Editlecturedetails", {
         method: "POST",
         headers: {
           "content-Type": "application/json",
         },
         body: JSON.stringify({
-          LectureNo,
+          id, 
+          course,
           Title,
           LectureContent,
         }),
       });
 
       if (res.status === 200) {
-        window.alert("Data Submit Successfully");
+        window.alert("Data Updated Successfully");
         navigate("/instructordashboard/task-assign");
       } else {
         console.log(res);
@@ -148,6 +148,7 @@ function EditMyArticleTask() {
                 onChange={handleEditorChange}
                 required
                 showToolbar={true}
+                defaultValue={content}
                 placeholder="Please type lecture content here..."
                 setOptions={{
                   buttonList: [
