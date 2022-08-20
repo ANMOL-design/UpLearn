@@ -39,6 +39,7 @@
   font-family: $font_El;
   @include displayflex;
   flex-wrap: wrap;
+  align-items: stretch;
   border-top: 1px solid $black;
   border-bottom: 1px solid $black;
   margin-bottom: 0.2rem;

@@ -27,18 +27,20 @@ const liveClassSchema = new mongoose.Schema({
         type : String
     },
     Notes : [{
-     NotesName :{
-        type : String ,
-     },
-     NotesData :{
-        type : String ,
-     },
+        notesName: {
+            type: String,
+            required: true,
+        },
+        NotesPdf: {
+            type: String,
+            required: true,
+        },
     }],
     Notice : [{
      NoticeTitle :{
         type : String ,
      },
-     NotesDescription :{
+     NoticeDescription :{
         type : String ,
      },
     }],
