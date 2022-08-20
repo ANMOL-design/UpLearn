@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Loader from "../../Loader";
 import axios from "axios";
+
 import InstructorSidebar from "./InstructorSidebar";
 import InstructorDashHome from "./InstrutorComponent/InstructorDashHome";
 import InstructorAssignTask from "./InstrutorComponent/MyTask/InstructorTasks";
@@ -10,7 +12,6 @@ import MyClassrooms from "./InstrutorComponent/MyClasses/MyClassrooms";
 import AddNewClass from "./InstrutorComponent/MyClasses/AddNewClass";
 import ManageClass from "./InstrutorComponent/MyClasses/ManageClass";
 
-
 var CryptoJS = require("crypto-js");
 
 function InstructorDashboard() {
@@ -18,6 +19,7 @@ function InstructorDashboard() {
   let navigate = useNavigate();
 
   const [instructor, setinstructor] = useState({});
+  const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -36,6 +38,7 @@ function InstructorDashboard() {
           .get("/aboutInstructor")
           .then((response) => {
             setinstructor(response.data);
+            setLoading(false);
           })
           .catch((error) => {
             console.log(error);
@@ -50,36 +53,42 @@ function InstructorDashboard() {
     }
   }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate]);
 
-  return (
-    <div className="instructor-dashboard">
-      {/* SideBar Present at All Places  */}
-      <InstructorSidebar />
-      <Routes>
-        <Route path="/" element={<InstructorDashHome details={instructor}/>} />
-        <Route
-          path="/task-assign"
-          element={<InstructorAssignTask details={instructor} />}
-        />
-        <Route
-          path="/my-courses"
-          element={<MyCourses details={instructor} />}
-        />
-        <Route
-          path="/my-classroom"
-          element={<MyClassrooms InstructorInfo={instructor} />}
-        />
-        <Route
-          path="/my-classroom/add-new-class"
-          element={<AddNewClass details={instructor}/>}
-        />
-        <Route
-          path="/my-classroom/:id"
-          element={<ManageClass InstructorInfo={instructor}/>}
-        />
-   
-      </Routes>
-    </div>
-  );
+  if (Loading) {
+    return <Loader />;
+  } else {
+    return (
+      <div className="instructor-dashboard">
+        {/* SideBar Present at All Places  */}
+        <InstructorSidebar />
+        <Routes>
+          <Route
+            path="/"
+            element={<InstructorDashHome details={instructor} />}
+          />
+          <Route
+            path="/task-assign"
+            element={<InstructorAssignTask details={instructor} />}
+          />
+          <Route
+            path="/my-courses"
+            element={<MyCourses details={instructor} />}
+          />
+          <Route
+            path="/my-classroom"
+            element={<MyClassrooms InstructorInfo={instructor} />}
+          />
+          <Route
+            path="/my-classroom/add-new-class"
+            element={<AddNewClass details={instructor} />}
+          />
+          <Route
+            path="/my-classroom/:id"
+            element={<ManageClass InstructorInfo={instructor} />}
+          />
+        </Routes>
+      </div>
+    );
+  }
 }
 
 export default InstructorDashboard;
