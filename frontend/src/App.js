@@ -43,6 +43,8 @@ import AddQuiz from "./components/instructorDashboard/InstructorProfile/Instruto
 import AddQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuestion";
 import InstPreviewMyCourseHome from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/PreviewMyCourse/PreviewMyCourseHome";
 import EditMyCourseArticle from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/PreviewMyCourse/EditArticle";
+import ChangeInstructorPassword from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/ChangeInstPassword";
+
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
 import ChangePassword from "./components/Dashboard/DashboardComponents/ChangePassword";
@@ -241,6 +243,11 @@ function App() {
             <Route
               path="/task-assign/edit-lecture-article/:id/:teacher/:course"
               element={<EditMyArticleTask />}
+            />
+
+            <Route
+              path="/instructor-change-password"
+              element={<ChangeInstructorPassword />}
             />
 
             {/* //////////////////////  */}

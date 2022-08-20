@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { BsStickiesFill } from "react-icons/bs";
 
 const InstructorDashHome = (props) => {
   const teacher = props.details;
-  console.log(teacher);
+  // console.log(teacher);
   return (
     <div className="instructor-myprofile-container">
       <div className="instructor-myprofile-heading">
@@ -14,10 +15,12 @@ const InstructorDashHome = (props) => {
 
         {/* change Password  */}
         <div>
-          <button>Change Password</button>
+          <Link to={"/instructor-change-password"}>
+            <button>Change Password</button>
+          </Link>
         </div>
       </div>
-      <hr style={{marginBottom: '0.8rem 0px'}}/>
+      <hr style={{ marginBottom: "0.8rem 0px" }} />
       {/* Showing the Profile Image and info  */}
       <div className="instructor-myprofile-container-basic">
         <div className="instructor-myprofile-container-image">
@@ -68,7 +71,7 @@ const InstructorDashHome = (props) => {
       {/* Address Details Of Instructor  */}
       <div className="instructor-myprofile-container-other">
         <h1>Address</h1>
-        <hr style={{marginBottom: '0.5rem'}} />
+        <hr style={{ marginBottom: "0.5rem" }} />
         <div className="instructor-myprofile-container-inner">
           <p>
             <strong>State : </strong>
@@ -111,7 +114,7 @@ const InstructorDashHome = (props) => {
           <p>
             <BsStickiesFill /> &nbsp;Course in progress
           </p>
-          <h1>{teacher.CousesList.length}</h1>
+          <h1>{teacher.CousesList ? teacher.CousesList.length : 0}</h1>
         </div>
 
         {/* enrolled  */}
@@ -127,7 +130,7 @@ const InstructorDashHome = (props) => {
           <p>
             <BsStickiesFill /> &nbsp;Classrooms in progress
           </p>
-          <h1>{teacher.MyClassrooms.length}</h1>
+          <h1>{teacher.MyClassrooms ? teacher.MyClassrooms.length : 0}</h1>
         </div>
 
         {/* enrolled  */}
@@ -135,7 +138,7 @@ const InstructorDashHome = (props) => {
           <p>
             <BsStickiesFill /> &nbsp;Enrolled Courses
           </p>
-          <h1>{teacher.CousesEnrolled.length}</h1>
+          <h1>{teacher.CousesEnrolled ? teacher.CousesEnrolled.length : 0}</h1>
         </div>
       </div>
     </div>
