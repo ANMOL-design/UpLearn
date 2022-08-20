@@ -284,7 +284,7 @@ export default function ManageClass() {
               {NoticeShow}
 
               {/* Showing Notes if Notes is Active  */}
-              {NotesShow}
+              {/* {NotesShow && <ClassNotes />} */}
 
               {/* Showing Atandance if Atandance is Active  */}
               {AtandanceShow}
