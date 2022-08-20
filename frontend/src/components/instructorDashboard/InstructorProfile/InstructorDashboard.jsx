@@ -55,7 +55,7 @@ function InstructorDashboard() {
       {/* SideBar Present at All Places  */}
       <InstructorSidebar />
       <Routes>
-        <Route path="/" element={<InstructorDashHome />} />
+        <Route path="/" element={<InstructorDashHome details={instructor}/>} />
         <Route
           path="/task-assign"
           element={<InstructorAssignTask details={instructor} />}

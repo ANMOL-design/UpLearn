@@ -197,15 +197,11 @@ export default function ManageClass() {
     if (MyClassroom) {
       return (
         <>
-          <div className="add-course-header">
-            <Link to="/instructordashboard/my-classroom">
-              <BiArrowBack className="backBtn" style={{ color: "white" }} />
-            </Link>
-          </div>
           <div
             className="my-class-main-container"
-            style={{ marginLeft: "6rem", paddingTop: "20px" }}
+            style={{ marginLeft: "4.1rem", paddingTop: "1rem" }}
           >
+            <h1>My Classroom</h1>
             <div className="my-class-header">
               <div className="myclass-details">
                 <p>
