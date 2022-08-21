@@ -6,8 +6,8 @@ const LiveClass = require("../models/LiveClassSchema")
 const Instructors = require("../models/instructorregisterSchema");
 const User = require("../models/userSchema");
 const AddtoClassEmail = require("../utils/emails/AddToClassEmail");
-const LiveClass = require("../models/LiveClassSchema");
-const Instructors = require("../models/instructorregisterSchema");
+// const LiveClass = require("../models/LiveClassSchema");
+// const Instructors = require("../models/instructorregisterSchema");
 
 router.get("/myClassrooms/:Id", (req, res) => {
   const id = req.params.Id;
