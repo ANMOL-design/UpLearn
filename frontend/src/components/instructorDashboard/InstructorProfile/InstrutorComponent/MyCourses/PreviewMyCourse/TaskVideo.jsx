@@ -8,7 +8,7 @@ export default function VideosContent(props) {
   let VideoContent = props.videos;
   let navigate = useNavigate();
 
-  const [curentVideo, setCurrentVideo] = useState(VideoContent.ChapterVideo[0]);
+  const [curentVideo, setCurrentVideo] = useState(VideoContent.courseVideoContent[0]);
 
   const [active, setactive] = useState({});
 
@@ -25,7 +25,7 @@ export default function VideosContent(props) {
     if (window.confirm("Are you Sure you want to delete the Video!") === true) {
       const courseid = VideoContent._id;
 
-      const res = await fetch("/delteAssignTaskVideo", {
+      const res = await fetch("/deltemycourseVideos", {
         method: "POST",
         headers: {
           "content-Type": "application/json",
@@ -38,7 +38,7 @@ export default function VideosContent(props) {
 
       if (res.status === 200) {
         window.alert('Video Removed Successfully');
-        navigate("/instructordashboard/task-assign");
+        navigate("/instructordashboard/my-courses");
       } else {
         console.log(res);
       }
@@ -47,8 +47,8 @@ export default function VideosContent(props) {
     }
   };
 
-  if (VideoContent.ChapterVideo) {
-    if (VideoContent.ChapterVideo.length > 0) {
+  if (VideoContent.courseVideoContent) {
+    if (VideoContent.courseVideoContent.length > 0) {
       return (
         <>
           <div className="video-content-container">
@@ -56,12 +56,12 @@ export default function VideosContent(props) {
               {/* The Heading To Toggle the Video Content  */}
               <li>
                 <h3 className="heading-toggler-video">
-                  {VideoContent.ChapterName}
+                  {VideoContent.title}
                 </h3>
               </li>
 
               {/* Show the Name of Videos  */}
-              {VideoContent.ChapterVideo.map((item, index) => (
+              {VideoContent.courseVideoContent.map((item, index) => (
                 <div className="video-list-container" key={index}>
                   <li
                     onClick={() => playcurrentvideo(item, index)}
@@ -78,7 +78,7 @@ export default function VideosContent(props) {
                     >
                       <MdDelete />
                     </span>
-                    {item.LectureVideoTitle}
+                    {item.VideoContentTitle}
                   </li>
                 </div>
               ))}

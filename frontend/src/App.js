@@ -41,6 +41,9 @@ import AddCourses from "./components/instructorDashboard/InstructorProfile/Instr
 import InstructorEditContent from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/InstructorEditContent";
 import AddQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuiz";
 import AddQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuestion";
+import InstPreviewMyCourseHome from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/PreviewMyCourse/PreviewMyCourseHome";
+import EditMyCourseArticle from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/PreviewMyCourse/EditArticle";
+import ChangeInstructorPassword from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/ChangeInstPassword";
 
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
@@ -87,6 +90,11 @@ import After12th from "./components/Career Counselling/After12th";
 import After10th from "./components/Career Counselling/After10th";
 import Exams from "./components/Career Counselling/Exams";
 import AboutCourse from "./components/Career Counselling/AboutCourse";
+//Notes
+
+import AddNotes from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/AddNotes";
+import Classnotes from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/Classnotes";
+import AddNotice from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/AddNotice";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -221,8 +229,11 @@ function App() {
               path="/task-assign/preview-my-data/:id/:teacher"
               element={<InstructorPreviewTaskHome />}
             />
+            <Route path="/addnotes" element={<AddNotes />} />
+            <Route path="/classnotes" element={<Classnotes />} />
+            <Route path="/addnotice" element={<AddNotice />} />
 
-            {/* /// Edit And Preview Leacture Task ///  */}
+            {/* /// Edit And Preview Lecture Task ///  */}
 
             <Route
               path="/instructordashboard/my-courses/edit-content/:id"
@@ -232,6 +243,11 @@ function App() {
             <Route
               path="/task-assign/edit-lecture-article/:id/:teacher/:course"
               element={<EditMyArticleTask />}
+            />
+
+            <Route
+              path="/instructor-change-password"
+              element={<ChangeInstructorPassword />}
             />
 
             {/* //////////////////////  */}
@@ -256,6 +272,16 @@ function App() {
             <Route
               path="/instructordashboard/my-courses/edit-content/add-quiz/add-questions/:id/:quiz_id"
               element={<AddQuestion />}
+            />
+
+            <Route
+              path="/instructordashboard/my-courses/preview-content/:id"
+              element={<InstPreviewMyCourseHome />}
+            />
+
+            <Route
+              path="/my-course/edit-course-article/:id/:course"
+              element={<EditMyCourseArticle />}
             />
 
             {/* ////////////////////////////////////////////////  */}

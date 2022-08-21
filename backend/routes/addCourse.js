@@ -269,4 +269,62 @@ router.post("/CourseRating", (req, res) => {
   );
 });
 
+/// Edit Course Task
+router.post("/deltemycourseVideos", (req, res) => {
+  const { id, courseid } = req.body;
+  Courses.findByIdAndUpdate(
+    courseid,
+    {
+      $pull: {
+        courseVideoContent: { _id: id },
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).json({ msg: "Video Removed Successful" });
+      }
+    }
+  );
+});
+
+router.post("/EditMyCourseArticledetails", (req, res) => {
+  const { id, course, Title, LectureContent } = req.body;
+  Courses.updateOne(
+    { _id: course, "courseArticles._id": id },
+    {
+      $set: {
+        "courseArticles.$.ArticleTitle": Title,
+        "courseArticles.$.ArticleContent": LectureContent,
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).json({ msg: "Course Update Successful" });
+      }
+    }
+  );
+});
+
+router.post("/delteMyCourseQuiz", (req, res) => {
+  const { id, courseid } = req.body;
+
+  Courses.findByIdAndUpdate(courseid, {
+    $pull: {
+      courseQuiz: id,
+    },
+  }).then(() => {
+    CoursesQuizes.findByIdAndDelete(id, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).json({ msg: "Quiz Removed Successful" });
+      }
+    });
+  });
+});
+
 module.exports = router;

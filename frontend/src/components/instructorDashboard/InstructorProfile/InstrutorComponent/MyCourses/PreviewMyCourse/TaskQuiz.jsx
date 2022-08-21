@@ -10,11 +10,11 @@ export default function QuizesContent(props) {
 
   const [hidden, setHidden] = useState({});
 
-  const [curentQuiz, setcurentQuiz] = useState(QuizContent.lectureQuiz[0]);
+  const [curentQuiz, setcurentQuiz] = useState(QuizContent.courseQuiz[0]);
 
   // Checking is Data is availabe else show no Article available
-  if (QuizContent.lectureQuiz) {
-    if (QuizContent.lectureQuiz.length > 0) {
+  if (QuizContent.courseQuiz) {
+    if (QuizContent.courseQuiz.length > 0) {
       // The Main Area Where Quiz were Written
       var i = 1;
 
@@ -33,7 +33,7 @@ export default function QuizesContent(props) {
         ) {
           const courseid = QuizContent._id;
 
-          const res = await fetch("/delteAssignTaskQuiz", {
+          const res = await fetch("/delteMyCourseQuiz", {
             method: "POST",
             headers: {
               "content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function QuizesContent(props) {
 
           if (res.status === 200) {
             window.alert("Quiz Removed Successfully");
-            navigate("/instructordashboard/task-assign");
+            navigate("/instructordashboard/my-courses");
           } else {
             console.log(res);
           }
@@ -58,7 +58,7 @@ export default function QuizesContent(props) {
       return (
         <div className="Quiz-content-container">
           <ul>
-            {QuizContent.lectureQuiz.map((item, index) => (
+            {QuizContent.courseQuiz.map((item, index) => (
               <div key={index}>
                 <li className="my-quiz-title">
                   {i++ + "."} &nbsp; {item.QuizeName}

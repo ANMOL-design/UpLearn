@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import "suneditor/dist/css/suneditor.min.css";
 import SunEditor from "suneditor-react";
-import Loader from "../../../../../../Loader";
+import Loader from "../../../../../Loader";
 import { BiArrowBack } from "react-icons/bi";
 import axios from "axios";
 
-function EditMyArticleTask() {
-  const { id, teacher, course } = useParams();
-//   console.log(id, teacher, course);
+function EditMyCourseArticle() {
+  const { id, course } = useParams();
+  //   console.log(id, teacher, course);
   let navigate = useNavigate();
 
   const [content, setcontent] = useState("");
@@ -37,7 +37,7 @@ function EditMyArticleTask() {
 
     const fetchdata = async () => {
       await axios
-        .get("/singleassigntaskinfo/" + course)
+        .get("/Instructorcourse/" + course)
         .then((response) => {
           setassignTask(response.data[0]);
           setLoading(false);
@@ -52,13 +52,13 @@ function EditMyArticleTask() {
   // Find the Article to be edit
   useEffect(() => {
     if (assignTask) {
-      if (assignTask.ChapterContent) {
+      if (assignTask.courseArticles) {
         // console.log(assignTask.ChapterContent);
-        const Lectcontent = assignTask.ChapterContent.find((obj) => {
+        const Lectcontent = assignTask.courseArticles.find((obj) => {
           return obj._id === id;
         });
-        setprecontent(Lectcontent.LectureContent);
-        setLectureTitle(Lectcontent.LectureTitle)
+        setprecontent(Lectcontent.ArticleContent);
+        setLectureTitle(Lectcontent.ArticleTitle);
       }
     }
   }, [assignTask, id]);
@@ -67,7 +67,7 @@ function EditMyArticleTask() {
     setcontent(content);
   };
 
-//   console.log(assignTask, content);
+  console.log(assignTask);
 
   const SubmitMyTask = async () => {
     if (LectureTitle === "") {
@@ -78,13 +78,13 @@ function EditMyArticleTask() {
       const Title = LectureTitle;
       const LectureContent = content;
 
-      const res = await fetch("/Editlecturedetails", {
+      const res = await fetch("/EditMyCourseArticledetails", {
         method: "POST",
         headers: {
           "content-Type": "application/json",
         },
         body: JSON.stringify({
-          id, 
+          id,
           course,
           Title,
           LectureContent,
@@ -93,7 +93,7 @@ function EditMyArticleTask() {
 
       if (res.status === 200) {
         window.alert("Data Updated Successfully");
-        navigate("/instructordashboard/task-assign");
+        navigate("/instructordashboard/my-courses");
       } else {
         console.log(res);
         window.alert("Internal Server Error, Try Later");
@@ -108,7 +108,7 @@ function EditMyArticleTask() {
         <div className="add-course-container">
           {/* This Link Heading to return back  */}
           <div className="add-course-header">
-            <Link to="/instructordashboard/task-assign">
+            <Link to="/instructordashboard/my-courses">
               <BiArrowBack className="backBtn" style={{ color: "white" }} />
             </Link>
           </div>
@@ -200,51 +200,6 @@ function EditMyArticleTask() {
               <br />
               <h1>Previous Work</h1>
               <div dangerouslySetInnerHTML={{ __html: precontent }}></div>
-
-              {/* The Task description  */}
-              <hr />
-              <p className="assignedtaskpreviewdefine">
-                <b>Task Description</b>
-              </p>
-              {assignTask ? (
-                <div className="assignedtaskpreview">
-                  <p className="asstskdecp">{assignTask.ChapterDescription}</p>
-
-                  {/* More Details of Task  */}
-                  <div className="assignedtaskpreview_inner">
-                    <p>
-                      <b>Chapter No : </b>
-                      <br />
-                      {assignTask.ChapterNo}
-                    </p>
-                    <p>
-                      <b>Chapter Name : </b>
-                      <br />
-                      {assignTask.ChapterName}
-                    </p>
-                    <p>
-                      <b>Subject : </b>
-                      <br />
-                      {assignTask.Subject}
-                    </p>
-                    <p>
-                      <b>Board : </b>
-                      <br />
-                      {assignTask.Board}
-                    </p>
-                    <p>
-                      <b>Class : </b>
-                      <br />
-                      {assignTask.Class}
-                    </p>
-                    <p>
-                      <b>Due Date : </b>
-                      <br />
-                      {assignTask.DueDate}
-                    </p>
-                  </div>
-                </div>
-              ) : null}
             </div>
           </div>
         </div>
@@ -253,4 +208,4 @@ function EditMyArticleTask() {
   }
 }
 
-export default EditMyArticleTask;
+export default EditMyCourseArticle;

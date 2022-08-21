@@ -283,8 +283,8 @@ console.log(MyClassroom);
           </div>
           <div
             className="my-class-main-container"
-            style={{ marginLeft: "6rem",marginRight:"2rem", paddingTop: "20px" }}
-          >
+            style={{ marginLeft: "6rem",marginRight:"2rem", paddingTop: "20px" }}>
+            <h1>My Classroom</h1>
             <div className="my-class-header">
               <div className="myclass-details">
                 <p>
@@ -323,6 +323,7 @@ console.log(MyClassroom);
                 </p>{" "}
                 <br />
               </div>
+              
             </div>
             <div className="manage-class-container">
               {/* The Linker Page to navigate the components  */}
@@ -355,6 +356,7 @@ console.log(MyClassroom);
                     Attendance
                   </button>
                 </div>
+              
               </div>
 
               {/* Showing Participant if Participant is Active  */}
@@ -364,12 +366,12 @@ console.log(MyClassroom);
               {NoticeShow}
 
               {/* Showing Notes if Notes is Active  */}
-              {NotesShow}
+              {/* {NotesShow && <ClassNotes />} */}
 
               {/* Showing Atandance if Atandance is Active  */}
               {AtandanceShow}
             </div>
-          </div>
+           </div>
         </>
       );
     }
