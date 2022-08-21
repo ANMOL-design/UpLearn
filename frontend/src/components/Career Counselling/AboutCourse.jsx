@@ -102,52 +102,77 @@ export default function AboutCourse() {
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   ></button>
-                </div>
-                <div className="modal-body">
-                  <form method="POST">
-                    <label htmlFor="title">Title :</label> <br />
-                    <input
-                      style={{ width: "90%" }}
-                      type="text"
-                      defaultValue={courseData.title}
-                      onChange={(e) => {
-                        setchangeBlog({
-                          ...changeBlog,
-                          [e.target.name]: e.target.value,
-                        });
-                      }}
-                      placeholder="ENTER THE TITLE..."
-                      name="title"
-                      id="title"
-                    />{" "}
-                    <br />
-                    <label htmlFor="description">Description :</label>
-                    <SunEditor
-                      style={{ width: "90%" }}
-                      defaultValue={courseData.description}
-                      className="description"
-                      onChange={(e) => {
-                        setSuneditor(e);
-                      }}
-                      theme="snow"
-                    />
-                    <div className="modal-footer">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                      >
-                        Close
-                      </button>
-                      <button
-                        type="button"
-                        onClick={postChanges}
-                        className="btn btn-primary"
-                      >
-                        Save changes
-                      </button>
+
+                  <div
+                    className="modal fade"
+                    id="exampleModal"
+                    tabIndex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div className="modal-dialog">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h5 className="modal-title" id="exampleModalLabel">
+                            Modal title
+                          </h5>
+                          <button
+                            type="button"
+                            className="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div className="modal-body">
+                          <form method="POST">
+                            <label htmlFor="title">Title :</label> <br />
+                            <input
+                              style={{ width: "90%" }}
+                              type="text"
+                              defaultValue={courseData.title}
+                              onChange={(e) => {
+                                setchangeBlog({
+                                  ...changeBlog,
+                                  [e.target.name]: e.target.value,
+                                });
+                              }}
+                              placeholder="ENTER THE TITLE..."
+                              name="title"
+                              id="title"
+                            />{" "}
+                            <br />
+                            <br />
+                            <label htmlFor="description">Description :</label>
+                            <SunEditor
+                              style={{ width: "90%" }}
+                              defaultValue={courseData.description}
+                              className="description"
+                              onChange={(e) => {
+                                setSuneditor(e);
+                              }}
+                              theme="snow"
+                            />
+                            <div className="modal-footer">
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                              <button
+                                type="button"
+                                onClick={postChanges}
+                                className="btn btn-primary"
+                              >
+                                Save changes
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
