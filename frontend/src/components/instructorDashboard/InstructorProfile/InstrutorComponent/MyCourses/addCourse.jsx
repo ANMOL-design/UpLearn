@@ -397,12 +397,12 @@ export default function AddCourses() {
                   <option disabled value="">
                     Select Category:
                   </option>
-                  <option onChange={(e) => handlechange(e)} value="Art/Design">
+                  <option onChange={(e) => handlechange(e)} value="Art &amp; Design">
                     Art/Design
                   </option>
                   <option
                     onChange={(e) => handlechange(e)}
-                    value="Communication/Speech"
+                    value="Communication &amp; Speech"
                   >
                     Communication/Speech
                   </option>
@@ -420,9 +420,9 @@ export default function AddCourses() {
                   </option>
                   <option
                     onChange={(e) => handlechange(e)}
-                    value="Personality Developmant"
+                    value="Personality Development"
                   >
-                    Personality Developmant
+                    Personality Development
                   </option>
                   <option
                     onChange={(e) => handlechange(e)}

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const dotenv = require("dotenv");
 const DoubtModel = require("../models/doubtSchema");
+const doubtBotAnswer = require("../utils/doubtBot/bot");
 router.use(express.json());
 dotenv.config();
 
@@ -109,9 +110,22 @@ router.post("/post_doubt", (req, res) => {
 
   doubtData
     .save()
-    .then(() => {
-      res.status(200);
-      res.json({ msg: "Doubt Posted Successfully" });
+    .then(async () => {
+      const botComment = await doubtBotAnswer(title);
+      console.log(botComment);
+      doubtData.comments.push({
+        userId: "bot",
+        userName: "Alice",
+        comment: botComment,
+      });
+      doubtData.save((err, data) => {
+        if (err) {
+          res.status(500).json({ message: "Internal Server Error 2" });
+        } else {
+          res.status(200);
+          res.json({ msg: "Doubt Posted Successfully" });
+        }
+      });
     })
     .catch((err) => {
       console.log(err);

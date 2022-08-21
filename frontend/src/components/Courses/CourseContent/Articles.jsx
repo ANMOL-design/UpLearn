@@ -28,7 +28,7 @@ export default function ArticleContent(props) {
               <div key={index}>
                 <li onClick={() => toggleHide(index)}>
                   {"1." + i++} &nbsp; {item.ArticleTitle}
-                  <span>
+                  <span className="left-icon-article">
                     <IoDocumentOutline />
                   </span>
                 </li>

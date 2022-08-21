@@ -85,6 +85,10 @@ const userSchema = new mongoose.Schema({
             unique:true,
         }
     }],
+    MyClassrooms:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"LIVECLASSES"
+      }],
     CousesEnrolled: [{
         nameOfCourse: {
             type: String,

@@ -28,8 +28,8 @@ const Sidebar = () => {
       icon: <BiSpreadsheet />,
     },
     {
-      path: "/studentdashboard/instructor",
-      name: "Instructor",
+      path: "/studentdashboard/My-classroom",
+      name: "MyClassroom",
       icon: <FaChalkboardTeacher />,
     },
     {

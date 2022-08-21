@@ -6,9 +6,11 @@ import axios from "axios";
 import MainDash from "./DashboardComponents/MainDash";
 import Profile from "./DashboardComponents/pages/Profile";
 import Courses from "./DashboardComponents/pages/Courses";
-import Instructor from "./DashboardComponents/pages/Instructor";
 import Reports from "./DashboardComponents/pages/Reports";
 import Sidebar from "./DashboardComponents/Sidebar";
+import StudentClassrooms from "./DashboardComponents/pages/StudentClassrooms";
+import { useState } from "react";
+import ViewMyClass from "./DashboardComponents/LiveClassrooms/ViewMyClass";
 
 var CryptoJS = require("crypto-js");
 
@@ -16,7 +18,7 @@ export default function StudentDashboard() {
  
   const loginDetails = useSelector((state) => state.userReducers);
   let navigate = useNavigate();
-
+   const [StudentInfo,setStudentInfo] = useState({})
   useEffect(() => {
     window.scroll(0, 0);
     // Decrypting the User Role
@@ -37,7 +39,7 @@ export default function StudentDashboard() {
         await axios
           .get("/aboutStudents")
           .then((response) => {
-            console.log(response.data);
+            setStudentInfo(response.data);
           })
           .catch((error) => {
             console.log(error);
@@ -61,7 +63,8 @@ export default function StudentDashboard() {
               <Route path="/" element={<MainDash />} /> 
               <Route path="/my-profile" element={<Profile />} /> 
               <Route path="/stud-courses" element={<Courses />} />          
-              <Route path="/instructor" element={<Instructor />} />          
+              <Route path="/My-classroom" element={<StudentClassrooms Student={StudentInfo} />} />          
+              <Route path="/my-classroom/:id" element={<ViewMyClass Student={StudentInfo} />} />          
               <Route path="/reports" element={<Reports />} />          
           </Routes>
       </div>

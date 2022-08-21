@@ -259,6 +259,9 @@ function Courses() {
             <div className="courses-list-header">
               <h1>Top Recommended Courses</h1>
             </div>
+            <p>
+              <b>Total Courses : {courseData.length}</b>
+            </p>
             <div className="course-list-card-container">
               {courseData.map((item) => {
                 return (

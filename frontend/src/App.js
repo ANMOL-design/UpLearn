@@ -21,6 +21,7 @@ import StudentList from "./components/AdminPortal/StudentList";
 import AssignTaskToInstructor from "./components/AdminPortal/AdminAssignTask";
 import AssignSyllbusTask from "./components/AdminPortal/AssignTask";
 import AdminReviewLectData from "./components/AdminPortal/AdminReviewLectData";
+import ReviewInstructorTaskHome from "./components/AdminPortal/ReviewInstructorTask/ReviewTaskHome";
 import Addcareercourses from "./components/AdminPortal/addcareercourses";
 
 // Instructor Dashboard
@@ -31,12 +32,18 @@ import InstructorAddTaskVideo from "./components/instructorDashboard/InstructorP
 import InstructorAddTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/InstructorAddTaskQuiz";
 import InstAddNewTaskQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/AddNewTaskQuiz";
 import AddNewQuizQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/AddNewQuizQuestion";
+// Instructor Edit and Preview task
+import InstructorPreviewTaskHome from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/PreviewTask/PreviewMyTaskHome";
+import EditMyArticleTask from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyTask/PreviewTask/EditTaskAfterReview/EditArticle";
 
 // Instructor My Courses
 import AddCourses from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addCourse";
 import InstructorEditContent from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/InstructorEditContent";
 import AddQuiz from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuiz";
 import AddQuestion from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/addQuestion";
+import InstPreviewMyCourseHome from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/PreviewMyCourse/PreviewMyCourseHome";
+import EditMyCourseArticle from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyCourses/PreviewMyCourse/EditArticle";
+import ChangeInstructorPassword from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/ChangeInstPassword";
 
 //Student Dashboard
 import StudentDashboard from "./components/Dashboard/StudentDashboard";
@@ -56,6 +63,7 @@ import MainDoubt from "./components/Doubt/MainDoubt";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Contact from "./components/Contact/Contact";
+import AboutUs from "./components/About/AboutUs";
 import AddBook from "./components/AdminPortal/AddBook";
 import ContentPage from "./components/Dashboard/ContentPage";
 
@@ -75,12 +83,18 @@ import Game4 from "./games/game4/Game4";
 
 import CourseInfo from "./components/Courses/CourseInfo";
 import CourseContent from "./components/Courses/courseContent";
+import SubCourses from "./components/Courses/SubCourses";
 
 // career counselling
 import After12th from "./components/Career Counselling/After12th";
 import After10th from "./components/Career Counselling/After10th";
 import Exams from "./components/Career Counselling/Exams";
 import AboutCourse from "./components/Career Counselling/AboutCourse";
+//Notes
+
+import AddNotes from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/AddNotes";
+import Classnotes from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/Classnotes";
+import AddNotice from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/AddNotice";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -174,7 +188,16 @@ function App() {
               path="/admin-portal-review-assign-task-190310554227"
               element={<AdminReviewLectData />}
             />
-            <Route path="/add-career-courses" element={<Addcareercourses />} />
+
+            <Route
+              path="/admin-portal-review-assign-task-190310554227/:id"
+              element={<ReviewInstructorTaskHome />}
+            />
+
+            <Route
+              path="/admin-portal-Add-Carrier-190310554227"
+              element={<Addcareercourses />}
+            />
 
             {/* //////////////////////////////////////// */}
             {/* Instructor Dashboard */}
@@ -203,9 +226,31 @@ function App() {
             />
 
             <Route
+              path="/task-assign/preview-my-data/:id/:teacher"
+              element={<InstructorPreviewTaskHome />}
+            />
+            <Route path="/addnotes" element={<AddNotes />} />
+            <Route path="/classnotes" element={<Classnotes />} />
+            <Route path="/addnotice" element={<AddNotice />} />
+
+            {/* /// Edit And Preview Lecture Task ///  */}
+
+            <Route
               path="/instructordashboard/my-courses/edit-content/:id"
               element={<InstructorEditContent />}
             />
+
+            <Route
+              path="/task-assign/edit-lecture-article/:id/:teacher/:course"
+              element={<EditMyArticleTask />}
+            />
+
+            <Route
+              path="/instructor-change-password"
+              element={<ChangeInstructorPassword />}
+            />
+
+            {/* //////////////////////  */}
 
             <Route
               path="/task-assign/add-lecture-quiz/add-new-quiz/add-questions/:id/:quiz_id"
@@ -229,6 +274,16 @@ function App() {
               element={<AddQuestion />}
             />
 
+            <Route
+              path="/instructordashboard/my-courses/preview-content/:id"
+              element={<InstPreviewMyCourseHome />}
+            />
+
+            <Route
+              path="/my-course/edit-course-article/:id/:course"
+              element={<EditMyCourseArticle />}
+            />
+
             {/* ////////////////////////////////////////////////  */}
             {/* Doubt Dashboard */}
             <Route path="/ask-doubt" element={<Doubt />} />
@@ -238,6 +293,8 @@ function App() {
             {/* /////////////////////////////////////////////////// */}
             {/* Courses of User */}
             <Route path="/courses" element={<Courses />} />
+
+            <Route path="/courses/:value" element={<SubCourses />} />
 
             <Route path="/course/:id" element={<CourseInfo />} />
 
@@ -268,6 +325,7 @@ function App() {
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}
             <Route path="/contact" element={<Contact />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
 

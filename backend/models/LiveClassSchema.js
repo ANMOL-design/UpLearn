@@ -1,17 +1,20 @@
 const mongoose = require("mongoose");
 
 
-const liveClassSchema = new Schema({
-    className : {
+const liveClassSchema = new mongoose.Schema({
+    ClassName : {
         type : String,
     },
-    classDescription : {
+    ClassDescription : {
         type : String
     },
-    ClassThumbnailImage:{
+    meetingId:{
         type : String
     },
-    classSection : {
+    Class :{
+        type : String
+    },
+    Subject :{
         type : String
     },
     classDatePost : {
@@ -21,21 +24,35 @@ const liveClassSchema = new Schema({
         type : Date , default : Date.now()
     },
     classScheduleTime : {
-        type :String
+        type : String
     },
-
-    classLevel : {
-        type : Number
-    },
+    Notes : [{
+        notesName: {
+            type: String,
+            required: true,
+        },
+        NotesPdf: {
+            type: String,
+            required: true,
+        },
+    }],
+    Notice : [{
+     NoticeTitle :{
+        type : String ,
+     },
+     NoticeDescription :{
+        type : String ,
+     },
+    }],
     classStatus : {
         type : String , default : "Active"
     },
     classOwner :{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref : 'INSTRUCTORS'
     },
     classUsers :[{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref : 'USER'
     }],
 })

@@ -155,6 +155,9 @@ function Navbar() {
             <li>
               <NavLink to="/contact">Contact</NavLink>
             </li>
+            <li>
+              <NavLink to="/AboutUs">About us</NavLink>
+            </li>
           </ul>
         </div>
         <div className="sign_toggler">

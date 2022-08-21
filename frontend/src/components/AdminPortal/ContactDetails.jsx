@@ -6,17 +6,16 @@ import axios from "axios";
 import Loader from "../Loader";
 
 export default function ContactDetails() {
-  
   let navigate = useNavigate();
   const adminstatus = useSelector((state) => state.AdminReducers);
 
   const [adminInfo, setadminInfo] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
-  const [name, setname] = useState('');
-  const [_id, setid] = useState('');
-  const [email, setemail] = useState('');
-  const [invalid, setinvalid] = useState('');
+  const [name, setname] = useState("");
+  const [_id, setid] = useState("");
+  const [email, setemail] = useState("");
+  const [invalid, setinvalid] = useState("");
 
   const [contactDetails, setcontactDetails] = useState([]);
   const [Loading, setLoading] = useState(true);
@@ -27,7 +26,6 @@ export default function ContactDetails() {
   });
 
   useEffect(() => {
-
     window.scroll(0, 0);
     // Check is Admin Login Or Not
     if (Number(adminstatus.isAdminLoggedIn)) {
@@ -67,27 +65,22 @@ export default function ContactDetails() {
     }
   }, [adminstatus.isAdminLoggedIn, navigate]);
 
-
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-    setinvalid('');
+    setinvalid("");
   };
 
   const HandleSubmit = () => {
-    if(name === '' && email === '' && _id === ''){
-      setinvalid('Something Went Wrong. Try Again');
-    }
-    else if(values.subject === ''){
-      setinvalid('Please Enter a reply message subject.');
-    }
-    else if(values.body === ''){
-      setinvalid('Please Enter a valid reply message.');
-    }
-    else{
+    if (name === "" && email === "" && _id === "") {
+      setinvalid("Something Went Wrong. Try Again");
+    } else if (values.subject === "") {
+      setinvalid("Please Enter a reply message subject.");
+    } else if (values.body === "") {
+      setinvalid("Please Enter a valid reply message.");
+    } else {
       postData();
     }
-
-  }
+  };
 
   const postData = async () => {
     const subject = values.subject;
@@ -109,16 +102,15 @@ export default function ContactDetails() {
     if (res.status === 200) {
       window.alert("Mail is succesfully sent.");
       setOpenModal(false);
-      navigate('/admin-portal-home-190310554227');
+      navigate("/admin-portal-home-190310554227");
     } else {
       window.alert("Error occured , try again");
     }
   };
 
   if (Loading) {
-    return(<Loader />);
-  } 
-  else {
+    return <Loader />;
+  } else {
     return (
       <>
         {/* Main Heading to Return  */}
@@ -134,7 +126,9 @@ export default function ContactDetails() {
 
         {/* Table to present The Contact Info  */}
         <div className="instructor-table">
-          <p><b>Total Instructors: {contactDetails.length}</b></p>
+          <p>
+            <b>Total Instructors: {contactDetails.length}</b>
+          </p>
           <table>
             <thead>
               <tr>
@@ -151,20 +145,30 @@ export default function ContactDetails() {
               {contactDetails.map((item) => (
                 <tr key={item._id}>
                   <td>{item._id}</td>
-                  <td style={{textAlign: 'left', paddingLeft: '1rem'}}>{item.name}</td>
-                  <td style={{textAlign: 'left', paddingLeft: '1rem', textTransform: 'none'}}>{item.email}</td>
+                  <td style={{ textAlign: "left", paddingLeft: "1rem" }}>
+                    {item.name}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "left",
+                      paddingLeft: "1rem",
+                      textTransform: "none",
+                    }}
+                  >
+                    {item.email}
+                  </td>
                   <td>{item.phoneNo}</td>
                   <td>{item.message}</td>
                   <td>{item.time}</td>
                   <td>
                     <button
                       type="button"
-                      className='rmvbtn'
+                      className="rmvbtn"
                       onClick={() => {
                         setOpenModal(true);
                         setname(item.name);
                         setemail(item.email);
-                        setid(item._id)
+                        setid(item._id);
                       }}
                     >
                       Reply
@@ -174,43 +178,49 @@ export default function ContactDetails() {
                       <div className="modal cont-md">
                         {/* Modal content */}
                         <div className="modal-content cont-innmd">
-                            <span className="close" onClick={() => {
-                                setOpenModal(false);
-                              }}>&times;</span>
+                          <span
+                            className="close"
+                            onClick={() => {
+                              setOpenModal(false);
+                            }}
+                          >
+                            &times;
+                          </span>
 
-                            <div>
-                              <h2>Send Reply</h2>
+                          <div>
+                            <h2>Send Reply</h2>
 
-                              {/* Making the Input tag To send Reply  */}
-                              <div className="signInput">
-                                <label htmlFor="subject">Subject</label>
-                                <input
-                                  type="text"
-                                  id="subject"
-                                  placeholder="Reply Subject"
-                                  name="subject"
-                                  value={values.subject}
-                                  onChange={(e) => handleChange(e)}
-                                />
-                              </div>
-
-                              <div className="signInput">
-                                <label htmlFor="message">Reply Message</label>
-                                <textarea
-                                  rows={3}
-                                  cols={25}
-                                  size="50"
-                                  id="message"
-                                  type="text"
-                                  name="body"
-                                  placeholder="Reply Message"
-                                  value={values.body}
-                                  onChange={(e) => handleChange(e)}
-                                />
-                              </div>
-                              <p className="invalid">{invalid}</p>
-                              <button onClick={HandleSubmit}>Submit Reply</button>
+                            {/* Making the Input tag To send Reply  */}
+                            <div className="signInput">
+                              <label htmlFor="subject">Subject</label>
+                              <input
+                                type="text"
+                                id="subject"
+                                placeholder="Reply Subject"
+                                name="subject"
+                                value={values.subject}
+                                onChange={(e) => handleChange(e)}
+                              />
                             </div>
+
+                            <div className="signInput">
+                              <label htmlFor="message">Reply Message</label>
+                              <textarea
+                                rows={3}
+                                cols={25}
+                                style={{ lineHeight: "21px", padding: "1rem" }}
+                                size="50"
+                                id="message"
+                                type="text"
+                                name="body"
+                                placeholder="Reply Message"
+                                value={values.body}
+                                onChange={(e) => handleChange(e)}
+                              />
+                            </div>
+                            <p className="invalid">{invalid}</p>
+                            <button onClick={HandleSubmit}>Submit Reply</button>
+                          </div>
                         </div>
                       </div>
                     )}
