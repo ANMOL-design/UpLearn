@@ -189,21 +189,6 @@ console.log(MyClassroom);
         
         {/* Table Show the Details of Teacher  */}
         <div className="instructor-table" style={{marginTop:"40px"}}>
-        <div className="my-participant-container" style={{margin:"40px 0px"}}>
-           <div className="librarySearch">
-            {/* input box to search User  */}
-            <input type="text" 
-            placeholder="What are you looking for ?"
-             
-              id="finder" name="emailfind"
-            //   value={}
-            //   onChange={(e) => {setinput(e.target.value)}}
-            />
-            <button type="submit" >
-              <i><MdSearch /></i> Search
-            </button>
-          </div>
-        </div>
          <p><b>Total Students: {MyClassroom[0].classUsers.length}</b></p>
           <table>
             <thead>
