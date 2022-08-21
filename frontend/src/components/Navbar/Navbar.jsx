@@ -103,13 +103,13 @@ function Navbar() {
               </label>
               <ul>
                 <li>
-                  <NavLink to="/after-10/:after_10">After 10th</NavLink>
+                  <NavLink to="/after-10">After 10th</NavLink>
                 </li>
                 <li>
                   <NavLink to="carrercounsling/after-12">After 12th</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/exams">Exams</NavLink>
+                  <NavLink to="carrercounsling/exam/exams">Exams</NavLink>
                 </li>
               </ul>
             </li>

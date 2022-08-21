@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader";
 import axios from "axios";
 
 export default function AboutCourse() {
   const { id } = useParams();
+
   const [courseData, setData] = useState([]);
-  const [IsLoading, setIsLoading] = useState(false);
+  const [IsLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchdata = async () => {
       if (id) {
         await axios
-          .get("/admin/getAllCareerbyId/" + id)
+          .get("/admin/getCareerbyId/" + id)
           .then((response) => {
-            console.log(response.data);
             setData(response.data);
             setIsLoading(false);
           })
@@ -24,12 +25,15 @@ export default function AboutCourse() {
     };
     fetchdata();
     window.scroll(0, 0);
-  }, [id]);
-
-  return (
-    <div>
-      <div>{courseData.title}</div>
-      <div dangerouslySetInnerHTML={{ __html: courseData.description }}></div>
-    </div>
-  );
+  }, []);
+  if (IsLoading) {
+    return <Loader />;
+  } else {
+    return (
+      <div>
+        <h2>{courseData.title}</h2>
+        <div dangerouslySetInnerHTML={{ __html: courseData.description }}></div>
+      </div>
+    );
+  }
 }

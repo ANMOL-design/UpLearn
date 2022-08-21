@@ -7,7 +7,6 @@ import Loader from "../Loader";
 export default function After12th() {
   const [data, setData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-  const navigate = useNavigate();
   const params = useParams();
   const courseCategory = params.after_12;
 
@@ -28,10 +27,6 @@ export default function After12th() {
     };
     fetchdata();
   }, [courseCategory]);
-
-  const handleClick = (id) => {
-    navigate(`/about/${id}`);
-  };
 
   if (isLoading) {
     return <Loader />;
@@ -58,12 +53,10 @@ export default function After12th() {
               <ul>
                 {data.map((item, index) => {
                   return (
-                    <div key={index}>
+                    <div key={item._id}>
                       {item.subcategory === "engineering" ? (
                         <li>
-                          <div onClick={() => handleClick(item._id)}>
-                            {item.title}
-                          </div>
+                          <Link to={`/about/${item._id}`}>{item.title}</Link>
                         </li>
                       ) : null}
                     </div>
@@ -77,12 +70,10 @@ export default function After12th() {
               <ul>
                 {data.map((item, index) => {
                   return (
-                    <div key={index}>
+                    <div key={item._id}>
                       {item.subcategory === "medical-health-care" ? (
                         <li>
-                          <div onClick={() => handleClick(item._id)}>
-                            {item.title}
-                          </div>
+                          <Link to={`/about/${item._id}`}>{item.title}</Link>
                         </li>
                       ) : null}
                     </div>
@@ -95,12 +86,10 @@ export default function After12th() {
               <ul>
                 {data.map((item, index) => {
                   return (
-                    <div key={index}>
+                    <div key={item._id}>
                       {item.subcategory === "commerce" ? (
                         <li>
-                          <div onClick={() => handleClick(item._id)}>
-                            {item.title}
-                          </div>
+                          <Link to={`/about/${item._id}`}>{item.title}</Link>
                         </li>
                       ) : null}
                     </div>
@@ -113,12 +102,10 @@ export default function After12th() {
               <ul>
                 {data.map((item, index) => {
                   return (
-                    <div key={index}>
+                    <div key={item._id}>
                       {item.subcategory === "diploma-in-engineering" ? (
                         <li>
-                          <div onClick={() => handleClick(item._id)}>
-                            {item.title}
-                          </div>
+                          <Link to={`/about/${item._id}`}>{item.title}</Link>
                         </li>
                       ) : null}
                     </div>

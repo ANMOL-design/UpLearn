@@ -4,10 +4,10 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader";
 
-export default function After12th() {
+export default function After10th() {
   const [data, setData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-  const navigate = useNavigate();
+
   const params = useParams();
   const courseCategory = params.after_10;
 
@@ -28,10 +28,6 @@ export default function After12th() {
     };
     fetchdata();
   }, [courseCategory]);
-
-  const handleClick = (id) => {
-    navigate(`/about/${id}`);
-  };
 
   if (isLoading) {
     return <Loader />;
@@ -61,9 +57,7 @@ export default function After12th() {
                     <div key={index}>
                       {item.subcategory === "class-11-12" ? (
                         <li>
-                          <div onClick={() => handleClick(item._id)}>
-                            {item.title}
-                          </div>
+                          <Link to={`/about/${item._id}`}>{item.title}</Link>
                         </li>
                       ) : null}
                     </div>
@@ -80,9 +74,7 @@ export default function After12th() {
                     <div key={index}>
                       {item.subcategory === "diploma-courses" ? (
                         <li>
-                          <div onClick={() => handleClick(item._id)}>
-                            {item.title}
-                          </div>
+                          <Link to={`/about/${item._id}`}>{item.title}</Link>
                         </li>
                       ) : null}
                     </div>
@@ -91,16 +83,14 @@ export default function After12th() {
               </ul>
             </div>
             <div className="courseCategoryItem">
-              <span className="courseCateHeading"> Paramedical Courses</span>
+              <span className="courseCateHeading"> ITI Courses</span>
               <ul>
                 {data.map((item, index) => {
                   return (
                     <div key={index}>
-                      {item.subcategory === "paramedial-courses" ? (
+                      {item.subcategory === "iti-courses" ? (
                         <li>
-                          <div onClick={() => handleClick(item._id)}>
-                            {item.title}
-                          </div>
+                          <Link to={`/about/${item._id}`}>{item.title}</Link>
                         </li>
                       ) : null}
                     </div>
