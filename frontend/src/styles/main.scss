@@ -45,13 +45,8 @@
 @import "./Courses/coursesQuiz.scss";
 @import "./Contact/Contact.scss";
 
-
-//Importing Style of Courses on dashboard
-@import "./Dashboard/DashboardComponents/courses.scss";
-
 //Importing sidebar of student dashboard
 @import "./Dashboard/sidebar.scss";
-@import "./Dashboard/courses/boardSelect.scss";
 
 //Importing Style of Library Style
 @import "./Library/Library.scss";
@@ -80,5 +75,9 @@
 
 //Importing Style of addcareercourses
 @import "./AdminPortal/addcareercourses.scss";
+
 //Importing Style of MyClassroom
 @import "./MyClassroom/myclassroom.scss";
+
+//Importing MyLecture
+@import './MyLectures/Moveroutes.scss';

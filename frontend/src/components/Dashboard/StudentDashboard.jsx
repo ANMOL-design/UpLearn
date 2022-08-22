@@ -5,7 +5,6 @@ import axios from "axios";
 
 import MainDash from "./DashboardComponents/MainDash";
 import Profile from "./DashboardComponents/pages/Profile";
-import Courses from "./DashboardComponents/pages/Courses";
 import Reports from "./DashboardComponents/pages/Reports";
 import Sidebar from "./DashboardComponents/Sidebar";
 import StudentClassrooms from "./DashboardComponents/pages/StudentClassrooms";
@@ -62,7 +61,6 @@ export default function StudentDashboard() {
           <Routes>
               <Route path="/" element={<MainDash />} /> 
               <Route path="/my-profile" element={<Profile />} /> 
-              <Route path="/stud-courses" element={<Courses />} />          
               <Route path="/My-classroom" element={<StudentClassrooms Student={StudentInfo} />} />          
               <Route path="/my-classroom/:id" element={<ViewMyClass Student={StudentInfo} />} />          
               <Route path="/reports" element={<Reports />} />          

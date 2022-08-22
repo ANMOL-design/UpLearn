@@ -95,7 +95,7 @@ function Navbar() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/" onClick={Toggler}>
+                  <NavLink to="/my-lectures" onClick={Toggler}>
                     My Lectures
                   </NavLink>
                 </li>

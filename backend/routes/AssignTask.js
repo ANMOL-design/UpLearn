@@ -266,6 +266,27 @@ router.get("/instructorTaskDataFetch/:id", (req, res) => {
     });
 });
 
+// Fetching Task For specific class, board, subject and is verified
+router.post("/instructorTaskDataFetchForBoardClassSub", (req, res) => {
+  const { board, classe, subject } = req.body;
+  Lectures.find({
+    Board: board,
+    Class: classe,
+    Subject: subject,
+    iSVarified: true,
+  })
+    .then((product) => {
+      if (product) {
+        // console.log(product)
+        return res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(404);
+    });
+});
+
 router.post("/verifyinstructorttask", (req, res) => {
   const { id, name, email } = req.body;
   // console.log(id);

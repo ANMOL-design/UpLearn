@@ -50,10 +50,6 @@ import StudentDashboard from "./components/Dashboard/StudentDashboard";
 import ChangePassword from "./components/Dashboard/DashboardComponents/ChangePassword";
 import UpdateMyStudentProfile from "./components/Dashboard/DashboardComponents/UpdateProfile";
 
-//courses
-import Class from "./components/Dashboard/DashboardComponents/Courses/ClassSelect";
-import Subject from "./components/Dashboard/DashboardComponents/Courses/Subject";
-
 //Doubt Section
 import Doubt from "./components/Doubt/Doubt";
 import Postdoubt from "./components/Doubt/Postdoubt";
@@ -65,7 +61,6 @@ import { store } from "./redux/store";
 import Contact from "./components/Contact/Contact";
 import AboutUs from "./components/About/AboutUs";
 import AddBook from "./components/AdminPortal/AddBook";
-import ContentPage from "./components/Dashboard/ContentPage";
 
 import InstructorList from "./components/AdminPortal/InstructorList";
 import LibraryPage from "./components/Library/LibraryHome";
@@ -90,11 +85,18 @@ import After12th from "./components/Career Counselling/After12th";
 import After10th from "./components/Career Counselling/After10th";
 import Exams from "./components/Career Counselling/Exams";
 import AboutCourse from "./components/Career Counselling/AboutCourse";
-//Notes
 
+//Notes
 import AddNotes from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/AddNotes";
 import Classnotes from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/Classnotes";
 import AddNotice from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/AddNotice";
+
+// My Lecture
+import BoardSelect from "./components/MyLectures/LectureRoutes/BoardSelect";
+import ClassSelect from "./components/MyLectures/LectureRoutes/ClassSelect";
+import SubjectSelect from "./components/MyLectures/LectureRoutes/Subject";
+import LectureContent from "./components/MyLectures/LectureData/ContentPage";
+import MyLectureContent from "./components/MyLectures/LectureData/lectureContent";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -134,12 +136,20 @@ function App() {
               element={<UpdateMyStudentProfile />}
             />
 
-            <Route path="/stud-courses/:board" element={<Class />} />
-            <Route path="/stud-courses/:board/:class" element={<Subject />} />
+            {/* /////////////////////////////////////////////////////////////// */}
+            {/* My Lectures  */}
+            <Route path="/my-lectures" element={<BoardSelect />} />
+            <Route path="/my-lectures/:board" element={<ClassSelect />} />
             <Route
-              path="/stud-courses/:board/:class/:subject"
-              element={<ContentPage />}
+              path="/my-lectures/:board/:class"
+              element={<SubjectSelect />}
             />
+            <Route
+              path="/my-lectures/:board/:class/:subject"
+              element={<LectureContent />}
+            />
+
+            <Route path="/my-lecture/data/:id" element={<MyLectureContent />} />
 
             {/* ///////////////////////////////////////////////// */}
             {/* IMAGEUPLOADER */}
