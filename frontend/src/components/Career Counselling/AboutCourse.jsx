@@ -87,76 +87,98 @@ export default function AboutCourse() {
     };
 
     const UpdateBlog = () => {
+      if (open) {
+        return (
+          <div style={{ backgroundColor: "green" }}>
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLabel">
+                    Modal title
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
 
-        if (open) {
-          return (
-            <div>
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">
-                      Modal title
-                    </h5>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body">
-                    <form method="POST">
-                      <label htmlFor="title">Title :</label> <br />
-                      <input
-                        style={{ width: "90%" }}
-                        type="text"
-                        defaultValue={courseData.title}
-                        onChange={(e) => {
-                          setchangeBlog({
-                            ...changeBlog,
-                            [e.target.name]: e.target.value,
-                          });
-                        }}
-                        placeholder="ENTER THE TITLE..."
-                        name="title"
-                        id="title"
-                      />{" "}
-                      <br />
-                      <label htmlFor="description">Description :</label>
-                      <SunEditor
-                        style={{ width: "90%" }}
-                        defaultValue={courseData.description}
-                        className="description"
-                        onChange={(e) => {
-                          setSuneditor(e);
-                        }}
-                        theme="snow"
-                      />
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button
-                          type="button"
-                          onClick={postChanges}
-                          className="btn btn-primary"
-                        >
-                          Save changes
-                        </button>
+                  <div
+                    className="modal fade"
+                    id="exampleModal"
+                    tabIndex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div className="modal-dialog">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h5 className="modal-title" id="exampleModalLabel">
+                            Modal title
+                          </h5>
+                          <button
+                            type="button"
+                            className="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div className="modal-body">
+                          <form method="POST">
+                            <label htmlFor="title">Title :</label> <br />
+                            <input
+                              style={{ width: "90%" }}
+                              type="text"
+                              defaultValue={courseData.title}
+                              onChange={(e) => {
+                                setchangeBlog({
+                                  ...changeBlog,
+                                  [e.target.name]: e.target.value,
+                                });
+                              }}
+                              placeholder="ENTER THE TITLE..."
+                              name="title"
+                              id="title"
+                            />{" "}
+                            <br />
+                            <br />
+                            <label htmlFor="description">Description :</label>
+                            <SunEditor
+                              style={{ width: "90%" }}
+                              defaultValue={courseData.description}
+                              className="description"
+                              onChange={(e) => {
+                                setSuneditor(e);
+                              }}
+                              theme="snow"
+                            />
+                            <div className="modal-footer">
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                              <button
+                                type="button"
+                                onClick={postChanges}
+                                className="btn btn-primary"
+                              >
+                                Save changes
+                              </button>
+                            </div>
+                          </form>
+                        </div>
                       </div>
-                    </form>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          );
-        }
- 
-    
+          </div>
+        );
+      }
     };
 
     if (Number(adminstatus.isAdminLoggedIn)) {
@@ -236,9 +258,11 @@ export default function AboutCourse() {
   } else {
     return (
       <div>
-        <h2>{courseData.title}</h2>
+        <div className="articleDisplaycontainer" style={{margin:"0.55rem 0 0 0",border:"4px solid #aaaa" }}>
+        <h1 style={{color: "blue",marginLeft:"40%",fontSize:"3rem"}}>{courseData.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: courseData.description }}></div>
         <EDITBLOG />
+      </div>
       </div>
     );
   }
