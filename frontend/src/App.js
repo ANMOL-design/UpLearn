@@ -96,6 +96,8 @@ import AddNotes from "./components/instructorDashboard/InstructorProfile/Instrut
 import Classnotes from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/Classnotes";
 import AddNotice from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/AddNotice";
 
+import Chatbox from "./components/Chatbox/Chatbox";
+
 function App() {
   const [isLoading, setisLoading] = useState(true);
 
@@ -328,6 +330,8 @@ function App() {
             <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
+
+            <Route path="/chatbox" element={<Chatbox />} />
 
             {/* //////// End Of Routes ////////// */}
           </Routes>
