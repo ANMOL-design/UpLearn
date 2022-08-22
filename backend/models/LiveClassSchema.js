@@ -21,7 +21,7 @@ const liveClassSchema = new mongoose.Schema({
         type : Date , default : Date.now()
     },
     classScheduleDate : {
-        type : Date , default : Date.now()
+        type : Date , default :new Date("2022-08-21T13:08:08.684Z")
     },
     classScheduleTime : {
         type : String

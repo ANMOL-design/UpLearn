@@ -85,6 +85,7 @@ function InstructorDashboard() {
             path="/my-classroom/:id"
             element={<ManageClass InstructorInfo={instructor} />}
           />
+      
         </Routes>
       </div>
     );
