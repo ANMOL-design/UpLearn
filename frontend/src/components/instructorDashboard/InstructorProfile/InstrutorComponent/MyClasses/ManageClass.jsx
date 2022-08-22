@@ -4,9 +4,11 @@ import { BiArrowBack } from "react-icons/bi";
 import { MdPadding, MdSearch } from "react-icons/md";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../../Loader";
+import SchedulseClass from "./ClassManage/ScheduleClass";
 export default function ManageClass() {
   const [MyClassroom, setMyClassroom] = useState({});
   const [StudentInfo,  setStudentsInfo] = useState([]);
+  const [instructorInfo,  setinstructor] = useState([]);
   const { id } = useParams();
   let navigate = useNavigate();
   const [Loading, setLoading] = useState(true);
@@ -33,6 +35,19 @@ export default function ManageClass() {
         });
       }
     fetchdata();
+    const fetchInstructor = async () => {
+      await axios
+        .get("/aboutInstructor")
+        .then((response) => {
+          setinstructor(response.data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          navigate("/login");
+        });
+    };
+    fetchInstructor();
   }, [id,Loading]);
 console.log(MyClassroom);
   // States to handle component changes in page
@@ -40,12 +55,14 @@ console.log(MyClassroom);
   const [NoticeShow, setNoticeShow] = useState(false);
   const [NotesShow, setNotesShow] = useState(false);
   const [AtandanceShow, setAtandanceShow] = useState(false);
+  const [ScheduleClassShow, setScheduleClassShow] = useState(false);
 
   const handleParticipantShow = () => {
     setParticipantShow(true);
     setNoticeShow(false);
     setNotesShow(false);
     setAtandanceShow(false);
+    setScheduleClassShow(false);
   };
 
   const handleNoticeShow = () => {
@@ -53,6 +70,7 @@ console.log(MyClassroom);
     setNoticeShow(true);
     setNotesShow(false);
     setAtandanceShow(false);
+    setScheduleClassShow(false);
   };
 
   const handleNotesShow = () => {
@@ -60,6 +78,7 @@ console.log(MyClassroom);
     setNoticeShow(false);
     setNotesShow(true);
     setAtandanceShow(false);
+    setScheduleClassShow(false);
   };
 
   const handleAtandanceShow = () => {
@@ -67,6 +86,14 @@ console.log(MyClassroom);
     setNoticeShow(false);
     setNotesShow(false);
     setAtandanceShow(true);
+    setScheduleClassShow(false);
+  };
+  const handleScheduleShow = () => {
+    setParticipantShow(false);
+    setNoticeShow(false);
+    setNotesShow(false);
+    setAtandanceShow(false);
+    setScheduleClassShow(true);
   };
 
   const AddParticipants = () => {
@@ -334,26 +361,32 @@ console.log(MyClassroom);
                     onClick={handleParticipantShow}
                     className={ParticipantShow ? "bt-active" : ""}
                   >
-                    Participants
+                   Add Participants
                   </button>
                   <button
                     onClick={handleNoticeShow}
                     className={NoticeShow ? "bt-active" : ""}
                   >
-                    Activities
+                   Add Activities
                   </button>
                   <button
                     onClick={handleNotesShow}
                     className={NotesShow ? "bt-active" : ""}
                   >
-                    Notes
+                   Add Notes
                   </button>
 
                   <button
                     onClick={handleAtandanceShow}
                     className={AtandanceShow ? "bt-active" : ""}
                   >
-                    Attendance
+                  View Attendance
+                  </button>
+                  <button
+                    onClick={handleScheduleShow}
+                    className={ScheduleClassShow ? "bt-active" : ""}
+                  >
+                    Schedule Class
                   </button>
                 </div>
               
@@ -370,6 +403,8 @@ console.log(MyClassroom);
 
               {/* Showing Atandance if Atandance is Active  */}
               {AtandanceShow}
+              {/* Showing ScheduleClassShow  if ScheduleClassShow  is Active  */}
+              {ScheduleClassShow && <SchedulseClass Instructor={instructorInfo} classId={id} MyClassroom={MyClassroom} />}
             </div>
            </div>
         </>

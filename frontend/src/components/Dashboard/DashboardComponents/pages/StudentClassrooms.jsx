@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import Loader from "../../../Loader";
+import NotFoundImg from  "../../../../assets/images/not-found.png";
 import LiveClassImg from "../../../../assets/images/live-online-classes.jpg";
 import { Link } from "react-router-dom";
 import { FaEdit, FaEye, FaStreetView } from "react-icons/fa";
@@ -36,13 +37,7 @@ export default function StudentClassrooms(props) {
         <div className="addcourse-main-container">
           <div className="no-found-container">
             <h1>Not Any Class Added By You</h1>
-            <img src="" alt="AddCourse" />
-            <Link
-              to="/instructordashboard/my-classroom/add-new-class"
-              className="btn-add-new-course"
-            >
-              Add New Class
-            </Link>
+            <img src={NotFoundImg} alt="AddCourse" />
           </div>
         </div>
       </>

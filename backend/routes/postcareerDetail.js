@@ -15,7 +15,6 @@ router.get("/admin/getAllCareerBy/:courseCategory", (req, res) => {
     if (err) {
       res.status(500).json({ message: "Internal Server Error" });
     } else {
-      console.log(data);
       res.status(200).json(data);
     }
   });
@@ -28,7 +27,6 @@ router.get("/admin/getAllCareer/:subcategory", (req, res) => {
     if (err) {
       res.status(500).json({ message: "Internal Server Error" });
     } else {
-      console.log(data);
       res.status(200).json(data);
     }
   });

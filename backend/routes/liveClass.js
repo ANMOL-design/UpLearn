@@ -6,8 +6,7 @@ const LiveClass = require("../models/LiveClassSchema")
 const Instructors = require("../models/instructorregisterSchema");
 const User = require("../models/userSchema");
 const AddtoClassEmail = require("../utils/emails/AddToClassEmail");
-// const LiveClass = require("../models/LiveClassSchema");
-// const Instructors = require("../models/instructorregisterSchema");
+const sendmailtomultipleuser = require("../utils/emails/sendmailtomultipleuser");
 
 router.get("/myClassrooms/:Id", (req, res) => {
   const id = req.params.Id;
@@ -31,38 +30,12 @@ router.get("/myClass/:Id", (req, res) => {
         }
       })
       .catch((err) => {
-  const id = req.params.Id;
-  LiveClass.find({ _id: id })
-    .then((product) => {
-      if (product) {
-        return res.send(product);
-      }
-    })
-    .catch((err) => {
       console.log(err);
       res.sendStatus(404);
     });
 });
 
-router.post("/Add-Participant", (req, res) => {
-  const { UserId, classId } = req.body;
 
-  LiveClass.findByIdAndUpdate(
-    classId,
-    {
-      $push: {
-        classUsers: UserId,
-      },
-    },
-    function (err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(200).json({ msg: "course added Successful" });
-      }
-    }
-  );
-});
 router.post("/addnotesbyinstructor", (req, res) => {
   const { UserId, classId } = req.body;
 
@@ -84,9 +57,42 @@ router.post("/addnotesbyinstructor", (req, res) => {
     }
   );
 });
-router.post("/addnoticebyinstructor", (req, res) => {
-  const { UserId, classId } = req.body;
-
+router.post("/ScheduleClass", async(req, res) => {
+  const {classId,Scheduledate} = req.body;
+  const Users=await LiveClass.findById(classId); 
+  const getClass = await LiveClass.findById(classId)
+  const gettimestamp = (day) => {
+    let today = new Date(day);
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    let yy = today.getFullYear();
+    let hh = today.getHours();
+    let mi = today.getMinutes();
+    let ss = today.getSeconds();
+    let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
+    return time;
+  };
+  const ScheduleTime = gettimestamp(Scheduledate)
+  const UserEmails = [];
+  Users.classUsers.map(async(item)=>{
+   const findUser  =await User.findById(item);
+       UserEmails.push(findUser.email);
+    console.log(UserEmails);
+  })
+  LiveClass.findByIdAndUpdate(
+    classId, {
+      classScheduleDate: Scheduledate,
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        sendmailtomultipleuser(UserEmails,ScheduleTime,getClass.ClassName,getClass.ClassDescription,getClass.Subject,getClass.Class)
+        res.status(200).json({ msg: "class schedule Successful" });
+      }
+    }
+  );
+});
   router.post("/Add-Participant",async (req, res) => {
     const { UserId,classId,InstructorId} = req.body;
    const getUser = await User.findById(UserId)
@@ -120,6 +126,7 @@ router.post("/addnoticebyinstructor", (req, res) => {
       console.log(error);
     })
   });
+
   router.post("/removefromclass", (req, res) => {
     const { UserId ,ClassId} = req.body;
     LiveClass.findByIdAndUpdate(
@@ -149,17 +156,8 @@ router.post("/addnoticebyinstructor", (req, res) => {
       console.log(error);
     })
   });
-z
-    },
-    function (err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(200).json({ msg: "course added Successful" });
-      }
-    }
-  );
-});
+
+   
 router.post("/Create-room", async (req, res) => {
   const {
     classOwner,
