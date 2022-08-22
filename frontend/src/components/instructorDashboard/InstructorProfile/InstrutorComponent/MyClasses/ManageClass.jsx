@@ -4,6 +4,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { MdPadding, MdSearch } from "react-icons/md";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../../Loader";
+import LiveClassAttendance from "./ClassManage/LiveClassAttendance";
 import SchedulseClass from "./ClassManage/ScheduleClass";
 export default function ManageClass() {
   const [MyClassroom, setMyClassroom] = useState({});
@@ -300,7 +301,7 @@ console.log(MyClassroom);
   if (Loading) {
     return <Loader />;
   } else {
-    if (MyClassroom) {
+    if (MyClassroom.length>0) {
       return (
         <>
           <div className="add-course-header">
@@ -402,9 +403,9 @@ console.log(MyClassroom);
               {/* {NotesShow && <ClassNotes />} */}
 
               {/* Showing Atandance if Atandance is Active  */}
-              {AtandanceShow}
+              {AtandanceShow && <LiveClassAttendance MyClassroom={MyClassroom} StudentInfo={StudentInfo}/>}
               {/* Showing ScheduleClassShow  if ScheduleClassShow  is Active  */}
-              {ScheduleClassShow && <SchedulseClass Instructor={instructorInfo} classId={id} MyClassroom={MyClassroom} />}
+              {ScheduleClassShow && <SchedulseClass Instructor={instructorInfo} classId={id} MyClassroom={MyClassroom}  />}
             </div>
            </div>
         </>

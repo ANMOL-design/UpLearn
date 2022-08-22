@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import Loader from "../../../../Loader";
 import axios from "axios";
+import { MdDelete } from "react-icons/md";
 
 function MyClassrooms(props) {
   let Instructors;
@@ -42,6 +43,29 @@ function MyClassrooms(props) {
     let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
     return time;
   };
+  // const deleteClass = async (data)=>{
+  //   const classId = data._id
+  //   const res =  await fetch("/deleteMyClassroom" ,{
+  //     method : "POST",
+  //     headers : { 
+  //         "content-Type" : "application/json"
+  //     },
+  //     body : JSON.stringify({
+  //       classId 
+  //     })
+  //   });
+  //   if (res.status === 200) {
+  //     setLoading(true);
+  //     setTimeout(() => {
+  //       setLoading(false);
+    
+  //     },5000);
+  //     console.log("deleted");
+  //   }
+  //   else{
+  //     console.log(res);
+  //   }
+  // }
   const AddnewClass = () => {
     // console.log(MyClassroom);
     if (MyClassroom.length < 1 || !MyClassroom) {
@@ -113,6 +137,10 @@ function MyClassrooms(props) {
                         <FaEdit />
                       </button>
                     </Link>
+                    {/* <button onClick={deleteClass(item)} style={{backgroundColor:"#a10e0e"}}>&nbsp;&nbsp;
+                       Delete
+                        <MdDelete />
+                      </button> */}
                   </div>
                 </div>
               ))}
