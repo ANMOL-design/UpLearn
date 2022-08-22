@@ -325,7 +325,7 @@ function App() {
             {/* ///////////////////////////////////////////////////////  */}
             {/* Home Route  */}
             <Route path="/contact" element={<Contact />} />
-            <Route path="/AboutUs" element={<AboutUs />} />
+            <Route path="/about-us" element={<AboutUs />} />
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
 
