@@ -157,7 +157,7 @@ export default function SchedulseClass(props) {
                         "&participantId=" +
                         props.Instructor._id +
                         "&meetingId=" +
-                        MyClassroom.meetingId 
+                        MyClassroom.meetingId +"&usermode=OCRTIRTUSN"
                       }
                       target="_blank"
                       rel="noreferrer noopener"

@@ -156,6 +156,31 @@ router.post("/ScheduleClass", async(req, res) => {
       console.log(error);
     })
   });
+  // router.post("/deleteMyClassroom", async (req, res) => {
+  //   const { classId} = req.body;
+  //   const InstructorOfClassroms = await LiveClass.findById(classId);
+  //   LiveClass.findByIdAndDelete(
+  //     classId
+  //   ).then(()=>{
+  //    Instructors.findByIdAndUpdate(
+  //     InstructorOfClassroms.classOwner,
+  //     {
+  //       $pull: {
+  //           MyClassrooms: classId
+  //       },
+  //     },
+  //     function (err, result) {
+  //       if (err) {
+  //         console.log(err);
+  //       } else {
+  //         res.status(200).json({ msg: "User Removed Successful" });
+  //       }
+  //     }
+  //   )
+  //   }).catch((error)=>{
+  //     console.log(error);
+  //   })
+  // });
 
    
 router.post("/Create-room", async (req, res) => {
