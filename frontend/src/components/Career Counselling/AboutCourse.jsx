@@ -258,9 +258,11 @@ export default function AboutCourse() {
   } else {
     return (
       <div>
-        <h2>{courseData.title}</h2>
+        <div className="articleDisplaycontainer" style={{margin:"0.55rem 0 0 0",border:"4px solid #aaaa" }}>
+        <h1 style={{color: "blue",marginLeft:"40%",fontSize:"3rem"}}>{courseData.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: courseData.description }}></div>
         <EDITBLOG />
+      </div>
       </div>
     );
   }

@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Logo from "./../../assets/images/logo.png";
-import { FaAngleDown, FaBars } from "react-icons/fa";
-import { TbGridDots } from "react-icons/tb";
+import { FaAngleDown, FaBars, FaUserCircle } from "react-icons/fa";
+
+var CryptoJS = require("crypto-js");
 
 function Navbar() {
+  const loginDetails = useSelector((state) => state.userReducers);
+  const [userrole, setuserrole] = useState("");
+
+  useEffect(() => {
+    // Decrypting the User Role
+    if (loginDetails.userRole !== "") {
+      var bytes = CryptoJS.AES.decrypt(
+        loginDetails.userRole,
+        "my-secret-key@123"
+      );
+      var role = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    }
+
+    if (Number(loginDetails.isLoggedIn) && role === "INSTRUCTOR") {
+      setuserrole("INSTRUCTOR");
+    } else if (Number(loginDetails.isLoggedIn) && role === "STUDENT") {
+      setuserrole("STUDENT");
+    } else {
+      setuserrole("");
+    }
+  }, [loginDetails.userRole, loginDetails.isLoggedIn]);
+
   const Toggler = () => {
     var element = document.getElementById("toggleNav");
     element.classList.toggle("show-slider");
@@ -14,6 +38,10 @@ function Navbar() {
     <div className="wrapper" id="navbar">
       <nav>
         <div className="content">
+          {/* Icon for the Navbar toggle */}
+          <label htmlFor="show-menu" className="menu-icon" onClick={Toggler}>
+            <FaBars />
+          </label>
           {/* The website Logo and Name  */}
           <div className="logo">
             <NavLink to="/">
@@ -22,68 +50,64 @@ function Navbar() {
               <span>Learn</span>
             </NavLink>
           </div>
-          {/* The category logo  */}
-          <div className="category">
-            <NavLink to="/category">
-              <span>
-                <TbGridDots />
-              </span>
-              Category
-            </NavLink>
-          </div>
+        </div>
 
+        <div className="content">
           {/* The Website DropDowns  */}
           <ul className="links" id="toggleNav">
             {/* Link for the Home Page  */}
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/" onClick={Toggler}>
+                Home
+              </NavLink>
             </li>
-            {/* Links and dropdown for the courses  */}
+            {/* Link for the About Page  */}
             <li>
-              <NavLink
-                to="/courses"
-                className="desktop-link"
-                style={{ paddingRight: "0px" }}
-              >
+              <NavLink to="/about-us" onClick={Toggler}>
+                About
+              </NavLink>
+            </li>
+            {/* Links for the courses  */}
+            <li>
+              <NavLink to="/courses" onClick={Toggler}>
                 Courses
               </NavLink>
-              <input type="checkbox" id="show-courses" />
-              <label htmlFor="show-courses">
-                <span className="hideNav">Courses</span>
-                <FaAngleDown />
-              </label>
-              <ul>
-                <li>
-                  <NavLink to="/">Courses</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/">Courses List</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/">Courses Details</NavLink>
-                </li>
-              </ul>
             </li>
-            {/* Links and dropdown for the Blogs  */}
+            {/* Link and Dropdown for pages  */}
             <li>
               <NavLink
-                to="/blogs"
+                to="/"
                 className="desktop-link"
+                onClick={Toggler}
                 style={{ paddingRight: "0px" }}
               >
-                Blogs
+                Features
               </NavLink>
-              <input type="checkbox" id="show-blogs" />
-              <label htmlFor="show-blogs">
-                <span className="hideNav">Blogs</span>
+              <input type="checkbox" id="show-pages" />
+              <label htmlFor="show-pages">
+                <span className="hideNav">Features</span>
                 <FaAngleDown />
               </label>
               <ul>
                 <li>
-                  <NavLink to="/">Blogs</NavLink>
+                  <NavLink to="/uplearn-virtual-library" onClick={Toggler}>
+                    My Library
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/">Blogs Details</NavLink>
+                  <NavLink to="/" onClick={Toggler}>
+                    My Lectures
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/ask-doubt" onClick={Toggler}>
+                    Ask a doubt
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/learn-with-fun" onClick={Toggler}>
+                    Learn with Fun
+                  </NavLink>
                 </li>
               </ul>
             </li>
@@ -93,86 +117,86 @@ function Navbar() {
                 to="/careercounselling"
                 className="desktop-link"
                 style={{ paddingRight: "0px" }}
+                onClick={Toggler}
               >
                 Career Counselling
               </NavLink>
               <input type="checkbox" id="show-blogs" />
               <label htmlFor="show-blogs">
-                <span className="hideNav"> Career Counselling</span>
+                <span className="hideNav">Career Counselling</span>
                 <FaAngleDown />
               </label>
               <ul>
                 <li>
-                  <NavLink to="/after-10">After 10th</NavLink>
+                  <NavLink to="/after-10" onClick={Toggler}>
+                    After 10th
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="carrercounsling/after-12">After 12th</NavLink>
+                  <NavLink to="carrercounsling/after-12" onClick={Toggler}>
+                    After 12th
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink to="carrercounsling/exam/exams">Exams</NavLink>
-                </li>
-              </ul>
-            </li>
-            {/* Link and Dropdown for pages  */}
-            <li>
-              <NavLink
-                to="/pages"
-                className="desktop-link"
-                style={{ paddingRight: "0px" }}
-              >
-                Pages
-              </NavLink>
-              <input type="checkbox" id="show-pages" />
-              <label htmlFor="show-pages">
-                <span className="hideNav">Pages</span>
-                <FaAngleDown />
-              </label>
-              <ul>
-                <li>
-                  <NavLink to="/">About</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/">Instructor</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/">Event Details</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/">My Dashboard</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/">Sign In</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/">Sign Up</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/">Courses</NavLink>
+                  <NavLink to="carrercounsling/exam/exams" onClick={Toggler}>
+                    Exams
+                  </NavLink>
                 </li>
               </ul>
             </li>
             {/* Link for the Contact Page  */}
             <li>
-              <NavLink to="/contact">Contact</NavLink>
-            </li>
-            <li>
-              <NavLink to="/AboutUs">About us</NavLink>
+              <NavLink to="/contact" onClick={Toggler}>
+                Contact
+              </NavLink>
             </li>
           </ul>
         </div>
-        <div className="sign_toggler">
-          {/* Button for Login and Sign In Page  */}
-          <div className="sign">
-            <NavLink to="/login">
-              <button type="button">Sign up</button>
-            </NavLink>
-          </div>
 
-          {/* Icon for the Navbar toggle */}
-          <label htmlFor="show-menu" className="menu-icon" onClick={Toggler}>
-            <FaBars />
-          </label>
-        </div>
+        {/* Present Data According to User Login  */}
+        {userrole === "INSTRUCTOR" ? (
+          <div className="sign_toggler">
+            {/* Button for Login and Sign In Page  */}
+            <div className="dropdown">
+              <span>
+                <FaUserCircle />
+              </span>
+              <div className="dropdown-content">
+                <NavLink to="/instructordashboard" className="notopbdr">
+                  My Dashboard
+                </NavLink>
+                <NavLink to="/logout">Logout</NavLink>
+              </div>
+            </div>
+          </div>
+        ) : userrole === "STUDENT" ? (
+          <div className="sign_toggler">
+            {/* Button for Login and Sign In Page  */}
+            <div className="dropdown">
+              <span>
+                <FaUserCircle />
+              </span>
+              <div className="dropdown-content">
+                <NavLink to="/studentdashboard" className="notopbdr">
+                  My Dashboard
+                </NavLink>
+                <NavLink to="/studentdashboard/My-classroom">
+                  My Classroom
+                </NavLink>
+                <NavLink to="/logout">Logout</NavLink>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="sign_toggler">
+            {/* Button for Login and Sign In Page  */}
+            <div className="dropdown">
+              <NavLink to="/login" className="norole">
+                <FaUserCircle />
+              </NavLink>
+            </div>
+          </div>
+        )}
       </nav>
     </div>
   );
