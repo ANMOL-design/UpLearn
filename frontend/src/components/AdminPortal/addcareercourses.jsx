@@ -155,9 +155,7 @@ const Addcareercourses = () => {
                     <option value="">Select Sub-Category</option>
                     <option value="class-11-12">Class 11th-12th</option>
                     <option value="diploma-courses">Diploma Courses</option>
-                    <option value="paramedial-courses">
-                      Paramedical Courses
-                    </option>
+                    <option value="iti-courses">ITI Courses</option>
                   </select>
                 </div>
               )}
@@ -191,10 +189,11 @@ const Addcareercourses = () => {
                     value={CAREERDETAILS.courseSubCategory}
                     onChange={(e) => handleChange(e)}
                   >
-                    <option value="">Select Sub-Category</option>
-                    <option value="aftersds-10">Exam 1</option>
-                    <option value="aftersadsa-12">Exam 2</option>
-                    <option value="examsdsfd">Exams</option>
+                    <option value="">Select</option>
+                    <option value="engineering-exams">Engineering Exams</option>
+                    <option value="competitive-exams">Competitive Exams</option>
+                    <option value="mba-exams">MBA Exams</option>
+                    <option value="medical-exams">Medical Exams</option>
                   </select>
                 </div>
               )}

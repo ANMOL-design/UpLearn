@@ -8,6 +8,7 @@ import SchedulseClass from "./ClassManage/ScheduleClass";
 export default function ManageClass() {
   const [MyClassroom, setMyClassroom] = useState({});
   const [StudentInfo,  setStudentsInfo] = useState([]);
+  const [instructorInfo,  setinstructor] = useState([]);
   const { id } = useParams();
   let navigate = useNavigate();
   const [Loading, setLoading] = useState(true);
@@ -34,6 +35,19 @@ export default function ManageClass() {
         });
       }
     fetchdata();
+    const fetchInstructor = async () => {
+      await axios
+        .get("/aboutInstructor")
+        .then((response) => {
+          setinstructor(response.data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          navigate("/login");
+        });
+    };
+    fetchInstructor();
   }, [id,Loading]);
 console.log(MyClassroom);
   // States to handle component changes in page
@@ -390,7 +404,7 @@ console.log(MyClassroom);
               {/* Showing Atandance if Atandance is Active  */}
               {AtandanceShow}
               {/* Showing ScheduleClassShow  if ScheduleClassShow  is Active  */}
-              {ScheduleClassShow && <SchedulseClass classId={id} MyClassroom={MyClassroom}/>}
+              {ScheduleClassShow && <SchedulseClass Instructor={instructorInfo} classId={id} MyClassroom={MyClassroom} />}
             </div>
            </div>
         </>

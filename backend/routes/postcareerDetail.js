@@ -15,7 +15,6 @@ router.get("/admin/getAllCareerBy/:courseCategory", (req, res) => {
     if (err) {
       res.status(500).json({ message: "Internal Server Error" });
     } else {
-      console.log(data);
       res.status(200).json(data);
     }
   });
@@ -28,7 +27,6 @@ router.get("/admin/getAllCareer/:subcategory", (req, res) => {
     if (err) {
       res.status(500).json({ message: "Internal Server Error" });
     } else {
-      console.log(data);
       res.status(200).json(data);
     }
   });
@@ -71,4 +69,35 @@ router.post("/admin/postCareerDetails", (req, res) => {
     console.log("error occcured " + error);
   }
 });
+
+
+// update
+router.post("/updateBlog", (req, res) => {
+  const { id, title, description } = req.body;
+  console.log(id);
+  PostData.findByIdAndUpdate(id, { title: title, description: description }, function (err, docs) {
+    if (err) {
+      console.log("error occured" + err)
+    } else {
+      res.status(200).json({ msg: "Updated" })
+      console.log("Updated Blog : " + docs);
+    }
+  })
+})
+
+// delete
+router.post("/deleteBlog", (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+  PostData.findByIdAndDelete(id, function (err, docs) {
+    if (err) {
+      console.log("error occured" + err)
+    } else {
+      res.status(200).json({ msg: "deleted" })
+      console.log("Deleted : " + docs);
+    }
+  })
+
+})
+
 module.exports = router;

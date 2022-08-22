@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import MyClassSchedule from "./MyClassSchedule";
 
 export default function ViewMyClass(props){
      const {id} = useParams();
      const [StudentInfo,setStudentInfo] = useState([]);
      const [MyClassroom,setMyClassrooms] = useState([]);
-  const [NoticeShow, setNoticeShow] = useState(false);
+  const [NoticeShow, setNoticeShow] = useState(true);
   const [NotesShow, setNotesShow] = useState(false);
   const [ScheduleClassShow, setScheduleClassShow] = useState(false);
 
@@ -86,7 +87,7 @@ export default function ViewMyClass(props){
               {NotesShow}
 
               {/* Showing ScheduleClass if Atandance is Active  */}
-              {ScheduleClassShow}
+              {ScheduleClassShow && <MyClassSchedule StudentInfo={StudentInfo} MyClassroom={MyClassroom}/>}
             </div>
        </div>
         </>

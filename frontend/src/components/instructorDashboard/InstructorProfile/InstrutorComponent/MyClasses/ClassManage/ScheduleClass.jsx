@@ -64,30 +64,27 @@ export default function SchedulseClass(props) {
   var Difference_In_Time = date2.getTime() - date1.getTime();
   // To calculate the no. of days between two dates
   var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-  console.log(Difference_In_Days);
   if (!Loading) {
     if (Difference_In_Days < -1) {
       return (
         <>
           <div className="class-container">
-            <h2 style={{ color: "#2b4eff" }}>No Any Class Schedule Yet!</h2>
-            <h2 style={{ color: "#2b4eff" }}>Schedule Your Class</h2>
+            <h1 style={{ color: "#2b4eff" }}>No Any Class Schedule Yet!</h1>
             <br />
             <p className="star">
               Note : the class you schedule is only valid for 24 hours after
               that its Finsish
             </p>
             <br />
-            <div className="schedule-class-container">
+            <div className="schedule-class-container-2">
               <div className="signInput">
+              <h2 style={{ color: "#2b4eff" }}>Schedule Your Class</h2>
                 <label htmlFor="title">
                   {" "}
                   Schedule Date :<span className="star"> *</span>
                 </label>
                 <br />
                 <input
-                  style={{ width: "30%" }}
                   type="datetime-local"
                   id="title"
                   placeholder="Add title of the course"
@@ -100,7 +97,7 @@ export default function SchedulseClass(props) {
 
                 <div
                   className="submit-btn"
-                  style={{ marginTop: "20px", width: "30%" }}
+                  style={{ marginTop: "20px" }}
                 >
                   <button
                     id="addBookBtn"
@@ -125,8 +122,9 @@ export default function SchedulseClass(props) {
     } else {
       return (
         <>
+          <h1 className="schedule-class-heading">My Schedule Classroom </h1>
           <div className="schedule-class-container">
-            <div className="schedule-class-container">
+            <div>
               <div className="class-scheduler-card-container">
                 <div className="class-scheduler-card-header">
                   <h2>{MyClassroom.ClassName}</h2>
@@ -151,23 +149,35 @@ export default function SchedulseClass(props) {
                     </strong>
                   </div>
                   <div className="class-scheduler-btn">
-                  <a href={process.env.MYCLASSROOMPORT+"/"}  target='_blank' rel="noreferrer noopener" className="downloadpdf">
-                                                    <button className="lib-card-button">
-                                                        Join Classroom
-                                                    </button>
-                                                </a>
+                    <a
+                      href={
+                        "http://localhost:3050/?" +
+                        "name=" +
+                        props.Instructor.Teachername +
+                        "&participantId=" +
+                        props.Instructor._id +
+                        "&meetingId=" +
+                        MyClassroom.meetingId 
+                      }
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="downloadpdf"
+                    >
+                      <button className="lib-card-button">
+                        Join Classroom
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="signInput">
+            <div className="signInput schedule-new">
               <label htmlFor="title">
                 {" "}
-                Course Title :<span className="star"> *</span>
+                Schedule New Class :<span className="star"> *</span>
               </label>
               <br />
               <input
-                style={{ width: "30%" }}
                 type="datetime-local"
                 id="title"
                 placeholder="Add title of the course"
@@ -178,10 +188,7 @@ export default function SchedulseClass(props) {
               />
               <p className="star">{err}</p>
 
-              <div
-                className="submit-btn"
-                style={{ marginTop: "20px", width: "30%" }}
-              >
+              <div className="submit-btn" style={{ marginTop: "20px" }}>
                 <button
                   id="addBookBtn"
                   style={{
