@@ -149,6 +149,7 @@ const Addcareercourses = () => {
                   <select
                     id="subject"
                     name="courseSubCategory"
+                    style={{ margin: "0px" }}
                     value={CAREERDETAILS.courseSubCategory}
                     onChange={(e) => handleChange(e)}
                   >
@@ -165,6 +166,7 @@ const Addcareercourses = () => {
                   <select
                     id="subject"
                     name="courseSubCategory"
+                    style={{ margin: "0px" }}
                     value={CAREERDETAILS.courseSubCategory}
                     onChange={(e) => handleChange(e)}
                   >
@@ -186,6 +188,7 @@ const Addcareercourses = () => {
                   <select
                     id="subject"
                     name="courseSubCategory"
+                    style={{ margin: "0px" }}
                     value={CAREERDETAILS.courseSubCategory}
                     onChange={(e) => handleChange(e)}
                   >
