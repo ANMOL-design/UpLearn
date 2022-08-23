@@ -126,6 +126,45 @@ router.post("/ScheduleClass", async(req, res) => {
       console.log(error);
     })
   });
+  router.post("/sendmessage",async (req, res) => {
+    const {classId,message,senderId,senderName} = req.body;
+    LiveClass.findByIdAndUpdate(
+      classId,
+    {
+      $push: {
+        messages: {message:message,senderId:senderId,senderName:senderName}
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+          console.log(result);
+        res.status(200).json({ msg: "User added Successful" });
+      }
+    }
+    )
+  });
+  router.post("/sendmessagebystudent",async (req, res) => {
+    const {classId,message,senderId,senderName} = req.body;
+    console.log(req.body);
+    LiveClass.findByIdAndUpdate(
+      classId,
+    {
+      $push: {
+        messages: {message:message,senderId:senderId,senderName:senderName,isInstructor:false}
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+          console.log(result);
+        res.status(200).json({ msg: "User added Successful" });
+      }
+    }
+    )
+  });
 
   router.post("/removefromclass", (req, res) => {
     const { UserId ,ClassId} = req.body;

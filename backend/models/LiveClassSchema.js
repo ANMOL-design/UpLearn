@@ -58,18 +58,16 @@ const liveClassSchema = new mongoose.Schema({
          {
             type : String
         } ,
-        ismessage :
+        isInstructor :
          {
-            type : String
+            type :Boolean,
+            default:true
         } ,
         message :
          {
             type : String
         } ,
-        Roleofsender :
-         {
-            type : String
-         } ,
+       
         
 }],
     classStatus : {

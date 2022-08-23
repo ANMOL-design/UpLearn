@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../../Loader";
+import Chatbox from "./Chatbox/Chatbox";
 import LiveClassAttendance from "./ClassManage/LiveClassAttendance";
 import SchedulseClass from "./ClassManage/ScheduleClass";
 
@@ -402,7 +403,7 @@ export default function ManageClass() {
               {ParticipantShow && <AddParticipants />}
 
               {/* Showing Notice if Notice is Active  */}
-              {NoticeShow}
+              {NoticeShow && <Chatbox  MyClassroom={MyClassroom}/>}
 
               {/* Showing Notes if Notes is Active  */}
               {/* {NotesShow && <ClassNotes />} */}
