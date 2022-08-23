@@ -1,18 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./../../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { FiArrowRight } from "react-icons/fi";
 import { BsTwitter, BsYoutube, BsFacebook } from "react-icons/bs";
 
+var CryptoJS = require("crypto-js");
+
 function Footer() {
   const [user, setuser] = useState("");
-
+  const [role, setrole] = useState("");
+  const loginDetails = useSelector((state) => state.userReducers);
   // Function to validate email
   const validateEmail = (email) => {
     return email.match(
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   };
+
+  useEffect(() => {
+    // Decrypting the User Role
+    if (loginDetails.userRole !== "") {
+      var bytes = CryptoJS.AES.decrypt(
+        loginDetails.userRole,
+        "my-secret-key@123"
+      );
+      var role = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      setrole(role);
+    }
+  }, [loginDetails.userRole]);
 
   // Adding Data to Backend
   const postData = async (e_success, e_fail) => {
@@ -49,11 +65,10 @@ function Footer() {
     // Send Email if email exist
     if (email) {
       const login = localStorage.getItem("isLoggedIn");
-      const student = localStorage.getItem("Work");
-      if (login && student === "SDTTE UN ") {
+      if (login && role === "STUDENT") {
         // Make the API CALL Here
         postData(e_success, e_fail);
-      } else if (login && student === "TCREH AE ") {
+      } else if (login && role === "INSTRUCTOR") {
         e_success.style.display = "none";
         e_fail.style.display = "block";
         e_fail.innerHTML = "Subscription Is For Students Only";
@@ -85,13 +100,25 @@ function Footer() {
               can customize lesson plans to best.
             </p>
             <span>
-              <a href="https://www.google.com/" rel="noreferrer" target="_blank">
+              <a
+                href="https://www.google.com/"
+                rel="noreferrer"
+                target="_blank"
+              >
                 <BsFacebook />
               </a>
-              <a href="https://www.google.com/" rel="noreferrer" target="_blank">
+              <a
+                href="https://www.google.com/"
+                rel="noreferrer"
+                target="_blank"
+              >
                 <BsTwitter />
               </a>
-              <a href="https://www.youtube.com/" rel="noreferrer" target="_blank">
+              <a
+                href="https://www.youtube.com/"
+                rel="noreferrer"
+                target="_blank"
+              >
                 <BsYoutube />
               </a>
             </span>
@@ -99,23 +126,22 @@ function Footer() {
           {/* The container 2 contain site Link  */}
           <div className="foo-feature">
             <h2>Features</h2>
-            <Link to="/">About</Link>
-            <Link to="/">Courses</Link>
-            <Link to="/">Events</Link>
-            <Link to="/">Instructor</Link>
-            <Link to="/">Career</Link>
-            <Link to="/">Become a Teacher</Link>
-            <Link to="/">Contact</Link>
+            <Link to="/about-us">About</Link>
+            <Link to="/courses">Courses</Link>
+            <Link to="/my-lectures">My Lectures</Link>
+            <Link to="/careercounselling">Career Counselling</Link>
+            <Link to="/learn-with-fun">Learn with Fun</Link>
+            <Link to="/contact">Contact</Link>
           </div>
           {/* The container 3 contain site Link  */}
           <div className="foo-platform">
             <h2>Platform</h2>
-            <Link to="/">Ask Doubts</Link>
-            <Link to="/">Library</Link>
-            <Link to="/">Courses</Link>
-            <Link to="/">News &amp; Blogs</Link>
-            <Link to="/">FAQs</Link>
-            <Link to="/">Tutorials</Link>
+            <Link to="/ask-doubt">Ask Doubts</Link>
+            <Link to="/uplearn-virtual-library">Library</Link>
+            <Link to="/courses">Courses</Link>
+            <Link to="/careercounselling">News &amp; Blogs</Link>
+            <Link to="/FAQ-Tutorial">FAQs</Link>
+            <Link to="/FAQ-Tutorial">Tutorials</Link>
           </div>
           {/* The container 3 contain site Link  */}
           <div className="foo-Subscribe">

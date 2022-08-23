@@ -59,7 +59,7 @@ export default function MyCourses(props) {
                 to="/instructordashboard/my-courses/add-new-course"
                 className="btn-add-new-course"
               >
-                Add New Course
+                Course +
               </Link>
             </div>
             <hr style={{ marginTop: "8px" }} />

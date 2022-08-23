@@ -1,0 +1,27 @@
+.statsCounter{
+    
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.statsCounterWrapper{
+    margin-top: 1rem;
+    padding: 4rem 2rem;
+    background-color: #d7ecfd;
+}
+.stats {
+    // text-align: center;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    // font-size: 35px;
+    font-weight: 700;
+}
+.statsIcon{
+    font-size: 4rem;
+    color: #0C0F33;     
+}
+.statsData{
+    color: #0C0F33;
+    font-size: 1.5rem;
+}
