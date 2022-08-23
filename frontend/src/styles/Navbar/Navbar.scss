@@ -279,6 +279,7 @@ nav .content .links {
 
 .dropdown:hover .dropdown-content {
   display: block;
+  z-index: 99;
 }
 
 .notopbdr{

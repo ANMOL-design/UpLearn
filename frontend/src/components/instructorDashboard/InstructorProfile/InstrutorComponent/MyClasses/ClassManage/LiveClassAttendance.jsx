@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { MdDownload, MdTableView } from "react-icons/md";
 import { Link, Route } from "react-router-dom";
@@ -153,7 +154,7 @@ console.log(StudentInfo);
                     <td style={{ textTransform: "none" }}>
                       {item.participants.length}
                     </td>
- 
+                       {console.log(meetindDetails)}
                     {/* <td>
                       <button
                         className="rmvbtn"
@@ -165,46 +166,12 @@ console.log(StudentInfo);
                       </button>
                     </td> */}
                     <td>
-                      <button className="rmvbtn" onClick={()=>{
-                        document.getElementById("attance-table-tr").style.display = "none"
-                      
-                        var elements = document.getElementsByClassName("attance-table-tr-2");
-                        for(var k = 0, length = elements.length; k < length; k++) {
-                              elements[k].style.display = 'none';
-
-                        }
-                        document.getElementById("view-attance-table-tr"+item._id).style.display="block"
-                        document.getElementById("view-attance-table-tr-2"+item._id).style.display="block"
-
-                      }}>    
-                          <MdTableView /> Preview{" "}      
+                      <button className="rmvbtn" >
+                        <Link to={"/instructordashboard/my-classroom/PreviewAttandance/"+MyClassroom.meetingId+"/"+item.id}><MdTableView /> Preview{" "}     </Link>
+                           
                       </button>
                     </td>
                   </tr>
-                  <tr className="view-attance-table-tr" id={"view-attance-table-tr"+item._id}>
-                  <th style={{ textTransform: "none" }}>Student Id</th>
-                  <th style={{ textTransform: "none" }}>Name</th>
-                  <th style={{ textTransform: "none" }}>Email</th>
-                  <th style={{ textTransform: "none" }}>Class Duration</th>
-
-                  </tr>
-                     {item.participants.map((i)=>{
-                     const isstudent =  MyClassroom.classUsers.find((j)=>j===i.participantId)
-                       if(isstudent){
-                     let studentfind = StudentInfo.find((data)=>data._id==isstudent);
-                      if(studentfind){
-                        return(
-                          <tr className="view-attance-table-tr-2" id={"view-attance-table-tr-2"+item._id}>
-                            <td style={{ textAlign: "left", paddingLeft: "1rem" }}>{studentfind._id}</td>
-                            <td>{studentfind.name}</td>
-                            <td>{studentfind.email}</td>
-                            <td>{totalTime(i)}</td>
-                          </tr>
-                        )
-                      }
-                       }
-                        
-                     })}
                    </>
                 ))}
               </tbody>
