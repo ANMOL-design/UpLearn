@@ -11,6 +11,8 @@ import MyCourses from "./InstrutorComponent/MyCourses/instructorMyCourses";
 import MyClassrooms from "./InstrutorComponent/MyClasses/MyClassrooms";
 import AddNewClass from "./InstrutorComponent/MyClasses/AddNewClass";
 import ManageClass from "./InstrutorComponent/MyClasses/ManageClass";
+import LiveClassAttendance from "./InstrutorComponent/MyClasses/ClassManage/LiveClassAttendance";
+import PreviewAttandance from "./InstrutorComponent/MyClasses/ClassManage/PreviewAttandance";
 
 var CryptoJS = require("crypto-js");
 
@@ -84,6 +86,11 @@ function InstructorDashboard() {
           <Route
             path="/my-classroom/:id"
             element={<ManageClass InstructorInfo={instructor} />}
+          />
+      
+          <Route
+            path="/my-classroom/PreviewAttandance/:meetingId/:id"
+            element={<PreviewAttandance  />}
           />
       
         </Routes>

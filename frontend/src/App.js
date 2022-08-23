@@ -91,6 +91,7 @@ import AddNotes from "./components/instructorDashboard/InstructorProfile/Instrut
 import Classnotes from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/Classnotes";
 import AddNotice from "./components/instructorDashboard/InstructorProfile/InstrutorComponent/MyClasses/AddNotice";
 
+import Chatbox from "./components/Chatbox/Chatbox";
 // My Lecture
 import BoardSelect from "./components/MyLectures/LectureRoutes/BoardSelect";
 import ClassSelect from "./components/MyLectures/LectureRoutes/ClassSelect";
@@ -338,6 +339,8 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
+
+            <Route path="/chatbox" element={<Chatbox />} />
 
             {/* //////// End Of Routes ////////// */}
           </Routes>

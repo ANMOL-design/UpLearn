@@ -2,7 +2,7 @@
   font-family: $font_El;
   margin-left: 4rem;
   padding: 1rem;
-  background-color: rgba(240, 242, 250, 0.54);
+  // background-color: #f0f0f0;
 }
 .instructor-myprofile-heading {
   @include displayflex;
@@ -61,7 +61,7 @@
   flex-wrap: wrap;
   .inst-profile-cards {
     width: 280px;
-    background-color: #fff;
+    background-color: #f9f9f9;
     border: 1px solid #aaa;
     padding: 1.5rem;
     margin: 1rem 1rem 1rem 0px;
