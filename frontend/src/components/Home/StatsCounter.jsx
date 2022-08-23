@@ -15,7 +15,7 @@ export default function StatsCounter() {
               <BiSpreadsheet />
             </div>
             <div className="statsData">
-              <CountUp end={500} duration={10} />+<h5>Courses</h5>
+              <CountUp end={110} duration={5} />+<h5>Courses</h5>
             </div>
           </div>
 
@@ -24,7 +24,7 @@ export default function StatsCounter() {
               <FaUsers />
             </div>
             <div className="statsData">
-              <CountUp end={700} duration={10} />+<h5>Students</h5>
+              <CountUp end={800} duration={10} />+<h5>Students</h5>
             </div>
           </div>
 
@@ -42,7 +42,7 @@ export default function StatsCounter() {
               <FaChalkboardTeacher />
             </div>
             <div className="statsData">
-              <CountUp end={500} duration={10} />+<h5>Instructors</h5>
+              <CountUp end={100} duration={5} />+<h5>Instructors</h5>
             </div>
           </div>
         </div>
