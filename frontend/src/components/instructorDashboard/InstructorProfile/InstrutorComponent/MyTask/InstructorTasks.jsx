@@ -33,7 +33,7 @@ function InstructorAssignTask(props) {
     setHidden({ [index]: !hidden[index] });
   };
 
-  // console.log(assignTask);
+  // console.log(assignTask,  props.details._id);
 
   if (Loading) {
     return <Loader />;
@@ -41,7 +41,7 @@ function InstructorAssignTask(props) {
     return (
       <div className="PendingtaskConainer">
         <h1>Pending Tasks</h1>
-        {assignTask ? (
+        {assignTask.length ? (
           <div className="pendingtaskinnercontainer">
             {assignTask.map((item, index) => {
               return (

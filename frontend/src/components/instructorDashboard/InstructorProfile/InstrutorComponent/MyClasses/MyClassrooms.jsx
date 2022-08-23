@@ -91,13 +91,13 @@ function MyClassrooms(props) {
           <div className="addcourse-main-container">
             {/* Course heading to Add New Course  */}
             <div className="my-courses-container">
-              <h2>My ClassRooms</h2>
+              <h2>My Classrooms</h2>
 
               <Link
                 to="/instructordashboard/my-classroom/add-new-class"
                 className="btn-add-new-course"
               >
-                Add New Class
+                New Class +
               </Link>
             </div>
             <hr style={{ marginTop: "8px" }} />
