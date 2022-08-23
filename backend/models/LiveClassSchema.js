@@ -14,6 +14,11 @@ const liveClassSchema = new mongoose.Schema({
     Class :{
         type : String
     },
+    isUserAllow :
+         {
+            type : Boolean,
+            default: true
+         } ,
     Subject :{
         type : String
     },
@@ -44,6 +49,29 @@ const liveClassSchema = new mongoose.Schema({
         type : String ,
      },
     }],
+    messages:[{
+        senderName :
+         {
+            type : String
+        } ,
+        senderId :
+         {
+            type : String
+        } ,
+        ismessage :
+         {
+            type : String
+        } ,
+        message :
+         {
+            type : String
+        } ,
+        Roleofsender :
+         {
+            type : String
+         } ,
+        
+}],
     classStatus : {
         type : String , default : "Active"
     },
