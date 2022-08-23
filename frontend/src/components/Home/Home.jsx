@@ -49,6 +49,7 @@ function Home(){
      </div>
      
    <BelowHome />
+   
    <FeaturesHome/>
    
   
