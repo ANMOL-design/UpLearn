@@ -1,5 +1,22 @@
 import React from "react";
-
+import Message from "./Message";
 export default function Chatbox() {
-  return <div>Chatbox</div>;
+  return (
+    <div className="chatBox">
+      <div className="chatBoxWrapper">
+        <div className="chatBoxTop">
+          <Message />
+          <Message own={true} />
+          <Message />
+        </div>
+        <div className="chatBoxBottom">
+          <textarea
+            className="chatMessageInput"
+            placeholder="write something..."
+          ></textarea>
+          <button className="chatSubmitButton">Send</button>
+        </div>
+      </div>
+    </div>
+  );
 }

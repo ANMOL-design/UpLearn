@@ -68,6 +68,7 @@
 // Home Route
 @import "./Home/Home.scss";
 @import "./Home/BelowHome.scss";
+@import "./Home/StatsCounter.scss";
 @import "./Home//FeaturesHome.scss";
 
 //Importing Style of Games
@@ -84,3 +85,6 @@
 @import "./AdminPortal/addcareercourses.scss";
 //Importing Style of MyClassroom
 @import "./MyClassroom/myclassroom.scss";
+
+// Importing Style of Chatbox
+@import "./chatbox/chatbox.scss";
