@@ -8,6 +8,11 @@ export default function Chatbox() {
           <Message />
           <Message own={true} />
           <Message />
+          <Message />
+          <Message />
+          <Message />
+          <Message />
+          <Message />
         </div>
         <div className="chatBoxBottom">
           <textarea

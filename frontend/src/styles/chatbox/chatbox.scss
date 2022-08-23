@@ -1,21 +1,13 @@
-// .chatBox{
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     margin: 2rem 0;
-// }
+
 .chatBox{
     margin: 1rem auto;
     width: 50%;
 }
-.chatBoxTop {
-    height: 100%;
-    overflow-y: scroll;
-    padding-right: 10px;
-}
+
 
 .chatBoxWrapper {
-display: flex;
+    border-radius: 10px;
+     display: flex;
     flex-direction: column;
     justify-content: space-between;
     // position: relative;
@@ -23,7 +15,11 @@ display: flex;
     // height: 100%;
     background-color: #c5daf6;
 }
-
+.chatBoxTop {
+    height: 60vh;
+    overflow-y: scroll;
+    padding-right: 10px;
+}
 
 .chatBoxBottom {
     margin-top: 5px;
@@ -33,9 +29,11 @@ display: flex;
 }
 
 .chatMessageInput {
-    width: 80%;
+    width: 86%;
     height: 90px;
     padding: 10px;
+    outline: none;
+    border: none;
 }
 
 .chatSubmitButton {
@@ -44,7 +42,7 @@ display: flex;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: teal;
+    background-color: #0C0F33;
     color: white;
 }
 //message.jsx
@@ -68,7 +66,7 @@ display: flex;
 
 .messageText {
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #1877f2;
     color: white;
     max-width: 300px;
