@@ -17,13 +17,14 @@ export default function PreviewAttandance() {
         method: "GET",
         headers: {
           Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiIzMWFiNGIyZC1iZTUxLTRhYzItOTI1NS1kZTkzNjAwNzRhYjgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MDY1MTM2OSwiZXhwIjoxNjYxMjU2MTY5fQ.R6CFn5jMAgr5o0ed-lZelEECeCOF1u60q37LvUPwxJs",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJmMTY5NWE4Yi04ZmMxLTRhNWItYTA2OS0xNjUzNWFjZTU0MWYiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MTM2Mjc4NiwiZXhwIjoxNjYxOTY3NTg2fQ.s5C5JAhwpo1Q1rrPGCVkgEIrwrwVLIrgI-Hh61WybZ8",
           "Content-Type": "application/json",
         },
       };
       const url = `https://api.videosdk.live/v2/sessions/?roomId=${meetingId}`;
       const response = await fetch(url, options);
       const data = await response.json();
+      console.log(response);
       setLoading(false);
       setmeetindDetails(data.data);
     };
@@ -53,7 +54,7 @@ export default function PreviewAttandance() {
     // calculate hours
     const hours = Math.floor(diffInMilliSecondstime / 3600) % 24;
     diffInMilliSecondstime -= hours * 3600;
-    var seconds = ((diffInMilliSecondstime % 60000) / 1000).toFixed(0);
+    
     // calculate minutes
     const minutes = Math.floor(diffInMilliSecondstime / 60) % 60;
     diffInMilliSecondstime -= minutes * 60;
@@ -63,18 +64,15 @@ export default function PreviewAttandance() {
     }
     if (hours > 0) {
       difference +=
-        hours === 0 || hours === 1 ? `${hours} hour, ` : `${hours} hours, `;
+        hours === 0 || hours === 1 ? `${hours} hour , ` : `${hours} hours , `;
     }
     if (minutes > 0) {
       difference +=
         minutes === 0 || hours === 1
-          ? `${minutes} minutes`
-          : `${minutes} minutes`;
+          ? `${minutes} minutes `
+          : `${minutes} minutes `;
     }
-    difference +=
-      minutes === 0 || hours === 1
-        ? `${seconds} seconds`
-        : `${seconds} seconds`;
+    difference +=`${Math.round(diffInMilliSecondstime)} Seconds`
 
     return difference;
   }
