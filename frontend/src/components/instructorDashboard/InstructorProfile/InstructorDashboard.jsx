@@ -13,6 +13,7 @@ import AddNewClass from "./InstrutorComponent/MyClasses/AddNewClass";
 import ManageClass from "./InstrutorComponent/MyClasses/ManageClass";
 import LiveClassAttendance from "./InstrutorComponent/MyClasses/ClassManage/LiveClassAttendance";
 import PreviewAttandance from "./InstrutorComponent/MyClasses/ClassManage/PreviewAttandance";
+import Chatbox from "./InstrutorComponent/MyClasses/Chatbox/Chatbox";
 
 var CryptoJS = require("crypto-js");
 

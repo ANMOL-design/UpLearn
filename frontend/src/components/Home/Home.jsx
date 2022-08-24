@@ -19,7 +19,7 @@ function Home() {
   //     </>
   // )
   return (
-    <>
+      <>
       <div className="home-container">
         <div className="untitled">
           <div className="untitled__slides">
@@ -47,11 +47,17 @@ function Home() {
         </div>
       </div>
 
+     
+     
+   
+
       <BelowHome />
       <StatsCounter />
       <FeaturesHome />
+      
     </>
   );
+
 }
 
 export default Home;

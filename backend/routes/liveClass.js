@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const dotenv = require("dotenv");
 dotenv.config();
-const LiveClass = require("../models/LiveClassSchema")
+const LiveClass = require("../models/LiveClassSchema");
 const Instructors = require("../models/instructorregisterSchema");
 const User = require("../models/userSchema");
 const AddtoClassEmail = require("../utils/emails/AddToClassEmail");
@@ -21,20 +21,20 @@ router.get("/myClassrooms/:Id", (req, res) => {
       res.sendStatus(404);
     });
 });
+
 router.get("/myClass/:Id", (req, res) => {
-    const id = req.params.Id;
-    LiveClass.find({_id : id })
+  const id = req.params.Id;
+  LiveClass.find({ _id: id })
     .then((product) => {
-        if (product) {
-          return res.send(product);
-        }
-      })
-      .catch((err) => {
+      if (product) {
+        return res.send(product);
+      }
+    })
+    .catch((err) => {
       console.log(err);
       res.sendStatus(404);
     });
 });
-
 
 router.post("/addnotesbyinstructor", (req, res) => {
   const { UserId, classId } = req.body;
@@ -57,10 +57,11 @@ router.post("/addnotesbyinstructor", (req, res) => {
     }
   );
 });
-router.post("/ScheduleClass", async(req, res) => {
-  const {classId,Scheduledate} = req.body;
-  const Users=await LiveClass.findById(classId); 
-  const getClass = await LiveClass.findById(classId)
+
+router.post("/ScheduleClass", async (req, res) => {
+  const { classId, Scheduledate } = req.body;
+  const Users = await LiveClass.findById(classId);
+  const getClass = await LiveClass.findById(classId);
   const gettimestamp = (day) => {
     let today = new Date(day);
     let dd = today.getDate();
@@ -72,117 +73,182 @@ router.post("/ScheduleClass", async(req, res) => {
     let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
     return time;
   };
-  const ScheduleTime = gettimestamp(Scheduledate)
+  const ScheduleTime = gettimestamp(Scheduledate);
   const UserEmails = [];
-  Users.classUsers.map(async(item)=>{
-   const findUser  =await User.findById(item);
-       UserEmails.push(findUser.email);
+  Users.classUsers.map(async (item) => {
+    const findUser = await User.findById(item);
+    UserEmails.push(findUser.email);
     console.log(UserEmails);
-  })
+  });
   LiveClass.findByIdAndUpdate(
-    classId, {
+    classId,
+    {
       classScheduleDate: Scheduledate,
     },
     function (err, result) {
       if (err) {
         console.log(err);
       } else {
-        sendmailtomultipleuser(UserEmails,ScheduleTime,getClass.ClassName,getClass.ClassDescription,getClass.Subject,getClass.Class)
+        sendmailtomultipleuser(
+          UserEmails,
+          ScheduleTime,
+          getClass.ClassName,
+          getClass.ClassDescription,
+          getClass.Subject,
+          getClass.Class
+        );
         res.status(200).json({ msg: "class schedule Successful" });
       }
     }
   );
 });
-  router.post("/Add-Participant",async (req, res) => {
-    const { UserId,classId,InstructorId} = req.body;
-   const getUser = await User.findById(UserId)
-   const getClass = await LiveClass.findById(classId)
-   const getInstructor= await Instructors.findById(InstructorId)
-    LiveClass.findByIdAndUpdate(
-        classId,
-      {
-        $push: {
-            classUsers: UserId
-        }
-      }
-    ).then(()=>{
+
+router.post("/Add-Participant", async (req, res) => {
+  const { UserId, classId, InstructorId } = req.body;
+  const getUser = await User.findById(UserId);
+  const getClass = await LiveClass.findById(classId);
+  const getInstructor = await Instructors.findById(InstructorId);
+  LiveClass.findByIdAndUpdate(classId, {
+    $push: {
+      classUsers: UserId,
+    },
+  })
+    .then(() => {
       User.findByIdAndUpdate(
         UserId,
-      {
-        $push: {
-            MyClassrooms: classId
+        {
+          $push: {
+            MyClassrooms: classId,
+          },
+        },
+        function (err, result) {
+          if (err) {
+            console.log(err);
+          } else {
+            AddtoClassEmail(
+              getUser.name,
+              getUser.email,
+              getClass.ClassName,
+              getClass.ClassDescription,
+              getInstructor.Teachername,
+              getClass.Subject,
+              getClass.Class
+            );
+            res.status(200).json({ msg: "User added Successful" });
+          }
+        }
+      );
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+router.post("/sendmessage", async (req, res) => {
+  const { classId, message, senderId, senderName } = req.body;
+  LiveClass.findByIdAndUpdate(
+    classId,
+    {
+      $push: {
+        messages: {
+          message: message,
+          senderId: senderId,
+          senderName: senderName,
         },
       },
-      function (err, result) {
-        if (err) {
-          console.log(err);
-        } else {
-          AddtoClassEmail(getUser.name,getUser.email,getClass.ClassName,getClass.ClassDescription,getInstructor.Teachername,getClass.Subject,getClass.Class)
-          res.status(200).json({ msg: "User added Successful" });
-        }
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.status(200).json({ msg: "User added Successful" });
       }
-    )
-    }).catch((error)=>{
-      console.log(error);
-    })
-  });
+    }
+  );
+});
 
-  router.post("/removefromclass", (req, res) => {
-    const { UserId ,ClassId} = req.body;
-    LiveClass.findByIdAndUpdate(
-        ClassId,
-      {
-        $pull: {
-            classUsers: UserId
+router.post("/sendmessagebystudent", async (req, res) => {
+  const { classId, message, senderId, senderName } = req.body;
+  console.log(req.body);
+  LiveClass.findByIdAndUpdate(
+    classId,
+    {
+      $push: {
+        messages: {
+          message: message,
+          senderId: senderId,
+          senderName: senderName,
+          isInstructor: false,
         },
+      },
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.status(200).json({ msg: "User added Successful" });
       }
-    ).then(()=>{
+    }
+  );
+});
+
+router.post("/removefromclass", (req, res) => {
+  const { UserId, ClassId } = req.body;
+  LiveClass.findByIdAndUpdate(ClassId, {
+    $pull: {
+      classUsers: UserId,
+    },
+  })
+    .then(() => {
       User.findByIdAndUpdate(
         UserId,
-      {
-        $pull: {
-            MyClassrooms: ClassId
+        {
+          $pull: {
+            MyClassrooms: ClassId,
+          },
         },
-      },
-      function (err, result) {
-        if (err) {
-          console.log(err);
-        } else {
-          res.status(200).json({ msg: "User Removed Successful" });
+        function (err, result) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.status(200).json({ msg: "User Removed Successful" });
+          }
         }
-      }
-    )
-    }).catch((error)=>{
-      console.log(error);
+      );
     })
-  });
-  // router.post("/deleteMyClassroom", async (req, res) => {
-  //   const { classId} = req.body;
-  //   const InstructorOfClassroms = await LiveClass.findById(classId);
-  //   LiveClass.findByIdAndDelete(
-  //     classId
-  //   ).then(()=>{
-  //    Instructors.findByIdAndUpdate(
-  //     InstructorOfClassroms.classOwner,
-  //     {
-  //       $pull: {
-  //           MyClassrooms: classId
-  //       },
-  //     },
-  //     function (err, result) {
-  //       if (err) {
-  //         console.log(err);
-  //       } else {
-  //         res.status(200).json({ msg: "User Removed Successful" });
-  //       }
-  //     }
-  //   )
-  //   }).catch((error)=>{
-  //     console.log(error);
-  //   })
-  // });
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
-   
+// router.post("/deleteMyClassroom", async (req, res) => {
+//   const { classId} = req.body;
+//   const InstructorOfClassroms = await LiveClass.findById(classId);
+//   LiveClass.findByIdAndDelete(
+//     classId
+//   ).then(()=>{
+//    Instructors.findByIdAndUpdate(
+//     InstructorOfClassroms.classOwner,
+//     {
+//       $pull: {
+//           MyClassrooms: classId
+//       },
+//     },
+//     function (err, result) {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         res.status(200).json({ msg: "User Removed Successful" });
+//       }
+//     }
+//   )
+//   }).catch((error)=>{
+//     console.log(error);
+//   })
+// });
+
 router.post("/Create-room", async (req, res) => {
   const {
     classOwner,
@@ -220,4 +286,5 @@ router.post("/Create-room", async (req, res) => {
     res.sendStatus(200);
   }
 });
+
 module.exports = router;

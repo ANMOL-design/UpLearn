@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import StudentChatbox from "./Chatbox/StudentChatbox";
 import MyClassSchedule from "./MyClassSchedule";
 
 export default function ViewMyClass(props) {
@@ -90,7 +91,7 @@ export default function ViewMyClass(props) {
           </div>
 
           {/* Showing Notice if Notice is Active  */}
-          {NoticeShow}
+          {NoticeShow && <StudentChatbox MyClassroom={MyClassroom} />}
 
           {/* Showing Notes if Notes is Active  */}
           {NotesShow}
