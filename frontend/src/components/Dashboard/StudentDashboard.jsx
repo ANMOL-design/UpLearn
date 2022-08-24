@@ -1,23 +1,21 @@
-import React, { useEffect } from "react";
-import {  Routes, Route, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-import MainDash from "./DashboardComponents/MainDash";
 import Profile from "./DashboardComponents/pages/Profile";
-import Reports from "./DashboardComponents/pages/Reports";
-import Sidebar from "./DashboardComponents/Sidebar";
 import StudentClassrooms from "./DashboardComponents/pages/StudentClassrooms";
-import { useState } from "react";
 import ViewMyClass from "./DashboardComponents/LiveClassrooms/ViewMyClass";
+import StudentSidebar from "./DashboardComponents/StudentSidebat";
+import MyCoursesEnroll from "./DashboardComponents/pages/MyCoursesEnroll";
 
 var CryptoJS = require("crypto-js");
 
 export default function StudentDashboard() {
- 
   const loginDetails = useSelector((state) => state.userReducers);
   let navigate = useNavigate();
-   const [StudentInfo,setStudentInfo] = useState({})
+
+  const [StudentInfo, setStudentInfo] = useState({});
   useEffect(() => {
     window.scroll(0, 0);
     // Decrypting the User Role
@@ -31,9 +29,7 @@ export default function StudentDashboard() {
 
     if (Number(loginDetails.isLoggedIn) && role === "INSTRUCTOR") {
       navigate("/instructordashboard");
-    } 
-    else if (Number(loginDetails.isLoggedIn) && role === "STUDENT") {
-
+    } else if (Number(loginDetails.isLoggedIn) && role === "STUDENT") {
       const fetchdata = async () => {
         await axios
           .get("/aboutStudents")
@@ -46,25 +42,31 @@ export default function StudentDashboard() {
           });
       };
       fetchdata();
-    } 
-    else {
+    } else {
       navigate("/login");
     }
   }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate]);
 
+  console.log(StudentInfo)
 
   return (
     <>
-      <div className="studWrapper">
-          {/* SideBar Present at All Places  */}
-          <Sidebar />
-          <Routes>
-              <Route path="/" element={<MainDash />} /> 
-              <Route path="/my-profile" element={<Profile />} /> 
-              <Route path="/My-classroom" element={<StudentClassrooms Student={StudentInfo} />} />          
-              <Route path="/my-classroom/:id" element={<ViewMyClass Student={StudentInfo} />} />          
-              <Route path="/reports" element={<Reports />} />          
-          </Routes>
+      <div className="instructor-dashboard">
+        {/* SideBar Present at All Places  */}
+        <StudentSidebar />
+
+        <Routes>
+          <Route path="/" element={<Profile />} />
+          <Route path="my-courses" element={<MyCoursesEnroll Student={StudentInfo}/>} />
+          <Route
+            path="/my-classroom"
+            element={<StudentClassrooms Student={StudentInfo} />}
+          />
+          <Route
+            path="/my-classroom/:id"
+            element={<ViewMyClass Student={StudentInfo} />}
+          />
+        </Routes>
       </div>
     </>
   );

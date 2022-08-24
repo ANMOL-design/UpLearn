@@ -180,7 +180,7 @@ function Navbar() {
                 <NavLink to="/studentdashboard" className="notopbdr">
                   My Dashboard
                 </NavLink>
-                <NavLink to="/studentdashboard/My-classroom">
+                <NavLink to="/studentdashboard/my-classroom">
                   My Classroom
                 </NavLink>
                 <NavLink to="/logout">Logout</NavLink>

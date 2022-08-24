@@ -18,11 +18,8 @@
 @import "./PageNotFound/PageNotFound.scss";
 
 //Importing Style of Student Dashboard
-@import "./Dashboard/student.scss";
-@import "./Dashboard/DashboardComponents/mainDash.scss";
-@import "./Dashboard/DashboardComponents/cards.scss";
-@import "./Dashboard/DashboardComponents/profile.scss";
-@import "./Dashboard/DashboardComponents/updateProfile.scss";
+@import "./DashboardStudent/profile.scss";
+@import "./DashboardStudent/updateProfile.scss";
 
 //Importing Style of Admin Portal
 @import "./AdminPortal/AdminHome.scss";
@@ -44,9 +41,6 @@
 @import "./Courses/coursevideo.scss";
 @import "./Courses/coursesQuiz.scss";
 @import "./Contact/Contact.scss";
-
-//Importing sidebar of student dashboard
-@import "./Dashboard/sidebar.scss";
 
 //Importing Style of Library Style
 @import "./Library/Library.scss";
