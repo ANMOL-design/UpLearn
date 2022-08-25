@@ -10,11 +10,12 @@ export default function Message({ message, own }) {
           alt=""
         />
         <p className="messageText">
-          Lorem ipsum dognissimos suscipit et cum e quos consectetur minus
-          totam.
+          {message.message}
         </p>
       </div>
-      <div className="messageBottom">1 hour ago</div>
+      <div className="messageBottom">
+        {message.isInstructor && <p>Instructor -</p>} {message.senderName}
+      </div>
     </div>
   );
 }

@@ -91,7 +91,7 @@ export default function ViewMyClass(props) {
           </div>
 
           {/* Showing Notice if Notice is Active  */}
-          {NoticeShow && <StudentChatbox MyClassroom={MyClassroom} />}
+          {NoticeShow && <StudentChatbox MyClassroom={MyClassroom} StudentInfo={StudentInfo} />}
 
           {/* Showing Notes if Notes is Active  */}
           {NotesShow}
