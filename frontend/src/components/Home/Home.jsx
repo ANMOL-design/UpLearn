@@ -54,8 +54,9 @@ function Home() {
       <BelowHome />
       <StatsCounter />
       {/* <FeaturesHome /> */}
-      <StudentInstructorCard />
+
       <DeliverResults />
+      <StudentInstructorCard />
     </>
   );
 }

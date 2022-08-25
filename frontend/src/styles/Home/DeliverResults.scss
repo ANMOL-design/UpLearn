@@ -1,8 +1,11 @@
 .deliver-outer-container{
+    // margin-top: 4rem;
+    font-family: $font_El;
     background-color: rgb(6, 6, 37);
     color:white;
     width: 100%;
     display: flex;
+    gap:1rem;
     flex-direction: column;
     align-items: center;
     padding: 10px;
@@ -20,18 +23,26 @@
     .deliver-para{
         font-size: 1rem;
         max-width: 500px;
+        text-align: center;
     }
 
 }
 .deliver-container-second{
-    padding: 20px;
+    padding: 1rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    flex-wrap: nowrap;
+    gap:2rem;
+    // flex-wrap: nowrap;
+    flex-wrap: wrap;
     
 }
+.deliver-icon-content{
+    margin-top: 1rem;
+    text-align: center;
+}
 .deliver-icon{
+    color: gray ;
     font-size: 4rem;
     display: flex;
     align-items: center;
@@ -45,4 +56,5 @@
 }
 .deliver-subpara{
     max-width: 300px;
+    font-size: .8rem;
 }
