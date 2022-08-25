@@ -13,21 +13,20 @@ const doubtBotData = require("./botUtil");
 */
 async function doubtBot(query) {
   let resultData = [];
-    const results = await doubtBotData(query);
-    if (results.length > 0) {
-        for (let i = 0; i < results.length; i++) {
-            if (i < 3) {
-                resultData.push({
-                    title: results[i].title,
-                    link: results[i].link,
-                    description: results[i].description,
-                });
-            }
-        }
+  const results = await doubtBotData(query);
+  if (results.length > 0) {
+    for (let i = 0; i < results.length; i++) {
+      if (i < 3) {
+        resultData.push({
+          title: results[i].title,
+          link: results[i].link,
+          description: results[i].description,
+        });
+      }
     }
-    return resultData;
+  }
+  return resultData;
 }
-
 
 // return the answer for the given query
 /*
@@ -36,7 +35,25 @@ async function doubtBot(query) {
 */
 async function doubtBotAnswer(query) {
   const results = await doubtBot(query);
-  const answer = `
+  if (!results.length) {
+    const answer = `
+    <div>
+        <h4 style='margin-bottom: 0px;'>Hi my name is Alice</h1>
+        <p>
+            I am Doubt Bot by UpLearn and is here to help you
+        </p>
+    </div>
+
+    <div>
+        As per your query, I could not find any results. Our Instructors will help you.
+        <br />
+        I am currently in learning stage and will be updating frequently.
+        <br />
+        In the meantime , you can visit the learn with fun section of UpLearn. 😀
+    </div>`;
+    return answer;
+  } else {
+    const answer = `
     <div>
         <h4 style='margin-bottom: 0px;'>Hi my name is Alice</h1>
         <p>
@@ -77,8 +94,8 @@ async function doubtBotAnswer(query) {
         <br />
         the answer as it will help me to find more better results for you
     </div>`;
-  return answer;
+    return answer;
+  }
 }
-
 
 module.exports = doubtBotAnswer;

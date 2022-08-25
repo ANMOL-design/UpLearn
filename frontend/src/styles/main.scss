@@ -20,6 +20,7 @@
 //Importing Style of Student Dashboard
 @import "./DashboardStudent/profile.scss";
 @import "./DashboardStudent/updateProfile.scss";
+@import "./DashboardStudent/EnrolledCourses.scss";
 
 //Importing Style of Admin Portal
 @import "./AdminPortal/AdminHome.scss";
@@ -59,6 +60,7 @@
 @import "./Home/BelowHome.scss";
 @import "./Home/StatsCounter.scss";
 @import "./Home//FeaturesHome.scss";
+@import "./Home//DeliverResults.scss";
 
 //Importing Style of Games
 @import "./Games/Games.scss";
@@ -81,3 +83,6 @@
 
 //Importing MyLecture
 @import './MyLectures/Moveroutes.scss';
+
+//Importing Styling of studentInstructor card in home
+@import "./Home/StudentInstructorCard.scss";

@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BelowHome from "./BelowHome";
-import FeaturesHome from "./FeaturesHome";
+// import FeaturesHome from "./FeaturesHome";
 import StatsCounter from "./StatsCounter";
+import StudentInstructorCard from "./StudentInstructorCard";
+import DeliverResults from "./DeliverResults";
+import FeaturesHome from "./FeaturesHome";
+
 function Home() {
   // return(
   //     <>
@@ -19,7 +23,7 @@ function Home() {
   //     </>
   // )
   return (
-      <>
+    <>
       <div className="home-container">
         <div className="untitled">
           <div className="untitled__slides">
@@ -47,17 +51,14 @@ function Home() {
         </div>
       </div>
 
-     
-     
-   
-
       <BelowHome />
       <StatsCounter />
-      <FeaturesHome />
-      
+      {/* <FeaturesHome /> */}
+
+      <DeliverResults />
+      <StudentInstructorCard />
     </>
   );
-
 }
 
 export default Home;

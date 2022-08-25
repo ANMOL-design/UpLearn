@@ -403,7 +403,7 @@ export default function ManageClass() {
               {ParticipantShow && <AddParticipants />}
 
               {/* Showing Notice if Notice is Active  */}
-              {NoticeShow && <Chatbox  MyClassroom={MyClassroom}/>}
+              {NoticeShow && <Chatbox  MyClassroom={MyClassroom} instructorInfo={instructorInfo} />}
 
               {/* Showing Notes if Notes is Active  */}
               {/* {NotesShow && <ClassNotes />} */}
