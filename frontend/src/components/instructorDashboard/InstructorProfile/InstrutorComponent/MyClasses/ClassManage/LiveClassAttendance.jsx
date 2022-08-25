@@ -6,7 +6,7 @@ import Loader from "../../../../../Loader";
 import PreviewAttandance from "./PreviewAttandance";
 
 export default function LiveClassAttendance(props) {
-  const [MyClassroom, setMyClassroom] = useState({});
+  const [MyClassrooms, setMyClassroom] = useState({});
   const [StudentInfo, setStudentInfo] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [meetindDetails, setmeetindDetails] = useState([]);
@@ -14,24 +14,25 @@ export default function LiveClassAttendance(props) {
     window.scroll(0, 100);
     setMyClassroom(props.MyClassroom[0]);
     setStudentInfo(props.StudentInfo);
-   console.log(MyClassroom);
     const FetchSessions = async () => {
       const options = {
         method: "GET",
         headers: {
           Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiIzMWFiNGIyZC1iZTUxLTRhYzItOTI1NS1kZTkzNjAwNzRhYjgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MDY1MTM2OSwiZXhwIjoxNjYxMjU2MTY5fQ.R6CFn5jMAgr5o0ed-lZelEECeCOF1u60q37LvUPwxJs",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJmNTc5NmQ5Yy03YjRlLTRlMGItOTk1MS04YTI5NmE4NDIxYzUiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MTQxMDQ4MywiZXhwIjoxNjYyMDE1MjgzfQ.3dk92Iup6WixPwRD0V3C_zGxeeJh-uxF8hfRXV8_Oxk",
           "Content-Type": "application/json",
         },
       };
-      const url = `https://api.videosdk.live/v2/sessions/?roomId=${MyClassroom.meetingId}`;
+      const url = `https://api.videosdk.live/v2/sessions/?roomId=${MyClassrooms.meetingId}`;
       const response = await fetch(url, options);
       const data = await response.json();
+      console.log(response);
       setLoading(false);
       setmeetindDetails(data.data);
     };
     FetchSessions();
   }, [Loading]);
+  console.log(meetindDetails);
   const gettimestamp = (day) => {
     let today = new Date(day);
     let dd = today.getDate();
@@ -43,7 +44,7 @@ export default function LiveClassAttendance(props) {
     let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
     return time;
   };
-console.log(StudentInfo);
+console.log(MyClassrooms);
   function timeDiffCalc(dateFuture, dateNow) {
     let diffInMilliSeconds = Math.abs(dateFuture - dateNow) / 1000;
 
@@ -55,9 +56,9 @@ console.log(StudentInfo);
     // calculate hours
     const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
     diffInMilliSeconds -= hours * 3600;
-    var seconds = ((diffInMilliSeconds % 60000) / 1000).toFixed(0);
     // calculate minutes
     const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+    var seconds = ((diffInMilliSeconds % 60000) / 1000).toFixed(0);
     diffInMilliSeconds -= minutes * 60;
     let difference = "";
     if (days > 0) {
@@ -70,13 +71,11 @@ console.log(StudentInfo);
     if (minutes > 0) {
       difference +=
         minutes === 0 || hours === 1
-          ? `${minutes} minutes`
-          : `${minutes} minutes`;
+          ? `${minutes} minutes `
+          : `${minutes} minutes `;
     }
     difference +=
-      minutes === 0 || hours === 1
-        ? `${seconds} seconds`
-        : `${seconds} seconds`;
+        `${Math.round(diffInMilliSeconds)} seconds`
 
     return difference;
   }
@@ -121,8 +120,7 @@ console.log(StudentInfo);
   if (Loading) {
     return <Loader />;
   } else {
-    if (meetindDetails) {
-      console.log(meetindDetails);
+    
     if (meetindDetails.length > 0) {
       return (
         <>
@@ -169,7 +167,7 @@ console.log(StudentInfo);
                     </td> */}
                     <td>
                       <button className="rmvbtn" >
-                        <Link to={"/instructordashboard/my-classroom/PreviewAttandance/"+MyClassroom.meetingId+"/"+item.id}><MdTableView /> Preview{" "}     </Link>
+                        <Link to={"/instructordashboard/my-classroom/PreviewAttandance/"+MyClassrooms.meetingId+"/"+item.id}><MdTableView /> Preview{" "}     </Link>
                            
                       </button>
                     </td>
@@ -186,6 +184,6 @@ console.log(StudentInfo);
       <h1>No Class schedule in this room!</h1>
      )
     }
-  }
+  
   }
 }

@@ -159,7 +159,7 @@ export default function CourseInfo() {
       });
 
       if (res.status === 200) {
-        navigate("/studentdashboard");
+        navigate("/studentdashboard/my-courses");
       } else {
         console.log(res);
         window.alert("error occured");

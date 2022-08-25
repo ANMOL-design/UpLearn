@@ -95,6 +95,9 @@ const userSchema = new mongoose.Schema({
         },
         CourseId: {
             type: String,
+        },
+        quizSolved :{
+            type:Number
         }
     }],
     following: [{

@@ -151,7 +151,7 @@ export default function SchedulseClass(props) {
                   <div className="class-scheduler-btn">
                     <a
                       href={
-                        "https:http://localhost:3050/?" +
+                        "http://localhost:3050/?" +
                         "name=" +
                         props.Instructor.Teachername +
                         "&participantId=" +
