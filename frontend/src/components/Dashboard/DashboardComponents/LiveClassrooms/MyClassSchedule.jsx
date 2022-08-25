@@ -75,7 +75,7 @@ export default function MyClassSchedule (props){
                  <div className="class-scheduler-btn">
                    <a
                      href={
-                       "https://9e79-49-42-84-191.in.ngrok.io/?" +
+                       "http://localhost:3050//?" +
                        "name=" +
                        studentInfo.name +
                        "&participantId=" +
