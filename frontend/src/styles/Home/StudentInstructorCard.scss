@@ -1,0 +1,47 @@
+
+.studInsCard{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+font-family: $font_El;
+    .one{
+        background-color:#ff7a97;
+    }
+    .two{
+        background-color: #fad732;
+    }
+}
+.studInsCardItem{   
+    margin: 4rem 1rem;
+    border-radius: 10px;
+    width: 40%;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+
+    img{
+        height: 8rem;
+    }
+    
+    .part1 h3{
+        font-size: 1.6rem;
+    }
+    .joinLink{
+        padding: 10px;
+        background-color: #0C0F33;
+    }
+    button{
+        margin-top: 1rem;
+        border:none;
+        background-color: #0C0F33;
+        outline: none;
+        padding: .5rem 1.4rem;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+    button:hover{
+    background-color: #2B4EFF;
+    }
+   
+}
