@@ -148,18 +148,19 @@ export default function Doubt() {
 
   const handleDFilter = (e) => {
     let tempdaa = bdoubtData;
-    if(e.target.value === "latest"){
-      tempdaa.sort((a, b) => new Date(b.CreatedAt).getTime() - new Date(a.CreatedAt).getTime());
-    }
-    else if(e.target.value === "likes"){
+    if (e.target.value === "latest") {
+      tempdaa.sort(
+        (a, b) =>
+          new Date(b.CreatedAt).getTime() - new Date(a.CreatedAt).getTime()
+      );
+    } else if (e.target.value === "likes") {
       tempdaa.sort((a, b) => b.Upvotes.length - a.Upvotes.length);
-    }
-    else{
+    } else {
       tempdaa = bdoubtData;
     }
     setDoubtData(tempdaa);
     setDFilter(e.target.value);
-  }
+  };
 
   // main function start
   if (isLoading) {
@@ -168,23 +169,28 @@ export default function Doubt() {
     return (
       <>
         <div className="doubt-container">
-        <div className="intro">
+          <div className="intro">
             <div className="squares-wrapper">
               {/* Left Side Banner Text  */}
               <div className="banner-text">
                 <h1>
-                Millions saw the apple fall,<br />but Newton asked why
+                  Millions saw the apple fall,
+                  <br />
+                  but Newton asked why
                 </h1>
                 <p>
                   {" "}
                   We are here to help you find answers to all your questions!{" "}
                 </p>
-                <button className="course-banner-btn" onClick={console.log("hello")}>
-                <Link to="/post-doubt">Ask Your Doubt</Link> <MdNotStarted/>{" "}
+                <button
+                  className="course-banner-btn"
+                  onClick={console.log("hello")}
+                >
+                  Ask Your Doubt
                 </button>
               </div>
               {/* Right Side Banner Image  */}
-              <div className="banner-img">
+              <div className="banner-img" style={{ padding: "1.25rem 0.75rem" }}>
                 <img src={BannerGirl} alt="banner" />
               </div>
               {/* Bubble Banner Animtion  */}
@@ -216,6 +222,7 @@ export default function Doubt() {
           </div>
           {/* end of Banner  */}
           {/* heading */}
+          <br />
           <div className="Doubt-heading">
             <h1>Uplearn Ask Doubt</h1>
             <p>
@@ -230,7 +237,7 @@ export default function Doubt() {
               <input
                 list="doubt-search"
                 name="DoubtSearch"
-                placeholder="What are you looking for ?"
+                placeholder="Type your querie here..."
                 value={searchtext}
                 onChange={(e) => setSearchtext(e.target.value)}
               />
@@ -245,10 +252,7 @@ export default function Doubt() {
 
           {/* ask button */}
           <div className="askbutton">
-            <select
-              value={dfilter}
-              onChange={handleDFilter}
-            >
+            <select value={dfilter} onChange={handleDFilter}>
               <option value="">Filter Doubts</option>
               <option value="latest">Latest First</option>
               <option value="likes">Most Likes</option>
