@@ -18,7 +18,8 @@ font-family: $font_El;
     padding: 2rem;
     display: flex;
     justify-content: space-between;
-
+    
+    align-items: stretch;
     img{
         height: 8rem;
     }
@@ -30,18 +31,17 @@ font-family: $font_El;
         padding: 10px;
         background-color: #0C0F33;
     }
-    button{
-        margin-top: 1rem;
-        border:none;
-        background-color: #0C0F33;
-        outline: none;
-        padding: .5rem 1.4rem;
-        color: white;
-        cursor: pointer;
-        border-radius: 8px;
-    }
-    button:hover{
-    background-color: #2B4EFF;
-    }
+   
    
 }
+
+// @media screen and (max-width:1094px) {
+// .studInsCardItem{
+//     height: 16rem;
+// }
+// }
+// @media screen and (max-width:1005px) {
+//     .studInsCardItem{
+//         height: 18rem ;
+//     }
+// }
