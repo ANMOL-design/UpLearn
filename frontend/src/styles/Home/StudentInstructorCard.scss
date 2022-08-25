@@ -1,57 +1,51 @@
-
-.studInsCard{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    // flex-wrap: wrap;
-    font-family: $font_El;
-    .one{
-        background-color:#ff7a97;
-    }
-    .two{
-        background-color: #fad732;
-    }
+.studInsCard {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  flex-wrap: wrap;
+  font-family: $font_El;
+  .one {
+    background-color: #ff7a97;
+  }
+  .two {
+    background-color: #fad732;
+  }
 }
-.studInsCardItem{   
-    margin: 4rem 1rem;
-    border-radius: 10px;
-    // width: 100%;
-    width: 50%;
-    padding: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    img{
-        height: 8rem;
-    }
-    
-    .part1 h3{
-        font-size: 1.6rem;
-    }
-    .joinLink{
-        padding: 10px;
-        background-color: #0C0F33;
-    }
-    .part1{
-        flex:1;
-    }
-   button{
-    background-color: #0C0F33;
+.studInsCardItem {
+  margin: 4rem 1rem;
+  border-radius: 10px;
+  width: 45%;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  img {
+    height: 8rem;
+  }
+
+  .part1 h3 {
+    font-size: 1.6rem;
+  }
+  .joinLink {
+    padding: 10px;
+    background-color: #0c0f33;
+  }
+  .part1 {
+    flex: 1;
+  }
+  button {
+    background-color: #0c0f33;
     margin-top: 1rem;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
-    color:white;
+    color: white;
     cursor: pointer;
-   }
+  }
 }
 
-// @media screen and (max-width:1094px) {
-// .studInsCardItem{
-//     height: 16rem;
-// }
-// }
-// @media screen and (max-width:1005px) {
-//     .studInsCardItem{
-//         height: 18rem ;
-//     }
-// }
+@media screen and (max-width: 900px) {
+  .studInsCardItem {
+    margin: 2rem 1rem;
+    width: 90%;
+  }
+}
