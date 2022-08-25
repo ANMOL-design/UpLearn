@@ -35,8 +35,13 @@ function doubtBotUrl(queryString) {
 */
 async function doubtBotData(query) {
   const options = doubtBotUrl(query);
-  const response = await axios(options);
-  return response.data.results;
+  try {
+    const response = await axios(options);
+    return response.data.results;
+  }
+  catch (error) {
+    return [];
+  }
 }
 
 module.exports = doubtBotData;
