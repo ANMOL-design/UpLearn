@@ -240,7 +240,7 @@ export default function QuizPreform(props) {
       // const data = await res.json();
       // console.log(data);
       if (res.status === 200) {
-        window.alert("Your carrier blog is added.");
+        window.alert("data added");
       } else {
         window.alert("Error occured , try again");
       }
