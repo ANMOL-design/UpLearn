@@ -47,7 +47,7 @@ export default function StudentDashboard() {
     }
   }, [loginDetails.userRole, loginDetails.isLoggedIn, navigate]);
 
-  console.log(StudentInfo)
+  // console.log(StudentInfo)
 
   return (
     <>
