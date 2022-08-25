@@ -14,19 +14,19 @@ export default function LiveClassAttendance(props) {
     window.scroll(0, 100);
     setMyClassroom(props.MyClassroom[0]);
     setStudentInfo(props.StudentInfo);
-
     const FetchSessions = async () => {
       const options = {
         method: "GET",
         headers: {
           Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJmMTY5NWE4Yi04ZmMxLTRhNWItYTA2OS0xNjUzNWFjZTU0MWYiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MTM2Mjc4NiwiZXhwIjoxNjYxOTY3NTg2fQ.s5C5JAhwpo1Q1rrPGCVkgEIrwrwVLIrgI-Hh61WybZ8",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJmNTc5NmQ5Yy03YjRlLTRlMGItOTk1MS04YTI5NmE4NDIxYzUiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MTQxMDQ4MywiZXhwIjoxNjYyMDE1MjgzfQ.3dk92Iup6WixPwRD0V3C_zGxeeJh-uxF8hfRXV8_Oxk",
           "Content-Type": "application/json",
         },
       };
       const url = `https://api.videosdk.live/v2/sessions/?roomId=${MyClassrooms.meetingId}`;
       const response = await fetch(url, options);
       const data = await response.json();
+      console.log(response);
       setLoading(false);
       setmeetindDetails(data.data);
     };
@@ -120,6 +120,7 @@ console.log(MyClassrooms);
   if (Loading) {
     return <Loader />;
   } else {
+    
     if (meetindDetails.length > 0) {
       return (
         <>
@@ -183,5 +184,6 @@ console.log(MyClassrooms);
       <h1>No Class schedule in this room!</h1>
      )
     }
+  
   }
 }

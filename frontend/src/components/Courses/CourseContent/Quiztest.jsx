@@ -3,11 +3,16 @@ import gsap from "gsap";
 
 function useCounter(initialState) {
   const [value, setValue] = useState(initialState);
+
   const reset = () => setValue(0);
   const add = () => setValue((value) => (value += 1));
 
   return { value, add, reset };
 }
+
+let TotalMarks = 0;
+let marksObtained = 0;
+
 
 function Question({
   data,
@@ -20,7 +25,7 @@ function Question({
   const [answer, setAnswer] = useState(null);
   const parseValue = (value) => (value ? parseInt(value.split("-")[1]) : null);
   const questionRef = useRef(null);
-
+ 
   useEffect(() => {
     gsap.fromTo(
       questionRef.current.querySelector(".question-text"),
@@ -95,7 +100,12 @@ function Question({
   );
 }
 
-function Results({ wrong, correct, empty }) {
+// const UpdateScore = () => {
+//   console.log("score Updated");
+// };
+
+function Results({ wrong, correct }) {
+
   return (
     <div className="result">
       <div className="result-item is-correct">
@@ -139,26 +149,6 @@ function Results({ wrong, correct, empty }) {
           WRONG
         </span>
       </div>
-      <div className="result-item is-empty">
-        <span className="result-count">{empty}</span>
-        <span className="result-text">
-          <svg
-            width="16"
-            height="16"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            className="css-i6dzq1"
-            viewBox="0 0 24 24"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M8 12L16 12"></path>
-          </svg>
-          EMPTY
-        </span>
-      </div>
     </div>
   );
 }
@@ -200,12 +190,15 @@ export default function QuizPreform(props) {
   const handleNewQuestionClick = (selectedValue, currQuestion) => {
     if (totalQuestion >= question.value) {
       if (selectedValue === currQuestion.correctOption - 1) {
+        TotalMarks += currQuestion.MarksPerquestion;
+        marksObtained += currQuestion.MarksPerquestion;
         correct.add();
       } else if (
         selectedValue !== null &&
         selectedValue !== currQuestion.correctOption - 1
       ) {
         wrong.add();
+        TotalMarks += currQuestion.MarksPerquestion;
       } else {
         empty.add();
       }
@@ -221,6 +214,7 @@ export default function QuizPreform(props) {
     correct.reset();
     wrong.reset();
     empty.reset();
+    console.log("test");
   };
 
   const indicatorBg = (index) => {
@@ -296,33 +290,60 @@ export default function QuizPreform(props) {
               <Results
                 wrong={wrong.value}
                 correct={correct.value}
-                empty={empty.value}
               />
             </>
           )}
-
+          {/* Code to Print the marks obtained   */}
+          {!myquiz.QuestionsofQuiz[question.value] && (
+            <div className="result" style={{marginTop: '0px', maxHeight: '2rem'}}>
+              <div className="result-item is-correct">
+                <span className="result-count">{(marksObtained / TotalMarks) * 100}%</span>
+                <span className="result-text">
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    className="css-i6dzq1"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                    <path d="M22 4L12 14.01 9 11.01"></path>
+                  </svg>
+                  
+                  Marks Obtained
+                </span>
+              </div>
+            </div>
+          )}
+         
+     
           {/* Button To Start the Quiz Again  */}
+
           <button
             className="restart-button"
             onClick={() => handleRestartClick()}
           >
-            Restart Quiz
+           finish
           </button>
         </div>
       </div>
-
       {/* Area where Question were rendered  */}
       <div className="game-area">
-        {myquiz.QuestionsofQuiz[question.value] && (
+        {myquiz.QuestionsofQuiz[question.value]  && (
+        
           <Question
             data={myquiz.QuestionsofQuiz[question.value]}
             buttonText={
               question.value !== totalQuestion ? "Next Question" : "Finish Quiz"
             }
             onQuestionButtonClick={handleNewQuestionClick}
-          />
+            />
+            
         )}
-
         {!myquiz.QuestionsofQuiz[question.value] && (
           <>
             <QuestionCorrection

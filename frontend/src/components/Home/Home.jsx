@@ -38,9 +38,7 @@ function Home() {
             </Link>
           </div>
           <div className="untitled__slide">
-            <Link to="/Learn-with-fun">
               <div className="untitled__slideBg" />
-            </Link>
           </div>
           <div className="untitled__slide">
             <Link to="/Learn-with-fun">
@@ -54,8 +52,9 @@ function Home() {
       <BelowHome />
       <StatsCounter />
       {/* <FeaturesHome /> */}
-      <StudentInstructorCard />
+
       <DeliverResults />
+      <StudentInstructorCard />
     </>
   );
 }
