@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { MdSearch } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
+import { MdNotStarted, MdSearch } from "react-icons/md";
 import { BiUser, BiTime } from "react-icons/bi";
 import { HiThumbUp } from "react-icons/hi";
 import { RiQuestionAnswerFill } from "react-icons/ri";
 import axios from "axios";
 import Loader from "../Loader";
-import DoubtBanner from "../../assets/images/Ask-a-doubt-landing-banner.png";
+import BannerGirl from "../../assets/images/askdoubtbanners.png";
+
 var CryptoJS = require("crypto-js");
 
 export default function Doubt() {
@@ -15,10 +16,17 @@ export default function Doubt() {
   let navigate = useNavigate();
 
   // states
+  let squares = [];
   const [User, SetUser] = useState({});
   const [searchtext, setSearchtext] = useState("");
   const [isLoading, setisLoading] = useState(true);
   const [dfilter, setDFilter] = useState("");
+  for (let i = 0; i < 20; i++) {
+    squares.push(i);
+  }
+
+  const generateRandomNum = ({ min, max }) =>
+    Math.floor(Math.random() * (max - min + 1) + min);
   const [doubtData, setDoubtData] = useState({
     UserId: "",
     userName: "",
@@ -140,18 +148,19 @@ export default function Doubt() {
 
   const handleDFilter = (e) => {
     let tempdaa = bdoubtData;
-    if(e.target.value === "latest"){
-      tempdaa.sort((a, b) => new Date(b.CreatedAt).getTime() - new Date(a.CreatedAt).getTime());
-    }
-    else if(e.target.value === "likes"){
+    if (e.target.value === "latest") {
+      tempdaa.sort(
+        (a, b) =>
+          new Date(b.CreatedAt).getTime() - new Date(a.CreatedAt).getTime()
+      );
+    } else if (e.target.value === "likes") {
       tempdaa.sort((a, b) => b.Upvotes.length - a.Upvotes.length);
-    }
-    else{
+    } else {
       tempdaa = bdoubtData;
     }
     setDoubtData(tempdaa);
     setDFilter(e.target.value);
-  }
+  };
 
   // main function start
   if (isLoading) {
@@ -160,12 +169,60 @@ export default function Doubt() {
     return (
       <>
         <div className="doubt-container">
-          {/* banner */}
-          <div className="Doubt-banner">
-            <img src={DoubtBanner} alt="Banner" />
+          <div className="intro">
+            <div className="squares-wrapper">
+              {/* Left Side Banner Text  */}
+              <div className="banner-text">
+                <h1>
+                  Millions saw the apple fall,
+                  <br />
+                  but Newton asked why
+                </h1>
+                <p>
+                  {" "}
+                  We are here to help you find answers to all your questions!{" "}
+                </p>
+                <button
+                  className="course-banner-btn"
+                  onClick={console.log("hello")}
+                >
+                  Ask Your Doubt
+                </button>
+              </div>
+              {/* Right Side Banner Image  */}
+              <div className="banner-img" style={{ padding: "1.25rem 0.75rem" }}>
+                <img src={BannerGirl} alt="banner" />
+              </div>
+              {/* Bubble Banner Animtion  */}
+              <ul className="squares">
+                {squares.map((el, i) => {
+                  const randomDimensions = Math.floor(
+                    Math.random() * (150 - 15 + 1) + 15
+                  );
+                  return (
+                    <li
+                      key={i}
+                      style={{
+                        left: `${generateRandomNum({ min: 0, max: 90 })}%`,
+                        width: randomDimensions,
+                        height: randomDimensions,
+                        animationDelay: `${
+                          i % 2 ? generateRandomNum({ min: 0, max: 20 }) : 0
+                        }s`,
+                        animationDuration: `${generateRandomNum({
+                          min: 10,
+                          max: 50,
+                        })}s`,
+                      }}
+                    />
+                  );
+                })}
+              </ul>
+            </div>
           </div>
-
+          {/* end of Banner  */}
           {/* heading */}
+          <br />
           <div className="Doubt-heading">
             <h1>Uplearn Ask Doubt</h1>
             <p>
@@ -180,7 +237,7 @@ export default function Doubt() {
               <input
                 list="doubt-search"
                 name="DoubtSearch"
-                placeholder="What are you looking for ?"
+                placeholder="Type your querie here..."
                 value={searchtext}
                 onChange={(e) => setSearchtext(e.target.value)}
               />
@@ -195,10 +252,7 @@ export default function Doubt() {
 
           {/* ask button */}
           <div className="askbutton">
-            <select
-              value={dfilter}
-              onChange={handleDFilter}
-            >
+            <select value={dfilter} onChange={handleDFilter}>
               <option value="">Filter Doubts</option>
               <option value="latest">Latest First</option>
               <option value="likes">Most Likes</option>

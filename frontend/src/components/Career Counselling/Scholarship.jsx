@@ -4,20 +4,17 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader";
 
-export default function After10th() {
+export default function ScholarshipCounselling() {
   const [data, setData] = useState([]);
   const [isLoading, setisLoading] = useState(true);
-
   const params = useParams();
-  const courseCategory = params.after_10;
+  const courseCategory = params.scholarship;
 
-  // console.log(courseCategory);
   useEffect(() => {
     const fetchdata = async () => {
       await axios
         .get("/admin/getAllCareerBy/" + courseCategory)
         .then((response) => {
-          // console.log(response.data);
           setData(response.data);
           setisLoading(false);
         })
@@ -34,7 +31,6 @@ export default function After10th() {
   } else {
     return (
       <div className="career-counselling">
-        {/* The Banner of Carrier Page  */}
         <div className="after-banner">
           <div className="after-banner-text">
             <span>
@@ -44,23 +40,23 @@ export default function After10th() {
             </span>
           </div>
           <div className="after-banner-img">
-            <img src={CareerImg} alt="banner-counselling" />
+            <img src={CareerImg} alt="banner" />
           </div>
         </div>
-        {/* Start main Context  */}
         <div className="afterBannerWrapper">
-          <h1>After 10th</h1>
+          <h1>Scholarship</h1>
           <div className="courseCategory">
-            {/* Category 1  */}
             <div className="courseCategoryItem">
-              <h2>Class 11th - 12th</h2>
+              <h2>Central Scheme</h2>
               <ul>
-                {data.map((item, index) => {
+                {data.map((item) => {
                   return (
-                    <div key={index}>
-                      {item.subcategory === "class-11-12" ? (
+                    <div key={item._id}>
+                      {item.subcategory === "central" ? (
                         <li>
-                          <Link to={`/carrer-counselling/${item._id}`}>{item.title}</Link>
+                          <Link to={`/carrer-counselling/${item._id}`}>
+                            {item.title}
+                          </Link>
                         </li>
                       ) : null}
                     </div>
@@ -68,17 +64,18 @@ export default function After10th() {
                 })}
               </ul>
             </div>
-            {/* Category 2  */}
+
             <div className="courseCategoryItem">
-              <h2>Diploma Courses</h2>
-              <span className="courseCateHeading"></span>
+              <h2>UGC-AICTE Scheme</h2>
               <ul>
-                {data.map((item, index) => {
+                {data.map((item) => {
                   return (
-                    <div key={index}>
-                      {item.subcategory === "diploma-courses" ? (
+                    <div key={item._id}>
+                      {item.subcategory === "ugc-aicte" ? (
                         <li>
-                          <Link to={`/carrer-counselling/${item._id}`}>{item.title}</Link>
+                          <Link to={`/carrer-counselling/${item._id}`}>
+                            {item.title}
+                          </Link>
                         </li>
                       ) : null}
                     </div>
@@ -87,14 +84,16 @@ export default function After10th() {
               </ul>
             </div>
             <div className="courseCategoryItem">
-              <h2>ITI Courses</h2>
+              <h2>State Schemes</h2>
               <ul>
-                {data.map((item, index) => {
+                {data.map((item) => {
                   return (
-                    <div key={index}>
-                      {item.subcategory === "iti-courses" ? (
+                    <div key={item._id}>
+                      {item.subcategory === "state" ? (
                         <li>
-                          <Link to={`/carrer-counselling/${item._id}`}>{item.title}</Link>
+                          <Link to={`/carrer-counselling/${item._id}`}>
+                            {item.title}
+                          </Link>
                         </li>
                       ) : null}
                     </div>
@@ -104,7 +103,6 @@ export default function After10th() {
             </div>
           </div>
         </div>
-        {/* // end of main  */}
       </div>
     );
   }

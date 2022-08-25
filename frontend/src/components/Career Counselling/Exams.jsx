@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CareerImg from "./../../assets/images/career-img.png";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader";
 
@@ -10,7 +10,6 @@ export default function Exams() {
   const params = useParams();
   const courseCategory = params.exams;
 
-  console.log(courseCategory);
   useEffect(() => {
     const fetchdata = async () => {
       await axios
@@ -41,21 +40,23 @@ export default function Exams() {
             </span>
           </div>
           <div className="after-banner-img">
-            <img src={CareerImg} alt="" />
+            <img src={CareerImg} alt="banner" />
           </div>
         </div>
         <div className="afterBannerWrapper">
           <h1>Exams</h1>
           <div className="courseCategory">
             <div className="courseCategoryItem">
-              <span className="courseCateHeading">Engineering Exams</span>
+              <h2>Engineering Exams</h2>
               <ul>
-                {data.map((item, index) => {
+                {data.map((item) => {
                   return (
                     <div key={item._id}>
                       {item.subcategory === "engineering-exams" ? (
                         <li>
-                          <Link to={`/about/${item._id}`}>{item.title}</Link>
+                          <Link to={`/carrer-counselling/${item._id}`}>
+                            {item.title}
+                          </Link>
                         </li>
                       ) : null}
                     </div>
@@ -65,14 +66,16 @@ export default function Exams() {
             </div>
 
             <div className="courseCategoryItem">
-              <span className="courseCateHeading">Competitive Exams</span>
+              <h2>Competitive Exams</h2>
               <ul>
-                {data.map((item, index) => {
+                {data.map((item) => {
                   return (
                     <div key={item._id}>
                       {item.subcategory === "competitive-exams" ? (
                         <li>
-                          <Link to={`/about/${item._id}`}>{item.title}</Link>
+                          <Link to={`/carrer-counselling/${item._id}`}>
+                            {item.title}
+                          </Link>
                         </li>
                       ) : null}
                     </div>
@@ -81,14 +84,16 @@ export default function Exams() {
               </ul>
             </div>
             <div className="courseCategoryItem">
-              <span className="courseCateHeading">MBA Exams</span>
+              <h2>MBA Exams</h2>
               <ul>
-                {data.map((item, index) => {
+                {data.map((item) => {
                   return (
                     <div key={item._id}>
                       {item.subcategory === "mba-exams" ? (
                         <li>
-                          <Link to={`/about/${item._id}`}>{item.title}</Link>
+                          <Link to={`/carrer-counselling/${item._id}`}>
+                            {item.title}
+                          </Link>
                         </li>
                       ) : null}
                     </div>
@@ -97,14 +102,16 @@ export default function Exams() {
               </ul>
             </div>
             <div className="courseCategoryItem">
-              <span className="courseCateHeading">Medical Exams</span>
+              <h2>Medical Exams</h2>
               <ul>
-                {data.map((item, index) => {
+                {data.map((item) => {
                   return (
                     <div key={item._id}>
                       {item.subcategory === "medical-exams" ? (
                         <li>
-                          <Link to={`/about/${item._id}`}>{item.title}</Link>
+                          <Link to={`/carrer-counselling/${item._id}`}>
+                            {item.title}
+                          </Link>
                         </li>
                       ) : null}
                     </div>

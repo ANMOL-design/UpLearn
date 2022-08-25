@@ -8,6 +8,7 @@ import "suneditor/dist/css/suneditor.min.css";
 import SunEditor from "suneditor-react";
 import Loader2 from "../../assets/images/progressbar.gif";
 import Loader from "../Loader";
+
 var CryptoJS = require("crypto-js");
 
 export default function MainDoubt() {

@@ -9,7 +9,7 @@ const PostData = require("../models/postCareerDetailSchema");
 router.get("/admin/getAllCareerBy/:courseCategory", (req, res) => {
   const category = req.params.courseCategory;
 
-  console.log(category);
+  // console.log(category);
 
   PostData.find({ category: category }, (err, data) => {
     if (err) {
