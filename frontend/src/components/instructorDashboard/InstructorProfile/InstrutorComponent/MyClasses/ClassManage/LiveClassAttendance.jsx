@@ -6,7 +6,7 @@ import Loader from "../../../../../Loader";
 import PreviewAttandance from "./PreviewAttandance";
 
 export default function LiveClassAttendance(props) {
-  const [MyClassroom, setMyClassroom] = useState({});
+  const [MyClassrooms, setMyClassroom] = useState({});
   const [StudentInfo, setStudentInfo] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [meetindDetails, setmeetindDetails] = useState([]);
@@ -20,11 +20,11 @@ export default function LiveClassAttendance(props) {
         method: "GET",
         headers: {
           Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiIzMWFiNGIyZC1iZTUxLTRhYzItOTI1NS1kZTkzNjAwNzRhYjgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MDY1MTM2OSwiZXhwIjoxNjYxMjU2MTY5fQ.R6CFn5jMAgr5o0ed-lZelEECeCOF1u60q37LvUPwxJs",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJmMTY5NWE4Yi04ZmMxLTRhNWItYTA2OS0xNjUzNWFjZTU0MWYiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MTM2Mjc4NiwiZXhwIjoxNjYxOTY3NTg2fQ.s5C5JAhwpo1Q1rrPGCVkgEIrwrwVLIrgI-Hh61WybZ8",
           "Content-Type": "application/json",
         },
       };
-      const url = `https://api.videosdk.live/v2/sessions/?roomId=${MyClassroom.meetingId}`;
+      const url = `https://api.videosdk.live/v2/sessions/?roomId=${MyClassrooms.meetingId}`;
       const response = await fetch(url, options);
       const data = await response.json();
       setLoading(false);
@@ -32,6 +32,7 @@ export default function LiveClassAttendance(props) {
     };
     FetchSessions();
   }, [Loading]);
+  console.log(meetindDetails);
   const gettimestamp = (day) => {
     let today = new Date(day);
     let dd = today.getDate();
@@ -43,7 +44,7 @@ export default function LiveClassAttendance(props) {
     let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
     return time;
   };
-console.log(StudentInfo);
+console.log(MyClassrooms);
   function timeDiffCalc(dateFuture, dateNow) {
     let diffInMilliSeconds = Math.abs(dateFuture - dateNow) / 1000;
 
@@ -55,9 +56,9 @@ console.log(StudentInfo);
     // calculate hours
     const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
     diffInMilliSeconds -= hours * 3600;
-    var seconds = ((diffInMilliSeconds % 60000) / 1000).toFixed(0);
     // calculate minutes
     const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+    var seconds = ((diffInMilliSeconds % 60000) / 1000).toFixed(0);
     diffInMilliSeconds -= minutes * 60;
     let difference = "";
     if (days > 0) {
@@ -70,13 +71,11 @@ console.log(StudentInfo);
     if (minutes > 0) {
       difference +=
         minutes === 0 || hours === 1
-          ? `${minutes} minutes`
-          : `${minutes} minutes`;
+          ? `${minutes} minutes `
+          : `${minutes} minutes `;
     }
     difference +=
-      minutes === 0 || hours === 1
-        ? `${seconds} seconds`
-        : `${seconds} seconds`;
+        `${Math.round(diffInMilliSeconds)} seconds`
 
     return difference;
   }
@@ -167,7 +166,7 @@ console.log(StudentInfo);
                     </td> */}
                     <td>
                       <button className="rmvbtn" >
-                        <Link to={"/instructordashboard/my-classroom/PreviewAttandance/"+MyClassroom.meetingId+"/"+item.id}><MdTableView /> Preview{" "}     </Link>
+                        <Link to={"/instructordashboard/my-classroom/PreviewAttandance/"+MyClassrooms.meetingId+"/"+item.id}><MdTableView /> Preview{" "}     </Link>
                            
                       </button>
                     </td>
