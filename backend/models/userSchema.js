@@ -96,9 +96,10 @@ const userSchema = new mongoose.Schema({
         CourseId: {
             type: String,
         },
-        quizSolved :{
-            type:Number
-        }
+        quizSolved :[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"QUIZSOLVED"
+        }]
     }],
     following: [{
         instructorId: {

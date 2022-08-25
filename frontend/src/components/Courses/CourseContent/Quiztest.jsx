@@ -177,10 +177,7 @@ function QuestionCorrection({ data, selection }) {
 export default function QuizPreform(props) {
   var myquiz = props.myquiz;
   const [select, setselect] = useState([]);
-  const [isresult,setisresult] = useState(false)
-  if (isresult) {
-    console.log("hi");
-  }
+
   const [gameStarted, setGameStarted] = useState(false);
   const totalQuestion = myquiz.QuestionsofQuiz.length - 1;
   const gameRef = useRef(null);
@@ -217,6 +214,7 @@ export default function QuizPreform(props) {
     correct.reset();
     wrong.reset();
     empty.reset();
+    console.log("test");
   };
 
   const indicatorBg = (index) => {
@@ -295,12 +293,11 @@ export default function QuizPreform(props) {
               />
             </>
           )}
-
           {/* Code to Print the marks obtained   */}
           {!myquiz.QuestionsofQuiz[question.value] && (
             <div className="result" style={{marginTop: '0px', maxHeight: '2rem'}}>
               <div className="result-item is-correct">
-                <span className="result-count">{(marksObtained * 100) / TotalMarks}%</span>
+                <span className="result-count">{(marksObtained / TotalMarks) * 100}%</span>
                 <span className="result-text">
                   <svg
                     width="16"
@@ -330,23 +327,23 @@ export default function QuizPreform(props) {
             className="restart-button"
             onClick={() => handleRestartClick()}
           >
-            Restart Quiz
+           finish
           </button>
         </div>
       </div>
-
       {/* Area where Question were rendered  */}
       <div className="game-area">
-        {myquiz.QuestionsofQuiz[question.value] && (
+        {myquiz.QuestionsofQuiz[question.value]  && (
+        
           <Question
             data={myquiz.QuestionsofQuiz[question.value]}
             buttonText={
               question.value !== totalQuestion ? "Next Question" : "Finish Quiz"
             }
             onQuestionButtonClick={handleNewQuestionClick}
-          />
+            />
+            
         )}
-
         {!myquiz.QuestionsofQuiz[question.value] && (
           <>
             <QuestionCorrection
