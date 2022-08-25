@@ -14,7 +14,7 @@ export default function LiveClassAttendance(props) {
     window.scroll(0, 100);
     setMyClassroom(props.MyClassroom[0]);
     setStudentInfo(props.StudentInfo);
-
+   console.log(MyClassroom);
     const FetchSessions = async () => {
       const options = {
         method: "GET",
@@ -121,6 +121,8 @@ console.log(StudentInfo);
   if (Loading) {
     return <Loader />;
   } else {
+    if (meetindDetails) {
+      console.log(meetindDetails);
     if (meetindDetails.length > 0) {
       return (
         <>
@@ -184,5 +186,6 @@ console.log(StudentInfo);
       <h1>No Class schedule in this room!</h1>
      )
     }
+  }
   }
 }
