@@ -11,6 +11,7 @@ export default function AboutCourse() {
   const [courseData, setData] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
   const adminstatus = useSelector((state) => state.AdminReducers);
+
   useEffect(() => {
     const fetchdata = async () => {
       if (id) {
@@ -22,7 +23,6 @@ export default function AboutCourse() {
           })
           .catch((error) => {
             console.log(error);
-            // navigate("/login");
           });
       }
     };
@@ -32,7 +32,7 @@ export default function AboutCourse() {
 
   const deleteBlog = async () => {
     // const id = id;
-    console.log(id);
+    // console.log(id);
     const res = await fetch("/deleteBlog", {
       method: "POST",
       headers: {
@@ -59,7 +59,7 @@ export default function AboutCourse() {
     const [Suneditor, setSuneditor] = useState({
       description: courseData.description,
     });
-    console.log(Suneditor);
+    // console.log(Suneditor);
 
     const handleClick = () => {
       setOpen(true);
@@ -68,7 +68,7 @@ export default function AboutCourse() {
     const postChanges = async () => {
       const { title } = changeBlog;
       const description = Suneditor;
-      console.log(id);
+      // console.log(id);
       const res = await fetch("/updateBlog", {
         method: "POST",
         headers: {
@@ -81,7 +81,7 @@ export default function AboutCourse() {
         }),
       });
       if (res.status === 200) {
-        window.alert("blog is Updated");
+        window.alert("Blog is Updated");
         window.location.reload();
       }
     };
@@ -258,11 +258,17 @@ export default function AboutCourse() {
   } else {
     return (
       <div>
-        <div className="articleDisplaycontainer" style={{margin:"0.55rem 0 0 0",border:"4px solid #aaaa" }}>
-        <h1 style={{color: "blue",marginLeft:"40%",fontSize:"3rem"}}>{courseData.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: courseData.description }}></div>
-        <EDITBLOG />
-      </div>
+        <div
+          className="carrier-counselling-display"
+        >
+          <h1>
+            {courseData.title}
+          </h1>
+          <div
+            dangerouslySetInnerHTML={{ __html: courseData.description }}
+          ></div>
+          <EDITBLOG />
+        </div>
       </div>
     );
   }
