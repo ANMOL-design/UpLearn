@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BelowHome from "./BelowHome";
+import DeliverResults from "./DeliverResults";
 import FeaturesHome from "./FeaturesHome";
 import StatsCounter from "./StatsCounter";
+
 function Home() {
   // return(
   //     <>
@@ -53,7 +55,9 @@ function Home() {
 
       <BelowHome />
       <StatsCounter />
-      <FeaturesHome />
+      {/* <FeaturesHome /> */}
+      <DeliverResults/>
+
       
     </>
   );
