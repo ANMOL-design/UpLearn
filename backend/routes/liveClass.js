@@ -146,52 +146,47 @@ router.post("/Add-Participant", async (req, res) => {
 
 router.post("/sendmessage", async (req, res) => {
   const { classId, message, senderId, senderName } = req.body;
-  LiveClass.findByIdAndUpdate(
-    classId,
-    {
-      $push: {
-        messages: {
-          message: message,
-          senderId: senderId,
-          senderName: senderName,
-        },
-      },
-    },
-    function (err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(result);
-        res.status(200).json({ msg: "User added Successful" });
-      }
+  LiveClass.findById(classId, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      result.messages.push({
+        message: message,
+        senderId: senderId,
+        senderName: senderName,
+      });
+      result.save((err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.status(200).json(result);
+        }
+      });
     }
-  );
+  });
 });
 
 router.post("/sendmessagebystudent", async (req, res) => {
   const { classId, message, senderId, senderName } = req.body;
-  console.log(req.body);
-  LiveClass.findByIdAndUpdate(
-    classId,
-    {
-      $push: {
-        messages: {
-          message: message,
-          senderId: senderId,
-          senderName: senderName,
-          isInstructor: false,
-        },
-      },
-    },
-    function (err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(result);
-        res.status(200).json({ msg: "User added Successful" });
-      }
+  LiveClass.findById(classId, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      result.messages.push({
+        message: message,
+        senderId: senderId,
+        senderName: senderName,
+        isInstructor: false,
+      });
+      result.save((err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.status(200).json(result);
+        }
+      });
     }
-  );
+  });
 });
 
 router.post("/removefromclass", (req, res) => {

@@ -1,5 +1,7 @@
 .home-container{
-  min-height: 50vh;
+  min-height: 51vh;
+  border-bottom: 1px solid #888;
+  background-color:  rgba(0,0,255,0.75);;
 }
 $t: 2.5s;
 $e1: cubic-bezier(0.8, 0.00, 0.1, 1);
@@ -20,7 +22,7 @@ $images: url("../../assets/images/1imghome.png") url("../../assets/images/2imgho
 
 .untitled{	
 	position: absolute;
-	height: 50vh;
+	height: 51vh;
 	width: 100%;
   overflow: hidden;
 	@keyframes rotate {
@@ -55,13 +57,19 @@ $images: url("../../assets/images/1imghome.png") url("../../assets/images/2imgho
 		&:before, &:after{
 			content: '';
 			position: absolute;
-			height: 50vh;
+			height: 51vh;
 			width: 100%;
 			left: 50%;
 			transform: translate3d(-50%, 0, 0);
-			background-color: #85cff4;
-			pointer-events: auto;
-      overflow: hidden;
+			 background: rgba( 255, 255, 255, 0.25 );
+			// background-color: rgba(0,0,255,0.75);
+			box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+			backdrop-filter: blur( 5px );
+			-webkit-backdrop-filter: blur( 5px );
+			border-radius: 10px;
+			border: 1px solid rgba( 255, 255, 255, 0.18 );
+ 			pointer-events: auto;
+    	  	overflow: hidden;
 		}
 		&:before{
 			bottom: 50%;
@@ -87,7 +95,7 @@ $images: url("../../assets/images/1imghome.png") url("../../assets/images/2imgho
 	
 	&__slides{
 		position: absolute;
-		height: 50vh;
+		height: 51vh;
 		width: 100%;
 		top: 0;
 		left: 0;
@@ -95,7 +103,7 @@ $images: url("../../assets/images/1imghome.png") url("../../assets/images/2imgho
 	}
 	&__slide{
 		position: absolute;
-		height: 50vh;
+		height: 51vh;
 		width: 100%;
 		opacity: 0;
 		@keyframes showHideSlide{
@@ -128,7 +136,7 @@ $images: url("../../assets/images/1imghome.png") url("../../assets/images/2imgho
 	&__slideBg{
     // margin-top: 10px;
 		position: relative;
-		height: 50vh;
+		height: 51vh;
 		width: 100vw;
 		top: 0;
 		left: 0;
