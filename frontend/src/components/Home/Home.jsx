@@ -4,6 +4,9 @@ import BelowHome from "./BelowHome";
 // import FeaturesHome from "./FeaturesHome";
 import StatsCounter from "./StatsCounter";
 import StudentInstructorCard from "./StudentInstructorCard";
+import DeliverResults from "./DeliverResults";
+import FeaturesHome from "./FeaturesHome";
+
 function Home() {
   // return(
   //     <>
@@ -52,6 +55,7 @@ function Home() {
       <StatsCounter />
       {/* <FeaturesHome /> */}
       <StudentInstructorCard />
+      <DeliverResults />
     </>
   );
 }
