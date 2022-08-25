@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { MdSearch } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
+import { MdNotStarted, MdSearch } from "react-icons/md";
 import { BiUser, BiTime } from "react-icons/bi";
 import { HiThumbUp } from "react-icons/hi";
 import { RiQuestionAnswerFill } from "react-icons/ri";
 import axios from "axios";
 import Loader from "../Loader";
-import DoubtBanner from "../../assets/images/Ask-a-doubt-landing-banner.png";
+import BannerGirl from "../../assets/images/askdoubtbanners.png";
+
 var CryptoJS = require("crypto-js");
 
 export default function Doubt() {
@@ -15,10 +16,17 @@ export default function Doubt() {
   let navigate = useNavigate();
 
   // states
+  let squares = [];
   const [User, SetUser] = useState({});
   const [searchtext, setSearchtext] = useState("");
   const [isLoading, setisLoading] = useState(true);
   const [dfilter, setDFilter] = useState("");
+  for (let i = 0; i < 20; i++) {
+    squares.push(i);
+  }
+
+  const generateRandomNum = ({ min, max }) =>
+    Math.floor(Math.random() * (max - min + 1) + min);
   const [doubtData, setDoubtData] = useState({
     UserId: "",
     userName: "",
@@ -160,11 +168,53 @@ export default function Doubt() {
     return (
       <>
         <div className="doubt-container">
-          {/* banner */}
-          <div className="Doubt-banner">
-            <img src={DoubtBanner} alt="Banner" />
+        <div className="intro">
+            <div className="squares-wrapper">
+              {/* Left Side Banner Text  */}
+              <div className="banner-text">
+                <h1>
+                Millions saw the apple fall,<br />but Newton asked why
+                </h1>
+                <p>
+                  {" "}
+                  We are here to help you find answers to all your questions!{" "}
+                </p>
+                <button className="course-banner-btn" onClick={console.log("hello")}>
+                <Link to="/post-doubt">Ask Your Doubt</Link> <MdNotStarted/>{" "}
+                </button>
+              </div>
+              {/* Right Side Banner Image  */}
+              <div className="banner-img">
+                <img src={BannerGirl} alt="banner" />
+              </div>
+              {/* Bubble Banner Animtion  */}
+              <ul className="squares">
+                {squares.map((el, i) => {
+                  const randomDimensions = Math.floor(
+                    Math.random() * (150 - 15 + 1) + 15
+                  );
+                  return (
+                    <li
+                      key={i}
+                      style={{
+                        left: `${generateRandomNum({ min: 0, max: 90 })}%`,
+                        width: randomDimensions,
+                        height: randomDimensions,
+                        animationDelay: `${
+                          i % 2 ? generateRandomNum({ min: 0, max: 20 }) : 0
+                        }s`,
+                        animationDuration: `${generateRandomNum({
+                          min: 10,
+                          max: 50,
+                        })}s`,
+                      }}
+                    />
+                  );
+                })}
+              </ul>
+            </div>
           </div>
-
+          {/* end of Banner  */}
           {/* heading */}
           <div className="Doubt-heading">
             <h1>Uplearn Ask Doubt</h1>
