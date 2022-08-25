@@ -9,7 +9,7 @@ import Loader from "../Loader";
 const Addcareercourses = () => {
   const adminstatus = useSelector((state) => state.AdminReducers);
 
-  const [InstructorsInfo, setInstructorInfo] = useState([]);
+  const [adminInfo, setadminInfo] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [err, seterr] = useState("");
 
@@ -29,9 +29,9 @@ const Addcareercourses = () => {
       // call the fetch admin detail function
       const fetchdata = async () => {
         await axios
-          .get("/allInstructor")
+          .get("/aboutAdminActive")
           .then((response) => {
-            setInstructorInfo(response.data);
+            setadminInfo(response.data);
             setLoading(false);
           })
           .catch((error) => {
@@ -64,7 +64,8 @@ const Addcareercourses = () => {
         description: description,
       }),
     });
-    const data = await res.json();
+
+    // const data = await res.json();
     // console.log(data);
     if (res.status === 200) {
       window.alert("Your carrier blog is added.");
@@ -141,6 +142,7 @@ const Addcareercourses = () => {
                   <option value="after-10">After 10th</option>
                   <option value="after-12">After 12th</option>
                   <option value="exams">Exams</option>
+                  <option value="scholarship">Scholarship</option>
                 </select>
               </div>
               {CAREERDETAILS.courseCategory === "after-10" && (
@@ -200,6 +202,23 @@ const Addcareercourses = () => {
                   </select>
                 </div>
               )}
+              {CAREERDETAILS.courseCategory === "scholarship" && (
+                <div className="career-course-Input">
+                  <label htmlFor="category">Sub-Category :</label>
+                  <select
+                    id="subject"
+                    name="courseSubCategory"
+                    style={{ margin: "0px" }}
+                    value={CAREERDETAILS.courseSubCategory}
+                    onChange={(e) => handleChange(e)}
+                  >
+                    <option value="">Select</option>
+                    <option value="central">Central Schemes</option>
+                    <option value="ugc-aicte">UGC / AICTE Schemes</option>
+                    <option value="state">State Schemes</option>
+                  </select>
+                </div>
+              )}
               {/* Blog Text  */}
               <div className="career-course-Input">
                 <label htmlFor="description">Description :</label>
@@ -237,6 +256,7 @@ const Addcareercourses = () => {
                         "table",
                         "link",
                         "image",
+                        "video",
                         "audio",
                         "showBlocks",
                         "codeView",

@@ -4,6 +4,7 @@ import ReactPlayer from "react-player";
 export default function PlayVideo(props) {
   let videodata;
   let video = [];
+
   // Find Which video will be played
   if (props) {
     videodata = props.course.ChapterVideo;

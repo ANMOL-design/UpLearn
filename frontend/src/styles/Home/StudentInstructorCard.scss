@@ -1,0 +1,47 @@
+
+.studInsCard{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+font-family: $font_El;
+    .one{
+        background-color:#ff7a97;
+    }
+    .two{
+        background-color: #fad732;
+    }
+}
+.studInsCardItem{   
+    margin: 4rem 1rem;
+    border-radius: 10px;
+    width: 40%;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    
+    align-items: stretch;
+    img{
+        height: 8rem;
+    }
+    
+    .part1 h3{
+        font-size: 1.6rem;
+    }
+    .joinLink{
+        padding: 10px;
+        background-color: #0C0F33;
+    }
+   
+   
+}
+
+// @media screen and (max-width:1094px) {
+// .studInsCardItem{
+//     height: 16rem;
+// }
+// }
+// @media screen and (max-width:1005px) {
+//     .studInsCardItem{
+//         height: 18rem ;
+//     }
+// }
