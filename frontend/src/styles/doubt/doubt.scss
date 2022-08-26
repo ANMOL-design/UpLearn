@@ -29,7 +29,7 @@
     align-items: center;
 
     input {
-      width: 60vw;
+      width: 80vw;
       padding: 10px 20px;
       color: #171c24;
       border-radius: 8px 0px 0px 8px;
@@ -67,7 +67,7 @@
     border: 1px solid black;
     border-radius: 7px;
     font-family: $font_El;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
   }
 
@@ -77,12 +77,12 @@
     border-radius: 0px 8px 8px 0px;
     border: 1px solid black;
     border-radius: 7px;
+    font-size: 16px;
   }
 }
 
 .doubt-body {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 1.5rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,31 +95,30 @@
   }
 
   .doubt-card {
-    border: 1px solid #0c0f33;
-    width: 60%;
-    border-radius: 8px;
-    padding: 10px 20px;
-    background-color: #e8f0fe;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 1px solid #aaa;
+    background-color: #f9f9f9;
+    border-radius: 0.5rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    margin-bottom: 25px;
+    margin-top: 1rem;
 
     &:hover {
-      background-color: #c2d2ec;
+      background-color: #f0f0f0;
       color: white;
-      transform: scale(1.02);
+      transform: scale(1.01);
     }
 
     .doubt-card-header {
-      font-size: 1.5rem;
-      font-weight: bold;
+      font-size: 18px;
+      font-weight: 600;
       padding-bottom: 10px;
       color: #0c0f33;
     }
 
     .doubt-card-body {
-      font-size: 1.2rem;
-      font-weight: 400;
+      font-size: 17px;
       padding-bottom: 4px;
       color: #000;
       display: flex;
@@ -150,12 +149,13 @@
       justify-content: space-between;
       align-items: center;
       padding-top: 5px;
-      font-size: 1.2rem;
-      font-weight: 400;
+      font-size: 1rem;
+      font-weight: 500;
       color: #000;
     }
   }
 }
+
 // Start Banner Styling
 .intro {
   position: relative;

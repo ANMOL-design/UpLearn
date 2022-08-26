@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { MdNotStarted, MdSearch } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import {  MdSearch } from "react-icons/md";
 import { BiUser, BiTime } from "react-icons/bi";
 import { HiThumbUp } from "react-icons/hi";
 import { RiQuestionAnswerFill } from "react-icons/ri";
@@ -266,14 +266,14 @@ export default function Doubt() {
               <h1> Doubts </h1>
             </div>
             {doubtData.length > 0 ? (
-              doubtData.map((doubt) => {
+              doubtData.map((doubt, index) => {
                 return (
                   <div
                     className="doubt-card"
                     key={doubt._id}
                     onClick={() => handleCardClick(doubt._id)}
                   >
-                    <div className="doubt-card-header">{doubt.Title}</div>
+                    <div className="doubt-card-header">Q {index+1}. &nbsp; {doubt.Title}</div>
                     <div className="doubt-card-body">
                       <div className="doubt-card-body-left">
                         Subject - {doubt.Subject}

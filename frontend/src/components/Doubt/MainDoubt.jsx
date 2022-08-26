@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { BiUser, BiTime } from "react-icons/bi";
-import { HiThumbUp, HiThumbDown } from "react-icons/hi";
+import { HiThumbUp } from "react-icons/hi";
 import axios from "axios";
 import "suneditor/dist/css/suneditor.min.css";
 import SunEditor from "suneditor-react";
 import Loader2 from "../../assets/images/progressbar.gif";
 import Loader from "../Loader";
+import { BiArrowBack } from "react-icons/bi";
 
 var CryptoJS = require("crypto-js");
 
@@ -95,17 +96,18 @@ export default function MainDoubt() {
     const fetchDoubts = async () => {
       await axios
         .get("/doubt_data_id/" + id)
-        .then( async (response) => {
+        .then(async (response) => {
           setDoubtData(response.data);
-          if (response.data.Upvotes.filter((item) => item === User._id).length > 0) {
+          if (
+            response.data.Upvotes.filter((item) => item === User._id).length > 0
+          ) {
             setIsUpvote(true);
           }
           const temps = [];
           response.data.comments.map((item) => {
             if (item.upvotes.filter((item) => item === User._id).length > 0) {
               temps.push(true);
-            }
-            else{
+            } else {
               temps.push(false);
             }
           });
@@ -198,7 +200,7 @@ export default function MainDoubt() {
         user_id: User._id,
         type: type,
       })
-      .then((response) => {   
+      .then((response) => {
         setDoubtData(response.data);
         let temp = answerLike;
         temp[ind] = !temp[ind];
@@ -209,7 +211,6 @@ export default function MainDoubt() {
       });
   };
 
-
   // main function start
   if (isLoading) {
     return <Loader />;
@@ -219,21 +220,19 @@ export default function MainDoubt() {
         <div className="mdoubt-container">
           <div className="post-doubt-header">
             <Link to="/ask-doubt">
-              <button className="backBtn" style={{ color: "white" }}>
-                Back
-              </button>
+              <BiArrowBack className="backBtn" style={{ color: "white" }} />
             </Link>
           </div>
 
           {/* heading */}
           <div className="mDoubt-heading">
-            <h1>Uplearn Doubt</h1>
+            <h1>UpLearn Doubt</h1>
           </div>
 
           {/* main content */}
           <div className="mdoubt-body">
             <div className="mdoub-b-head">
-              <h1>{doubtData.Title}</h1>
+              <h2>{doubtData.Title}</h2>
             </div>
             <div className="mdoubt-b-body">
               <div className="mdoubt-b-body-left">
@@ -277,82 +276,90 @@ export default function MainDoubt() {
             <div className="mdoubt-answers-body">
               {/* editor for ansering question */}
 
-              { role === "INSTRUCTOR" ? (
-              <div className="mdoubt-answers-body-editor">
-                <div className="mdoubt-answers-body-editor-head">
-                  Add Answer
-                </div>
-                <div className="mdoubt-answers-body-editor-body">
-                  <SunEditor
-                    onChange={handleEditorChange}
-                    required
-                    showToolbar={true}
-                    setOptions={{
-                      buttonList: [
-                        [
-                          "undo",
-                          "redo",
-                          "font",
-                          "fontSize",
-                          "formatBlock",
-                          "paragraphStyle",
-                          "blockquote",
-                          "bold",
-                          "underline",
-                          "italic",
-                          "subscript",
-                          "superscript",
-                          "hiliteColor",
-                          "textStyle",
-                          "align",
-                          "horizontalRule",
-                          "list",
-                          "lineHeight",
-                          "image",
-                          "fullScreen",
-                          "showBlocks",
-                          "codeView",
-                          "preview",
-                          "print",
-                          "save",
-                          "template",
+              {role === "INSTRUCTOR" ? (
+                <div className="mdoubt-answers-body-editor">
+                  <div className="mdoubt-answers-body-editor-head">
+                    Add Answer
+                  </div>
+                  <div className="mdoubt-answers-body-editor-body">
+                    <SunEditor
+                      onChange={handleEditorChange}
+                      required
+                      showToolbar={true}
+                      setOptions={{
+                        buttonList: [
+                          [
+                            "undo",
+                            "redo",
+                            "font",
+                            "fontSize",
+                            "formatBlock",
+                            "paragraphStyle",
+                            "blockquote",
+                            "bold",
+                            "underline",
+                            "italic",
+                            "subscript",
+                            "superscript",
+                            "hiliteColor",
+                            "textStyle",
+                            "align",
+                            "horizontalRule",
+                            "list",
+                            "lineHeight",
+                            "image",
+                            "fullScreen",
+                            "showBlocks",
+                            "codeView",
+                            "preview",
+                            "print",
+                            "save",
+                            "template",
+                          ],
                         ],
-                      ],
-                    }}
-                  />
+                      }}
+                    />
+                  </div>
+                  <div className="mdoubt-answers-body-editor-footer">
+                    <button id="d-post-bu" onClick={handleAddAnswer}>
+                      Post Answer
+                    </button>
+                  </div>
+                  <div>
+                    <img src={Loader2} alt="Loader" id="loader-reg" />
+                    <p className="uploadphoto">{err}</p>
+                  </div>
                 </div>
-                <div className="mdoubt-answers-body-editor-footer">
-                  <button id="d-post-bu" onClick={handleAddAnswer}>
-                    Post Answer
-                  </button>
-                </div>
-                <div>
-                  <img src={Loader2} alt="Loader" id="loader-reg" />
-                  <p className="uploadphoto">{err}</p>
-                </div>
-              </div>
-              ) : ("") }
+              ) : null}
 
               {/* all previous answers */}
               <div className="mdoubt-answers-body-answers">
                 {doubtData.comments.map((answer, ind) => {
                   return (
                     <div className="mdoubt-answers-body-answers-item" key={ind}>
-                      <div className="mdoubt-answers-body-answers-item-left">
-                        <span>
-                          <HiThumbUp 
-                          className={`mdoubt-answers-body-answers-item-left-icon ${answerLike[ind] ? "d-ans-ico-active" : ""}`}
-                          onClick={() => handleAnswerUpvote(answer._id, ind, answerLike[ind] ? "unlike" : "like")}
-                          />{" "}
-                          {answer.upvotes.length}
-                        </span>
-                      </div>
                       <div className="mdoubt-answers-body-answers-item-right">
                         <div
                           className="mdoubt-answers-body-answers-item-main"
                           dangerouslySetInnerHTML={{ __html: answer.comment }}
                         ></div>
                         <div className="mdoubt-answers-body-answers-item-footer">
+                          <div className="mdoubt-answers-body-answers-item-left">
+                            <span>
+                              <HiThumbUp
+                                className={`mdoubt-answers-body-answers-item-left-icon ${
+                                  answerLike[ind] ? "d-ans-ico-active" : ""
+                                }`}
+                                onClick={() =>
+                                  handleAnswerUpvote(
+                                    answer._id,
+                                    ind,
+                                    answerLike[ind] ? "unlike" : "like"
+                                  )
+                                }
+                              />{" "}
+                              {answer.upvotes.length}
+                            </span>
+                          </div>
                           <span>
                             <BiUser className="mdoubt-answers-body-answers-item-head-icon" />{" "}
                             {answer.userName}
