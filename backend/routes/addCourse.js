@@ -185,6 +185,11 @@ router.post("/EnrolledCourse", (req, res) => {
       $push: {
         CousesEnrolled: { nameOfCourse: nameOfCourse, CourseId: CourseId },
       },
+    }
+  ).then(async ()=>{
+    let mycourse =await Courses.findById(CourseId);
+    Courses.findByIdAndUpdate(CourseId,{
+      TotalEnrolled:mycourse.TotalEnrolled+1
     },
     function (err, result) {
       if (err) {
@@ -193,8 +198,37 @@ router.post("/EnrolledCourse", (req, res) => {
         console.log(result);
         res.status(200).json({ msg: "course added Successful" });
       }
+    })
+  }).catch((err)=>{
+    console.log(err);
+  })
+});
+router.post("/EnrolledCourseTeacher", (req, res) => {
+  const { userId, CourseId, nameOfCourse } = req.body;
+
+  Instructors.findByIdAndUpdate(
+    userId,
+    {
+      $push: {
+        CousesEnrolled: { nameOfCourse: nameOfCourse, CourseId: CourseId },
+      },
     }
-  );
+  ).then(async ()=>{
+    let mycourse =await Courses.findById(CourseId);
+    Courses.findByIdAndUpdate(CourseId,{
+      TotalEnrolled:mycourse.TotalEnrolled+1
+    },
+    function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        res.status(200).json({ msg: "course added Successful" });
+      }
+    })
+  }).catch((err)=>{
+    console.log(err);
+  })
 });
 
 router.post("/EnrolledCourseTeacher", (req, res) => {
