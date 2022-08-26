@@ -28,6 +28,10 @@ const coursesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  TotalEnrolled :{
+    type:Number,
+    default:0,
+  },
   thumbnail: {
     type: String,
     required: true,

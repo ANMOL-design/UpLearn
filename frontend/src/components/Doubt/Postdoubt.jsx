@@ -6,7 +6,7 @@ import "suneditor/dist/css/suneditor.min.css";
 import SunEditor from "suneditor-react";
 import Loader2 from "../../assets/images/progressbar.gif";
 import Loader from "../Loader";
-
+import { BiArrowBack } from "react-icons/bi";
 var CryptoJS = require("crypto-js");
 
 export default function Postdoubt() {
@@ -15,7 +15,7 @@ export default function Postdoubt() {
 
   // states
   const [User, SetUser] = useState({});
-  const[userName, setUserName] = useState("");
+  const [userName, setUserName] = useState("");
   const [isLoading, setisLoading] = useState(true);
   const [Description, setDescription] = useState("");
   const [doubt, setDoubt] = useState({
@@ -114,7 +114,6 @@ export default function Postdoubt() {
     }
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleValidation();
@@ -127,8 +126,6 @@ export default function Postdoubt() {
     }
   };
 
-
-
   // main code
   if (isLoading) {
     return <Loader />;
@@ -139,9 +136,7 @@ export default function Postdoubt() {
           {/* back button section */}
           <div className="post-doubt-header">
             <Link to="/ask-doubt">
-              <button className="backBtn" style={{ color: "white" }}>
-                Back
-              </button>
+              <BiArrowBack className="backBtn" style={{ color: "white" }} />
             </Link>
           </div>
 
@@ -170,6 +165,7 @@ export default function Postdoubt() {
                     id="subject"
                     name="subjectclass"
                     value={doubt.subject}
+                    style={{margin: '0px'}}
                     onChange={(e) => {
                       setDoubt({ ...doubt, subject: e.target.value });
                     }}
@@ -256,7 +252,6 @@ export default function Postdoubt() {
               </div>
             </div>
           </form>
-
           {/* end */}
         </div>
       </>

@@ -27,6 +27,31 @@ export default function AddNotes() {
     setNOTES({ ...NOTES, [event.target.name]: event.target.value });
     seterr("");
   };
+  const submitI= async (image, imageData) => {
+
+    if (image === "") {
+      window.alert("Please Upload an Image.");
+    } 
+    else {
+      const formData = new FormData();
+      formData.append("image", imageData);
+
+      fetch(`/upload_image`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.error) {
+            console.log(data.error);
+          } 
+          else {
+            
+            Notes_Pdf = data.image.image
+          }
+        });
+    }
+  };
 
   const handleValidation = () => {
     if (
@@ -92,11 +117,11 @@ export default function AddNotes() {
 
     if (submit) {
       seterr("Please wait we are uploading your Data");
-      document.getElementById("addBookBtn").disabled = true;
+      // document.getElementById("addBookBtn").disabled = true;
       document.getElementById("loader-reg").style.display = "inline";
 
     //   // Send Images to cloud
-    //   await submitI(NotesPdf, NotesPdfData, "bookPdf");
+      await submitI(NotesPdf, NotesPdfData);
 
       // Send Data to Backend after 10 sec
       sendData();

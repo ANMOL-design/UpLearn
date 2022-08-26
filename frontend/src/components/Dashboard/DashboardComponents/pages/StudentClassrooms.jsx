@@ -36,7 +36,7 @@ export default function StudentClassrooms(props) {
       <>
         <div className="addcourse-main-container">
           <div className="no-found-container">
-            <h1>Not Any Class Added By You</h1>
+            <h1>You are not added by your Instructor</h1>
             <img src={NotFoundImg} alt="AddCourse" />
           </div>
         </div>

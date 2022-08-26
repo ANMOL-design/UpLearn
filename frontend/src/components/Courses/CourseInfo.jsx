@@ -170,22 +170,55 @@ export default function CourseInfo() {
   // Check the User Is already Enrolled in Course Or Not
   const CheckEnrolled = () => {
     let isEnrolled = "";
+    console.log(courseData);
     if (User.CousesEnrolled) {
       isEnrolled = User.CousesEnrolled.find(
         (i) => i.CourseId === courseData._id
       );
       if (isEnrolled) {
-        return (
-          <Link to={"/mycourses/start-learning/" + id}>
-            <button>Start Learning</button>
-          </Link>
-        );
+        if(courseData){
+          if (courseData.TotalEnrolled) {
+            
+              return (
+                <>
+                <Link to={"/mycourses/start-learning/" + id}>
+                  <button>Start Learning</button>
+                </Link>
+                <span>Total Enrolled : {courseData.TotalEnrolled}</span>
+                </>
+              );
+          }
+          else{
+            return (
+              <Link to={"/mycourses/start-learning/" + id}>
+                <button>Start Learning</button>
+              </Link>
+            );
+          }
+        }
+        
       } else {
-        return (
-          <button onClick={EnrollCourse}>
-            Enroll <MdArrowForward />
-          </button>
-        );
+        if (courseData) {
+          if (courseData.TotalEnrolled) {
+            
+              return (
+                <>
+                  <button onClick={EnrollCourse}>
+                    Enroll <MdArrowForward />
+                  </button>
+                  <span>Total Enrolled :  {courseData.TotalEnrolled}</span>
+                </>
+              );
+            
+          }
+          else{
+            return(
+              <button onClick={EnrollCourse}>
+                  Enroll <MdArrowForward />
+                </button>
+            )
+          }
+        }
       }
     } else {
       return (

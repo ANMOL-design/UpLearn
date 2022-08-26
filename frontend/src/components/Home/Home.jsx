@@ -49,10 +49,8 @@ function Home() {
         </div>
       </div>
 
-      <BelowHome />
       <StatsCounter />
-      {/* <FeaturesHome /> */}
-
+      <BelowHome />
       <DeliverResults />
       <StudentInstructorCard />
     </>
