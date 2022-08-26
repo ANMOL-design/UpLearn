@@ -217,7 +217,7 @@ export default function QuizPreform(props) {
     empty.reset();
     console.log("test");
 
-    //fetch
+    //post data to db
     const postData = async () => {
       const marksObtain = marksObtained;
       const totalMarks = TotalMarks;
@@ -246,6 +246,18 @@ export default function QuizPreform(props) {
       }
     };
     postData();
+
+    //get data from db
+    const fetchcourse = async () => {
+      await axios
+        .get("/getQuizReport")
+        .then((response) => {
+          return response;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
   };
 
   const indicatorBg = (index) => {
