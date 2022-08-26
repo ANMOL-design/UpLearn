@@ -343,6 +343,19 @@ router.post("/addQuizReport", async (req, res) => {
   await CO.save();
   res.sendStatus(200);
   console.log("successful");
+});
+
+router.get("/getQuizReport", (req, res) => {
+  QuizSolved.find({})
+    .then((product) => {
+      if (product) {
+        // console.log(product)
+        res.send(product);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 })
 
 
