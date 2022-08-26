@@ -30,7 +30,7 @@ const upload = multer({storage: storage});
 router.post("/upload_image", upload.single("image"), async (req, res) => {
     cloudinary.uploader.upload(req.file.path, { resource_type: "auto" }, async (err, result) => {
         if (err) {
-            
+            console.log(err);
             return res.status(500).json({
                 error: err
             });

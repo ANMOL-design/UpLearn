@@ -38,6 +38,7 @@ app.use(require("./routes/AssignTask"));
 app.use(require("./routes/doubtRoute"));
 app.use(require("./routes/postcareerDetail"));
 app.use(require("./routes/liveClass"));
+app.use(require("./routes/VolunteerRegister"));
 
 // mongodbconnection
 mongoose.connect(

@@ -6,6 +6,7 @@ dotenv.config();
 const User = require("../models/userSchema");
 const Admin = require("../models/adminSchema");
 const sendRegistrationEmail = require("../utils/emails/sendRegistrationEmail");
+const Volunteers = require('../models/VolunteerSchema');
 
 router.post("/register", (req, res) => {
     const { name, email, password, cpassword } = req.body;
@@ -29,6 +30,79 @@ router.post("/register", (req, res) => {
             console.log(err)
         })
 })
+router.post("/addUserByVolunteer", (req, res) => {
+    const {
+        firstName,
+        LastName,
+        classes,
+        password,
+        cpassword,
+        email,
+        Board,
+        PermanentAddress,
+        School,
+        City,
+        State,
+        Pincode,
+        VolunteerId,
+        mobileno,
+        Gender,
+        DOB,
+        BIO 
+    } = req.body;
+        let name = firstName+LastName
+    if (!name || !email || !password || !cpassword) {
+        return res.sendStatus(201);
+    }
+
+    User.findOne({ email: email })
+        .then((existingUser) => {
+            if (existingUser) {
+                return res.sendStatus(422);
+            }
+            const user = new User({ name,firstName,
+                LastName,
+                classes,
+                password,
+                cpassword,
+                email,
+                Board,
+                PermanentAddress,
+                School,
+                City,
+                State,
+                Pincode,
+                mobileno,
+                VolunteerId,
+                Gender,
+                DOB,
+                BIO});
+            user.save().then(() => {
+                Volunteers.findById(VolunteerId,{
+                    $push:{
+                        MyBlockStudents:{
+                            name:name,
+                            email:email,
+                            classes:classes,
+                            Board:Board,
+                            School:School,
+                            State:State,
+                            Pincode:Pincode,
+                            mobileno:mobileno,
+                            Gender:Gender,
+                            DOB:DOB
+                        }
+                    }
+                }).then(()=>{
+                    res.status(200).json({ msg: "Registration Successful" });
+                })
+            }).catch((err) => {
+                res.status(501).json({ msg: "Failed to Register" })
+            })
+        }).catch((err) => {
+            console.log(err)
+        })
+})
 
 router.post("/adminregister", (req, res) => {
     const { name, email, password } = req.body;
@@ -45,6 +119,7 @@ router.post("/adminregister", (req, res) => {
             const user = new Admin({ name, email, password });
 
             user.save().then(() => {
+                Volunteers.findByIdAndUpdate("")
                 res.status(200).json({ msg: "Registration Successful" });
             }).catch((err) => {
                 res.status(501).json({ msg: "Failed to Register" })
