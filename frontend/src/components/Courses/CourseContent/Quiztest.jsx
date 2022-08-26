@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
+import axios from "axios";
 
 function useCounter(initialState) {
   const [value, setValue] = useState(initialState);
@@ -13,7 +14,6 @@ function useCounter(initialState) {
 let TotalMarks = 0;
 let marksObtained = 0;
 
-
 function Question({
   data,
   buttonText,
@@ -25,7 +25,7 @@ function Question({
   const [answer, setAnswer] = useState(null);
   const parseValue = (value) => (value ? parseInt(value.split("-")[1]) : null);
   const questionRef = useRef(null);
- 
+
   useEffect(() => {
     gsap.fromTo(
       questionRef.current.querySelector(".question-text"),
@@ -105,7 +105,6 @@ function Question({
 // };
 
 function Results({ wrong, correct }) {
-
   return (
     <div className="result">
       <div className="result-item is-correct">
@@ -176,8 +175,10 @@ function QuestionCorrection({ data, selection }) {
 
 export default function QuizPreform(props) {
   var myquiz = props.myquiz;
-  const [select, setselect] = useState([]);
+  var userData = props.userData;
 
+  const [select, setselect] = useState([]);
+  // console.log(myquiz._id);
   const [gameStarted, setGameStarted] = useState(false);
   const totalQuestion = myquiz.QuestionsofQuiz.length - 1;
   const gameRef = useRef(null);
@@ -215,6 +216,36 @@ export default function QuizPreform(props) {
     wrong.reset();
     empty.reset();
     console.log("test");
+
+    //fetch
+    const postData = async () => {
+      const marksObtain = marksObtained;
+      const totalMarks = TotalMarks;
+      const quesId = myquiz._id;
+      const userId = userData._id;
+
+      const res = await fetch("/addQuizReport", {
+        method: "POST",
+        headers: {
+          "content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          marksObtain,
+          totalMarks,
+          quesId,
+          userId,
+        }),
+      });
+
+      // const data = await res.json();
+      // console.log(data);
+      if (res.status === 200) {
+        window.alert("data added");
+      } else {
+        window.alert("Error occured , try again");
+      }
+    };
+    postData();
   };
 
   const indicatorBg = (index) => {
@@ -287,17 +318,19 @@ export default function QuizPreform(props) {
           {/* This Component will render the result After Completion  */}
           {!myquiz.QuestionsofQuiz[question.value] && (
             <>
-              <Results
-                wrong={wrong.value}
-                correct={correct.value}
-              />
+              <Results wrong={wrong.value} correct={correct.value} />
             </>
           )}
           {/* Code to Print the marks obtained   */}
           {!myquiz.QuestionsofQuiz[question.value] && (
-            <div className="result" style={{marginTop: '0px', maxHeight: '2rem'}}>
+            <div
+              className="result"
+              style={{ marginTop: "0px", maxHeight: "2rem" }}
+            >
               <div className="result-item is-correct">
-                <span className="result-count">{(marksObtained / TotalMarks) * 100}%</span>
+                <span className="result-count">
+                  {(marksObtained / TotalMarks) * 100}%
+                </span>
                 <span className="result-text">
                   <svg
                     width="16"
@@ -313,36 +346,32 @@ export default function QuizPreform(props) {
                     <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                     <path d="M22 4L12 14.01 9 11.01"></path>
                   </svg>
-                  
                   Marks Obtained
                 </span>
               </div>
             </div>
           )}
-         
-     
+
           {/* Button To Start the Quiz Again  */}
 
           <button
             className="restart-button"
             onClick={() => handleRestartClick()}
           >
-           finish
+            finish
           </button>
         </div>
       </div>
       {/* Area where Question were rendered  */}
       <div className="game-area">
-        {myquiz.QuestionsofQuiz[question.value]  && (
-        
+        {myquiz.QuestionsofQuiz[question.value] && (
           <Question
             data={myquiz.QuestionsofQuiz[question.value]}
             buttonText={
               question.value !== totalQuestion ? "Next Question" : "Finish Quiz"
             }
             onQuestionButtonClick={handleNewQuestionClick}
-            />
-            
+          />
         )}
         {!myquiz.QuestionsofQuiz[question.value] && (
           <>

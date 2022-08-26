@@ -42,7 +42,7 @@ export default function StatsCounter() {
               <FaChalkboardTeacher />
             </div>
             <div className="statsData">
-              <CountUp end={100} duration={5} />+<h5>Qualified Instructors</h5>
+              <CountUp end={100} duration={5} />+<h5>Instructors</h5>
             </div>
           </div>
         </div>

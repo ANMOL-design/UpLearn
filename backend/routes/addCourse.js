@@ -7,6 +7,8 @@ const Courses = require("../models/coursesSchema");
 const CoursesQuizes = require("../models/CourseQuizSchema");
 const Instructors = require("../models/instructorregisterSchema");
 const User = require("../models/userSchema");
+const QuizSolved = require("../models/QuiZSolved");
+
 
 router.post("/Instructoraddcourse", (req, res) => {
   const {
@@ -326,5 +328,22 @@ router.post("/delteMyCourseQuiz", (req, res) => {
     });
   });
 });
+
+router.post("/addQuizReport", async (req, res) => {
+  const { marksObtain, totalMarks, quesId, userId } = req.body;
+  const QUIZREPORT = await new QuizSolved({
+    marksObtain: marksObtain,
+    totalMarks: totalMarks,
+    quesId: quesId,
+    userId: userId
+  });
+  await QUIZREPORT.save();
+  const CO = await User.findById(userId);
+  await CO.CousesEnrolled.push(QUIZREPORT);
+  await CO.save();
+  res.sendStatus(200);
+  console.log("successful");
+})
+
 
 module.exports = router;

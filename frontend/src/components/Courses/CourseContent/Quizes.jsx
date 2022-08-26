@@ -4,6 +4,8 @@ import QuizPreform from "./Quiztest";
 
 export default function QuizesContent(props) {
   let QuizContent = props.quiz;
+  let User = props.userData;
+  console.log(props);
 
   const [hidden, setHidden] = useState({});
 
@@ -37,7 +39,9 @@ export default function QuizesContent(props) {
                 </li>
 
                 {/* Making the Quiz Happen  */}
-                {hidden[index] && <QuizPreform myquiz={curentQuiz} />}
+                {hidden[index] && (
+                  <QuizPreform myquiz={curentQuiz} userData={User} />
+                )}
               </div>
             ))}
           </ul>

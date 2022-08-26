@@ -114,7 +114,7 @@ function Navbar() {
             {/* links and dropdown for Career Counselling */}
             <li>
               <NavLink
-                to="/careercounselling"
+                to="/"
                 className="desktop-link"
                 style={{ paddingRight: "0px" }}
                 onClick={Toggler}
@@ -128,18 +128,23 @@ function Navbar() {
               </label>
               <ul>
                 <li>
-                  <NavLink to="/after-10" onClick={Toggler}>
+                  <NavLink to="carrer-counselling/10/after-10" onClick={Toggler}>
                     After 10th
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="carrercounsling/after-12" onClick={Toggler}>
+                  <NavLink to="carrer-counselling/12/after-12" onClick={Toggler}>
                     After 12th
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="carrercounsling/exam/exams" onClick={Toggler}>
+                  <NavLink to="carrer-counselling/exam/exams" onClick={Toggler}>
                     Exams
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="carrer-counselling/scholar/scholarship" onClick={Toggler}>
+                    Scholarship
                   </NavLink>
                 </li>
               </ul>
