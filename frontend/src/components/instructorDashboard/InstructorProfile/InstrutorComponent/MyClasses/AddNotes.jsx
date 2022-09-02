@@ -1,16 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 // import Loader from "./../../assets/images/progressbar.gif";
 
 export default function AddNotes() {
-
   let navigate = useNavigate();
-
-  const [adminInfo, setadminInfo] = useState("");
-  const adminstatus = useSelector((state) => state.AdminReducers);
 
   const [NOTES, setNOTES] = useState({
     notesName: "",
@@ -23,16 +17,14 @@ export default function AddNotes() {
   const [NotesPdfData, setNotesPdfData] = useState();
 
   const handleChange = (event) => {
-    console.log(NOTES);
+    // console.log(NOTES);
     setNOTES({ ...NOTES, [event.target.name]: event.target.value });
     seterr("");
   };
-  const submitI= async (image, imageData) => {
-
+  const submitI = async (image, imageData) => {
     if (image === "") {
       window.alert("Please Upload an Image.");
-    } 
-    else {
+    } else {
       const formData = new FormData();
       formData.append("image", imageData);
 
@@ -44,26 +36,18 @@ export default function AddNotes() {
         .then((data) => {
           if (data.error) {
             console.log(data.error);
-          } 
-          else {
-            
-            Notes_Pdf = data.image.image
+          } else {
+            Notes_Pdf = data.image.image;
           }
         });
     }
   };
 
   const handleValidation = () => {
-    if (
-      !NOTES.notesName ||
-      !NotesPdf
-    ) 
-
-    {
+    if (!NOTES.notesName || !NotesPdf) {
       seterr("Please Enter all required Fields.");
       return false;
-    } 
-    else if (NotesPdf === "") {
+    } else if (NotesPdf === "") {
       seterr("Please Upload pdf of Notes.");
       return false;
     }
@@ -72,8 +56,7 @@ export default function AddNotes() {
 
   const postData = async () => {
     const NotesPdf = Notes_Pdf;
-    const { notesName} =
-      NOTES;
+    const { notesName } = NOTES;
 
     const res = await fetch("/addnotesbyinstructor", {
       method: "POST",
@@ -88,7 +71,7 @@ export default function AddNotes() {
 
     if (res.status === 200) {
       window.alert("Successful Notes Added ");
-      navigate("/admin-portal-home-190310554227");
+      navigate("/instructordashboard/my-classroom");
     } else {
       console.log(res);
       window.alert("Something Went Wrong, Try Later\nError Occured");
@@ -100,17 +83,16 @@ export default function AddNotes() {
     setNotesPdfData(e.target.files[0]);
   }
   const time = 10000;
-  function sendData () {
+  function sendData() {
     setTimeout(function () {
-      console.log(Notes_Pdf +" ");
-    if(Notes_Pdf==""){
-       sendData();
-    }
-    else{
-    postData();
-    }
-  }, time);
-}
+      console.log(Notes_Pdf + " ");
+      if (Notes_Pdf == "") {
+        sendData();
+      } else {
+        postData();
+      }
+    }, time);
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submit = handleValidation();
@@ -120,7 +102,7 @@ export default function AddNotes() {
       // document.getElementById("addBookBtn").disabled = true;
       document.getElementById("loader-reg").style.display = "inline";
 
-    //   // Send Images to cloud
+      //   // Send Images to cloud
       await submitI(NotesPdf, NotesPdfData);
 
       // Send Data to Backend after 10 sec
@@ -136,12 +118,12 @@ export default function AddNotes() {
           </Link>
         </div>
         <div className="addBookWrapper">
-          <div className="addBookForm" style={{width:"400px"}}>
+          <div className="addBookForm" style={{ width: "400px" }}>
             <form action="">
               <h3>Notes</h3>
 
               <div className="fields">
-                <div className="addBookInputField" >
+                <div className="addBookInputField">
                   <label htmlFor="notesName">
                     Notes Title <span className="star">*</span>
                   </label>{" "}
@@ -156,8 +138,7 @@ export default function AddNotes() {
                 </div>
               </div>
 
-            <div className="fields">
-                 
+              <div className="fields">
                 <div className="addBookInputField btn">
                   <label htmlFor="bookPdf">
                     Notes Pdf <span className="star">*</span>

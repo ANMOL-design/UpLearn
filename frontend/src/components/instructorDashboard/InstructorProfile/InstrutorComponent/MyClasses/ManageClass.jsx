@@ -314,52 +314,39 @@ export default function ManageClass() {
     if (MyClassroom.length > 0) {
       return (
         <>
-          <div
-            className="my-class-main-container"
-            style={{
-              marginLeft: "6rem",
-              marginRight: "2rem",
-              paddingTop: "20px",
-            }}
-          >
-            <h1>My Classroom</h1>
+          <div className="my-class-main-container">
             <div className="my-class-header">
+              <h1>My Classroom</h1>
+              <p>
+                <strong>Total Number of Students : </strong>
+                {MyClassroom[0].classUsers.length}
+              </p>
               <div className="myclass-details">
                 <p>
                   <strong>Class Name : </strong>
                   {MyClassroom[0].ClassName}
-                </p>{" "}
-                <br />
-                <p>
-                  <strong>Class Description : </strong>
-                  {MyClassroom[0].ClassDescription}
-                </p>{" "}
-                <br />
+                </p>
                 <p>
                   <strong>Subject : </strong>
                   {MyClassroom[0].Subject}
-                </p>{" "}
-                <br />
+                </p>
                 <p>
                   <strong>Class : </strong> {MyClassroom[0].Class || +"10"}th
-                </p>{" "}
-                <br />
+                </p>
                 <p>
                   <strong>Meeting Id : </strong>
                   {MyClassroom[0].meetingId}
-                </p>{" "}
-                <br />
+                </p>
                 <p>
                   <strong>Created Time : </strong>
                   {gettimestamp(MyClassroom[0].classDatePost)}
-                </p>{" "}
-                <br />
-                <p>
-                  <strong>Total Number of Students : </strong>
-                  {MyClassroom[0].classUsers.length}
-                </p>{" "}
-                <br />
+                </p>
               </div>
+              <p>
+                <strong>Class Description : </strong>
+                <br />
+                {MyClassroom[0].ClassDescription}
+              </p>
             </div>
             <div className="manage-class-container">
               {/* The Linker Page to navigate the components  */}
@@ -404,7 +391,12 @@ export default function ManageClass() {
               {ParticipantShow && <AddParticipants />}
 
               {/* Showing Notice if Notice is Active  */}
-              {NoticeShow && <Chatbox  MyClassroom={MyClassroom} instructorInfo={instructorInfo} />}
+              {NoticeShow && (
+                <Chatbox
+                  MyClassroom={MyClassroom}
+                  instructorInfo={instructorInfo}
+                />
+              )}
               {NotesShow && <AddNotes />}
 
               {/* Showing Notes if Notes is Active  */}

@@ -72,13 +72,13 @@ export default function SchedulseClass(props) {
             <h1 style={{ color: "#2b4eff" }}>No Any Class Schedule Yet!</h1>
             <br />
             <p className="star">
-              Note : the class you schedule is only valid for 24 hours after
-              that its Finsish
+              Note : The class you schedule is only valid for 24 hours after
+              that its finish
             </p>
             <br />
             <div className="schedule-class-container-2">
               <div className="signInput">
-              <h2 style={{ color: "#2b4eff" }}>Schedule Your Class</h2>
+                <h2 style={{ color: "#2b4eff" }}>Schedule Your Class</h2>
                 <label htmlFor="title">
                   {" "}
                   Schedule Date :<span className="star"> *</span>
@@ -95,10 +95,7 @@ export default function SchedulseClass(props) {
                 />
                 <p className="star">{err}</p>
 
-                <div
-                  className="submit-btn"
-                  style={{ marginTop: "20px" }}
-                >
+                <div className="submit-btn" style={{ marginTop: "20px" }}>
                   <button
                     id="addBookBtn"
                     style={{
@@ -157,7 +154,8 @@ export default function SchedulseClass(props) {
                         "&participantId=" +
                         props.Instructor._id +
                         "&meetingId=" +
-                        MyClassroom.meetingId +"&usermode=OCRTIRTUSN"
+                        MyClassroom.meetingId +
+                        "&usermode=OCRTIRTUSN"
                       }
                       target="_blank"
                       rel="noreferrer noopener"

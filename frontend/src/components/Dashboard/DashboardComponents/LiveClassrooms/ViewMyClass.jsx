@@ -39,29 +39,25 @@ export default function ViewMyClass(props) {
   }, [props]);
   return (
     <>
-      <div className="my-classroom-view-container">
-        <div className="my-class-view-header">
-          <p>My Classroom</p>
-        </div>
-        <div className="myclass-view-info-container">
-          <div className="class-view-info">
-            <p>
-              <strong>Class Name : </strong>
-              {MyClassroom.ClassName}
-            </p>
-            <p>
-              <strong>Class Description : </strong>
-              {MyClassroom.ClassDescription}
-            </p>
-            <p>
-              <strong>Subject : </strong>
-              {MyClassroom.Subject}
-            </p>
-            <p>
-              <strong>Class : </strong>
-              {MyClassroom.Class ? MyClassroom.Class + " th" : "10 th"}
-            </p>
-          </div>
+      <div className="my-class-main-container">
+        <div className="my-class-header">
+          <h1>My Classroom</h1>
+          <p>
+            <strong>Class Name : </strong>
+            {MyClassroom.ClassName}
+          </p>
+          <p>
+            <strong>Subject : </strong>
+            {MyClassroom.Subject}
+          </p>
+          <p>
+            <strong>Class : </strong>
+            {MyClassroom.Class ? MyClassroom.Class + " th" : "10 th"}
+          </p>
+          <p>
+            <strong>Class Description : </strong>
+            {MyClassroom.ClassDescription}
+          </p>
         </div>
         <div className="manage-class-container">
           {/* The Linker Page to navigate the components  */}
@@ -91,7 +87,12 @@ export default function ViewMyClass(props) {
           </div>
 
           {/* Showing Notice if Notice is Active  */}
-          {NoticeShow && <StudentChatbox MyClassroom={MyClassroom} StudentInfo={StudentInfo} />}
+          {NoticeShow && (
+            <StudentChatbox
+              MyClassroom={MyClassroom}
+              StudentInfo={StudentInfo}
+            />
+          )}
 
           {/* Showing Notes if Notes is Active  */}
           {NotesShow}

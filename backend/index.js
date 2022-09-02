@@ -7,13 +7,18 @@ dotenv.config();
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "x-access-token, Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
-
 
 ///////////////
 // This query will help to send upto 50 MB data to backend at a time
@@ -38,7 +43,6 @@ app.use(require("./routes/AssignTask"));
 app.use(require("./routes/doubtRoute"));
 app.use(require("./routes/postcareerDetail"));
 app.use(require("./routes/liveClass"));
-app.use(require("./routes/VolunteerRegister"));
 
 // mongodbconnection
 mongoose.connect(

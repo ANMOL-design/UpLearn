@@ -48,7 +48,7 @@ export default function StudentClassrooms(props) {
         <div className="addcourse-main-container">
           {/* Course heading to Add New Course  */}
           <div className="my-courses-container">
-            <h2>My ClassRooms</h2>
+            <h2>My Classrooms</h2>
           </div>
           <hr style={{ marginTop: "8px" }} />
 
