@@ -5,14 +5,7 @@ import Loader from "../../../Loader";
 export default function ArticleContent(props) {
   // Store Props value in a variable
   const CourseArticle = props.course;
-  let courseArticlecontent = [];
-
-  useEffect(() => {
-    if(!CourseArticle){
-      CourseArticle = props.coursebackup
-    }
-  }, [])
-  
+  let courseArticlecontent = [];  
 
   const [hidden, setHidden] = useState({});
 

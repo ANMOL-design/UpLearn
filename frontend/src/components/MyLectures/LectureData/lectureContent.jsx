@@ -20,9 +20,6 @@ export default function MyLectureContent() {
   const [courseData, setCourseData] = useState({});
   const [User, setUser] = useState({});
 
-  const data = JSON.parse(localStorage.getItem("CourseData")) || "";
-
-  console.log(data)
 
   // States to handle component changes in page
   const [articleShow, setarticleShow] = useState(true);
@@ -76,7 +73,6 @@ export default function MyLectureContent() {
         .get("/instructorTaskDataFetch/" + id)
         .then((response) => {
           setCourseData(response.data[0]);
-          localStorage.setItem("CourseData", JSON.stringify(response.data[0]))
         })
         .catch((error) => {
           console.log(error);
@@ -144,7 +140,7 @@ export default function MyLectureContent() {
           </div>
 
           {/* Showing Article if Article is Active  */}
-          {articleShow && <ArticleContent course={courseData} coursebackup={data} />}
+          {articleShow && <ArticleContent course={courseData} />}
 
           {/* Showing Video if Video is Active  */}
           {videoShow && <VideosContent videos={courseData} />}
