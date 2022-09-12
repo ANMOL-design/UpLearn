@@ -11,8 +11,6 @@ const Authentication = require('../middleware/Authentication');
 const User = require("../models/userSchema");
 const Admin = require("../models/adminSchema");
 const Instructor = require("../models/instructorregisterSchema");
-const Volunteers = require('../models/VolunteerSchema');
-
 
 router.post('/login', async(req, res) => {
     try {
@@ -91,31 +89,6 @@ router.post('/adminlogin', async(req, res) => {
         } else {
             return res.status(402).json({ msg: "Invalid Credential" });
         }
-    } catch (err) {
-        res.json({ msg: "error occured" + err })
-    }
-})
-router.post('/VolunteerLogin', async(req, res) => {
-    try {
-        const { Volunteeremail, password } = req.body;
-        if (!Volunteeremail || !password) {
-            return res.sendStatus(400);
-        }
-
-
-            const token = await adminLogin.generateAuthToken();
-
-            res.cookie("jwtTokenAdmin", token, {
-                expires: 0,
-                httpOnly: true
-            })
-
-            if (!isMatch) {
-                return res.status(401).json({ msg: "Invalid Credential" });
-            } else {
-
-                res.status(200).json({ msg: "Login Succesfully" })
-            }
     } catch (err) {
         res.json({ msg: "error occured" + err })
     }

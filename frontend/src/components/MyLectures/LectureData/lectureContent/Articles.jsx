@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoDocumentOutline } from "react-icons/io5";
 import Loader from "../../../Loader";
 
 export default function ArticleContent(props) {
   // Store Props value in a variable
   const CourseArticle = props.course;
-  let courseArticlecontent = [];
+  let courseArticlecontent = [];  
 
   const [hidden, setHidden] = useState({});
 

@@ -98,10 +98,6 @@ import ClassSelect from "./components/MyLectures/LectureRoutes/ClassSelect";
 import SubjectSelect from "./components/MyLectures/LectureRoutes/Subject";
 import LectureContent from "./components/MyLectures/LectureData/ContentPage";
 import MyLectureContent from "./components/MyLectures/LectureData/lectureContent";
-import VolunteerRegister from "./components/AdminPortal/VolunteerRegister";
-import VolunteerList from "./components/AdminPortal/VolunteerList";
-import VolunteerLogin from "./components/AdminPortal/VolunteerLogin";
-import VolunteersDashBoard from "./components/VolunteerDashboard/VolunteersDashBoard";
 
 function App() {
   const [isLoading, setisLoading] = useState(true);
@@ -174,15 +170,7 @@ function App() {
               path="/admin-portal-instructorRegis-190310554227"
               element={<InstructorRegister />}
             />
-           
-            <Route
-              path="/admin-portal-preview-Volunteer-1903105546541"
-              element={<VolunteerList/>}
-            />
-            <Route
-              path="/admin-portal-add-Volunteer-1903105546543"
-              element={<VolunteerRegister />}
-            />
+
             <Route
               path="/admin-portal-Addbook-190310554227"
               element={<AddBook />}
@@ -230,18 +218,12 @@ function App() {
               path="/instructordashboard/*"
               element={<InstructorDashboard />}
             />
-            <Route
-              path="/Volunteer-Dashboard"
-              element={<VolunteersDashBoard />}
-            />
+   
             <Route
               path="/task-assign/add-lecture-data/:id/:teacher"
               element={<InstructorAddTaskDetails />}
             />
-            <Route
-              path="/Volunteer-Login"
-              element={<VolunteerLogin />}
-            />
+
             <Route
               path="/task-assign/add-lecture-video/:id/:teacher"
               element={<InstructorAddTaskVideo />}
@@ -349,10 +331,19 @@ function App() {
 
             {/* ///////////////////////////////////////////////////////  */}
             {/* Career Counselling Route */}
-            <Route path="carrer-counselling/12/:after_12" element={<After12th />} />
-            <Route path="carrer-counselling/10/:after_10" element={<After10th />} />
+            <Route
+              path="carrer-counselling/12/:after_12"
+              element={<After12th />}
+            />
+            <Route
+              path="carrer-counselling/10/:after_10"
+              element={<After10th />}
+            />
             <Route path="carrer-counselling/exam/:exams" element={<Exams />} />
-            <Route path="carrer-counselling/scholar/:scholarship" element={<ScholarshipCounselling />} />
+            <Route
+              path="carrer-counselling/scholar/:scholarship"
+              element={<ScholarshipCounselling />}
+            />
             <Route path="/carrer-counselling/:id" element={<AboutCourse />} />
 
             {/* ///////////////////////////////////////////////////////  */}
@@ -362,7 +353,6 @@ function App() {
             <Route path="/" element={<Home />} exact />
             <Route path="*" element={<PageNotFound />} />
 
-           
             {/* //////// End Of Routes ////////// */}
           </Routes>
           {/* The Footer component */}

@@ -21,7 +21,7 @@ export default function MyClassSchedule (props){
     let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
     return time;
   };
- console.log(props);
+//  console.log(props);
  var date1 = new Date();
  var date2 = new Date(MyClassroom.classScheduleDate);
 

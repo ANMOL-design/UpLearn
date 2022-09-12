@@ -20,6 +20,7 @@ export default function MyLectureContent() {
   const [courseData, setCourseData] = useState({});
   const [User, setUser] = useState({});
 
+
   // States to handle component changes in page
   const [articleShow, setarticleShow] = useState(true);
   const [videoShow, setvideoShow] = useState(false);
