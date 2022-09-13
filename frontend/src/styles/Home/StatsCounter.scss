@@ -1,25 +1,44 @@
-.statsCounter{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.statsCounter {
+  font-family: $font_El;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1.25rem 1rem;
+  background-color: #d7ecfd;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
 }
-.statsCounterWrapper{
-    padding: 1.85rem;
-    background-color: #d7ecfd;
-    border: 1px solid #aaa;
-}
+
 .stats {
-    display: flex;
-    margin: 0px 0.5rem;
-    gap: 1rem;
-    align-items: center;
-    font-weight: 700;
+  display: flex;
+  align-items: center;
+  width: 12rem;
+  gap: 0.75rem;
+  font-weight: 700;
+  margin: 0.5rem;
 }
-.statsIcon{
-    font-size: 4rem;
-    color: #0C0F33;     
+
+.statsIcon {
+  display: flex;
+  align-items: center;
+  font-size: 4rem;
+  color: #0c0f33;
 }
-.statsData{
-    color: #0C0F33;
-    font-size: 1.5rem;
+
+.statsData {
+  color: #0c0f33;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 655px) {
+  .stats {
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 455px) {
+  .statsCounter {
+    justify-content: center;
+  }
 }

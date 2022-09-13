@@ -4,7 +4,7 @@ import { FaCalendar, FaLaptop, FaQuestion } from "react-icons/fa";
 function DeliverResults() {
   return (
     <div className="deliver-outer-container">
-      <div className="deliver-container-first">
+      <div className="deliver-container-first" data-aos="fade-down">
         <h2 className="deliver-header">What do we deliver?</h2>
 
         <p className="deliver-para">
@@ -13,7 +13,7 @@ function DeliverResults() {
         </p>
       </div>
       <div className="deliver-container-second">
-        <div className="deliver-data">
+        <div className="deliver-data" data-aos="fade-up">
           <div className="deliver-icon">
             <FaCalendar />
           </div>
@@ -25,7 +25,7 @@ function DeliverResults() {
             </p>
           </div>
         </div>
-        <div className="deliver-data">
+        <div className="deliver-data" data-aos="fade-up">
           <div className="deliver-icon">
             <FaQuestion />
           </div>
@@ -37,7 +37,7 @@ function DeliverResults() {
             </p>
           </div>
         </div>
-        <div className="deliver-data">
+        <div className="deliver-data" data-aos="fade-up">
           <div className="deliver-icon">
             <FaLaptop />
           </div>

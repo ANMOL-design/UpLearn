@@ -44,7 +44,7 @@ export default function LiveClassAttendance(props) {
     let time = dd + "/" + mm + "/" + yy + "(" + hh + ":" + mi + ":" + ss + ")";
     return time;
   };
-console.log(MyClassrooms);
+  console.log(MyClassrooms);
   function timeDiffCalc(dateFuture, dateNow) {
     let diffInMilliSeconds = Math.abs(dateFuture - dateNow) / 1000;
 
@@ -74,16 +74,16 @@ console.log(MyClassrooms);
           ? `${minutes} minutes `
           : `${minutes} minutes `;
     }
-    difference +=
-        `${Math.round(diffInMilliSeconds)} seconds`
+    difference += `${Math.round(diffInMilliSeconds)} seconds`;
 
     return difference;
   }
-  const totalTime=(timedata)=>{
-    let diffInMilliSecondstime =0;
-    timedata.timelog.map((ktime)=>{
-      diffInMilliSecondstime += Math.abs(new Date(ktime.end) - new Date(ktime.start)) / 1000;
-    })
+  const totalTime = (timedata) => {
+    let diffInMilliSecondstime = 0;
+    timedata.timelog.map((ktime) => {
+      diffInMilliSecondstime +=
+        Math.abs(new Date(ktime.end) - new Date(ktime.start)) / 1000;
+    });
     const days = Math.floor(diffInMilliSecondstime / 86400);
     diffInMilliSecondstime -= days * 86400;
     console.log("calculated days", days);
@@ -115,12 +115,11 @@ console.log(MyClassrooms);
         : `${seconds} seconds`;
 
     return difference;
-  }
+  };
   var x = 0;
   if (Loading) {
     return <Loader />;
   } else {
-    
     if (meetindDetails.length > 0) {
       return (
         <>
@@ -139,23 +138,23 @@ console.log(MyClassrooms);
               </thead>
               <tbody>
                 {meetindDetails.map((item) => (
-                   <>
-                  <tr  key={item._id} className="attance-table-tr-2"  >
-                    <td>{++x}</td>
-                    <td style={{ textAlign: "left", paddingLeft: "1rem" }}>
-                      {gettimestamp(item.start)}
-                    </td>
-                    <td  style={{ textTransform: "none" }}>
-                      {gettimestamp(item.end)}
-                    </td>
-                    <td style={{ textTransform: "none" }}>
-                      {timeDiffCalc(new Date(item.end), new Date(item.start))}
-                    </td>
-                    <td style={{ textTransform: "none" }}>
-                      {item.participants.length}
-                    </td>
-                       {console.log(meetindDetails)}
-                    {/* <td>
+                  <>
+                    <tr key={item._id} className="attance-table-tr-2">
+                      <td>{++x}</td>
+                      <td style={{ textAlign: "left", paddingLeft: "1rem" }}>
+                        {gettimestamp(item.start)}
+                      </td>
+                      <td style={{ textTransform: "none" }}>
+                        {gettimestamp(item.end)}
+                      </td>
+                      <td style={{ textTransform: "none" }}>
+                        {timeDiffCalc(new Date(item.end), new Date(item.start))}
+                      </td>
+                      <td style={{ textTransform: "none" }}>
+                        {item.participants.length}
+                      </td>
+                      {console.log(meetindDetails)}
+                      {/* <td>
                       <button
                         className="rmvbtn"
                         disabled={item.chatLink ? false : true}
@@ -165,14 +164,22 @@ console.log(MyClassrooms);
                         </a>
                       </button>
                     </td> */}
-                    <td>
-                      <button className="rmvbtn" >
-                        <Link to={"/instructordashboard/my-classroom/PreviewAttandance/"+MyClassrooms.meetingId+"/"+item.id}><MdTableView /> Preview{" "}     </Link>
-                           
-                      </button>
-                    </td>
-                  </tr>
-                   </>
+                      <td>
+                        <button className="rmvbtn">
+                          <Link
+                            to={
+                              "/instructordashboard/my-classroom/PreviewAttandance/" +
+                              MyClassrooms.meetingId +
+                              "/" +
+                              item.id
+                            }
+                          >
+                            <MdTableView /> Preview{" "}
+                          </Link>
+                        </button>
+                      </td>
+                    </tr>
+                  </>
                 ))}
               </tbody>
             </table>
@@ -180,10 +187,7 @@ console.log(MyClassrooms);
         </>
       );
     } else {
-     return(
-      <h1>No Class schedule in this room!</h1>
-     )
+      return <h1>No Class schedule in this room!</h1>;
     }
-  
   }
 }

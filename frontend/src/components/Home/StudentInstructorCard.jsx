@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function StudentInstructorCard() {
   return (
     <div className="studInsCard">
-      <div className="studInsCardItem one">
+      <div className="studInsCardItem one" data-aos="fade-right">
         <div className="part1">
           <h3>Come Learn with UpLearn</h3>
           <p>
@@ -18,10 +18,10 @@ export default function StudentInstructorCard() {
           </Link>
         </div>
         <div className="part2">
-          <img src={studentpic} alt="" />
+          <img src={studentpic} alt="dfsd" />
         </div>
       </div>
-      <div className="studInsCardItem two">
+      <div className="studInsCardItem two" data-aos="fade-left">
         <div className="part1">
           <h3>Become an Instructor</h3>
           <p>
@@ -33,7 +33,7 @@ export default function StudentInstructorCard() {
           </Link>
         </div>
         <div className="part2">
-          <img src={teacherpic} alt="" />
+          <img src={teacherpic} alt="dsfgs" />
         </div>
       </div>
     </div>

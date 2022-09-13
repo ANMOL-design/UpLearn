@@ -1,5 +1,5 @@
 .home-container {
-  min-height: 51vh;
+  min-height: 65vh;
   border-bottom: 1px solid #888;
   background-color: rgba(0, 0, 255, 0.75);
 }
@@ -18,7 +18,7 @@ $images: url("../../assets/images/1imghome.png")
 
 .untitled {
   position: absolute;
-  height: 51vh;
+  height: 65vh;
   width: 100%;
   overflow: hidden;
   @keyframes rotate {
@@ -76,7 +76,7 @@ $images: url("../../assets/images/1imghome.png")
     &:after {
       content: "";
       position: absolute;
-      height: 51vh;
+      height: 65vh;
       width: 100%;
       left: 50%;
       transform: translate3d(-50%, 0, 0);
@@ -137,14 +137,14 @@ $images: url("../../assets/images/1imghome.png")
 
   &__slides {
     position: absolute;
-    height: 51vh;
+    height: 65vh;
     width: 100%;
     top: 0;
     left: 0;
   }
   &__slide {
     position: absolute;
-    height: 51vh;
+    height: 65vh;
     width: 100%;
     opacity: 0;
     @keyframes showHideSlide {
@@ -177,7 +177,7 @@ $images: url("../../assets/images/1imghome.png")
   &__slideBg {
     // margin-top: 10px;
     position: relative;
-    height: 51vh;
+    height: 65vh;
     width: 100vw;
     top: 0;
     left: 0;
@@ -225,3 +225,4 @@ $images: url("../../assets/images/1imghome.png")
     }
   }
 }
+
