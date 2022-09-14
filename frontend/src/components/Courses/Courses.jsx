@@ -262,7 +262,7 @@ function Courses() {
             <p>
               <b>Total Courses : {courseData.length}</b>
             </p>
-            <div className="course-list-card-container">
+            <div className="course-list-card-container" data-aos="fade-right">
               {courseData.map((item) => {
                 return (
                   <>

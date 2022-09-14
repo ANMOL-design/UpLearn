@@ -1,29 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import BelowHome from "./BelowHome";
-// import FeaturesHome from "./FeaturesHome";
 import StatsCounter from "./StatsCounter";
-import StudentInstructorCard from "./StudentInstructorCard";
+import HomeFeatures from "./FeatureHome";
 import DeliverResults from "./DeliverResults";
-import FeaturesHome from "./FeaturesHome";
+import StudentInstructorCard from "./StudentInstructorCard";
+import banner from "./../../assets/images/home-banner.jpg";
 
 function Home() {
-  // return(
-  //     <>
-  //         <div className="home-container">
-  //             <h1>Home Component</h1>
-  //             <Link to='/uplearn-virtual-library'>Library</Link>
-  //             <br /><br />
-  //             <Link to='/learn-with-fun'>Games</Link>
-  //             <br /><br />
-  //             <Link to='/studentdashboard'>Student Dashboard</Link>
-  //             <br /><br />
-  //             <Link to='/instructordashboard'>Instructor Dashboard</Link>
-  //         </div>
-  //     </>
-  // )
   return (
     <>
+      {/* Home Page Slider  */}
       <div className="home-container">
         <div className="untitled">
           <div className="untitled__slides">
@@ -38,7 +26,7 @@ function Home() {
             </Link>
           </div>
           <div className="untitled__slide">
-              <div className="untitled__slideBg" />
+            <div className="untitled__slideBg" />
           </div>
           <div className="untitled__slide">
             <Link to="/Learn-with-fun">
@@ -51,8 +39,14 @@ function Home() {
 
       <StatsCounter />
       <BelowHome />
+      <HomeFeatures />
       <DeliverResults />
       <StudentInstructorCard />
+
+      {/* Home Page last Image  */}
+      <div className="my-home-img-container" data-aos="fade-down">
+        <img src={banner} alt="banner" className="my-home-img" />
+      </div>
     </>
   );
 }

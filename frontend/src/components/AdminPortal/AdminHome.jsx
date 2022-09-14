@@ -46,7 +46,7 @@ function AdminHome(){
                 </p>
             </div>
             {/* Cards Of The Admin Page  */}
-            <div className="admin-cards-container" data-aos="fade-in">
+            <div className="admin-cards-container" data-aos="fade-right">
                 {data.map( (item) => {
                     return(
                        <div className="admin-card-inner" key={item.id}>
