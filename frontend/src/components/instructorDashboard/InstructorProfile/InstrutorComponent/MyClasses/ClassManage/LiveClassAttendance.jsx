@@ -19,7 +19,7 @@ export default function LiveClassAttendance(props) {
         method: "GET",
         headers: {
           Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJmNTc5NmQ5Yy03YjRlLTRlMGItOTk1MS04YTI5NmE4NDIxYzUiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MTQxMDQ4MywiZXhwIjoxNjYyMDE1MjgzfQ.3dk92Iup6WixPwRD0V3C_zGxeeJh-uxF8hfRXV8_Oxk",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJmMTY5NWE4Yi04ZmMxLTRhNWItYTA2OS0xNjUzNWFjZTU0MWYiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2MzEzMDA1MiwiZXhwIjoxNjYzNzM0ODUyfQ.Wz7bneCpYWALRH5G1n6W8zIv3WdIFFzglGTuUBf8-Do",
           "Content-Type": "application/json",
         },
       };
